@@ -92,8 +92,7 @@ prior to using it.
    the Amazon service offerings. You can do this through the CloudStack
    UI as described in the Administration Guide.
 
-   .. warning:: Be sure you have included the Amazon default service offering,
-   m1.small. As well as any EC2 instance types that you will use.
+.. warning:: Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use.
 
 #. 
 
@@ -102,7 +101,7 @@ prior to using it.
 
 ::
 
-       # service cloudstack-management restart
+     # service cloudstack-management restart
 
 The following sections provides details to perform these steps
 
@@ -220,12 +219,12 @@ To use the EC2 command-line tools, the user must perform these steps:
    CloudStack management server and port. In a bash shell do the
    following.
 
-   .. code:: bash
+.. code:: bash
 
-                         $ export EC2_CERT=/path/to/cert.pem
-                         $ export EC2_PRIVATE_KEY=/path/to/private_key.pem
-                         $ export EC2_URL=http://localhost:7080/awsapi
-                         $ export EC2_HOME=/path/to/EC2_tools_directory
+    $ export EC2_CERT=/path/to/cert.pem
+    $ export EC2_PRIVATE_KEY=/path/to/private_key.pem
+    $ export EC2_URL=http://localhost:7080/awsapi
+    $ export EC2_HOME=/path/to/EC2_tools_directory
 
 Using Timeouts to Ensure AWS API Command Completion
 ---------------------------------------------------
