@@ -32,8 +32,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Abstract
-
+Concepts
+========
 
 1.1. What Is CloudStack?
 ------------------------
@@ -237,7 +237,7 @@ cloud infrastructure is organized as follows:
    Secondary storage is associated with a zone, and it stores templates,
    ISO images, and disk volume snapshots.
 
-|infrastructure\_overview.png: Nested organization of a zone|
+|infrastructure_overview.png: Nested organization of a zone|
 
 **More Information**
 
@@ -260,40 +260,8 @@ CloudStack offers two types of networking scenario:
    Advanced. For more sophisticated network topologies. This network
    model provides the most flexibility in defining guest networks.
 
-For more details, see Network Setup.
-
-`2.1. About Regions <#about-regions>`__
-
-`2.2. About Zones <#about-zones>`__
-
-`2.3. About Pods <#about-pods>`__
-
-`2.4. About Clusters <#about-clusters>`__
-
-`2.5. About Hosts <#about-hosts>`__
-
-`2.6. About Primary Storage <#about-primary-storage>`__
-
-`2.7. About Secondary Storage <#about-secondary-storage>`__
-
-`2.8. About Physical Networks <#about-physical-networks>`__
-
-`2.8.1. Basic Zone Network Traffic
-Types <#basic-zone-network-traffic-types>`__
-
-`2.8.2. Basic Zone Guest IP
-Addresses <#basic-zone-guest-ip-addresses>`__
-
-`2.8.3. Advanced Zone Network Traffic
-Types <#advanced-zone-network-traffic-types>`__
-
-`2.8.4. Advanced Zone Guest IP
-Addresses <#advanced-zone-guest-ip-addresses>`__
-
-`2.8.5. Advanced Zone Public IP
-Addresses <#advanced-zone-public-ip-addresses>`__
-
-`2.8.6. System Reserved IP Addresses <#system-reserved-ip-addresses>`__
+CloudStack Terminology
+======================
 
 2.1. About Regions
 ------------------
@@ -411,15 +379,7 @@ creating a new CloudStack zone, you can select a VMware Datacenter for
 the zone. If you are provisioning multiple VMware Datacenters, each one
 will be set up as a single zone in CloudStack.
 
-Note
-----
-
-If you are upgrading from a previous CloudStack version, and your
-existing deployment contains a zone with clusters from multiple VMware
-Datacenters, that zone will not be forcibly migrated to the new model.
-It will continue to function as before. However, any new zone-wide
-operations, such as zone-wide primary storage and live storage
-migration, will not be available in that zone.
+.. note:: If you are upgrading from a previous CloudStack version, and your existing deployment contains a zone with clusters from multiple VMware Datacenters, that zone will not be forcibly migrated to the new model. It will continue to function as before. However, any new zone-wide operations, such as zone-wide primary storage and live storage migration, will not be available in that zone.
 
 2.3. About Pods
 ---------------
@@ -609,12 +569,7 @@ to Swift or S3. The backing object storage acts as a cloud-wide
 resource, making templates and other data available to any zone in the
 cloud.
 
-Warning
--------
-
-Heterogeneous Secondary Storage is not supported in Regions. For
-example, you cannot set up multiple zones, one using NFS secondary and
-the other using S3 or Swift secondary.
+.. warning:: Heterogeneous Secondary Storage is not supported in Regions. For example, you cannot set up multiple zones, one using NFS secondary and the other using S3 or Swift secondary.
 
 2.8. About Physical Networks
 ----------------------------
@@ -678,10 +633,7 @@ the zone. That physical network carries the following traffic types:
    communicates directly with the CloudStack Management Server. You must
    configure the IP range for the system VMs to use.
 
-   Note
-   ----
-
-   We strongly recommend the use of separate NICs for management traffic
+.. note:: We strongly recommend the use of separate NICs for management traffic
    and guest traffic.
 
 -  
@@ -865,35 +817,8 @@ techniques:
    create 10 pods and each pod has 255 IPs, this will provide 2,550 IP
    addresses.
 
-`3.1. Getting the release <#sect-source-gettingrelease>`__
-
-`3.2. Verifying the downloaded release <#sect-source-verify>`__
-
-`3.2.1. Getting the KEYS <#sect-source-verify-keys>`__
-
-`3.2.2. GPG <#sect-source-verify-gpg>`__
-
-`3.2.3. MD5 <#sect-source-verify-md5>`__
-
-`3.2.4. SHA512 <#sect-source-verify-sha512>`__
-
-`3.3. Prerequisites for building Apache
-CloudStack <#sect-source-prereq>`__
-
-`3.4. Extracting source <#sect-source-extract>`__
-
-`3.5. Building DEB packages <#sect-source-builddebs>`__
-
-`3.5.1. Setting up an APT repo <#sect-source-builddebs-repo>`__
-
-`3.5.2. Configuring your machines to use the APT
-repository <#sect-source-builddebs-repo2>`__
-
-`3.6. Building RPMs from Source <#sect-source-buildrpm>`__
-
-`3.6.1. Generating RPMS <#generating-rpms>`__
-
-`3.7. Building Non-OSS <#sect-source-nonoss>`__
+Building from Source
+====================
 
 The official CloudStack release is always in source code form. You will
 likely be able to find "convenience binaries," the source is the
@@ -961,7 +886,7 @@ To enable you to verify the GPG signature, you will need to download the
 
 You next need to import those keys, which you can do by running:
 
-.. code:: programlisting
+.. code:: bash
 
     # gpg --import KEYS
 
@@ -971,7 +896,7 @@ You next need to import those keys, which you can do by running:
 The CloudStack project provides a detached GPG signature of the release.
 To check the signature, run the following command:
 
-.. code:: programlisting
+.. code:: bash
 
     $ gpg --verify apache-cloudstack-4.0.0-incubating-src.tar.bz2.asc
 
@@ -985,7 +910,7 @@ In addition to the cryptographic signature, CloudStack has an MD5
 checksum that you can use to verify the download matches the release.
 You can verify this hash by executing the following command:
 
-.. code:: programlisting
+.. code:: bash
 
     $ gpg --print-md MD5 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.md5
 
@@ -1000,7 +925,7 @@ In addition to the MD5 hash, the CloudStack project provides a SHA512
 cryptographic hash to aid in assurance of the validity of the downloaded
 release. You can verify this hash by executing the following command:
 
-.. code:: programlisting
+.. code:: bash
 
     $ gpg --print-md SHA512 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.sha
 
@@ -1056,13 +981,13 @@ You will need, at a minimum, the following to compile CloudStack:
 Extracting the CloudStack release is relatively simple and can be done
 with a single command as follows:
 
-.. code:: programlisting
+.. code:: bash
 
     $ tar -jxvf apache-cloudstack-4.1.0.src.tar.bz2
 
 You can now move into the directory:
 
-.. code:: programlisting
+.. code:: bash
 
     $ cd ./apache-cloudstack-4.1.0-src
 
@@ -1076,7 +1001,7 @@ PPA repository that includes Maven 3. After running the command
 ``add-apt-repository``, you will be prompted to continue and a GPG key
 will be added.
 
-.. code:: screen
+.. code:: bash
 
     $ sudo apt-get update
     $ sudo apt-get install python-software-properties
@@ -1090,7 +1015,7 @@ that need to be resolved. CloudStack uses maven for dependency
 resolution. You can resolve the buildtime depdencies for CloudStack by
 running:
 
-.. code:: screen
+.. code:: bash
 
     $ mvn3 -P deps
 
@@ -1098,14 +1023,14 @@ Now that we have resolved the dependencies we can move on to building
 CloudStack and packaging them into DEBs by issuing the following
 command.
 
-.. code:: screen
+.. code:: bash
 
     $ dpkg-buildpackage -uc -us
 
 This command will build the following debian packages. You should have
 all of the following:
 
-.. code:: programlisting
+.. code:: bash
 
     cloudstack-common-4.2.0.amd64.deb
     cloudstack-management-4.2.0.amd64.deb
@@ -1131,7 +1056,7 @@ installed. This should have been installed when you pulled in the
 ``Packages.gz`` on a different system, be sure that it's installed there
 as well.
 
-.. code:: screen
+.. code:: bash
 
     $ sudo apt-get install dpkg-dev
 
@@ -1139,17 +1064,14 @@ The next step is to copy the DEBs to the directory where they can be
 served over HTTP. We'll use ``/var/www/cloudstack/repo`` in the
 examples, but change the directory to whatever works for you.
 
-.. code:: screen
+.. code:: bash
 
     sudo mkdir -p /var/www/cloudstack/repo/binary
     sudo cp *.deb /var/www/cloudstack/repo/binary
     sudo cd /var/www/cloudstack/repo/binary
     sudo dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz
 
-Note: Override Files
---------------------
-
-You can safely ignore the warning about a missing override file.
+.. note:: You can safely ignore the warning about a missing override file.
 
 Now you should have all of the DEB packages and ``Packages.gz`` in the
 ``binary`` directory and available over HTTP. (You may want to use
@@ -1164,14 +1086,14 @@ repository file under ``/etc/apt/sources.list.d``. Use your preferred
 editor to create ``/etc/apt/sources.list.d/cloudstack.list`` with this
 line:
 
-.. code:: programlisting
+.. code:: bash
 
     deb http://server.url/cloudstack/repo binary ./
 
 Now that you have the repository info in place, you'll want to run
 another update so that APT knows where to find the CloudStack packages.
 
-.. code:: screen
+.. code:: bash
 
     $ sudo apt-get update
 
@@ -1186,11 +1108,11 @@ several prerequisites before you can build packages for CloudStack. Here
 we'll assume you're working with a 64-bit build of CentOS or Red Hat
 Enterprise Linux.
 
-.. code:: programlisting
+::
 
     # yum groupinstall "Development Tools"
 
-.. code:: programlisting
+::
 
     # yum install java-1.6.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
 
@@ -1199,24 +1121,24 @@ Maven. We're using Maven 3, so you'll want to `grab a Maven 3
 tarball <http://maven.apache.org/download.cgi>`__ and uncompress it in
 your home directory (or whatever location you prefer):
 
-.. code:: programlisting
+::
 
     $ tar zxvf apache-maven-3.0.4-bin.tar.gz
 
-.. code:: programlisting
+::
 
     $ export PATH=/usr/local/apache-maven-3.0.4//bin:$PATH
 
 Maven also needs to know where Java is, and expects the JAVA\_HOME
 environment variable to be set:
 
-.. code:: programlisting
+::
 
     $ export JAVA_HOME=/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/
 
 Verify that Maven is installed correctly:
 
-.. code:: programlisting
+::
 
     $ mvn --version
 
@@ -1229,27 +1151,21 @@ the source downloaded and have uncompressed the tarball into a local
 directory, you're going to be able to generate packages in just a few
 minutes.
 
-Packaging has Changed
----------------------
-
-If you've created packages for CloudStack previously, you should be
-aware that the process has changed considerably since the project has
-moved to using Apache Maven. Please be sure to follow the steps in this
-section closely.
+.. note:: Packaging has Changed. If you've created packages for CloudStack previously, you should be
+aware that the process has changed considerably since the project has moved to using Apache Maven. Please be sure to follow the steps in this section closely.
 
 3.6.1. Generating RPMS
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Now that we have the prerequisites and source, you will cd to the
-``packaging/centos63/`` directory.
+Now that we have the prerequisites and source, you will cd to the `packaging/centos63/` directory.
 
-.. code:: programlisting
+::
 
     $ cd packaging/centos63
 
 Generating RPMs is done using the ``package.sh`` script:
 
-.. code:: programlisting
+::
 
     $./package.sh
 
@@ -1258,15 +1174,15 @@ That will run for a bit and then place the finished packages in
 
 You should see the following RPMs in that directory:
 
-.. code:: programlisting
+::
 
-                cloudstack-agent-4.2.0.el6.x86_64.rpm
-                cloudstack-awsapi-4.2.0.el6.x86_64.rpm
-                cloudstack-cli-4.2.0.el6.x86_64.rpm
-                cloudstack-common-4.2.0.el6.x86_64.rpm
-                cloudstack-docs-4.2.0.el6.x86_64.rpm
-                cloudstack-management-4.2.0.el6.x86_64.rpm
-                cloudstack-usage-4.2.0.el6.x86_64.rpm
+    cloudstack-agent-4.2.0.el6.x86_64.rpm
+    cloudstack-awsapi-4.2.0.el6.x86_64.rpm
+    cloudstack-cli-4.2.0.el6.x86_64.rpm
+    cloudstack-common-4.2.0.el6.x86_64.rpm
+    cloudstack-docs-4.2.0.el6.x86_64.rpm
+    cloudstack-management-4.2.0.el6.x86_64.rpm
+    cloudstack-usage-4.2.0.el6.x86_64.rpm
 
 3.6.1.1. Creating a yum repo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1275,15 +1191,15 @@ While RPMs is a useful packaging format - it's most easily consumed from
 Yum repositories over a network. The next step is to create a Yum Repo
 with the finished packages:
 
-.. code:: programlisting
+::
 
     $ mkdir -p ~/tmp/repo
 
-.. code:: programlisting
+::
 
     $ cp dist/rpmbuild/RPMS/x86_64/*rpm ~/tmp/repo/
 
-.. code:: programlisting
+::
 
     $ createrepo ~/tmp/repo
 
@@ -1297,13 +1213,13 @@ Now that your yum repository is populated with RPMs and metadata we need
 to configure the machines that need to install CloudStack. Create a file
 named ``/etc/yum.repos.d/cloudstack.repo`` with this information:
 
-.. code:: programlisting
+::
 
-                            [apache-cloudstack]
-                            name=Apache CloudStack
-                            baseurl=http://webserver.tld/path/to/repo
-                            enabled=1
-                            gpgcheck=0
+   [apache-cloudstack]
+   name=Apache CloudStack
+   baseurl=http://webserver.tld/path/to/repo
+   enabled=1
+   gpgcheck=0
 
 Completing this step will allow you to easily install CloudStack on a
 number of machines across the network.
@@ -1349,7 +1265,7 @@ products <http://www.apache.org/legal/resolved.html#category-x>`__.
    Once you have all the dependencies copied over, you'll be able to
    build CloudStack with the ``nonoss`` option:
 
-   .. code:: programlisting
+::
 
                        $ mvn clean
                        $ mvn install -Dnonoss
@@ -1361,51 +1277,8 @@ products <http://www.apache.org/legal/resolved.html#category-x>`__.
    Source” <#sect-source-buildrpm>`__ or `Section 3.5, “Building DEB
    packages” <#sect-source-builddebs>`__ instructions.
 
-`4.1. Who Should Read This <#who-should-read-installation>`__
-
-`4.2. Overview of Installation Steps <#installation-steps-overview>`__
-
-`4.3. Minimum System Requirements <#minimum-system-requirements>`__
-
-`4.3.1. Management Server, Database, and Storage System
-Requirements <#management-server-system-requirements>`__
-
-`4.3.2. Host/Hypervisor System
-Requirements <#hypervisor-system-requirements>`__
-
-`4.4. Configure package repository <#configure-package-repository>`__
-
-`4.4.1. DEB package repository <#configure-package-repository-deb>`__
-
-`4.4.2. RPM package repository <#configure-package-repository-rpm>`__
-
-`4.5. Management Server
-Installation <#management-server-install-flow>`__
-
-`4.5.1. Management Server Installation
-Overview <#management-server-installation-overview>`__
-
-`4.5.2. Prepare the Operating System <#prepare-os>`__
-
-`4.5.3. Install the Management Server on the First
-Host <#management-server-install>`__
-
-`4.5.4. Install the database server <#management-server-install-db>`__
-
-`4.5.5. About Password and Key
-Encryption <#about-password-encryption>`__
-
-`4.5.6. Changing the Default Password
-Encryption <#password-storage-engine>`__
-
-`4.5.7. Prepare NFS Shares <#prepare-nfs-shares>`__
-
-`4.5.8. Prepare and Start Additional Management
-Servers <#install-management-server-multi-nodes>`__
-
-`4.5.9. Prepare the System VM Template <#prepare-system-vm-template>`__
-
-`4.5.10. Installation Complete! Next Steps <#installation-complete>`__
+Installation
+============
 
 4.1. Who Should Read This
 -------------------------
@@ -1570,12 +1443,7 @@ requirements:
 
    At least 1 NIC
 
--  Note
-   ----
-
-   If DHCP is used for hosts, ensure that no conflict occurs between
-   DHCP server used for these hosts and the DHCP router created by
-   CloudStack.
+.. note::If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
 
 -  
 
@@ -1595,38 +1463,7 @@ Hosts have additional requirements depending on the hypervisor. See the
 requirements listed at the top of the Installation section for your
 chosen hypervisor:
 
-Warning
--------
-
-Be sure you fulfill the additional hypervisor requirements and
-installation steps provided in this Guide. Hypervisor hosts must be
-properly prepared to work with CloudStack. For example, the requirements
-for XenServer are listed under Citrix XenServer Installation.
-
--  
-
-   `Section 8.1.1, “System Requirements for KVM Hypervisor
-   Hosts” <#hypervisor-kvm-requirements>`__
-
--  
-
-   `Section 8.2.1, “System Requirements for XenServer
-   Hosts” <#system-requirements-xenserver-hosts>`__
-
--  
-
-   `Section 8.3.1, “System Requirements for Hyper-V Hypervisor
-   Hosts” <#hyperv-requirements>`__
-
--  
-
-   `Section 8.4.1, “System Requirements for vSphere
-   Hosts” <#vmware-requirements>`__
-
--  
-
-   `Section 8.5.1, “System Requirements for LXC
-   Hosts” <#lxc-requirements>`__
+.. warning::Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
 
 4.4. Configure package repository
 ---------------------------------
@@ -1643,11 +1480,7 @@ packages” <#sect-source-builddebs>`__ you may find pre-built DEB and RPM
 packages for your convenience linked from the
 `downloads <http://cloudstack.apache.org/downloads.html>`__ page.
 
-Note
-----
-
-These repositories contain both the Management Server and KVM Hypervisor
-packages.
+.. note::These repositories contain both the Management Server and KVM Hypervisor packages.
 
 4.4.1. DEB package repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1660,19 +1493,19 @@ Use your preferred editor and open (or create)
 ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
 repository to the file:
 
-.. code:: programlisting
+.. code:: bash
 
     deb http://cloudstack.apt-get.eu/ubuntu precise 4.2
 
 We now have to add the public key to the trusted keys.
 
-.. code:: programlisting
+.. code:: bash
 
     $ wget -O - http://cloudstack.apt-get.eu/release.asc|apt-key add -
 
 Now update your local apt cache.
 
-.. code:: programlisting
+.. code:: bash
 
     $ apt-get update
 
@@ -1695,7 +1528,7 @@ To add the CloudStack repository, create
 ``/etc/yum.repos.d/cloudstack.repo`` and insert the following
 information.
 
-.. code:: programlisting
+.. code:: bash
 
     [cloudstack]
     name=cloudstack
@@ -1727,10 +1560,7 @@ Server nodes will be in your cloud:
 In either case, each machine must meet the system requirements described
 in System Requirements.
 
-Warning
--------
-
-For the sake of security, be sure the public Internet can not access
+.. warning::For the sake of security, be sure the public Internet can not access
 port 8096 or port 8250 on the Management Server.
 
 The procedure for installing the Management Server is:
@@ -1778,7 +1608,7 @@ node.
 
    Check for a fully qualified hostname.
 
-   .. code:: programlisting
+   .. code:: bash
 
        hostname --fqdn
 
@@ -1790,7 +1620,7 @@ node.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: programlisting
+   .. code:: bash
 
        ping www.cloudstack.org
 
@@ -1798,21 +1628,18 @@ node.
 
    Turn on NTP for time synchronization.
 
-   Note
-   ----
-
-   NTP is required to synchronize the clocks of the servers in your
+.. note::NTP is required to synchronize the clocks of the servers in your
    cloud.
 
    #. 
 
       Install NTP.
 
-      .. code:: programlisting
+      .. code:: bash
 
           yum install ntp
 
-      .. code:: programlisting
+      .. code:: bash
 
           apt-get install openntpd
 
@@ -1828,10 +1655,7 @@ The first step in installation, whether you are installing the
 Management Server on one host or many, is to install the software on a
 single node.
 
-Note
-----
-
-If you are planning to install the Management Server on multiple nodes
+.. note::If you are planning to install the Management Server on multiple nodes
 for high availability, do not proceed to the additional nodes yet. That
 step will come later.
 
@@ -1844,14 +1668,14 @@ the Management server.
 
 We start by installing the required packages:
 
-.. code:: programlisting
+.. code:: bash
 
     yum install cloudstack-management
 
 4.5.3.2. Install on Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: programlisting
+.. code:: bash
 
     apt-get install cloudstack-management
 
@@ -1896,11 +1720,11 @@ Node” <#management-server-install-db-external>`__.
 
    Install MySQL from the package repository of your distribution:
 
-   .. code:: programlisting
+   .. code:: bash
 
        yum install mysql-server
 
-   .. code:: programlisting
+   .. code:: bash
 
        apt-get install mysql-server
 
@@ -1918,14 +1742,11 @@ Node” <#management-server-install-db-external>`__.
    Servers you are deploying. This example assumes one Management
    Server.
 
-   Note
-   ----
-
-   On Ubuntu, you can also create a file
-   ``/etc/mysql/conf.d/cloudstack.cnf`` and add these directives there.
+.. note::On Ubuntu, you can also create a file
+   `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there.
    Don't forget to add [mysqld] on the first line of the file.
 
-   .. code:: programlisting
+   .. code:: bash
 
        innodb_rollback_on_timeout=1
        innodb_lock_wait_timeout=600
@@ -1940,13 +1761,13 @@ Node” <#management-server-install-db-external>`__.
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   .. code:: programlisting
+   .. code:: bash
 
        service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   .. code:: programlisting
+   .. code:: bash
 
        service mysql restart
 
@@ -1955,8 +1776,7 @@ Node” <#management-server-install-db-external>`__.
    (CentOS and RHEL only; not required on Ubuntu)
 
    Warning
-   -------
-
+   
    On RHEL and CentOS, MySQL does not set a root password by default. It
    is very strongly recommended that you set a root password as a
    security precaution.
@@ -1964,7 +1784,7 @@ Node” <#management-server-install-db-external>`__.
    Run the following command to secure your installation. You can answer
    "Y" to all questions.
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql_secure_installation
 
@@ -1984,7 +1804,7 @@ Node” <#management-server-install-db-external>`__.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ rpm -qa | grep selinux
 
@@ -1996,19 +1816,19 @@ Node” <#management-server-install-db-external>`__.
 
       In RHEL or CentOS:
 
-      .. code:: programlisting
+      .. code:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=enforcing
 
       to this:
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=permissive
 
@@ -2017,7 +1837,7 @@ Node” <#management-server-install-db-external>`__.
       Set SELinux to permissive starting immediately, without requiring
       a system reboot.
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ setenforce permissive
 
@@ -2069,7 +1889,7 @@ Node” <#management-server-install-db-external>`__.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   .. code:: programlisting
+   .. code:: bash
 
        cloudstack-setup-databases cloud:<dbpassword>@localhost \
        --deploy-as=root:<password> \
@@ -2082,7 +1902,7 @@ Node” <#management-server-install-db-external>`__.
    “Successfully initialized the database.”
 
    Note
-   ----
+
 
    If the script is unable to connect to the MySQL database, check the
    "localhost" loopback address in ``/etc/hosts``. It should be pointing
@@ -2095,7 +1915,7 @@ Node” <#management-server-install-db-external>`__.
    If you are running the KVM hypervisor on the same machine with the
    Management Server, edit /etc/sudoers and add the following line:
 
-   .. code:: programlisting
+   .. code:: bash
 
        Defaults:cloud !requiretty
 
@@ -2105,7 +1925,7 @@ Node” <#management-server-install-db-external>`__.
    for the Management Server. This command will set up iptables,
    sudoers, and start the Management Server.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # cloudstack-setup-management
 
@@ -2123,7 +1943,7 @@ same node for MySQL. See `Section 4.5.4.1, “Install the Database on the
 Management Server Node” <#management-server-install-db-local>`__.
 
 Note
-----
+
 
 The management server doesn't require a specific distribution for the
 MySQL node. You can use a distribution or Operating System of your
@@ -2136,11 +1956,11 @@ Requirements” <#management-server-system-requirements>`__.
 
    Install MySQL from the package repository from your distribution:
 
-   .. code:: programlisting
+   .. code:: bash
 
        yum install mysql-server
 
-   .. code:: programlisting
+   .. code:: bash
 
        apt-get install mysql-server
 
@@ -2154,13 +1974,13 @@ Requirements” <#management-server-system-requirements>`__.
    two Management Servers.
 
    Note
-   ----
+
 
    On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file
    and add these directives there. Don't forget to add [mysqld] on the
    first line of the file.
 
-   .. code:: programlisting
+   .. code:: bash
 
        innodb_rollback_on_timeout=1
        innodb_lock_wait_timeout=600
@@ -2176,13 +1996,13 @@ Requirements” <#management-server-system-requirements>`__.
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   .. code:: programlisting
+   .. code:: bash
 
        service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   .. code:: programlisting
+   .. code:: bash
 
        service mysql restart
 
@@ -2191,7 +2011,7 @@ Requirements” <#management-server-system-requirements>`__.
    (CentOS and RHEL only; not required on Ubuntu)
 
    Warning
-   -------
+
 
    On RHEL and CentOS, MySQL does not set a root password by default. It
    is very strongly recommended that you set a root password as a
@@ -2201,7 +2021,7 @@ Requirements” <#management-server-system-requirements>`__.
    "Y" to all questions except "Disallow root login remotely?". Remote
    root login is required to set up the databases.
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql_secure_installation
 
@@ -2213,7 +2033,7 @@ Requirements” <#management-server-system-requirements>`__.
    On Ubuntu, UFW is the default firewall. Open the port with this
    command:
 
-   .. code:: programlisting
+   .. code:: bash
 
        ufw allow mysql
 
@@ -2224,7 +2044,7 @@ Requirements” <#management-server-system-requirements>`__.
       Edit the /etc/sysconfig/iptables file and add the following line
       at the beginning of the INPUT chain.
 
-      .. code:: programlisting
+      .. code:: bash
 
           -A INPUT -p tcp --dport 3306 -j ACCEPT
 
@@ -2232,7 +2052,7 @@ Requirements” <#management-server-system-requirements>`__.
 
       Now reload the iptables rules.
 
-      .. code:: programlisting
+      .. code:: bash
 
           service iptables restart
 
@@ -2286,7 +2106,7 @@ Requirements” <#management-server-system-requirements>`__.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   .. code:: programlisting
+   .. code:: bash
 
        cloudstack-setup-databases cloud:<dbpassword>@<ip address mysql server> \
        --deploy-as=root:<password> \
@@ -2397,7 +2217,7 @@ Modify the following list properties available in
 ``client/tomcatconf/componentContext.xml.in`` as applicable, to the
 desired order:
 
-.. code:: programlisting
+.. code:: bash
 
     <property name="UserAuthenticators">
              <list>
@@ -2432,9 +2252,6 @@ CloudStack needs a place to keep primary and secondary storage (see
 Cloud Infrastructure Overview). Both of these can be NFS shares. This
 section tells how to set up the NFS shares before adding the storage to
 CloudStack.
-
-Alternative Storage
--------------------
 
 NFS is not the only option for primary or secondary storage. For
 example, you may use Ceph RBD, GlusterFS, iSCSI, and others. The choice
@@ -2471,7 +2288,7 @@ The exact commands for the following steps may vary depending on your
 operating system version.
 
 Warning
--------
+
 
 (KVM only) Ensure that no volume is already mounted at your NFS mount
 point.
@@ -2482,7 +2299,7 @@ point.
    if you are using NFS for primary storage as well, create a second NFS
    share. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -2493,13 +2310,13 @@ point.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/exports
 
    Insert the following line.
 
-   .. code:: programlisting
+   .. code:: bash
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -2507,7 +2324,7 @@ point.
 
    Export the /export directory.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # exportfs -a
 
@@ -2516,7 +2333,7 @@ point.
    On the management server, create a mount point for secondary storage.
    For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mkdir -p /mnt/secondary
 
@@ -2525,7 +2342,7 @@ point.
    Mount the secondary storage on your Management Server. Replace the
    example NFS server name and NFS share paths below with your own.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mount -t nfs nfsservername:/nfs/share/secondary /mnt/secondary
 
@@ -2545,7 +2362,7 @@ operating system version.
 
    On RHEL/CentOS systems, you'll need to install the nfs-utils package:
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ sudo yum install nfs-utils
 
@@ -2554,7 +2371,7 @@ operating system version.
    On the Management Server host, create two directories that you will
    use for primary and secondary storage. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -2565,13 +2382,13 @@ operating system version.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/exports
 
    Insert the following line.
 
-   .. code:: programlisting
+   .. code:: bash
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -2579,7 +2396,7 @@ operating system version.
 
    Export the /export directory.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # exportfs -a
 
@@ -2587,13 +2404,13 @@ operating system version.
 
    Edit the /etc/sysconfig/nfs file.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/sysconfig/nfs
 
    Uncomment the following lines:
 
-   .. code:: programlisting
+   .. code:: bash
 
        LOCKD_TCPPORT=32803
        LOCKD_UDPPORT=32769
@@ -2606,14 +2423,14 @@ operating system version.
 
    Edit the /etc/sysconfig/iptables file.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/sysconfig/iptables
 
    Add the following lines at the beginning of the INPUT chain, where
    <NETWORK> is the network that you'll be using:
 
-   .. code:: programlisting
+   .. code:: bash
 
        -A INPUT -s <NETWORK> -m state --state NEW -p udp --dport 111 -j ACCEPT
        -A INPUT -s <NETWORK> -m state --state NEW -p tcp --dport 111 -j ACCEPT
@@ -2631,7 +2448,7 @@ operating system version.
 
    Run the following commands:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service iptables restart
        # service iptables save
@@ -2642,7 +2459,7 @@ operating system version.
    domain to /etc/idmapd.conf on both the hypervisor host and Management
    Server.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/idmapd.conf
 
@@ -2650,7 +2467,7 @@ operating system version.
    idmapd.conf and replace the value in the file with your own domain.
    In the example below, the domain is company.com.
 
-   .. code:: programlisting
+   .. code:: bash
 
        Domain = company.com
 
@@ -2675,7 +2492,7 @@ operating system version.
       Be sure NFS and rpcbind are running. The commands might be
       different depending on your OS. For example:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # service rpcbind start
           # service nfs start
@@ -2689,7 +2506,7 @@ operating system version.
       directories. For example, substitute your own management server
       name:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mkdir /primary
           # mount -t nfs <management-server-name>:/export/primary
@@ -2727,7 +2544,7 @@ OS for the Management Server.
 
    Ensure that necessary services are started and set to start on boot.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service rpcbind start
        # service nfs start
@@ -2741,7 +2558,7 @@ OS for the Management Server.
    command, see `Section 4.5.4.2, “Install the Database on a Separate
    Node” <#management-server-install-db-external>`__.)
 
-   .. code:: programlisting
+   .. code:: bash
 
        # cloudstack-setup-databases cloud:dbpassword@dbhost -e encryption_type -m management_server_key -k database_key -i management_server_ip
 
@@ -2749,7 +2566,7 @@ OS for the Management Server.
 
    Configure the OS and start the Management Server:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # cloudstack-setup-management
 
@@ -2772,7 +2589,7 @@ Secondary storage must be seeded with a template that is used for
 CloudStack system VMs.
 
 Note
-----
+
 
 When copying and pasting a command, be sure the command has pasted as a
 single line before executing. Some document viewers may introduce
@@ -2800,7 +2617,7 @@ unwanted line breaks in copied text.
 
       For Hyper-V
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2013-12-23-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
 
@@ -2808,7 +2625,7 @@ unwanted line breaks in copied text.
 
       For XenServer:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
 
@@ -2816,7 +2633,7 @@ unwanted line breaks in copied text.
 
       For vSphere:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova -h vmware -s <optional-management-server-secret-key>  -F
 
@@ -2824,7 +2641,7 @@ unwanted line breaks in copied text.
 
       For KVM:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
 
@@ -2832,13 +2649,13 @@ unwanted line breaks in copied text.
 
       For LXC:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
 
    On Ubuntu, use the following path instead:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt
 
@@ -2851,7 +2668,7 @@ unwanted line breaks in copied text.
    When the script has finished, unmount secondary storage and remove
    the created directory.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # umount /mnt/secondary
        # rmdir /mnt/secondary
@@ -2883,28 +2700,8 @@ What should you do next?
    virtual machines on it, so you can watch how CloudStack manages the
    infrastructure. See Provision Your Cloud Infrastructure.
 
-`5.1. Log In to the UI <#log-in>`__
-
-`5.1.1. End User's UI Overview <#end-user-ui-overview>`__
-
-`5.1.2. Root Administrator's UI Overview <#root-admin-ui-overview>`__
-
-`5.1.3. Logging In as the Root Administrator <#log-in-root-admin>`__
-
-`5.1.4. Changing the Root Password <#changing-root-password>`__
-
-`5.2. Using SSH Keys for Authentication <#using-sshkeys>`__
-
-`5.2.1. Creating an Instance Template that Supports SSH
-Keys <#create-ssh-template>`__
-
-`5.2.2. Creating the SSH Keypair <#create-ssh-keypair>`__
-
-`5.2.3. Creating an Instance <#creating-ssh-instance>`__
-
-`5.2.4. Logging In Using the SSH Keypair <#logging-in-ssh>`__
-
-`5.2.5. Resetting SSH Keys <#reset-ssh>`__
+User Interface
+==============
 
 5.1. Log In to the UI
 ---------------------
@@ -2916,7 +2713,7 @@ available in popular browsers including IE7, IE8, IE9, Firefox 3.5+,
 Firefox 4, Safari 4, and Safari 5. The URL is: (substitute your own
 management server IP address)
 
-.. code:: programlisting
+.. code:: bash
 
     http://<management-server-ip-address>:8080/client
 
@@ -2924,21 +2721,12 @@ On a fresh Management Server installation, a guided tour splash screen
 appears. On later visits, you’ll see a login screen where you specify
 the following to proceed to your Dashboard:
 
-Username
-''''''''
+Username -> The user ID of your account. The default username is admin.
 
-The user ID of your account. The default username is admin.
-
-Password
-''''''''
-
-The password associated with the user ID. The password for the default
+Password -> The password associated with the user ID. The password for the default
 username is password.
 
-Domain
-''''''
-
-If you are a root user, leave this field blank.
+Domain -> If you are a root user, leave this field blank.
 
 If you are a user in the sub-domains, enter the full path to the domain,
 excluding the root domain.
@@ -2985,7 +2773,7 @@ provision, view, and manage your cloud infrastructure.
    Open your favorite Web browser and go to this URL. Substitute the IP
    address of your own Management Server:
 
-   .. code:: programlisting
+   .. code:: bash
 
        http://<management-server-ip-address>:8080/client
 
@@ -3033,7 +2821,7 @@ provision, view, and manage your cloud infrastructure.
    the Root Password” <#changing-root-password>`__.
 
 Warning
--------
+
 
 You are logging in as the root administrator. This account manages the
 CloudStack deployment, including physical infrastructure. The root
@@ -3059,7 +2847,7 @@ new, unique value.
    Open your favorite Web browser and go to this URL. Substitute the IP
    address of your own Management Server:
 
-   .. code:: programlisting
+   .. code:: bash
 
        http://<management-server-ip-address>:8080/client
 
@@ -3122,7 +2910,7 @@ Create a instance template that supports SSH Keys.
    Script <http://sourceforge.net/projects/cloudstack/files/SSH%20Key%20Gen%20Script/>`__\ to
    the instance you have created.
 
-   .. code:: programlisting
+   .. code:: bash
 
        wget http://downloads.sourceforge.net/project/cloudstack/SSH%20Key%20Gen%20Script/cloud-set-guest-sshkey.in?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fcloudstack%2Ffiles%2FSSH%2520Key%2520Gen%2520Script%2F&ts=1331225219&use_mirror=iweb
 
@@ -3130,7 +2918,7 @@ Create a instance template that supports SSH Keys.
 
    Copy the file to /etc/init.d.
 
-   .. code:: programlisting
+   .. code:: bash
 
        cp cloud-set-guest-sshkey.in /etc/init.d/
 
@@ -3138,7 +2926,7 @@ Create a instance template that supports SSH Keys.
 
    Give the necessary permissions on the script:
 
-   .. code:: programlisting
+   .. code:: bash
 
        chmod +x /etc/init.d/cloud-set-guest-sshkey.in
 
@@ -3146,7 +2934,7 @@ Create a instance template that supports SSH Keys.
 
    Run the script while starting up the operating system:
 
-   .. code:: programlisting
+   .. code:: bash
 
        chkconfig --add cloud-set-guest-sshkey.in
 
@@ -3165,7 +2953,7 @@ For example, make a call from the cloudstack server to create a SSH
 keypair called "keypair-doc" for the admin account in the root domain:
 
 Note
-----
+
 
 Ensure that you adjust these values to meet your needs. If you are
 making the API call from a different server, your URL/PORT will be
@@ -3175,13 +2963,13 @@ different, and you will need to use the API keys.
 
    Run the following curl command:
 
-   .. code:: programlisting
+   .. code:: bash
 
        curl --globoff "http://localhost:8096/?command=createSSHKeyPair&name=keypair-doc&account=admin&domainid=5163440e-c44b-42b5-9109-ad75cae8e8a2"
 
    The output is something similar to what is given below:
 
-   .. code:: programlisting
+   .. code:: bash
 
        <?xml version="1.0" encoding="ISO-8859-1"?><createsshkeypairresponse cloud-stack-version="3.0.0.20120228045507"><keypair><name>keypair-doc</name><fingerprint>f6:77:39:d5:5e:77:02:22:6a:d8:7f:ce:ab:cd:b3:56</fingerprint><privatekey>-----BEGIN RSA PRIVATE KEY-----
        MIICXQIBAAKBgQCSydmnQ67jP6lNoXdX3noZjQdrMAWNQZ7y5SrEu4wDxplvhYci
@@ -3201,7 +2989,7 @@ different, and you will need to use the API keys.
 
    Copy the key data into a file. The file looks like this:
 
-   .. code:: programlisting
+   .. code:: bash
 
        -----BEGIN RSA PRIVATE KEY-----
        MIICXQIBAAKBgQCSydmnQ67jP6lNoXdX3noZjQdrMAWNQZ7y5SrEu4wDxplvhYci
@@ -3230,14 +3018,14 @@ Ensure that you use the same SSH key name that you created at
 `Section 5.2.2, “Creating the SSH Keypair” <#create-ssh-keypair>`__.
 
 Note
-----
+
 
 You cannot create the instance by using the GUI at this time and
 associate the instance with the newly created SSH keypair.
 
 A sample curl command to create a new instance is:
 
-.. code:: programlisting
+.. code:: bash
 
     curl --globoff http://localhost:<port number>/?command=deployVirtualMachine\&zoneId=1\&serviceOfferingId=18727021-7556-4110-9322-d625b52e0813\&templateId=e899c18a-ce13-4bbf-98a9-625c5026e0b5\&securitygroupids=ff03f02f-9e3b-48f8-834d-91b822da40c5\&account=admin\&domainid=1\&keypair=keypair-doc
 
@@ -3253,7 +3041,7 @@ in to the cloud setup.
 
 For exaple, from a Linux OS, run:
 
-.. code:: programlisting
+.. code:: bash
 
     ssh -i ~/.ssh/keypair-doc <ip address>
 
@@ -3269,59 +3057,8 @@ compromised SSH keypair can be changed, and the user can access the VM
 by using the new keypair. Just create or register a new keypair, then
 call resetSSHKeyForVirtualMachine.
 
-`6.1. Overview of Provisioning Steps <#provisioning-steps-overview>`__
-
-`6.2. Adding Regions (optional) <#region-add>`__
-
-`6.2.1. The First Region: The Default Region <#region-first>`__
-
-`6.2.2. Adding a Region <#region-add-2>`__
-
-`6.2.3. Adding Third and Subsequent Regions <#region-add-n>`__
-
-`6.2.4. Deleting a Region <#region-delete>`__
-
-`6.3. Adding a Zone <#zone-add>`__
-
-`6.3.1. Basic Zone Configuration <#basic-zone-configuration>`__
-
-`6.3.2. Advanced Zone Configuration <#advanced-zone-configuration>`__
-
-`6.4. Adding a Pod <#pod-add>`__
-
-`6.5. Adding a Cluster <#cluster-add>`__
-
-`6.5.1. Add Cluster: KVM or XenServer <#add-clusters-kvm-xenserver>`__
-
-`6.5.2. Add Cluster: vSphere <#add-clusters-vsphere>`__
-
-`6.6. Adding a Host <#host-add>`__
-
-`6.6.1. Adding a Host (XenServer or
-KVM) <#host-add-xenserver-kvm-ovm>`__
-
-`6.6.2. Adding a Host (vSphere) <#host-add-vsphere>`__
-
-`6.7. Add Primary Storage <#primary-storage-add>`__
-
-`6.7.1. System Requirements for Primary
-Storage <#sys-require-primary-storage>`__
-
-`6.7.2. Adding Primary Storage <#adding-primary-storage>`__
-
-`6.7.3. Configuring a Storage Plug-in <#idp140240982262208>`__
-
-`6.8. Add Secondary Storage <#secondary-storage-add>`__
-
-`6.8.1. System Requirements for Secondary
-Storage <#sys-require-secondary-storage>`__
-
-`6.8.2. Adding Secondary Storage <#adding-secondary-storage>`__
-
-`6.8.3. Adding an NFS Secondary Staging Store for Each
-Zone <#secondary-staging-store>`__
-
-`6.9. Initialize and Test <#initialize-and-test>`__
+Configuring your CloudStack Installation
+========================================
 
 This section tells how to add regions, zones, pods, clusters, hosts,
 storage, and networks to your cloud. If you are unfamiliar with these
@@ -3417,7 +3154,7 @@ region.
    for the new region. The default region is automatically assigned a
    region ID of 1, so your first additional region might be region 2.
 
-   .. code:: programlisting
+   .. code:: bash
 
        cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
 
@@ -3478,7 +3215,7 @@ region.
 
       First, run this command to copy the contents of the database:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mysqldump -u root -p<mysql_password> -h <region1_db_host> cloud account user domain > region1.sql
 
@@ -3486,7 +3223,7 @@ region.
 
       Then run this command to put the data onto the region 2 database:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mysql -u root -p<mysql_password> -h <region2_db_host> cloud < region1.sql
 
@@ -3494,7 +3231,7 @@ region.
 
    Remove project accounts. Run these commands on the region 2 database:
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> delete from account where type = 5;
 
@@ -3502,7 +3239,7 @@ region.
 
    Set the default zone as null:
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> update account set default_zone_id = null;
 
@@ -3522,7 +3259,7 @@ repeat certain steps additional times for each additional region:
    Install CloudStack in each additional region. Set the region ID for
    each region during the database setup step.
 
-   .. code:: programlisting
+   .. code:: bash
 
        cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
 
@@ -3580,7 +3317,7 @@ repeat certain steps additional times for each additional region:
 
       First, run this command to copy the contents of the database:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mysqldump -u root -p<mysql_password> -h <region1_db_host> cloud account user domain > region1.sql
 
@@ -3589,7 +3326,7 @@ repeat certain steps additional times for each additional region:
       Then run this command to put the data onto the new region's
       database. For example, for region 3:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mysql -u root -p<mysql_password> -h <region3_db_host> cloud < region1.sql
 
@@ -3597,7 +3334,7 @@ repeat certain steps additional times for each additional region:
 
    Remove project accounts. Run these commands on the region 3 database:
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> delete from account where type = 5;
 
@@ -3605,7 +3342,7 @@ repeat certain steps additional times for each additional region:
 
    Set the default zone as null:
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> update account set default_zone_id = null;
 
@@ -3962,7 +3699,7 @@ and secondary storage.
    About Hosts.
 
    Note
-   ----
+
 
    When you add a hypervisor host to CloudStack, the host must not have
    any VMs already running.
@@ -4218,7 +3955,7 @@ and secondary storage.
    `Section 2.5, “About Hosts” <#about-hosts>`__.
 
    Note
-   ----
+
 
    When you deploy CloudStack, the hypervisor host must not have any VMs
    already running.
@@ -4714,10 +4451,7 @@ To add a vSphere cluster to CloudStack:
    supported, as well as crucial additional steps to configure the
    hypervisor hosts for use with CloudStack.
 
-   Warning
-   -------
-
-   Be sure you have performed the additional CloudStack-specific
+   .. warning:: Be sure you have performed the additional CloudStack-specific
    configuration steps described in the hypervisor installation section
    for your particular hypervisor.
 
@@ -4743,10 +4477,7 @@ XenServer and KVM hosts can be added to a cluster at any time.
 6.6.1.1. Requirements for XenServer and KVM Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Warning
--------
-
-Make sure the hypervisor host does not have any VMs already running
+.. warning:: Make sure the hypervisor host does not have any VMs already running
 before you add it to CloudStack.
 
 Configuration requirements:
@@ -4776,12 +4507,12 @@ For all additional hosts to be added to the cluster, run the following
 command. This will cause the host to join the master in a XenServer
 pool.
 
-.. code:: programlisting
+.. code:: bash
 
     # xe pool-join master-address=[master IP] master-username=root master-password=[your password]
 
 Note
-----
+
 
 When copying and pasting a command, be sure the command has pasted as a
 single line before executing. Some document viewers may introduce
@@ -4801,7 +4532,7 @@ bonds on the new hosts in the cluster.
 
    Run the script:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # ./cloud-setup-bonding.sh
 
@@ -4945,17 +4676,11 @@ of that procedure. You can add primary storage servers at any time, such
 as when adding a new cluster or adding more servers to an existing
 cluster.
 
-Warning
--------
-
-When using preallocated storage for primary storage, be sure there is
+.. warning:: When using preallocated storage for primary storage, be sure there is
 nothing on the storage (ex. you have an empty SAN volume or an empty NFS
 share). Adding the storage to CloudStack will destroy any existing data.
 
-Note
-----
-
-Primary storage can also be added at the zone level through the
+.. note:: Primary storage can also be added at the zone level through the
 CloudStack API (adding zone-level primary storage is not yet supported
 through the CloudStack UI).
 
@@ -5096,7 +4821,7 @@ through the CloudStack UI.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Note
-----
+
 
 Primary storage that is based on a custom plug-in (ex. SolidFire) must
 be added through the CloudStack API (described later in this section).
@@ -5105,13 +4830,13 @@ type of primary storage (although most of its features are available
 through the CloudStack UI).
 
 Note
-----
+
 
 At this time, a custom storage plug-in, such as the SolidFire storage
 plug-in, can only be leveraged for data disks (through Disk Offerings).
 
 Note
-----
+
 
 The SolidFire storage plug-in for CloudStack is part of the standard
 CloudStack install. There is no additional work required to add this
@@ -5293,10 +5018,7 @@ When you create a new zone, the first secondary storage is added as part
 of that procedure. You can add secondary storage servers at any time to
 add more servers to an existing zone.
 
-Warning
--------
-
-Ensure that nothing is stored on the server. Adding the server to
+.. warning:: Ensure that nothing is stored on the server. Adding the server to
 CloudStack will destroy any existing data.
 
 #. 
@@ -5348,10 +5070,7 @@ CloudStack will destroy any existing data.
       for zone-based storage, and the others for region-wide storage.
       For Hyper-V, select SMB/CIFS.
 
-      Warning
-      -------
-
-      Heterogeneous Secondary Storage is not supported in Regions. You
+      .. warning:: Heterogeneous Secondary Storage is not supported in Regions. You
       can use only a single NFS, S3, or Swift account per region.
 
    -  
@@ -5359,10 +5078,7 @@ CloudStack will destroy any existing data.
       Create NFS Secondary Staging Store. This box must always be
       checked.
 
-      Warning
-      -------
-
-      Even if the UI allows you to uncheck this box, do not do so. This
+      .. warning:: Even if the UI allows you to uncheck this box, do not do so. This
       checkbox and the three fields below it must be filled in. Even
       when Swift or S3 is used as the secondary storage provider, an NFS
       staging storage in each zone is still required.
@@ -5520,14 +5236,8 @@ Installation.
 If you decide to grow your deployment, you can add more hosts, primary
 storage, zones, pods, and clusters.
 
-`7.1. About Configuration
-Parameters <#about-global-config-parameters>`__
-
-`7.2. Setting Global Configuration Parameters <#global-config-howto>`__
-
-`7.3. Setting Local Configuration Parameters <#local-config-howto>`__
-
-`7.4. Granular Global Configuration Parameters <#granular-param>`__
+Configuration Parameters
+========================
 
 7.1. About Configuration Parameters
 -----------------------------------
@@ -5884,136 +5594,8 @@ blacklisted.routes
 Routes that are blacklisted cannot be used for creating static routes
 for a VPC Private Gateway.
 
-`8.1. KVM Hypervisor Host Installation <#hypervisor-kvm-install-flow>`__
-
-`8.1.1. System Requirements for KVM Hypervisor
-Hosts <#hypervisor-kvm-requirements>`__
-
-`8.1.2. KVM Installation Overview <#hypervisor-host-install-overview>`__
-
-`8.1.3. Prepare the Operating
-System <#hypervisor-host-install-prepare-os>`__
-
-`8.1.4. Install and configure the
-Agent <#hypervisor-host-install-agent>`__
-
-`8.1.5. Install and Configure
-libvirt <#hypervisor-host-install-libvirt>`__
-
-`8.1.6. Configure the Security
-Policies <#hypervisor-host-install-security-policies>`__
-
-`8.1.7. Configure the network
-bridges <#hypervisor-host-install-network>`__
-
-`8.1.8. Configure the network using
-OpenVswitch <#hypervisor-host-install-network-openvswitch>`__
-
-`8.1.9. Configuring the firewall <#hypervisor-host-install-firewall>`__
-
-`8.1.10. Add the host to CloudStack <#hypervisor-host-install-finish>`__
-
-`8.1.11. Hypervisor Support for Primary
-Storage <#hypervisor-support-for-primarystorage>`__
-
-`8.2. Citrix XenServer Installation for
-CloudStack <#citrix-xenserver-installation>`__
-
-`8.2.1. System Requirements for XenServer
-Hosts <#system-requirements-xenserver-hosts>`__
-
-`8.2.2. XenServer Installation Steps <#xenserver-installation-steps>`__
-
-`8.2.3. Configure XenServer dom0
-Memory <#config-xenserver-dom0-memory>`__
-
-`8.2.4. Username and Password <#xenserver-username-password>`__
-
-`8.2.5. Time Synchronization <#xenserver-time-sync>`__
-
-`8.2.6. Licensing <#xenserver-licensing>`__
-
-`8.2.7. Install CloudStack XenServer Support Package
-(CSP) <#xenserver-support-pkg-installation>`__
-
-`8.2.8. Primary Storage Setup for
-XenServer <#xenserver-primary-storage-setup>`__
-
-`8.2.9. iSCSI Multipath Setup for XenServer
-(Optional) <#xenserver-iscsi-multipath-setup>`__
-
-`8.2.10. Physical Networking Setup for
-XenServer <#xenserver-physical-network-setup>`__
-
-`8.2.11. Upgrading XenServer Versions <#xenserver-version-upgrading>`__
-
-`8.3. Installing Hyper-V for CloudStack <#hyperv-install>`__
-
-`8.3.1. System Requirements for Hyper-V Hypervisor
-Hosts <#hyperv-requirements>`__
-
-`8.3.2. Preparation Checklist for Hyper-V <#hyperv-checklist>`__
-
-`8.3.3. Hyper-V Installation Steps <#hyperv-install-steps>`__
-
-`8.3.4. Installing the CloudStack Agent on a Hyper-V
-Host <#hyperv-agent-install>`__
-
-`8.3.5. Physical Network Configuration for
-Hyper-V <#hyperv-install-network>`__
-
-`8.3.6. Storage Preparation for Hyper-V
-(Optional) <#hyperv-install-storage>`__
-
-`8.4. VMware vSphere Installation and Configuration <#vmware-install>`__
-
-`8.4.1. System Requirements for vSphere Hosts <#vmware-requirements>`__
-
-`8.4.2. Preparation Checklist for
-VMware <#vmware-preparation-checklist>`__
-
-`8.4.3. vSphere Installation
-Steps <#vmware-vsphere-installation-steps>`__
-
-`8.4.4. ESXi Host setup <#vmware-esxi-host-setup>`__
-
-`8.4.5. Physical Host Networking <#vmware-physical-host-networking>`__
-
-`8.4.6. Configuring a vSphere Cluster with Nexus 1000v Virtual
-Switch <#vmware-vsphere-cluster-config-nexus-vswitch>`__
-
-`8.4.7. Configuring a VMware Datacenter with VMware Distributed Virtual
-Switch <#vmware-cluster-config-dvswitch>`__
-
-`8.4.8. Storage Preparation for vSphere (iSCSI
-only) <#vmware-vsphere-iscsi-storage-preparation>`__
-
-`8.4.9. Add Hosts or Configure Clusters
-(vSphere) <#vmware-add-hosts-config-vsphere-cluster>`__
-
-`8.4.10. Applying Hotfixes to a VMware vSphere
-Host <#esxi-patch-install>`__
-
-`8.5. LXC Installation and Configuration <#lxc-install>`__
-
-`8.5.1. System Requirements for LXC Hosts <#lxc-requirements>`__
-
-`8.5.2. LXC Installation Overview <#lxc-install-overview>`__
-
-`8.5.3. Prepare the Operating System <#lxc-install-prepare-os>`__
-
-`8.5.4. Install and configure the Agent <#lxc-install-agent>`__
-
-`8.5.5. Install and Configure libvirt <#lxc-install-libvirt>`__
-
-`8.5.6. Configure the Security
-Policies <#lxc-install-security-policies>`__
-
-`8.5.7. Configure the network bridges <#lxc-install-network>`__
-
-`8.5.8. Configuring the firewall <#lxc-install-firewall>`__
-
-`8.5.9. Add the host to CloudStack <#lxc-install-finish>`__
+Hypervisor Installation
+=======================
 
 8.1. KVM Hypervisor Host Installation
 -------------------------------------
@@ -6099,16 +5681,10 @@ The material in this section doesn't duplicate KVM installation docs. It
 provides the CloudStack-specific steps that are needed to prepare a KVM
 host to work with CloudStack.
 
-Warning
--------
-
-Before continuing, make sure that you have applied the latest updates to
+.. warning:: Before continuing, make sure that you have applied the latest updates to
 your host.
 
-Warning
--------
-
-It is NOT recommended to run services on this host not controlled by
+.. warning:: It is NOT recommended to run services on this host not controlled by
 CloudStack.
 
 The procedure for installing a KVM Hypervisor Host is:
@@ -6143,7 +5719,7 @@ KVM instances.
 
    Check for a fully qualified hostname.
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ hostname --fqdn
 
@@ -6155,7 +5731,7 @@ KVM instances.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ ping www.cloudstack.org
 
@@ -6163,21 +5739,18 @@ KVM instances.
 
    Turn on NTP for time synchronization.
 
-   Note
-   ----
-
-   NTP is required to synchronize the clocks of the servers in your
+   .. note:: NTP is required to synchronize the clocks of the servers in your
    cloud. Unsynchronized clocks can cause unexpected problems.
 
    #. 
 
       Install NTP
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ yum install ntp
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apt-get install openntpd
 
@@ -6196,13 +5769,13 @@ First we start by installing the agent:
 
 In RHEL or CentOS:
 
-.. code:: programlisting
+.. code:: bash
 
     $ yum install cloudstack-agent
 
 In Ubuntu:
 
-.. code:: programlisting
+.. code:: bash
 
     $ apt-get install cloudstack-agent
 
@@ -6235,7 +5808,7 @@ specify the guest CPU config in the per-host configuration file
 (/etc/cloudstack/agent/agent.properties). This will be achieved by
 introducing two new configuration parameters:
 
-.. code:: programlisting
+.. code:: bash
 
     guest.cpu.mode=custom|host-model|host-passthrough
     guest.cpu.model=from /usr/share/libvirt/cpu_map.xml(only valid when guest.cpu.mode=custom)
@@ -6272,7 +5845,7 @@ Here are some examples:
 
    custom
 
-   .. code:: programlisting
+   .. code:: bash
 
        guest.cpu.mode=custom
        guest.cpu.model=SandyBridge
@@ -6281,7 +5854,7 @@ Here are some examples:
 
    host-model
 
-   .. code:: programlisting
+   .. code:: bash
 
        guest.cpu.mode=host-model
 
@@ -6289,14 +5862,11 @@ Here are some examples:
 
    host-passthrough
 
-   .. code:: programlisting
+   .. code:: bash
 
        guest.cpu.mode=host-passthrough
 
-Note
-----
-
-host-passthrough may lead to migration failure,if you have this
+.. note:: host-passthrough may lead to migration failure,if you have this
 problem,you should use host-model or custom
 
 8.1.5. Install and Configure libvirt
@@ -6315,23 +5885,23 @@ cloudstack-agent and should already be installed.
 
    Set the following parameters:
 
-   .. code:: programlisting
+   .. code:: bash
 
        listen_tls = 0
 
-   .. code:: programlisting
+   .. code:: bash
 
        listen_tcp = 1
 
-   .. code:: programlisting
+   .. code:: bash
 
        tcp_port = "16509"
 
-   .. code:: programlisting
+   .. code:: bash
 
        auth_tcp = "none"
 
-   .. code:: programlisting
+   .. code:: bash
 
        mdns_adv = 0
 
@@ -6344,7 +5914,7 @@ cloudstack-agent and should already be installed.
 
    Uncomment the following line:
 
-   .. code:: programlisting
+   .. code:: bash
 
        #LIBVIRTD_ARGS="--listen"
 
@@ -6352,13 +5922,13 @@ cloudstack-agent and should already be installed.
 
    Add "-l" to the following line::
 
-   .. code:: programlisting
+   .. code:: bash
 
        libvirtd_opts="-d"
 
    so it looks like:
 
-   .. code:: programlisting
+   .. code:: bash
 
        libvirtd_opts="-d -l"
 
@@ -6369,7 +5939,7 @@ cloudstack-agent and should already be installed.
 
    Make sure this parameter is set:
 
-   .. code:: programlisting
+   .. code:: bash
 
        vnc_listen = "0.0.0.0"
 
@@ -6379,13 +5949,13 @@ cloudstack-agent and should already be installed.
 
    In RHEL or CentOS:
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ service libvirtd restart
 
    In Ubuntu:
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ service libvirt-bin restart
 
@@ -6408,7 +5978,7 @@ ensure the Agent has all the required permissions.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ rpm -qa | grep selinux
 
@@ -6420,19 +5990,19 @@ ensure the Agent has all the required permissions.
 
       In RHEL or CentOS:
 
-      .. code:: programlisting
+      .. code:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=enforcing
 
       to this
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=permissive
 
@@ -6441,7 +6011,7 @@ ensure the Agent has all the required permissions.
       Then set SELinux to permissive starting immediately, without
       requiring a system reboot.
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ setenforce permissive
 
@@ -6457,7 +6027,7 @@ ensure the Agent has all the required permissions.
       In Ubuntu AppArmor is installed and enabled by default. You can
       verify this with:
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ dpkg --list 'apparmor'
 
@@ -6465,35 +6035,29 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
 8.1.7. Configure the network bridges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Warning
--------
-
-This is a very important section, please make sure you read this
+.. warning:: This is a very important section, please make sure you read this
 thoroughly.
 
-Note
-----
-
-This section details how to configure bridges using the native
+.. note:: This section details how to configure bridges using the native
 implementation in Linux. Please refer to the next section if you intend
 to use OpenVswitch
 
@@ -6531,10 +6095,7 @@ VLAN's:
 On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
-Note
-----
-
-The Hypervisor and Management server don't have to be in the same
+.. note:: The Hypervisor and Management server don't have to be in the same
 subnet!
 
 8.1.7.2. Configuring the network bridges
@@ -6543,10 +6104,7 @@ subnet!
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
 
-Note
-----
-
-The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after
+.. note:: The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after
 this section. This should be used as a guideline only. The exact
 configuration will depend on your network layout.
 
@@ -6558,13 +6116,13 @@ proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -6575,11 +6133,11 @@ Make sure it looks similar to:
 
 We now have to configure the three VLAN interfaces:
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.100
     HWADDR=00:04:xx:xx:xx:xx
@@ -6592,11 +6150,11 @@ We now have to configure the three VLAN interfaces:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.200
     HWADDR=00:04:xx:xx:xx:xx
@@ -6607,11 +6165,11 @@ We now have to configure the three VLAN interfaces:
     VLAN=yes
     BRIDGE=cloudbr0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.300
     HWADDR=00:04:xx:xx:xx:xx
@@ -6625,13 +6183,13 @@ We now have to configure the three VLAN interfaces:
 Now we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
 Now we just configure it is a plain bridge without an IP-Address
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr0
     TYPE=Bridge
@@ -6644,11 +6202,11 @@ Now we just configure it is a plain bridge without an IP-Address
 
 We do the same for cloudbr1
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr1
     TYPE=Bridge
@@ -6662,10 +6220,7 @@ We do the same for cloudbr1
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-Warning
--------
-
-Make sure you have an alternative way like IPMI or ILO to reach the
+.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the
 machine in case you made a configuration error and the network stops
 functioning!
 
@@ -6675,13 +6230,13 @@ functioning!
 All the required packages were installed when you installed libvirt, so
 we only have to configure the network.
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/network/interfaces
 
 Modify the interfaces file to look like this:
 
-.. code:: programlisting
+.. code:: bash
 
     auto lo
     iface lo inet loopback
@@ -6714,20 +6269,14 @@ Modify the interfaces file to look like this:
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-Warning
--------
-
-Make sure you have an alternative way like IPMI or ILO to reach the
+.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the
 machine in case you made a configuration error and the network stops
 functioning!
 
 8.1.8. Configure the network using OpenVswitch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Warning
--------
-
-This is a very important section, please make sure you read this
+.. warning:: This is a very important section, please make sure you read this
 thoroughly.
 
 In order to forward traffic to your instances you will need at least two
@@ -6777,10 +6326,7 @@ VLAN's:
 On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
-Note
-----
-
-The Hypervisor and Management server don't have to be in the same
+.. note:: The Hypervisor and Management server don't have to be in the same
 subnet!
 
 8.1.8.3. Configuring the network bridges
@@ -6789,10 +6335,7 @@ subnet!
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS.
 
-Note
-----
-
-The goal is to have three bridges called 'mgmt0', 'cloudbr0' and
+.. note:: The goal is to have three bridges called 'mgmt0', 'cloudbr0' and
 'cloudbr1' after this section. This should be used as a guideline only.
 The exact configuration will depend on your network layout.
 
@@ -6806,7 +6349,7 @@ the OpenVswitch database.
 First we create a main bridge connected to the eth0 interface. Next we
 create three fake bridges, each connected to a specific vlan tag.
 
-.. code:: programlisting
+.. code:: bash
 
     # ovs-vsctl add-br cloudbr
     # ovs-vsctl add-port cloudbr eth0 
@@ -6823,13 +6366,13 @@ installed, we can proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -6840,11 +6383,11 @@ Make sure it looks similar to:
 
 We have to configure the base bridge with the trunk.
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr
     ONBOOT=yes
@@ -6855,11 +6398,11 @@ We have to configure the base bridge with the trunk.
 
 We now have to configure the three VLAN bridges:
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-mgmt0
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=mgmt0
     ONBOOT=yes
@@ -6871,11 +6414,11 @@ We now have to configure the three VLAN bridges:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr0
     ONBOOT=yes
@@ -6884,11 +6427,11 @@ We now have to configure the three VLAN bridges:
     DEVICETYPE=ovs
     TYPE=OVSBridge
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr1
     ONBOOT=yes
@@ -6900,10 +6443,7 @@ We now have to configure the three VLAN bridges:
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-Warning
--------
-
-Make sure you have an alternative way like IPMI or ILO to reach the
+.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the
 machine in case you made a configuration error and the network stops
 functioning!
 
@@ -6945,30 +6485,30 @@ you'll find examples how to open these ports in RHEL/CentOS and Ubuntu.
 RHEL and CentOS use iptables for firewalling the system, you can open
 extra ports by executing the following iptable commands:
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
 
 These iptable settings are not persistent accross reboots, we have to
 save them first.
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables-save > /etc/sysconfig/iptables
 
@@ -6980,30 +6520,27 @@ is a Python wrapper around iptables.
 
 To open the required ports, execute the following commands:
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 22
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 1798
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 16509
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 5900:6100
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 49152:49216
 
-Note
-----
-
-By default UFW is not enabled on Ubuntu. Executing these commands with
+.. note:: By default UFW is not enabled on Ubuntu. Executing these commands with
 the firewall disabled does not enable the firewall.
 
 8.1.10. Add the host to CloudStack
@@ -7219,10 +6756,7 @@ Versions” <#xenserver-version-upgrading>`__.
    When you deploy CloudStack, the hypervisor host must not have any VMs
    already running
 
-Warning
--------
-
-The lack of up-do-date hotfixes can lead to data corruption and lost
+.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost
 VMs.
 
 8.2.2. XenServer Installation Steps
@@ -7305,7 +6839,7 @@ time.
 
    Install NTP.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # yum install ntp
 
@@ -7313,14 +6847,14 @@ time.
 
    Edit the NTP configuration file to point to your NTP server.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # vi /etc/ntp.conf
 
    Add one or more server lines in this file with the names of the NTP
    servers you want to use. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        server 0.xenserver.pool.ntp.org
        server 1.xenserver.pool.ntp.org
@@ -7331,7 +6865,7 @@ time.
 
    Restart the NTP client.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service ntpd restart
 
@@ -7339,7 +6873,7 @@ time.
 
    Make sure NTP will start again upon reboot.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # chkconfig ntpd on
 
@@ -7404,7 +6938,7 @@ steps on each XenServer host.
 
    Extract the file:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # tar xf xenserver-cloud-supp.tgz
 
@@ -7412,7 +6946,7 @@ steps on each XenServer host.
 
    Run the following script:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe-install-supplemental-pack xenserver-cloud-supp.iso
 
@@ -7421,7 +6955,7 @@ steps on each XenServer host.
    If the XenServer host is part of a zone that uses basic networking,
    disable Open vSwitch (OVS):
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe-switch-network-backend  bridge
 
@@ -7453,7 +6987,7 @@ that XenServer.
    Rescan the SCSI bus. Either use the following command or use
    XenCenter to perform an HBA rescan.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # scsi-rescan
 
@@ -7465,14 +6999,14 @@ that XenServer.
 
    Check to be sure you see the new SCSI disk.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # ls /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -l
 
    The output should look like this, although the specific file name
    will be different (scsi-<scsiID>):
 
-   .. code:: programlisting
+   .. code:: bash
 
        lrwxrwxrwx 1 root root 9 Mar 16 13:47
        /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -> ../../sdc
@@ -7486,14 +7020,14 @@ that XenServer.
    On the storage server, run this command to get a unique ID for the
    new SR.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # uuidgen
 
    The output should look like this, although the specific ID will be
    different:
 
-   .. code:: programlisting
+   .. code:: bash
 
        e6849e96-86c3-4f2c-8fcc-350cc711be3d
 
@@ -7502,7 +7036,7 @@ that XenServer.
    Create the FiberChannel SR. In name-label, use the unique ID you just
    generated.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe sr-create type=lvmohba shared=true
        device-config:SCSIid=360a98000503365344e6f6177615a516b
@@ -7511,7 +7045,7 @@ that XenServer.
    This command returns a unique ID for the SR, like the following
    example (your ID will be different):
 
-   .. code:: programlisting
+   .. code:: bash
 
        7a143820-e893-6c6a-236e-472da6ee66bf
 
@@ -7521,7 +7055,7 @@ that XenServer.
    command. In uuid, use the SR ID returned by the previous command. In
    name-description, set whatever friendly text you prefer.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe sr-param-set uuid=7a143820-e893-6c6a-236e-472da6ee66bf name-description="Fiber Channel storage repository"
 
@@ -7599,7 +7133,7 @@ name-label of the XenServer network must match the XenServer traffic
 label specified while creating the CloudStack network. This is set by
 running the following command:
 
-.. code:: programlisting
+.. code:: bash
 
     xe network-param-set uuid=<network id> name-label=<CloudStack traffic label>
 
@@ -7637,7 +7171,7 @@ CloudStack before adding the host.
 
    Run the following command.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe network-param-set name-label=cloud-public uuid=<UUID-Public>
 
@@ -7664,7 +7198,7 @@ CloudStack:
    Run the following command, substituting your own name-label and uuid
    values.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe network-param-set name-label=<cloud-guestN> uuid=<UUID-Guest>
 
@@ -7704,7 +7238,7 @@ separate storage network on all hosts (masters and slaves).
 Here is an example to set up eth5 to access a storage network on
 172.16.0.0/24.
 
-.. code:: programlisting
+.. code:: bash
 
     # xe pif-list host-name-label='hostname' device=eth5
     uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
@@ -7775,7 +7309,7 @@ into it.
 
    Find the physical NICs that you want to bond together.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe pif-list host-name-label='hostname' device=eth0
        # xe pif-list host-name-label='hostname' device=eth1
@@ -7793,7 +7327,7 @@ into it.
    you configure. You must use the same name-label for all hosts in the
    cloud for the management network.**
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe network-create name-label=cloud-private
        # xe bond-create network-uuid=[uuid of cloud-private created above]
@@ -7821,7 +7355,7 @@ and eth3) bonded into it.
 
    Find the physical NICs that you want to bond together.
 
-   .. code:: programlisting
+   .. code:: bash
 
        #xe pif-list host-name-label='hostname' device=eth2
        # xe pif-list host-name-label='hostname' device=eth3
@@ -7839,7 +7373,7 @@ and eth3) bonded into it.
    you configure. You must use the same name-label for all hosts in the
    cloud for the public network.**
 
-   .. code:: programlisting
+   .. code:: bash
 
        # xe network-create name-label=cloud-public
        # xe bond-create network-uuid=[uuid of cloud-public created above]
@@ -7856,7 +7390,7 @@ additional, slave hosts. Run the following command for all additional
 hosts to be added to the cluster. This will cause the host to join the
 master in a single XenServer pool.
 
-.. code:: programlisting
+.. code:: bash
 
     # xe pool-join master-address=[master IP] master-username=root
     master-password=[your password]
@@ -7878,7 +7412,7 @@ all hosts in the cluster.
 
    Run the script:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # ./cloud-setup-bonding.sh
 
@@ -7892,10 +7426,7 @@ hosts. The actual upgrade is described in XenServer documentation, but
 there are some additional steps you must perform before and after the
 upgrade.
 
-Note
-----
-
-Be sure the hardware is certified compatible with the new version of
+.. note:: Be sure the hardware is certified compatible with the new version of
 XenServer.
 
 To upgrade XenServer:
@@ -7908,7 +7439,7 @@ To upgrade XenServer:
 
       Back up the database:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # mysqldump --user=root --databases cloud > cloud.backup.sql
           # mysqldump --user=root --databases cloud_usage > cloud_usage.backup.sql
@@ -7947,7 +7478,7 @@ To upgrade XenServer:
       Restart the Management Server and Usage Server. You only need to
       do this once for all clusters.
 
-      .. code:: programlisting
+      .. code:: bash
 
           # service cloudstack-management start
           # service cloudstack-usage start
@@ -7973,7 +7504,7 @@ To upgrade XenServer:
    Log in to one of the hosts in the cluster, and run this command to
    clean up the VLAN:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # . /opt/xensource/bin/cloud-clean-vlan.sh
 
@@ -7981,7 +7512,7 @@ To upgrade XenServer:
 
    Still logged in to the host, run the upgrade preparation script:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # /opt/xensource/bin/cloud-prepare-upgrade.sh
 
@@ -8001,7 +7532,7 @@ To upgrade XenServer:
       Troubleshooting: You might see the following error when you
       migrate a VM:
 
-      .. code:: programlisting
+      .. code:: bash
 
           [root@xenserver-qa-2-49-4 ~]# xe vm-migrate live=true host=xenserver-qa-2-49-5 vm=i-2-8-VM
           You attempted an operation on a VM which requires PV drivers to be installed but the drivers were not detected.
@@ -8009,7 +7540,7 @@ To upgrade XenServer:
 
       To solve this issue, run the following:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /opt/xensource/bin/make_migratable.sh  b6cf79c8-02ee-050b-922f-49583d9f1a14
 
@@ -8052,14 +7583,14 @@ To upgrade XenServer:
 
       Run the following script:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # /opt/xensource/bin/setupxenserver.sh
 
       Troubleshooting: If you see the following error message, you can
       safely ignore it.
 
-      .. code:: programlisting
+      .. code:: bash
 
           mv: cannot stat `/etc/cron.daily/logrotate': No such file or directory
 
@@ -8068,11 +7599,11 @@ To upgrade XenServer:
       Plug in the storage repositories (physical block devices) to the
       XenServer host:
 
-      .. code:: programlisting
+      .. code:: bash
 
           # for pbd in `xe pbd-list currently-attached=false| grep ^uuid | awk '{print $NF}'`; do xe pbd-plug uuid=$pbd ; done
 
-      Note: If you add a host to this XenServer pool, you need to
+      .. note:: If you add a host to this XenServer pool, you need to
       migrate all VMs on this host to other hosts, and eject this host
       from XenServer pool.
 
@@ -8086,14 +7617,11 @@ To upgrade XenServer:
    Run the following command on one host in the XenServer cluster to
    clean up the host tags:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # for host in $(xe host-list | grep ^uuid | awk '{print $NF}') ; do xe host-param-clear uuid=$host param-name=tags; done;
 
-   Note
-   ----
-
-   When copying and pasting a command, be sure the command has pasted as
+   .. note:: When copying and pasting a command, be sure the command has pasted as
    a single line before executing. Some document viewers may introduce
    unwanted line breaks in copied text.
 
@@ -8117,7 +7645,7 @@ To upgrade XenServer:
 
    After all hosts are up, run the following on one host in the cluster:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # /opt/xensource/bin/cloud-clean-vlan.sh
 
@@ -8364,10 +7892,7 @@ CloudStack Management Server communicates with Hyper-V Agent by using
 HTTPS. For secure communication between the Management Server and the
 host, install a self-signed certificate on port 8250.
 
-Note
-----
-
-The Agent installer automatically perform this operation. You have not
+.. note:: The Agent installer automatically perform this operation. You have not
 selected this option during the Agent installation, it can also be done
 manually as given in step 1.
 
@@ -8379,7 +7904,7 @@ manually as given in step 1.
 
       Create A self-signed SSL certificate:
 
-      .. code:: programlisting
+      .. code:: bash
 
           #  New-SelfSignedCertificate -DnsName apachecloudstack -CertStoreLocation Cert:\LocalMachine\My
 
@@ -8390,7 +7915,7 @@ manually as given in step 1.
 
       Add the created certificate to port 8250 for https communication:
 
-      .. code:: programlisting
+      .. code:: bash
 
           netsh http add sslcert ipport=0.0.0.0:8250 certhash=<thumbprint> appid="{727beb1c-6e7c-49b2-8fbd-f03dbe481b08}"
 
@@ -8887,7 +8412,7 @@ with VMware-based VMs. The default additional port range is 59000-60000.
 To extend the port range, log in to the VMware ESX service console on
 each host and run the following commands:
 
-.. code:: programlisting
+.. code:: bash
 
     esxcfg-firewall -o 59000-60000,tcp,in,vncextras
     esxcfg-firewall -o 59000-60000,tcp,out,vncextras
@@ -9074,10 +8599,7 @@ Packet Port Group VLAN ID
 The VLAN ID of the Packet Port Group. The packet VLAN forwards relevant
 data packets from the VEMs to the VSM.
 
-Note
-----
-
-The VLANs used for control, packet, and management port groups can be
+.. note:: The VLANs used for control, packet, and management port groups can be
 the same.
 
 For more information, see `Cisco Nexus 1000V Getting Started
@@ -9189,7 +8711,7 @@ vlan<range> command to add the VLAN ranges to the port profile.
 
 For example:
 
-.. code:: programlisting
+.. code:: bash
 
     switchport trunk allowed vlan 1,140-147,196-203
 
@@ -9198,10 +8720,7 @@ In this example, the allowed VLANs added are 1, 140-147, and 196-203
 You must also add all the public and private VLANs or VLAN ranges to the
 switch. This range is the VLAN range you specify in your zone.
 
-Note
-----
-
-Before you run the vlan command, ensure that the configuration mode is
+.. note:: Before you run the vlan command, ensure that the configuration mode is
 enabled in Nexus 1000v virtual switch.
 
 For example:
@@ -9209,14 +8728,14 @@ For example:
 If you want the VLAN 200 to be used on the switch, run the following
 command:
 
-.. code:: programlisting
+.. code:: bash
 
     vlan 200
 
 If you want the VLAN range 1350-1750 to be used on the switch, run the
 following command:
 
-.. code:: programlisting
+.. code:: bash
 
     vlan 1350-1750
 
@@ -9847,16 +9366,10 @@ to the KVM installation. The material in this section doesn't duplicate
 KVM installation docs. It provides the CloudStack-specific steps that
 are needed to prepare a KVM host to work with CloudStack.
 
-Warning
--------
-
-Before continuing, make sure that you have applied the latest updates to
+.. warning:: Before continuing, make sure that you have applied the latest updates to
 your host.
 
-Warning
--------
-
-It is NOT recommended to run services on this host not controlled by
+.. warning:: It is NOT recommended to run services on this host not controlled by
 CloudStack.
 
 The procedure for installing an LXC Host is:
@@ -9891,7 +9404,7 @@ KVM instances.
 
    Check for a fully qualified hostname.
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ hostname --fqdn
 
@@ -9903,7 +9416,7 @@ KVM instances.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ ping www.cloudstack.org
 
@@ -9911,21 +9424,18 @@ KVM instances.
 
    Turn on NTP for time synchronization.
 
-   Note
-   ----
-
-   NTP is required to synchronize the clocks of the servers in your
+   .. note:: NTP is required to synchronize the clocks of the servers in your
    cloud. Unsynchronized clocks can cause unexpected problems.
 
    #. 
 
       Install NTP
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ yum install ntp
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apt-get install openntpd
 
@@ -9944,13 +9454,13 @@ First we start by installing the agent:
 
 In RHEL or CentOS:
 
-.. code:: programlisting
+.. code:: bash
 
     $ yum install cloudstack-agent
 
 In Ubuntu:
 
-.. code:: programlisting
+.. code:: bash
 
     $ apt-get install cloudstack-agent
 
@@ -9961,7 +9471,7 @@ are in ``/etc/cloudstack/agent/agent.properties``
 
    Set the Agent to run in LXC mode:
 
-   .. code:: programlisting
+   .. code:: bash
 
        hypervisor.type=lxc
 
@@ -9970,15 +9480,15 @@ are in ``/etc/cloudstack/agent/agent.properties``
    Optional: If you would like to use direct networking (instead of the
    default bridge networking), configure these lines:
 
-   .. code:: programlisting
+   .. code:: bash
 
        libvirt.vif.driver=com.cloud.hypervisor.kvm.resource.DirectVifDriver
 
-   .. code:: programlisting
+   .. code:: bash
 
        network.direct.source.mode=private
 
-   .. code:: programlisting
+   .. code:: bash
 
        network.direct.device=eth0
 
@@ -10003,23 +9513,23 @@ cloudstack-agent and should already be installed.
 
    Set the following parameters:
 
-   .. code:: programlisting
+   .. code:: bash
 
        listen_tls = 0
 
-   .. code:: programlisting
+   .. code:: bash
 
        listen_tcp = 1
 
-   .. code:: programlisting
+   .. code:: bash
 
        tcp_port = "16509"
 
-   .. code:: programlisting
+   .. code:: bash
 
        auth_tcp = "none"
 
-   .. code:: programlisting
+   .. code:: bash
 
        mdns_adv = 0
 
@@ -10032,7 +9542,7 @@ cloudstack-agent and should already be installed.
 
    Uncomment the following line:
 
-   .. code:: programlisting
+   .. code:: bash
 
        #LIBVIRTD_ARGS="--listen"
 
@@ -10040,13 +9550,13 @@ cloudstack-agent and should already be installed.
 
    Add "-l" to the following line::
 
-   .. code:: programlisting
+   .. code:: bash
 
        libvirtd_opts="-d"
 
    so it looks like:
 
-   .. code:: programlisting
+   .. code:: bash
 
        libvirtd_opts="-d -l"
 
@@ -10057,7 +9567,7 @@ cloudstack-agent and should already be installed.
 
    Make sure this parameter is set:
 
-   .. code:: programlisting
+   .. code:: bash
 
        vnc_listen = "0.0.0.0"
 
@@ -10067,13 +9577,13 @@ cloudstack-agent and should already be installed.
 
    In RHEL or CentOS:
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ service libvirtd restart
 
    In Ubuntu:
 
-   .. code:: programlisting
+   .. code:: bash
 
        $ service libvirt-bin restart
 
@@ -10096,7 +9606,7 @@ ensure the Agent has all the required permissions.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ rpm -qa | grep selinux
 
@@ -10108,19 +9618,19 @@ ensure the Agent has all the required permissions.
 
       In RHEL or CentOS:
 
-      .. code:: programlisting
+      .. code:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=enforcing
 
       to this
 
-      .. code:: programlisting
+      .. code:: bash
 
           SELINUX=permissive
 
@@ -10129,7 +9639,7 @@ ensure the Agent has all the required permissions.
       Then set SELinux to permissive starting immediately, without
       requiring a system reboot.
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ setenforce permissive
 
@@ -10145,7 +9655,7 @@ ensure the Agent has all the required permissions.
       In Ubuntu AppArmor is installed and enabled by default. You can
       verify this with:
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ dpkg --list 'apparmor'
 
@@ -10153,35 +9663,29 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: programlisting
+      .. code:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
 8.5.7. Configure the network bridges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Warning
--------
-
-This is a very important section, please make sure you read this
+.. warning:: This is a very important section, please make sure you read this
 thoroughly.
 
-Note
-----
-
-This section details how to configure bridges using the native
+.. note:: This section details how to configure bridges using the native
 implementation in Linux. Please refer to the next section if you intend
 to use OpenVswitch
 
@@ -10219,10 +9723,7 @@ VLAN's:
 On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
-Note
-----
-
-The Hypervisor and Management server don't have to be in the same
+.. note:: The Hypervisor and Management server don't have to be in the same
 subnet!
 
 8.5.7.2. Configuring the network bridges
@@ -10231,10 +9732,7 @@ subnet!
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
 
-Note
-----
-
-The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after
+.. note:: The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after
 this section. This should be used as a guideline only. The exact
 configuration will depend on your network layout.
 
@@ -10246,13 +9744,13 @@ proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -10263,11 +9761,11 @@ Make sure it looks similar to:
 
 We now have to configure the three VLAN interfaces:
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.100
     HWADDR=00:04:xx:xx:xx:xx
@@ -10280,11 +9778,11 @@ We now have to configure the three VLAN interfaces:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.200
     HWADDR=00:04:xx:xx:xx:xx
@@ -10295,11 +9793,11 @@ We now have to configure the three VLAN interfaces:
     VLAN=yes
     BRIDGE=cloudbr0
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=eth0.300
     HWADDR=00:04:xx:xx:xx:xx
@@ -10313,13 +9811,13 @@ We now have to configure the three VLAN interfaces:
 Now we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
 Now we just configure it is a plain bridge without an IP-Address
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr0
     TYPE=Bridge
@@ -10332,11 +9830,11 @@ Now we just configure it is a plain bridge without an IP-Address
 
 We do the same for cloudbr1
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: programlisting
+.. code:: bash
 
     DEVICE=cloudbr1
     TYPE=Bridge
@@ -10350,10 +9848,7 @@ We do the same for cloudbr1
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-Warning
--------
-
-Make sure you have an alternative way like IPMI or ILO to reach the
+.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the
 machine in case you made a configuration error and the network stops
 functioning!
 
@@ -10363,13 +9858,13 @@ functioning!
 All the required packages were installed when you installed libvirt, so
 we only have to configure the network.
 
-.. code:: programlisting
+.. code:: bash
 
     vi /etc/network/interfaces
 
 Modify the interfaces file to look like this:
 
-.. code:: programlisting
+.. code:: bash
 
     auto lo
     iface lo inet loopback
@@ -10402,10 +9897,7 @@ Modify the interfaces file to look like this:
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-Warning
--------
-
-Make sure you have an alternative way like IPMI or ILO to reach the
+.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the
 machine in case you made a configuration error and the network stops
 functioning!
 
@@ -10447,30 +9939,30 @@ you'll find examples how to open these ports in RHEL/CentOS and Ubuntu.
 RHEL and CentOS use iptables for firewalling the system, you can open
 extra ports by executing the following iptable commands:
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
 
 These iptable settings are not persistent accross reboots, we have to
 save them first.
 
-.. code:: programlisting
+.. code:: bash
 
     $ iptables-save > /etc/sysconfig/iptables
 
@@ -10482,30 +9974,27 @@ is a Python wrapper around iptables.
 
 To open the required ports, execute the following commands:
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 22
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 1798
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 16509
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 5900:6100
 
-.. code:: programlisting
+.. code:: bash
 
     $ ufw allow proto tcp from any to any port 49152:49216
 
-Note
-----
-
-By default UFW is not enabled on Ubuntu. Executing these commands with
+.. note:: By default UFW is not enabled on Ubuntu. Executing these commands with
 the firewall disabled does not enable the firewall.
 
 8.5.9. Add the host to CloudStack
@@ -10516,19 +10005,8 @@ later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
 recommended that you continue to read the documentation before adding
 the host!
 
-`9.1. Installing the Usage Server (Optional) <#install-usage-server>`__
-
-`9.1.1. Requirements for Installing the Usage
-Server <#requirements-install-usage-server>`__
-
-`9.1.2. Steps to Install the Usage
-Server <#steps-install-usage-server>`__
-
-`9.2. SSL (Optional) <#ssl>`__
-
-`9.3. Database Replication (Optional) <#database-replication>`__
-
-`9.3.1. Failover <#database-failover>`__
+Additional Installation Options
+===============================
 
 The next few sections describe CloudStack features above and beyond the
 basic deployment options.
@@ -10565,7 +10043,7 @@ Usage Servers on at least two Management Servers.
 
    Run ./install.sh.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # ./install.sh
 
@@ -10576,7 +10054,7 @@ Usage Servers on at least two Management Servers.
 
    Choose "S" to install the Usage Server.
 
-   .. code:: programlisting
+   .. code:: bash
 
           > S
 
@@ -10584,7 +10062,7 @@ Usage Servers on at least two Management Servers.
 
    Once installed, start the Usage Server with the following command.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service cloudstack-usage start
 
@@ -10616,10 +10094,7 @@ standby node that receives all write operations from the master and
 applies them to a local, redundant copy of the database. The following
 steps are a guide to implementing MySQL replication.
 
-Note
-----
-
-Creating a replica is not a backup solution. You should develop a backup
+.. note:: Creating a replica is not a backup solution. You should develop a backup
 procedure for the MySQL data that is distinct from replication.
 
 #. 
@@ -10631,7 +10106,7 @@ procedure for the MySQL data that is distinct from replication.
    Edit my.cnf on the master and add the following in the [mysqld]
    section below datadir.
 
-   .. code:: programlisting
+   .. code:: bash
 
        log_bin=mysql-bin
        server_id=1
@@ -10645,13 +10120,13 @@ procedure for the MySQL data that is distinct from replication.
 
    Restart the MySQL service. On RHEL/CentOS systems, use:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service mysqld restart
 
    On Debian/Ubuntu systems, use:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service mysql restart
 
@@ -10661,7 +10136,7 @@ procedure for the MySQL data that is distinct from replication.
    will use the "cloud-repl" user with the password "password". This
    assumes that master and slave run on the 172.16.1.0/24 network.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mysql -u root
        mysql> create user 'cloud-repl'@'172.16.1.%' identified by 'password';
@@ -10681,7 +10156,7 @@ procedure for the MySQL data that is distinct from replication.
 
    Retrieve the current position of the database.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mysql -u root
        mysql> show master status;
@@ -10704,7 +10179,7 @@ procedure for the MySQL data that is distinct from replication.
    Complete the master setup. Returning to your first session on the
    master, release the locks and exit MySQL.
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> unlock tables;
 
@@ -10713,7 +10188,7 @@ procedure for the MySQL data that is distinct from replication.
    Install and configure the slave. On the slave server, run the
    following commands.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # yum install mysql-server
        # chkconfig mysqld on
@@ -10723,7 +10198,7 @@ procedure for the MySQL data that is distinct from replication.
    Edit my.cnf and add the following lines in the [mysqld] section below
    datadir.
 
-   .. code:: programlisting
+   .. code:: bash
 
        server_id=2
        innodb_rollback_on_timeout=1
@@ -10733,13 +10208,13 @@ procedure for the MySQL data that is distinct from replication.
 
    Restart MySQL. Use "mysqld" on RHEL/CentOS systems:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service mysqld restart
 
    On Ubuntu/Debian systems use "mysql."
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service mysql restart
 
@@ -10749,7 +10224,7 @@ procedure for the MySQL data that is distinct from replication.
    Replace the IP address, password, log file, and position with the
    values you have used in the previous steps.
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> change master to
            -> master_host='172.16.1.217',
@@ -10762,7 +10237,7 @@ procedure for the MySQL data that is distinct from replication.
 
    Then start replication on the slave.
 
-   .. code:: programlisting
+   .. code:: bash
 
        mysql> start slave;
 
@@ -10807,19 +10282,12 @@ administrator. In the event of a database failure you should:
 
    Restart the Management Servers:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # service cloudstack-management start
 
-`10.1. Small-Scale Deployment <#small_scale_deployment>`__
-
-`10.2. Large-Scale Redundant Setup <#large_scale_redundant_setup>`__
-
-`10.3. Separate Storage Network <#separate_storage_network>`__
-
-`10.4. Multi-Node Management Server <#multi_node_management_server>`__
-
-`10.5. Multi-Site Deployment <#multi_site_deployment>`__
+Choosing a Deployment Architecture
+==================================
 
 The architecture used in a deployment will vary depending on the size
 and purpose of the deployment. This section contains examples of
@@ -11137,37 +10605,8 @@ Yes
 
 N/A
 
-`12.1. Amazon Web Services Compatible
-Interface <#aws-ec2-introduction>`__
-
-`12.2. Supported API Version <#aws-ec2-requirements>`__
-
-`12.3. Enabling the EC2 and S3 Compatible
-Interface <#aws-ec2-configuration>`__
-
-`12.3.1. Enabling the Services <#aws-api-settings>`__
-
-`12.3.2. Creating EC2 Compatible Service
-Offerings <#aws-ec2-service-offerings>`__
-
-`12.3.3. Modifying the AWS API Port <#aws-api-port-change>`__
-
-`12.4. AWS API User Setup <#aws-ec2-user-setup>`__
-
-`12.4.1. AWS API User Registration <#aws-ec2-user-registration>`__
-
-`12.4.2. AWS API Command-Line Tools Setup <#aws-api-tools-setup>`__
-
-`12.5. Using Timeouts to Ensure AWS API Command
-Completion <#aws-ec2-timeouts>`__
-
-`12.6. Supported AWS API Calls <#aws-ec2-supported-commands>`__
-
-`12.7. Examples <#aws-api-examples>`__
-
-`12.7.1. Boto Examples <#aws-api-boto-examples>`__
-
-`12.7.2. JClouds Examples <#aws-api-jclouds-examples>`__
+Amazon Web Services Interface
+============================
 
 12.1. Amazon Web Services Compatible Interface
 ----------------------------------------------
@@ -11180,17 +10619,11 @@ CloudStack, listening on a different port. The Amazon Web Services (AWS)
 compatible interface provides the EC2 SOAP and Query APIs as well as the
 S3 REST API.
 
-Note
-----
-
-This service was previously enabled by separate software called
+.. note:: This service was previously enabled by separate software called
 CloudBridge. It is now fully integrated with the CloudStack management
 server.
 
-Warning
--------
-
-The compatible interface for the EC2 Query API and the S3 API are Work
+.. warning:: The compatible interface for the EC2 Query API and the S3 API are Work
 In Progress. The S3 compatible API offers a way to store data on the
 management server file system, it is not an implementation of the S3
 backend.
@@ -11229,10 +10662,7 @@ Limitations
    tools v. 1.3.6230*, which can be downloaded at
    `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`__.
 
-Note
-----
-
-Work is underway to support a more recent version of the EC2 API
+.. note:: Work is underway to support a more recent version of the EC2 API
 
 12.3. Enabling the EC2 and S3 Compatible Interface
 --------------------------------------------------
@@ -11252,10 +10682,7 @@ prior to using it.
    the Amazon service offerings. You can do this through the CloudStack
    UI as described in the Administration Guide.
 
-   Warning
-   -------
-
-   Be sure you have included the Amazon default service offering,
+   .. warning:: Be sure you have included the Amazon default service offering,
    m1.small. As well as any EC2 instance types that you will use.
 
 #. 
@@ -11263,7 +10690,7 @@ prior to using it.
    If you did not already do so when you set the configuration parameter
    in step `1 <#set-global-config>`__, restart the Management Server.
 
-   .. code:: programlisting
+::
 
        # service cloudstack-management restart
 
@@ -11287,10 +10714,10 @@ integration port on which you can make unauthenticated calls. In Global
 Settings set the port to 8096 and subsequently call the
 *updateConfiguration* method. The following urls shows you how:
 
-.. code:: programlisting
+::
 
-                http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
-                http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
+    http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
+    http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
 
 Once you have enabled the services, restart the server.
 
@@ -11311,10 +10738,7 @@ instance type API name.|
 12.3.3. Modifying the AWS API Port
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note
-----
-
-(Optional) The AWS API listens for requests on port 7080. If you prefer
+.. note:: (Optional) The AWS API listens for requests on port 7080. If you prefer
 AWS API to listen on another port, you can change it as follows:
 
 #. 
@@ -11366,60 +10790,6 @@ this, each user must perform the following configuration steps:
    For convenience, set up environment variables for the EC2 SOAP
    command-line tools.
 
-12.4.1. AWS API User Registration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Each user must perform a one-time registration. The user follows these
-steps:
-
-#. 
-
-   Obtain the following by looking in the CloudStack UI, using the API,
-   or asking the cloud administrator:
-
-   -  
-
-      The CloudStack server's publicly available DNS name or IP address
-
-   -  
-
-      The user account's Access key and Secret key
-
-#. 
-
-   Generate a private key and a self-signed X.509 certificate. The user
-   substitutes their own desired storage location for /path/to/… below.
-
-   .. code:: programlisting
-
-       $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /path/to/private_key.pem -out /path/to/cert.pem
-
-#. 
-
-   Register the user X.509 certificate and Access/Secret keys with the
-   AWS compatible service. If you have the source code of CloudStack go
-   to the awsapi-setup/setup directory and use the Python script
-   cloudstack-aws-api-register. If you do not have the source then
-   download the script using the following command.
-
-   .. code:: programlisting
-
-       wget -O cloudstack-aws-api-register "https://git-wip-us.apache.org/repos/asf?p=cloudstack.git;a=blob_plain;f=awsapi-setup/setup/cloudstack-aws-api-register;hb=4.1"
-
-   Then execute it, using the access and secret keys that were obtained
-   in step `1 <#obtain-access-secret-keys>`__. An example is shown
-   below.
-
-   .. code:: programlisting
-
-       $ cloudstack-aws-api-register --apikey=User’s CloudStack API key --secretkey=User’s CloudStack Secret key --cert=/path/to/cert.pem --url=http://CloudStack.server:7080/awsapi
-
-Note
-----
-
-A user with an existing AWS certificate could choose to use the same
-certificate with CloudStack, but note that the certificate would be
-uploaded to the CloudStack management server database.
 
 12.4.2. AWS API Command-Line Tools Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -11440,7 +10810,7 @@ To use the EC2 command-line tools, the user must perform these steps:
    CloudStack management server and port. In a bash shell do the
    following.
 
-   .. code:: programlisting
+   .. code:: bash
 
                          $ export EC2_CERT=/path/to/cert.pem
                          $ export EC2_PRIVATE_KEY=/path/to/private_key.pem
@@ -11456,36 +10826,33 @@ commands. If you find that commands are not completing due to timeouts,
 you can specify a custom timeouts. You can add the following optional
 command-line parameters to any CloudStack-supported EC2 command:
 
-.. code:: programlisting
+.. code:: bash
 
     --connection-timeout TIMEOUT
 
 Specifies a connection timeout (in seconds). Example:
 
-.. code:: programlisting
+.. code:: bash
 
     --connection-timeout 30
 
-.. code:: programlisting
+.. code:: bash
 
     --request-timeout TIMEOUT
 
 Specifies a request timeout (in seconds). Example:
 
-.. code:: programlisting
+.. code:: bash
 
     --request-timeout 45
 
 Example:
 
-.. code:: programlisting
+.. code:: bash
 
     ec2-run-instances 2 –z us-test1 –n 1-3 --connection-timeout 120 --request-timeout 120
 
-Note
-----
-
-The timeouts optional arguments are not specific to CloudStack.
+.. note:: The timeouts optional arguments are not specific to CloudStack.
 
 12.6. Supported AWS API Calls
 -----------------------------
@@ -11692,7 +11059,7 @@ own and update the endpoint.
 Example 12.1. An EC2 Boto example
                                  
 
-.. code:: programlisting
+.. code:: python
 
     #!/usr/bin/env python
 
@@ -11735,7 +11102,7 @@ file paths to something that exists on your machine.
 Example 12.2. An S3 Boto Example
                                 
 
-.. code:: programlisting
+.. code:: python
 
     #!/usr/bin/env python
 
@@ -11792,72 +11159,9 @@ Example 12.2. An S3 Boto Example
     if __name__ == '__main__':
         main()
 
-| 
 
-12.7.2. JClouds Examples
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-`13.1. Basic and Advanced Networking <#basic-adv-networking>`__
-
-`13.2. VLAN Allocation Example <#vlan-allocation-eg>`__
-
-`13.3. Example Hardware Configuration <#hardware-config-eg>`__
-
-`13.3.1. Dell 62xx <#dell62xx-hardware>`__
-
-`13.3.2. Cisco 3750 <#cisco3750-hardware>`__
-
-`13.4. Layer-2 Switch <#layer2-switch>`__
-
-`13.4.1. Dell 62xx <#dell62xx-layer2>`__
-
-`13.4.2. Cisco 3750 <#cisco3750-layer2>`__
-
-`13.5. Hardware Firewall <#hardware-firewall>`__
-
-`13.5.1. Generic Firewall Provisions <#generic-firewall-provisions>`__
-
-`13.5.2. External Guest Firewall Integration for Juniper SRX
-(Optional) <#external-guest-firewall-integration>`__
-
-`13.5.3. External Guest Firewall Integration for Cisco VNMC
-(Optional) <#vnmc-cisco>`__
-
-`13.5.4. External Guest Load Balancer Integration
-(Optional) <#external-guest-lb-integration>`__
-
-`13.6. Management Server Load Balancing <#management-server-lb>`__
-
-`13.7. Topology Requirements <#topology-req>`__
-
-`13.7.1. Security Requirements <#security-req>`__
-
-`13.7.2. Runtime Internal Communications
-Requirements <#runtime-internal-comm-req>`__
-
-`13.7.3. Storage Network Topology
-Requirements <#storage-nw-topology-req>`__
-
-`13.7.4. External Firewall Topology
-Requirements <#external-fw-topology-req>`__
-
-`13.7.5. Advanced Zone Topology Requirements <#adv-zone-topology-req>`__
-
-`13.7.6. XenServer Topology Requirements <#xenserver-topology-req>`__
-
-`13.7.7. VMware Topology Requirements <#vmware-topology-req>`__
-
-`13.7.8. Hyper-V Topology Requirements <#hyperv-topology-req>`__
-
-`13.7.9. KVM Topology Requirements <#kvm-topology-req>`__
-
-`13.7.10. LXC Topology Requirements <#lxc-topology-req>`__
-
-`13.8. Guest Network Usage Integration for Traffic
-Sentinel <#guest-nw-usage-with-traffic-sentinel>`__
-
-`13.9. Setting Zone VLAN and Running VM
-Maximums <#set-zone-vlan-run-vm-max>`__
+Network Setup
+=============
 
 Achieving the correct networking setup is crucial to a successful
 CloudStack installation. This section contains information to help you
@@ -12041,7 +11345,7 @@ The Dell 62xx Series switch supports up to 1024 VLANs.
 
    Configure all the VLANs in the database.
 
-   .. code:: programlisting
+   .. code:: bash
 
        vlan database
        vlan 200-999
@@ -12051,7 +11355,7 @@ The Dell 62xx Series switch supports up to 1024 VLANs.
 
    Configure Ethernet port 1/g1.
 
-   .. code:: programlisting
+   .. code:: bash
 
        interface ethernet 1/g1
        switchport mode general
@@ -12084,7 +11388,7 @@ GigabitEthernet1/0/1.
    1000. Since we only use VLANs up to 999, vtp transparent mode is not
    strictly required.
 
-   .. code:: programlisting
+   .. code:: bash
 
        vtp mode transparent
        vlan 200-999
@@ -12094,7 +11398,7 @@ GigabitEthernet1/0/1.
 
    Configure GigabitEthernet1/0/1.
 
-   .. code:: programlisting
+   .. code:: bash
 
        interface GigabitEthernet1/0/1
        switchport trunk encapsulation dot1q
@@ -12146,7 +11450,7 @@ layer-2 switching.
 
    Configure all the VLANs in the database.
 
-   .. code:: programlisting
+   .. code:: bash
 
        vlan database
        vlan 300-999
@@ -12157,7 +11461,7 @@ layer-2 switching.
    VLAN 201 is used to route untagged private IP addresses for pod 1,
    and pod 1 is connected to this layer-2 switch.
 
-   .. code:: programlisting
+   .. code:: bash
 
        interface range ethernet all
        switchport mode general
@@ -12187,7 +11491,7 @@ layer-2 switching.
    1000. Since we only use VLANs up to 999, vtp transparent mode is not
    strictly required.
 
-   .. code:: programlisting
+   .. code:: bash
 
        vtp mode transparent
        vlan 300-999
@@ -12197,7 +11501,7 @@ layer-2 switching.
 
    Configure all ports to dot1q and set 201 as the native VLAN.
 
-   .. code:: programlisting
+   .. code:: bash
 
        interface range GigabitEthernet 1/0/1-24
        switchport trunk encapsulation dot1q
@@ -12244,10 +11548,7 @@ NAT and site-to-site VPN can be used.
 13.5.2. External Guest Firewall Integration for Juniper SRX (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note
-----
-
-Available only for guests using advanced networking.
+.. note:: Available only for guests using advanced networking.
 
 CloudStack provides for direct management of the Juniper SRX series of
 firewalls. This enables CloudStack to establish static NAT mappings from
@@ -12265,10 +11566,7 @@ mode.|
 
 CloudStack requires the Juniper to be configured as follows:
 
-Note
-----
-
-Supported SRX software version is 10.3 or higher.
+.. note:: Supported SRX software version is 10.3 or higher.
 
 #. 
 
@@ -12327,7 +11625,7 @@ Supported SRX software version is 10.3 or higher.
       here is the configuration where the public zone is "untrust" and
       the private zone is "trust":
 
-      .. code:: programlisting
+      .. code:: bash
 
           root@cloud-srx# show firewall
           filter trust {
@@ -12343,7 +11641,7 @@ Supported SRX software version is 10.3 or higher.
       sample configuration output (for public interface ge-0/0/3.0,
       public security zone untrust, and private security zone trust) is:
 
-      .. code:: programlisting
+      .. code:: bash
 
           ge-0/0/3 {
               unit 0 {
@@ -12912,13 +12210,13 @@ the SSH credentials by registering on VNMC.
 
       Run the following:
 
-      .. code:: programlisting
+      .. code:: bash
 
           ASA1000V(config)# reload
 
       You are prompted with the following message:
 
-      .. code:: programlisting
+      .. code:: bash
 
           System config has been modified. Save? [Y]es/[N]o:"
 
@@ -12928,7 +12226,7 @@ the SSH credentials by registering on VNMC.
 
       You will get the following confirmation message:
 
-      .. code:: programlisting
+      .. code:: bash
 
           "Proceed with reload? [confirm]"
 
@@ -12940,7 +12238,7 @@ the SSH credentials by registering on VNMC.
 
    Register the ASA 1000v appliance with the VNMC:
 
-   .. code:: programlisting
+   .. code:: bash
 
        ASA1000V(config)# vnmc policy-agent
        ASA1000V(config-vnmc-policy-agent)# registration host vnmc_ip_address
@@ -13324,16 +12622,8 @@ Based on your deployment's needs, choose the appropriate value of
 guest.vlan.bits. Set it as described in Edit the Global Configuration
 Settings (Optional) section and restart the Management Server.
 
-`14.1. Small-Scale Setup <#storage-set-small-scale>`__
-
-`14.2. Secondary Storage <#storage-set-secondary>`__
-
-`14.3. Example Configurations <#storage-set-example-config>`__
-
-`14.3.1. Linux NFS on Local Disks and
-DAS <#storage-set-example-config-local-das>`__
-
-`14.3.2. Linux NFS on iSCSI <#storage-set-example-config-iscsi>`__
+Storage Setup
+=============
 
 CloudStack is designed to work with a wide variety of commodity and
 enterprise-grade storage. Local disk may be used as well, if supported
@@ -13395,10 +12685,7 @@ CloudStack is designed to work with any scalable secondary storage
 system. The only requirement is the secondary storage system supports
 the NFS protocol.
 
-Note
-----
-
-The storage server should be a machine with a large number of disks. The
+.. note:: The storage server should be a machine with a large number of disks. The
 disks should ideally be managed by a hardware RAID controller. Modern
 hardware RAID controllers support hot plug functionality independent of
 the operating system so you can replace faulty disks without impacting
@@ -13444,7 +12731,7 @@ operating system version.
    After /export directory is created, run the following command to
    configure it as an NFS export.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # echo "/export <CIDR>(rw,async,no_root_squash,no_subtree_check)" >> /etc/exports
 
@@ -13464,7 +12751,7 @@ operating system version.
 
       The following is an example with separate CIDRs:
 
-      .. code:: programlisting
+      .. code:: bash
 
           /export 192.168.1.0/24(rw,async,no_root_squash,no_subtree_check) 10.50.1.0/24(rw,async,no_root_squash,no_subtree_check)
 
@@ -13479,7 +12766,7 @@ operating system version.
 
    Run the following command to enable NFS service.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # chkconfig nfs on
 
@@ -13487,7 +12774,7 @@ operating system version.
 
    Edit the /etc/sysconfig/nfs file and uncomment the following lines.
 
-   .. code:: programlisting
+   .. code:: bash
 
        LOCKD_TCPPORT=32803
        LOCKD_UDPPORT=32769
@@ -13501,7 +12788,7 @@ operating system version.
    Edit the /etc/sysconfig/iptables file and add the following lines at
    the beginning of the INPUT chain.
 
-   .. code:: programlisting
+   .. code:: bash
 
        -A INPUT -m state --state NEW -p udp --dport 111 -j ACCEPT
        -A INPUT -m state --state NEW -p tcp --dport 111 -j ACCEPT
@@ -13521,10 +12808,7 @@ operating system version.
 
    An NFS share called /export is now set up.
 
-Note
-----
-
-When copying and pasting a command, be sure the command has pasted as a
+.. note:: When copying and pasting a command, be sure the command has pasted as a
 single line before executing. Some document viewers may introduce
 unwanted line breaks in copied text.
 
@@ -13538,7 +12822,7 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Install iscsiadm.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # yum install iscsi-initiator-utils
        # service iscsi start
@@ -13549,13 +12833,13 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Discover the iSCSI target.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # iscsiadm -m discovery -t st -p <iSCSI Server IP address>:3260
 
    For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # iscsiadm -m discovery -t st -p 172.23.10.240:3260
                  172.23.10.240:3260,1 iqn.2001-05.com.equallogic:0-8a0906-83bcb3401-16e0002fd0a46f3d-rhel5-test
@@ -13564,13 +12848,13 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Log in.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # iscsiadm -m node -T <Complete Target Name> -l -p <Group IP>:3260
 
    For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # iscsiadm -m node -l -T iqn.2001-05.com.equallogic:83bcb3401-16e0002fd0a46f3d-rhel5-test -p 172.23.10.240:3260
 
@@ -13578,7 +12862,7 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Discover the SCSI disk. For example:
 
-   .. code:: programlisting
+   .. code:: bash
 
        # iscsiadm -m session -P3 | grep Attached
        Attached scsi disk sdb State: running
@@ -13587,7 +12871,7 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Format the disk as ext3 and mount the volume.
 
-   .. code:: programlisting
+   .. code:: bash
 
        # mkfs.ext3 /dev/sdb
        # mkdir -p /export
@@ -13597,7 +12881,7 @@ volume. These steps apply to RHEL/CentOS 5 distributions.
 
    Add the disk to /etc/fstab to make sure it gets mounted on boot.
 
-   .. code:: programlisting
+   .. code:: bash
 
        /dev/sdb /export ext3 _netdev 0 0
 
@@ -13618,7 +12902,7 @@ Now you can set up /export as an NFS share.
 
    The following is an example with separate CIDRs:
 
-   .. code:: programlisting
+   .. code:: bash
 
        /export 192.168.1.0/24(rw,async,no_root_squash,no_subtree_check) 10.50.1.0/24(rw,async,no_root_squash,no_subtree_check)
 
@@ -13629,221 +12913,8 @@ Now you can set up /export as an NFS share.
    disk. Remove the async flag in your mission critical production
    deployment.
 
-`15.1. Guest Traffic <#guest-traffic>`__
-
-`15.2. Networking in a Pod <#networking-in-a-pod>`__
-
-`15.3. Networking in a Zone <#networking-in-a-zone>`__
-
-`15.4. Basic Zone Physical Network
-Configuration <#basic-zone-physical-network-configuration>`__
-
-`15.5. Advanced Zone Physical Network
-Configuration <#advanced-zone-physical-network-configuration>`__
-
-`15.5.1. Configure Guest Traffic in an Advanced
-Zone <#configure-guest-traffic-in-advanced-zone>`__
-
-`15.5.2. Configure Public Traffic in an Advanced
-Zone <#configure-public-traffic-in-an-advanced-zone>`__
-
-`15.5.3. Configuring a Shared Guest
-Network <#creating-shared-network>`__
-
-`15.6. Using Multiple Guest Networks <#using-multiple-guest-networks>`__
-
-`15.6.1. Adding an Additional Guest
-Network <#add-additional-guest-network>`__
-
-`15.6.2. Reconfiguring Networks in VMs <#add-remove-nic-ui>`__
-
-`15.6.3. Changing the Network Offering on a Guest
-Network <#change-network-offering-on-guest-network>`__
-
-`15.7. IP Reservation in Isolated Guest
-Networks <#reserved-ip-addresses-non-csvms>`__
-
-`15.7.1. IP Reservation Considerations <#ip-reserve-consider>`__
-
-`15.7.2. Limitations <#ip-reserv-limition>`__
-
-`15.7.3. Best Practices <#best-practice-ipreserv>`__
-
-`15.7.4. Reserving an IP Range <#reserve-ip>`__
-
-`15.8. Reserving Public IP Addresses and VLANs for
-Accounts <#ip-vlan-tenant>`__
-
-`15.8.1. Dedicating IP Address Ranges to an
-Account <#howto-dedicate-ip>`__
-
-`15.8.2. Dedicating VLAN Ranges to an Account <#howto-dedicate-vlan>`__
-
-`15.9. Configuring Multiple IP Addresses on a Single
-NIC <#multiple-ip-nic>`__
-
-`15.9.1. Use Cases <#usecases-mip>`__
-
-`15.9.2. Guidelines <#guideline-nic>`__
-
-`15.9.3. Assigning Additional IPs to a VM <#workflow-rn>`__
-
-`15.9.4. Port Forwarding and StaticNAT Services Changes <#caveats>`__
-
-`15.10. About Multiple IP Ranges <#multiple-ip-range>`__
-
-`15.11. About Elastic IP <#elastic-ip>`__
-
-`15.12. Portable IPs <#portable-ip>`__
-
-`15.12.1. About Portable IP <#about-pip>`__
-
-`15.12.2. Configuring Portable IPs <#config-pip>`__
-
-`15.12.3. Acquiring a Portable IP <#acquire-pip>`__
-
-`15.12.4. Transferring Portable IP <#transfer-pip>`__
-
-`15.13. Multiple Subnets in Shared Network <#add-ip-range>`__
-
-`15.13.1. Prerequisites and Guidelines <#guidelines-multiplesubnet>`__
-
-`15.13.2. Adding Multiple Subnets to a Shared
-Network <#how-to-add-ip>`__
-
-`15.14. Isolation in Advanced Zone Using Private VLAN <#pvlan>`__
-
-`15.14.1. About Private VLAN <#about-pvlan>`__
-
-`15.14.2. Prerequisites <#prereq-pvlan>`__
-
-`15.14.3. Creating a PVLAN-Enabled Guest Network <#ability-pvlan>`__
-
-`15.15. Security Groups <#security-groups>`__
-
-`15.15.1. About Security Groups <#about-security-groups>`__
-
-`15.15.2. Adding a Security Group <#add-security-group>`__
-
-`15.15.3. Security Groups in Advanced Zones (KVM
-Only) <#security-groups-advanced-zones>`__
-
-`15.15.4. Enabling Security Groups <#enable-security-groups>`__
-
-`15.15.5. Adding Ingress and Egress Rules to a Security
-Group <#add-ingress-egress-rules>`__
-
-`15.16. External Firewalls and Load
-Balancers <#external-firewalls-and-load-balancers>`__
-
-`15.16.1. About Using a NetScaler Load
-Balancer <#using-netscaler-load-balancers>`__
-
-`15.16.2. Configuring SNMP Community String on a RHEL
-Server <#configure-snmp-rhel>`__
-
-`15.16.3. Initial Setup of External Firewalls and Load
-Balancers <#initial-setup-of-external-firewalls-loadbalancer>`__
-
-`15.16.4. Ongoing Configuration of External Firewalls and Load
-Balancers <#ongoing-config-of-external-firewalls-ld>`__
-
-`15.16.5. Load Balancer Rules <#load-balancer-rules>`__
-
-`15.16.6. Configuring AutoScale <#autoscale>`__
-
-`15.17. Global Server Load Balancing Support <#gslb>`__
-
-`15.17.1. About Global Server Load Balancing <#about-gslb>`__
-
-`15.17.2. Configuring GSLB <#gslb-workflow>`__
-
-`15.17.3. Known Limitation <#idp140240976797152>`__
-
-`15.18. Guest IP Ranges <#guest-ip-ranges>`__
-
-`15.19. Acquiring a New IP Address <#acquire-new-ip-address>`__
-
-`15.20. Releasing an IP Address <#release-ip-address>`__
-
-`15.21. Static NAT <#static-nat>`__
-
-`15.21.1. Enabling or Disabling Static
-NAT <#enable-disable-static-nat>`__
-
-`15.22. IP Forwarding and Firewalling <#ip-forwarding-firewalling>`__
-
-`15.22.1. Firewall Rules <#firewall-rules>`__
-
-`15.22.2. Egress Firewall Rules in an Advanced
-Zone <#egress-firewall-rule>`__
-
-`15.22.3. Port Forwarding <#port-forwarding>`__
-
-`15.23. IP Load Balancing <#ip-load-balancing>`__
-
-`15.24. DNS and DHCP <#dns-dhcp>`__
-
-`15.25. Remote Access VPN <#vpn>`__
-
-`15.25.1. Configuring Remote Access VPN <#configure-vpn>`__
-
-`15.25.2. Configuring Remote Access VPN in VPC <#configure-vpn-vpc>`__
-
-`15.25.3. Using Remote Access VPN with
-Windows <#using-vpn-with-windows>`__
-
-`15.25.4. Using Remote Access VPN with Mac OS X <#using-vpn-with-mac>`__
-
-`15.25.5. Setting Up a Site-to-Site VPN
-Connection <#site-to-site-vpn>`__
-
-`15.26. About Inter-VLAN Routing (nTier Apps) <#inter-vlan-routing>`__
-
-`15.27. Configuring a Virtual Private Cloud <#configure-vpc>`__
-
-`15.27.1. About Virtual Private Clouds <#vpc>`__
-
-`15.27.2. Adding a Virtual Private Cloud <#add-vpc>`__
-
-`15.27.3. Adding Tiers <#add-tier>`__
-
-`15.27.4. Configuring Network Access Control List <#configure-acl>`__
-
-`15.27.5. Adding a Private Gateway to a VPC <#add-gateway-vpc>`__
-
-`15.27.6. Deploying VMs to the Tier <#add-vm-to-tier>`__
-
-`15.27.7. Deploying VMs to VPC Tier and Shared
-Networks <#add-vm-tier-sharednw>`__
-
-`15.27.8. Acquiring a New IP Address for a
-VPC <#acquire-new-ip-for-vpc>`__
-
-`15.27.9. Releasing an IP Address Alloted to a
-VPC <#release-ip-for-vpc>`__
-
-`15.27.10. Enabling or Disabling Static NAT on a
-VPC <#enable-disable-static-nat-vpc>`__
-
-`15.27.11. Adding Load Balancing Rules on a
-VPC <#add-loadbalancer-rule-vpc>`__
-
-`15.27.12. Adding a Port Forwarding Rule on a
-VPC <#add-portforward-vpc>`__
-
-`15.27.13. Removing Tiers <#remove-tier>`__
-
-`15.27.14. Editing, Restarting, and Removing a Virtual Private
-Cloud <#remove-vpc>`__
-
-`15.28. Persistent Networks <#persistent-network>`__
-
-`15.28.1. Persistent Network
-Considerations <#persistent-network-consideration>`__
-
-`15.28.2. Creating a Persistent Guest
-Network <#set-up-persistent-network>`__
+Managing Networks and Traffic
+=============================
 
 In a CloudStack, guest VMs can communicate with each other using shared
 infrastructure with the security and user perception that the guests
@@ -13964,7 +13035,7 @@ configure the base guest network:
 
    The Add guest network window is displayed:
 
-   |networksetupzone.png: Depicts network setup in a single zone|
+   |addguestnetwork.png: Add guest network setup in a single zone|
 
 #. 
 
@@ -14893,10 +13964,7 @@ is configured on the primary IP of the VM.
 15.10. About Multiple IP Ranges
 -------------------------------
 
-Note
-----
-
-The feature can only be implemented on IPv4 addresses.
+.. note:: The feature can only be implemented on IPv4 addresses.
 
 CloudStack provides you with the flexibility to add guest IP ranges from
 different subnets in Basic zones and security groups-enabled Advanced
@@ -14967,10 +14035,7 @@ The EIP work flow is as follows:
    Network Address Translation (INAT) and Reverse NAT (RNAT) rules
    between the public IP and the private IP.
 
-   Note
-   ----
-
-   Inbound NAT (INAT) is a type of NAT supported by NetScaler, in which
+   .. note:: Inbound NAT (INAT) is a type of NAT supported by NetScaler, in which
    the destination IP address is replaced in the packets from the public
    network, such as the Internet, with the private IP address of a VM in
    the private network. Reverse NAT (RNAT) is a type of NAT supported by
@@ -15009,10 +14074,7 @@ NAT.
 For more information on the Associate Public IP option, see the
 Administration Guide.
 
-Note
-----
-
-The Associate Public IP feature is designed only for use with user VMs.
+.. note:: The Associate Public IP feature is designed only for use with user VMs.
 The System VMs continue to get both public IP and private by default,
 irrespective of the network offering configuration.
 
@@ -15168,7 +14230,7 @@ you can use it for any service in the network.
 To transfer a portable IP across the networks, execute the following
 API:
 
-.. code:: programlisting
+.. code:: bash
 
     http://localhost:8096/client/api?command=enableStaticNat&response=json&ipaddressid=a4bc37b2-4b4e-461d-9a62-b66414618e36&virtualmachineid=a242c476-ef37-441e-9c7b-b303e2a9cb4f&networkid=6e7cd8d1-d1ba-4c35-bdaf-333354cbd49810
 
@@ -15176,7 +14238,7 @@ Replace the UUID with appropriate UUID. For example, if you want to
 transfer a portable IP to network X and VM Y in a network, execute the
 following:
 
-.. code:: programlisting
+.. code:: bash
 
     http://localhost:8096/client/api?command=enableStaticNat&response=json&ipaddressid=a4bc37b2-4b4e-461d-9a62-b66414618e36&virtualmachineid=Y&networkid=X
 
@@ -15427,10 +14489,7 @@ For further reading:
 
    Before you use PVLAN on XenServer and KVM, enable Open vSwitch (OVS).
 
-   Note
-   ----
-
-   OVS on XenServer and KVM does not support PVLAN natively. Therefore,
+   .. note:: OVS on XenServer and KVM does not support PVLAN natively. Therefore,
    CloudStack managed to simulate PVLAN on OVS for XenServer and KVM by
    modifying the flow table.
 
@@ -15575,10 +14634,7 @@ useful in zones that use basic networking, because there is a single
 guest network for all guest VMs. In advanced zones, security groups are
 supported only on the KVM hypervisor.
 
-Note
-----
-
-In a zone that uses advanced networking, you can instead define multiple
+.. note:: In a zone that uses advanced networking, you can instead define multiple
 guest networks to isolate traffic to VMs.
 
 Each CloudStack account comes with a default security group that denies
@@ -15826,10 +14882,7 @@ balancing in zones that use isolated networking in advanced zones. Set
 up an external load balancer when you want to provide load balancing
 through means other than CloudStack’s provided virtual router.
 
-Note
-----
-
-In a Basic zone, load balancing service is supported only if Elastic IP
+.. note:: In a Basic zone, load balancing service is supported only if Elastic IP
 or Elastic LB services are enabled.
 
 When NetScaler load balancer is used to provide EIP or ELB services in a
@@ -15928,10 +14981,7 @@ communication between the NetScaler device and the RHEL machine.
       Map the community name into a security name (local and mynetwork,
       depending on where the request is coming from):
 
-      Note
-      ----
-
-      Use a strong password instead of public when you edit the
+      .. note:: Use a strong password instead of public when you edit the
       following table.
 
       .. code:: screen
@@ -15940,10 +14990,7 @@ communication between the NetScaler device and the RHEL machine.
           com2sec    local      localhost     public
           com2sec   mynetwork   0.0.0.0       public
 
-      Note
-      ----
-
-      Setting to 0.0.0.0 allows all IPs to poll the NetScaler server.
+      .. note:: Setting to 0.0.0.0 allows all IPs to poll the NetScaler server.
 
    #. 
 
@@ -16076,10 +15123,7 @@ balance traffic received at a public IP to one or more VMs. A user
 creates a rule, specifies an algorithm, and assigns the rule to a set of
 VMs.
 
-Note
-----
-
-If you create load balancing rules while using a network service
+.. note:: If you create load balancing rules while using a network service
 offering that includes an external load balancer device such as
 NetScaler, and later change the network service offering to one that
 uses the CloudStack virtual router, you must create a firewall rule on
@@ -16293,10 +15337,7 @@ CloudStack uses the NetScaler load balancer to monitor all aspects of a
 system's health and work in unison with CloudStack to initiate scale-up
 or scale-down actions.
 
-Note
-----
-
-AutoScale is supported on NetScaler Release 10 Build 74.4006.e and
+.. note:: AutoScale is supported on NetScaler Release 10 Build 74.4006.e and
 beyond.
 
 Prerequisites
@@ -16310,10 +15351,7 @@ Before you configure an AutoScale rule, consider the following:
    AutoScale. When a VM is deployed by using a template and when it
    comes up, the application should be up and running.
 
-   Note
-   ----
-
-   If the application is not running, the NetScaler device considers the
+   .. note:: If the application is not running, the NetScaler device considers the
    VM as ineffective and continues provisioning the VMs unconditionally
    until the resource limit is exhausted.
 
@@ -16399,10 +15437,7 @@ Specify the following:
    rule has at least the configured number of active VM instances are
    available to serve the traffic.
 
-   Note
-   ----
-
-   If an application, such as SAP, running on a VM instance is down for
+   .. note:: If an application, such as SAP, running on a VM instance is down for
    some reason, the VM is then not counted as part of Min Instance
    parameter, and the AutoScale feature initiates a scaleup action if
    the number of active VM instances is below the configured value.
@@ -16424,10 +15459,7 @@ Specify the following:
    leads to a single load balancing rule exhausting the VM instances
    limit specified at the account or domain level.
 
-   Note
-   ----
-
-   If an application, such as SAP, running on a VM instance is down for
+   .. note:: If an application, such as SAP, running on a VM instance is down for
    some reason, the VM is not counted as part of Max Instance parameter.
    So there may be scenarios where the number of VMs provisioned for a
    scaleup action might be more than the configured Max Instance value.
@@ -17278,7 +16310,7 @@ function only if they are defined on the default network.
 
 #. 
 
-   Click the Static NAT |ReleaseIPButton.png: button to release an IP|
+   Click the Static NAT |EnableNATButton.png: button to enable NAT|
    button.
 
    The button toggles between Enable and Disable, depending on whether
@@ -17687,10 +16719,7 @@ The VPN user database is shared across all the VPNs created by the
 account owner. All VPN users get access to all VPNs created by the
 account owner.
 
-Note
-----
-
-Make sure that not all traffic goes through the VPN. That is, the route
+.. note:: Make sure that not all traffic goes through the VPN. That is, the route
 installed by the VPN should be only for the guest network and not for
 all traffic.
 
@@ -18039,10 +17068,7 @@ The supported endpoints on the remote datacenters are:
 
    CloudStack virtual routers
 
-Note
-----
-
-In addition to the specific Cisco and Juniper devices listed above, the
+.. note:: In addition to the specific Cisco and Juniper devices listed above, the
 expectation is that any Cisco or Juniper device running on the supported
 operating systems are able to establish VPN connections.
 
@@ -18071,10 +17097,7 @@ To set up a Site-to-Site VPN connection, perform the following:
 15.25.5.1. Creating and Updating a VPN Customer Gateway
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Note
-----
-
-A VPN customer gateway can be connected to only one VPN gateway at a
+.. note:: A VPN customer gateway can be connected to only one VPN gateway at a
 time.
 
 To add a VPN Customer Gateway:
@@ -18121,10 +17144,7 @@ To add a VPN Customer Gateway:
       authenticate the customer gateway and the VPC VPN gateway to each
       other.
 
-      Note
-      ----
-
-      The IKE peers (VPN end points) authenticate each other by
+      .. note:: The IKE peers (VPN end points) authenticate each other by
       computing and sending a keyed hash of data that includes the
       Preshared key. If the receiving peer is able to create the same
       hash independently by using its Preshared key, it knows that both
@@ -18138,10 +17158,7 @@ To add a VPN Customer Gateway:
       AES256, and 3DES. Authentication is accomplished through the
       Preshared Keys.
 
-      Note
-      ----
-
-      The phase-1 is the first phase in the IKE process. In this initial
+      .. Note:: The phase-1 is the first phase in the IKE process. In this initial
       negotiation phase, the two VPN endpoints agree on the methods to
       be used to provide security for the underlying IP traffic. The
       phase-1 authenticates the two VPN gateways to each other, by
@@ -18166,10 +17183,7 @@ To add a VPN Customer Gateway:
       within phase-2. The supported encryption algorithms are AES128,
       AES192, AES256, and 3DES.
 
-      Note
-      ----
-
-      The phase-2 is the second phase in the IKE process. The purpose of
+      .. note:: The phase-2 is the second phase in the IKE process. The purpose of
       IKE phase-2 is to negotiate IPSec security associations (SA) to
       set up the IPSec tunnel. In phase-2, new keying material is
       extracted from the Diffie-Hellman key exchange in phase-1, to
@@ -18192,10 +17206,7 @@ To add a VPN Customer Gateway:
       of the key exchanges increase as the DH groups grow larger, as
       does the time of the exchanges.
 
-      Note
-      ----
-
-      When PFS is turned on, for every negotiation of a new phase-2 SA
+      .. note:: When PFS is turned on, for every negotiation of a new phase-2 SA
       the two gateways must generate a new set of phase-1 keys. This
       adds an extra layer of protection that PFS adds, which ensures if
       the phase-2 SA’s have expired, the keys used for new phase-2 SA’s
@@ -18360,10 +17371,7 @@ related VPN connection is in error state.
 15.25.5.3. Creating a VPN Connection
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Note
-----
-
-CloudStack supports creating up to 8 VPN connections.
+.. note:: CloudStack supports creating up to 8 VPN connections.
 
 #. 
 
@@ -18680,10 +17688,7 @@ The major advantages are:
    from a pre-specified set of guest VLANs. All the VMs of a certain
    tier of an account reside on the guest VLAN allotted to that account.
 
-   Note
-   ----
-
-   A VLAN allocated for an account cannot be shared between multiple
+   .. note:: A VLAN allocated for an account cannot be shared between multiple
    accounts.
 
 -  
@@ -19063,10 +18068,7 @@ other tiers within the VPC.
    All the VPC that you have created for the account is listed in the
    page.
 
-   Note
-   ----
-
-   The end users can see their own VPCs, while root and domain admin can
+   .. note:: The end users can see their own VPCs, while root and domain admin can
    see any VPC they are authorized to see.
 
 #. 
@@ -20755,10 +19757,7 @@ belonging to the same VPC.
 15.27.14. Editing, Restarting, and Removing a Virtual Private Cloud
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note
-----
-
-Ensure that all the tiers are removed before you remove a VPC.
+.. note:: Ensure that all the tiers are removed before you remove a VPC.
 
 #. 
 
@@ -20896,11 +19895,8 @@ To create a persistent network, perform the following:
 
    Click OK.
 
-`16.1. Process Best Practices <#process-best-practices>`__
-
-`16.2. Setup Best Practices <#setup-best-practices>`__
-
-`16.3. Maintenance Best Practices <#maintenance-best-practices>`__
+Best Practices
+==============
 
 Deploying a cloud is challenging. There are many different technology
 choices to make, and CloudStack is flexible enough in its configuration
@@ -21009,13 +20005,8 @@ to seek guidance and advice on the project mailing lists.
    (per-host-limit). Once a cluster reaches this number of VMs, use the
    CloudStack UI to disable allocation to the cluster.
 
-Warning
--------
-
-The lack of up-do-date hotfixes can lead to data corruption and lost
-VMs.
-
-Be sure all the hotfixes provided by the hypervisor vendor are applied.
+.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost
+VMs. Be sure all the hotfixes provided by the hypervisor vendor are applied.
 Track the release of hypervisor patches through your hypervisor vendor’s
 support channel, and apply patches as soon as possible after they are
 released. CloudStack will not track or notify you of required hypervisor
@@ -21023,99 +20014,73 @@ patches. It is essential that your hosts are completely up to date with
 the provided hypervisor patches. The hypervisor vendor is likely to
 refuse to support any system that is not up to date with patches.
 
-**Revision History**
 
-Revision 1-0
-
-October 5 2012
-
-Jessica Tomechak, Radhika PC, Wido den Hollander
-
-+-----------------------+
-| Initial publication   |
-+-----------------------+
-
-.. |Product Site| image:: Common_Content/images//image_left.png
-   :target: http://cloudstack.org
-.. |Documentation Site| image:: Common_Content/images//image_right.png
-   :target: http://docs.cloudstack.org
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./images/basic-deployment.png
-.. |infrastructure\_overview.png: Nested organization of a zone| image:: ./images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./images/console-icon.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-physical-network.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-increase-ports.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-vswitch-properties.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-mgt-network-properties.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-nexus-port-profile.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-nexus-add-cluster.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./images/dvSwitch-config.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-iscsi-initiator.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-iscsi-initiator-properties.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-iscsi-general.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-iscsi-target-add.png
-.. |vsphereclient.png: vSphere client| image:: ./images/vmware-iscsi-datastore.png
-.. |Small-Scale Deployment| image:: ./images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./images/network-setup-zone.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./images/release-ip-icon.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./images/restart-vpc.png
+.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
+.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
+.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
+.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
+.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
+.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
+.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
+.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
+.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
+.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
+.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
+.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
+.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
+.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
+.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
+.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
+.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
+.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
+.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
+.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
+.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
+.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
+.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
+.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
+.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
+.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
+.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
+.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
+.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
+.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
+.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
+.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
+.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
+.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
+.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
+.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
+.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
+.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
+.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
+.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
+.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
+.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
+.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
+.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
+.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
+.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
+.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
+.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
+.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
+.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
+.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
+.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
+.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
+.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
+.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
+.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
+.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
+.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
+.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
+.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
+.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
+.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
+.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
+.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
+.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
+.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
+.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
+.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
+.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png
