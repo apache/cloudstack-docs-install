@@ -134,15 +134,9 @@ provision, view, and manage your cloud infrastructure.
    chose experienced user, use the steps in `Section 5.1.4, “Changing
    the Root Password” <#changing-root-password>`__.
 
-Warning
-
-
-You are logging in as the root administrator. This account manages the
-CloudStack deployment, including physical infrastructure. The root
-administrator can modify configuration settings to change basic
-functionality, create or delete user accounts, and take many actions
-that should be performed only by an authorized person. Please change the
-default password to a new, unique password.
+.. warning:: You are logging in as the root administrator. This account manages the CloudStack deployment, including physical infrastructure. The root
+administrator can modify configuration settings to change basic functionality, create or delete user accounts, and take many actions
+that should be performed only by an authorized person. Please change the default password to a new, unique password.
 
 Changing the Root Password
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -210,7 +204,7 @@ files. Using a single SSH key pair, you can manage multiple instances.
 Creating an Instance Template that Supports SSH Keys
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a instance template that supports SSH Keys.
+Create an instance template that supports SSH Keys.
 
 #. 
 
@@ -331,11 +325,7 @@ Instance Template that Supports SSH Keys” <#create-ssh-template>`__.
 Ensure that you use the same SSH key name that you created at
 `Section 5.2.2, “Creating the SSH Keypair” <#create-ssh-keypair>`__.
 
-Note
-
-
-You cannot create the instance by using the GUI at this time and
-associate the instance with the newly created SSH keypair.
+.. note:: You cannot create the instance by using the GUI at this time and associate the instance with the newly created SSH keypair.
 
 A sample curl command to create a new instance is:
 
@@ -353,7 +343,7 @@ Logging In Using the SSH Keypair
 To test your SSH key generation is successful, check whether you can log
 in to the cloud setup.
 
-For exaple, from a Linux OS, run:
+For example, from a Linux OS, run:
 
 .. code:: bash
 
