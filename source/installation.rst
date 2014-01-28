@@ -6,7 +6,6 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
    http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -180,7 +179,7 @@ requirements:
 
    At least 1 NIC
 
-.. note::If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
+.. note:: If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
 
 -  
 
@@ -200,7 +199,7 @@ Hosts have additional requirements depending on the hypervisor. See the
 requirements listed at the top of the Installation section for your
 chosen hypervisor:
 
-.. warning::Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
+.. warning:: Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
 
 Configure package repository
 ----------------------------
@@ -217,7 +216,7 @@ packages” <#sect-source-builddebs>`__ you may find pre-built DEB and RPM
 packages for your convenience linked from the
 `downloads <http://cloudstack.apache.org/downloads.html>`__ page.
 
-.. note::These repositories contain both the Management Server and KVM Hypervisor packages.
+.. note:: These repositories contain both the Management Server and KVM Hypervisor packages.
 
 DEB package repository
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -230,19 +229,19 @@ Use your preferred editor and open (or create)
 ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
 repository to the file:
 
-.. code:: bash
+::
 
     deb http://cloudstack.apt-get.eu/ubuntu precise 4.2
 
 We now have to add the public key to the trusted keys.
 
-.. code:: bash
+::
 
     $ wget -O - http://cloudstack.apt-get.eu/release.asc|apt-key add -
 
 Now update your local apt cache.
 
-.. code:: bash
+::
 
     $ apt-get update
 
@@ -265,7 +264,7 @@ To add the CloudStack repository, create
 ``/etc/yum.repos.d/cloudstack.repo`` and insert the following
 information.
 
-.. code:: bash
+::
 
     [cloudstack]
     name=cloudstack
@@ -297,8 +296,7 @@ Server nodes will be in your cloud:
 In either case, each machine must meet the system requirements described
 in System Requirements.
 
-.. warning::For the sake of security, be sure the public Internet can not access
-port 8096 or port 8250 on the Management Server.
+.. warning:: For the sake of security, be sure the public Internet can not access port 8096 or port 8250 on the Management Server.
 
 The procedure for installing the Management Server is:
 
@@ -345,9 +343,9 @@ node.
 
    Check for a fully qualified hostname.
 
-   .. code:: bash
+   ::
 
-       hostname --fqdn
+    hostname --fqdn
 
    This should return a fully qualified hostname such as
    "management1.lab.example.org". If it does not, edit /etc/hosts so
@@ -357,28 +355,25 @@ node.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: bash
+   ::
 
-       ping www.cloudstack.org
+    ping www.cloudstack.org
 
 #. 
 
    Turn on NTP for time synchronization.
 
-.. note::NTP is required to synchronize the clocks of the servers in your
-   cloud.
+    .. note:: NTP is required to synchronize the clocks of the servers in your cloud.
 
-   #. 
+    Install NTP.
 
-      Install NTP.
+    ::
 
-      .. code:: bash
+    yum install ntp
 
-          yum install ntp
+    ::
 
-      .. code:: bash
-
-          apt-get install openntpd
+    apt-get install openntpd
 
 #. 
 
@@ -392,7 +387,7 @@ The first step in installation, whether you are installing the
 Management Server on one host or many, is to install the software on a
 single node.
 
-.. note::If you are planning to install the Management Server on multiple nodes
+.. note:: If you are planning to install the Management Server on multiple nodes
 for high availability, do not proceed to the additional nodes yet. That
 step will come later.
 
@@ -405,14 +400,14 @@ Install on CentOS/RHEL
 
 We start by installing the required packages:
 
-.. code:: bash
+::
 
     yum install cloudstack-management
 
 Install on Ubuntu
 ^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+::
 
     apt-get install cloudstack-management
 
@@ -457,13 +452,13 @@ Node” <#management-server-install-db-external>`__.
 
    Install MySQL from the package repository of your distribution:
 
-   .. code:: bash
+   ::
 
-       yum install mysql-server
+   yum install mysql-server
 
-   .. code:: bash
+   ::
 
-       apt-get install mysql-server
+   apt-get install mysql-server
 
 #. 
 
@@ -479,17 +474,15 @@ Node” <#management-server-install-db-external>`__.
    Servers you are deploying. This example assumes one Management
    Server.
 
-.. note::On Ubuntu, you can also create a file
-   `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there.
-   Don't forget to add [mysqld] on the first line of the file.
+   .. note:: On Ubuntu, you can also create a file `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
-   .. code:: bash
+   ::
 
-       innodb_rollback_on_timeout=1
-       innodb_lock_wait_timeout=600
-       max_connections=350
-       log-bin=mysql-bin
-       binlog-format = 'ROW'
+    innodb_rollback_on_timeout=1
+    innodb_lock_wait_timeout=600
+    max_connections=350
+    log-bin=mysql-bin
+    binlog-format = 'ROW'
 
 #. 
 
@@ -498,32 +491,27 @@ Node” <#management-server-install-db-external>`__.
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   .. code:: bash
+   ::
 
-       service mysqld start
+    service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   .. code:: bash
+   ::
 
-       service mysql restart
+    service mysql restart
 
 #. 
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-   Warning
-   
-   On RHEL and CentOS, MySQL does not set a root password by default. It
-   is very strongly recommended that you set a root password as a
-   security precaution.
+.. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
 
-   Run the following command to secure your installation. You can answer
-   "Y" to all questions.
+Run the following command to secure your installation. You can answer "Y" to all questions.
 
-   .. code:: bash
+::
 
-       mysql_secure_installation
+    mysql_secure_installation
 
 #. 
 
@@ -541,7 +529,7 @@ Node” <#management-server-install-db-external>`__.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: bash
+      ::
 
           $ rpm -qa | grep selinux
 
@@ -553,19 +541,19 @@ Node” <#management-server-install-db-external>`__.
 
       In RHEL or CentOS:
 
-      .. code:: bash
+      ::
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: bash
+      ::
 
           SELINUX=enforcing
 
       to this:
 
-      .. code:: bash
+      ::
 
           SELINUX=permissive
 
@@ -574,7 +562,7 @@ Node” <#management-server-install-db-external>`__.
       Set SELinux to permissive starting immediately, without requiring
       a system reboot.
 
-      .. code:: bash
+   ::
 
           $ setenforce permissive
 
@@ -626,33 +614,26 @@ Node” <#management-server-install-db-external>`__.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   .. code:: bash
+   ::
 
-       cloudstack-setup-databases cloud:<dbpassword>@localhost \
-       --deploy-as=root:<password> \
-       -e <encryption_type> \
-       -m <management_server_key> \
-       -k <database_key> \
-       -i <management_server_ip>
+    cloudstack-setup-databases cloud:<dbpassword>@localhost \
+    --deploy-as=root:<password> \
+    -e <encryption_type> \
+    -m <management_server_key> \
+    -k <database_key> \
+    -i <management_server_ip>
 
    When this script is finished, you should see a message like
    “Successfully initialized the database.”
 
-   Note
-
-
-   If the script is unable to connect to the MySQL database, check the
-   "localhost" loopback address in ``/etc/hosts``. It should be pointing
-   to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback
-   address ::1. Alternatively, reconfigure MySQL to bind to the IPv6
-   loopback interface.
+.. note:: If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
 
 #. 
 
    If you are running the KVM hypervisor on the same machine with the
    Management Server, edit /etc/sudoers and add the following line:
 
-   .. code:: bash
+   ::
 
        Defaults:cloud !requiretty
 
@@ -662,7 +643,7 @@ Node” <#management-server-install-db-external>`__.
    for the Management Server. This command will set up iptables,
    sudoers, and start the Management Server.
 
-   .. code:: bash
+   ::
 
        # cloudstack-setup-management
 
@@ -679,21 +660,17 @@ single-node Management Server deployment, you will typically use the
 same node for MySQL. See `Section 4.5.4.1, “Install the Database on the
 Management Server Node” <#management-server-install-db-local>`__.
 
-.. note:: The management server doesn't require a specific distribution for the
-MySQL node. You can use a distribution or Operating System of your
-choice. Using the same distribution as the management server is
-recommended, but not required. See `Section 4.3.1, “Management Server,
-Database, and Storage System Requirements” <#management-server-system-requirements>`__.
+.. note:: The management server doesn't require a specific distribution for the MySQL node. You can use a distribution or Operating System of your choice. Using the same distribution as the management server is recommended, but not required. See `Section 4.3.1, “Management Server, Database, and Storage System Requirements” <#management-server-system-requirements>`__.
 
 #. 
 
    Install MySQL from the package repository from your distribution:
 
-   .. code:: bash
+   ::
 
        yum install mysql-server
 
-   .. code:: bash
+   ::
 
        apt-get install mysql-server
 
@@ -706,11 +683,9 @@ Database, and Storage System Requirements” <#management-server-system-requirem
    number of Management Servers you are deploying. This example assumes
    two Management Servers.
 
-.. note:: On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file
-   and add these directives there. Don't forget to add [mysqld] on the
-   first line of the file.
+   .. note:: On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
-.. code:: bash
+   ::
 
        innodb_rollback_on_timeout=1
        innodb_lock_wait_timeout=600
@@ -726,13 +701,13 @@ Database, and Storage System Requirements” <#management-server-system-requirem
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   .. code:: bash
+   ::
 
        service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   .. code:: bash
+   ::
 
        service mysql restart
 
@@ -740,13 +715,9 @@ Database, and Storage System Requirements” <#management-server-system-requirem
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-.. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It
-   is very strongly recommended that you set a root password as a
-   security precaution. Run the following command to secure your installation. You can answer
-   "Y" to all questions except "Disallow root login remotely?". Remote
-   root login is required to set up the databases.
+.. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
 
-   .. code:: bash
+::
 
        mysql_secure_installation
 
@@ -758,7 +729,7 @@ Database, and Storage System Requirements” <#management-server-system-requirem
    On Ubuntu, UFW is the default firewall. Open the port with this
    command:
 
-   .. code:: bash
+   ::
 
        ufw allow mysql
 
@@ -769,7 +740,7 @@ Database, and Storage System Requirements” <#management-server-system-requirem
       Edit the /etc/sysconfig/iptables file and add the following line
       at the beginning of the INPUT chain.
 
-      .. code:: bash
+   ::
 
           -A INPUT -p tcp --dport 3306 -j ACCEPT
 
@@ -777,7 +748,7 @@ Database, and Storage System Requirements” <#management-server-system-requirem
 
       Now reload the iptables rules.
 
-      .. code:: bash
+   ::
 
           service iptables restart
 
@@ -831,7 +802,7 @@ Database, and Storage System Requirements” <#management-server-system-requirem
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   .. code:: bash
+   ::
 
        cloudstack-setup-databases cloud:<dbpassword>@<ip address mysql server> \
        --deploy-as=root:<password> \
@@ -840,8 +811,7 @@ Database, and Storage System Requirements” <#management-server-system-requirem
        -k <database_key> \
        -i <management_server_ip>
 
-   When this script is finished, you should see a message like
-   “Successfully initialized the database.”
+   When this script is finished, you should see a message like “Successfully initialized the database.”
 
 About Password and Key Encryption
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -942,23 +912,23 @@ Modify the following list properties available in
 ``client/tomcatconf/componentContext.xml.in`` as applicable, to the
 desired order:
 
-.. code:: bash
+::
 
-    <property name="UserAuthenticators">
+        <property name="UserAuthenticators">
              <list>
                 <ref bean="SHA256SaltedUserAuthenticator"/>
                 <ref bean="MD5UserAuthenticator"/>
                 <ref bean="LDAPUserAuthenticator"/>
                 <ref bean="PlainTextUserAuthenticator"/>
-            </list>
+             </list>
         </property>
         <property name="UserPasswordEncoders">
-            <list>
+             <list>
                 <ref bean="SHA256SaltedUserAuthenticator"/>
-                 <ref bean="MD5UserAuthenticator"/>
-                 <ref bean="LDAPUserAuthenticator"/>
+                <ref bean="MD5UserAuthenticator"/>
+                <ref bean="LDAPUserAuthenticator"/>
                 <ref bean="PlainTextUserAuthenticator"/>
-                </list>
+             </list>
 
 In the above default ordering, SHA256Salt is used first for
 ``UserPasswordEncoders``. If the module is found and encoding returns a
@@ -1012,10 +982,7 @@ from the Management Server.
 The exact commands for the following steps may vary depending on your
 operating system version.
 
-Warning
-
-
-(KVM only) Ensure that no volume is already mounted at your NFS mount
+.. warning:: (KVM only) Ensure that no volume is already mounted at your NFS mount
 point.
 
 #. 
@@ -1024,7 +991,7 @@ point.
    if you are using NFS for primary storage as well, create a second NFS
    share. For example:
 
-   .. code:: bash
+   ::
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -1035,13 +1002,13 @@ point.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   .. code:: bash
+   ::
 
        # vi /etc/exports
 
    Insert the following line.
 
-   .. code:: bash
+   ::
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -1049,7 +1016,7 @@ point.
 
    Export the /export directory.
 
-   .. code:: bash
+   ::
 
        # exportfs -a
 
@@ -1058,7 +1025,7 @@ point.
    On the management server, create a mount point for secondary storage.
    For example:
 
-   .. code:: bash
+   ::
 
        # mkdir -p /mnt/secondary
 
@@ -1067,7 +1034,7 @@ point.
    Mount the secondary storage on your Management Server. Replace the
    example NFS server name and NFS share paths below with your own.
 
-   .. code:: bash
+   ::
 
        # mount -t nfs nfsservername:/nfs/share/secondary /mnt/secondary
 
@@ -1087,7 +1054,7 @@ operating system version.
 
    On RHEL/CentOS systems, you'll need to install the nfs-utils package:
 
-   .. code:: bash
+   ::
 
        $ sudo yum install nfs-utils
 
@@ -1096,7 +1063,7 @@ operating system version.
    On the Management Server host, create two directories that you will
    use for primary and secondary storage. For example:
 
-   .. code:: bash
+   ::
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -1107,13 +1074,13 @@ operating system version.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   .. code:: bash
+   ::
 
        # vi /etc/exports
 
    Insert the following line.
 
-   .. code:: bash
+   ::
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -1121,7 +1088,7 @@ operating system version.
 
    Export the /export directory.
 
-   .. code:: bash
+   ::
 
        # exportfs -a
 
@@ -1129,13 +1096,13 @@ operating system version.
 
    Edit the /etc/sysconfig/nfs file.
 
-   .. code:: bash
+   ::
 
        # vi /etc/sysconfig/nfs
 
    Uncomment the following lines:
 
-   .. code:: bash
+   ::
 
        LOCKD_TCPPORT=32803
        LOCKD_UDPPORT=32769
@@ -1148,14 +1115,14 @@ operating system version.
 
    Edit the /etc/sysconfig/iptables file.
 
-   .. code:: bash
+   ::
 
        # vi /etc/sysconfig/iptables
 
    Add the following lines at the beginning of the INPUT chain, where
    <NETWORK> is the network that you'll be using:
 
-   .. code:: bash
+   ::
 
        -A INPUT -s <NETWORK> -m state --state NEW -p udp --dport 111 -j ACCEPT
        -A INPUT -s <NETWORK> -m state --state NEW -p tcp --dport 111 -j ACCEPT
@@ -1173,7 +1140,7 @@ operating system version.
 
    Run the following commands:
 
-   .. code:: bash
+   ::
 
        # service iptables restart
        # service iptables save
@@ -1184,7 +1151,7 @@ operating system version.
    domain to /etc/idmapd.conf on both the hypervisor host and Management
    Server.
 
-   .. code:: bash
+   ::
 
        # vi /etc/idmapd.conf
 
@@ -1192,7 +1159,7 @@ operating system version.
    idmapd.conf and replace the value in the file with your own domain.
    In the example below, the domain is company.com.
 
-   .. code:: bash
+   ::
 
        Domain = company.com
 
@@ -1217,7 +1184,7 @@ operating system version.
       Be sure NFS and rpcbind are running. The commands might be
       different depending on your OS. For example:
 
-      .. code:: bash
+   ::
 
           # service rpcbind start
           # service nfs start
@@ -1231,7 +1198,7 @@ operating system version.
       directories. For example, substitute your own management server
       name:
 
-      .. code:: bash
+   ::
 
           # mkdir /primary
           # mount -t nfs <management-server-name>:/export/primary
@@ -1269,7 +1236,7 @@ OS for the Management Server.
 
    Ensure that necessary services are started and set to start on boot.
 
-   .. code:: bash
+   ::
 
        # service rpcbind start
        # service nfs start
@@ -1283,7 +1250,7 @@ OS for the Management Server.
    command, see `Section 4.5.4.2, “Install the Database on a Separate
    Node” <#management-server-install-db-external>`__.)
 
-   .. code:: bash
+   ::
 
        # cloudstack-setup-databases cloud:dbpassword@dbhost -e encryption_type -m management_server_key -k database_key -i management_server_ip
 
@@ -1291,7 +1258,7 @@ OS for the Management Server.
 
    Configure the OS and start the Management Server:
 
-   .. code:: bash
+   ::
 
        # cloudstack-setup-management
 
@@ -1313,8 +1280,7 @@ Prepare the System VM Template
 Secondary storage must be seeded with a template that is used for
 CloudStack system VMs.
 
-.. note:: When copying and pasting a command, be sure the command has pasted as a
-          single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
+.. note:: When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
 
 #. 
 
@@ -1338,7 +1304,7 @@ CloudStack system VMs.
 
       For Hyper-V
 
-      .. code:: bash
+   ::
 
           # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2013-12-23-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
 
@@ -1346,7 +1312,7 @@ CloudStack system VMs.
 
       For XenServer:
 
-      .. code:: bash
+   ::
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
 
@@ -1354,7 +1320,7 @@ CloudStack system VMs.
 
       For vSphere:
 
-      .. code:: bash
+   ::
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova -h vmware -s <optional-management-server-secret-key>  -F
 
@@ -1362,7 +1328,7 @@ CloudStack system VMs.
 
       For KVM:
 
-      .. code:: bash
+   ::
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
 
@@ -1370,13 +1336,13 @@ CloudStack system VMs.
 
       For LXC:
 
-      .. code:: bash
+   ::
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
 
    On Ubuntu, use the following path instead:
 
-   .. code:: bash
+   ::
 
        # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt
 
@@ -1389,7 +1355,7 @@ CloudStack system VMs.
    When the script has finished, unmount secondary storage and remove
    the created directory.
 
-   .. code:: bash
+   ::
 
        # umount /mnt/secondary
        # rmdir /mnt/secondary

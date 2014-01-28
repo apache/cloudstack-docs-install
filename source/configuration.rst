@@ -6,7 +6,6 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
    http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -432,27 +431,13 @@ Basic Zone Configuration
       **Network Offering.** Your choice here determines what network
       services will be available on the network for guest VMs.
 
-      Network Offering
-
-      Description
-
-      DefaultSharedNetworkOfferingWithSGService
-
-      If you want to enable security groups for guest traffic isolation,
-      choose this. (See Using Security Groups to Control Traffic to
-      VMs.)
-
-      DefaultSharedNetworkOffering
-
-      If you do not need security groups, choose this.
-
-      DefaultSharedNetscalerEIPandELBNetworkOffering
-
-      If you have installed a Citrix NetScaler appliance as part of your
-      zone network, and you will be using its Elastic IP and Elastic
-      Load Balancing features, choose this. With the EIP and ELB
-      features, a basic zone with security groups enabled can offer 1:1
-      static NAT and load balancing.
+      +------------------+-------------+
+      | Network Offering | Description |
+	  +==================+=============+
+      | DefaultSharedNetworkOfferingWithSGService | If you want to enable security groups for guest traffic isolation, choose this. (See Using Security Groups to Control Traffic to VMs.) |
+	  | DefaultSharedNetworkOffering | If you do not need security groups, choose this. |
+      | DefaultSharedNetscalerEIPandELBNetworkOffering | If you have installed a Citrix NetScaler appliance as part of your zone network, and you will be using its Elastic IP and Elastic Load Balancing features, choose this. With the EIP and ELB features, a basic zone with security groups enabled can offer 1:1 static NAT and load balancing. |
+	  +-------------------+--------------+
 
    -  
 

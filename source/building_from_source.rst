@@ -6,7 +6,6 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
    http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -83,7 +82,7 @@ To enable you to verify the GPG signature, you will need to download the
 
 You next need to import those keys, which you can do by running:
 
-.. code:: bash
+::
 
     # gpg --import KEYS
 
@@ -93,7 +92,7 @@ GPG
 The CloudStack project provides a detached GPG signature of the release.
 To check the signature, run the following command:
 
-.. code:: bash
+::
 
     $ gpg --verify apache-cloudstack-4.0.0-incubating-src.tar.bz2.asc
 
@@ -107,7 +106,7 @@ In addition to the cryptographic signature, CloudStack has an MD5
 checksum that you can use to verify the download matches the release.
 You can verify this hash by executing the following command:
 
-.. code:: bash
+::
 
     $ gpg --print-md MD5 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.md5
 
@@ -122,7 +121,7 @@ In addition to the MD5 hash, the CloudStack project provides a SHA512
 cryptographic hash to aid in assurance of the validity of the downloaded
 release. You can verify this hash by executing the following command:
 
-.. code:: bash
+::
 
     $ gpg --print-md SHA512 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.sha
 
@@ -178,13 +177,13 @@ Extracting source
 Extracting the CloudStack release is relatively simple and can be done
 with a single command as follows:
 
-.. code:: bash
+::
 
     $ tar -jxvf apache-cloudstack-4.1.0.src.tar.bz2
 
 You can now move into the directory:
 
-.. code:: bash
+::
 
     $ cd ./apache-cloudstack-4.1.0-src
 
@@ -198,7 +197,7 @@ PPA repository that includes Maven 3. After running the command
 ``add-apt-repository``, you will be prompted to continue and a GPG key
 will be added.
 
-.. code:: bash
+::
 
     $ sudo apt-get update
     $ sudo apt-get install python-software-properties
@@ -212,7 +211,7 @@ that need to be resolved. CloudStack uses maven for dependency
 resolution. You can resolve the buildtime depdencies for CloudStack by
 running:
 
-.. code:: bash
+::
 
     $ mvn3 -P deps
 
@@ -220,14 +219,14 @@ Now that we have resolved the dependencies we can move on to building
 CloudStack and packaging them into DEBs by issuing the following
 command.
 
-.. code:: bash
+::
 
     $ dpkg-buildpackage -uc -us
 
 This command will build the following debian packages. You should have
 all of the following:
 
-.. code:: bash
+::
 
     cloudstack-common-4.2.0.amd64.deb
     cloudstack-management-4.2.0.amd64.deb
@@ -253,7 +252,7 @@ installed. This should have been installed when you pulled in the
 ``Packages.gz`` on a different system, be sure that it's installed there
 as well.
 
-.. code:: bash
+::
 
     $ sudo apt-get install dpkg-dev
 
@@ -261,7 +260,7 @@ The next step is to copy the DEBs to the directory where they can be
 served over HTTP. We'll use ``/var/www/cloudstack/repo`` in the
 examples, but change the directory to whatever works for you.
 
-.. code:: bash
+::
 
     sudo mkdir -p /var/www/cloudstack/repo/binary
     sudo cp *.deb /var/www/cloudstack/repo/binary
@@ -283,14 +282,14 @@ repository file under ``/etc/apt/sources.list.d``. Use your preferred
 editor to create ``/etc/apt/sources.list.d/cloudstack.list`` with this
 line:
 
-.. code:: bash
+::
 
     deb http://server.url/cloudstack/repo binary ./
 
 Now that you have the repository info in place, you'll want to run
 another update so that APT knows where to find the CloudStack packages.
 
-.. code:: bash
+::
 
     $ sudo apt-get update
 
@@ -432,12 +431,7 @@ to build from source.
 Why Non-OSS?
 ------------
 
-Some of the plugins supported by CloudStack cannot be distributed with
-CloudStack for licensing reasons. In some cases, some of the required
-libraries/JARs are under a proprietary license. In other cases, the
-required libraries may be under a license that's not compatible with
-`Apache's licensing guidelines for third-party
-products <http://www.apache.org/legal/resolved.html#category-x>`__.
+.. warning:: Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`__.
 
 #. 
 

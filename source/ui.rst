@@ -6,7 +6,6 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
    http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,7 +26,7 @@ available in popular browsers including IE7, IE8, IE9, Firefox 3.5+,
 Firefox 4, Safari 4, and Safari 5. The URL is: (substitute your own
 management server IP address)
 
-.. code:: bash
+::
 
     http://<management-server-ip-address>:8080/client
 
@@ -87,7 +86,7 @@ provision, view, and manage your cloud infrastructure.
    Open your favorite Web browser and go to this URL. Substitute the IP
    address of your own Management Server:
 
-   .. code:: bash
+   ::
 
        http://<management-server-ip-address>:8080/client
 
@@ -134,9 +133,7 @@ provision, view, and manage your cloud infrastructure.
    chose experienced user, use the steps in `Section 5.1.4, “Changing
    the Root Password” <#changing-root-password>`__.
 
-.. warning:: You are logging in as the root administrator. This account manages the CloudStack deployment, including physical infrastructure. The root
-administrator can modify configuration settings to change basic functionality, create or delete user accounts, and take many actions
-that should be performed only by an authorized person. Please change the default password to a new, unique password.
+.. warning:: You are logging in as the root administrator. This account manages the CloudStack deployment, including physical infrastructure. The root administrator can modify configuration settings to change basic functionality, create or delete user accounts, and take many actions that should be performed only by an authorized person. Please change the default password to a new, unique password.
 
 Changing the Root Password
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,7 +152,7 @@ new, unique value.
    Open your favorite Web browser and go to this URL. Substitute the IP
    address of your own Management Server:
 
-   .. code:: bash
+   ::
 
        http://<management-server-ip-address>:8080/client
 
@@ -218,7 +215,7 @@ Create an instance template that supports SSH Keys.
    Script <http://sourceforge.net/projects/cloudstack/files/SSH%20Key%20Gen%20Script/>`__\ to
    the instance you have created.
 
-   .. code:: bash
+   ::
 
        wget http://downloads.sourceforge.net/project/cloudstack/SSH%20Key%20Gen%20Script/cloud-set-guest-sshkey.in?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fcloudstack%2Ffiles%2FSSH%2520Key%2520Gen%2520Script%2F&ts=1331225219&use_mirror=iweb
 
@@ -226,7 +223,7 @@ Create an instance template that supports SSH Keys.
 
    Copy the file to /etc/init.d.
 
-   .. code:: bash
+   ::
 
        cp cloud-set-guest-sshkey.in /etc/init.d/
 
@@ -234,7 +231,7 @@ Create an instance template that supports SSH Keys.
 
    Give the necessary permissions on the script:
 
-   .. code:: bash
+   ::
 
        chmod +x /etc/init.d/cloud-set-guest-sshkey.in
 
@@ -242,7 +239,7 @@ Create an instance template that supports SSH Keys.
 
    Run the script while starting up the operating system:
 
-   .. code:: bash
+   ::
 
        chkconfig --add cloud-set-guest-sshkey.in
 
@@ -271,13 +268,13 @@ different, and you will need to use the API keys.
 
    Run the following curl command:
 
-   .. code:: bash
+   ::
 
        curl --globoff "http://localhost:8096/?command=createSSHKeyPair&name=keypair-doc&account=admin&domainid=5163440e-c44b-42b5-9109-ad75cae8e8a2"
 
    The output is something similar to what is given below:
 
-   .. code:: bash
+   ::
 
        <?xml version="1.0" encoding="ISO-8859-1"?><createsshkeypairresponse cloud-stack-version="3.0.0.20120228045507"><keypair><name>keypair-doc</name><fingerprint>f6:77:39:d5:5e:77:02:22:6a:d8:7f:ce:ab:cd:b3:56</fingerprint><privatekey>-----BEGIN RSA PRIVATE KEY-----
        MIICXQIBAAKBgQCSydmnQ67jP6lNoXdX3noZjQdrMAWNQZ7y5SrEu4wDxplvhYci
@@ -297,7 +294,7 @@ different, and you will need to use the API keys.
 
    Copy the key data into a file. The file looks like this:
 
-   .. code:: bash
+   ::
 
        -----BEGIN RSA PRIVATE KEY-----
        MIICXQIBAAKBgQCSydmnQ67jP6lNoXdX3noZjQdrMAWNQZ7y5SrEu4wDxplvhYci
@@ -329,7 +326,7 @@ Ensure that you use the same SSH key name that you created at
 
 A sample curl command to create a new instance is:
 
-.. code:: bash
+::
 
     curl --globoff http://localhost:<port number>/?command=deployVirtualMachine\&zoneId=1\&serviceOfferingId=18727021-7556-4110-9322-d625b52e0813\&templateId=e899c18a-ce13-4bbf-98a9-625c5026e0b5\&securitygroupids=ff03f02f-9e3b-48f8-834d-91b822da40c5\&account=admin\&domainid=1\&keypair=keypair-doc
 
@@ -345,7 +342,7 @@ in to the cloud setup.
 
 For example, from a Linux OS, run:
 
-.. code:: bash
+::
 
     ssh -i ~/.ssh/keypair-doc <ip address>
 
