@@ -26,99 +26,34 @@ Basic and Advanced Networking
 
 CloudStack provides two styles of networking:.
 
-Basic
-'''''
+**Basic**
+      For AWS-style networking. Provides a single network where guest isolation can be provided through layer-3 means such as security groups (IP address source filtering).
 
-For AWS-style networking. Provides a single network where guest
-isolation can be provided through layer-3 means such as security groups
-(IP address source filtering).
-
-Advanced
-''''''''
-
-For more sophisticated network topologies. This network model provides
-the most flexibility in defining guest networks, but requires more
-configuration steps than basic networking.
+**Advanced**
+      For more sophisticated network topologies. This network model provides the most flexibility in defining guest networks, but requires more configuration steps than basic networking.
 
 Each zone has either basic or advanced networking. Once the choice of
 networking model for a zone has been made and configured in CloudStack,
 it can not be changed. A zone is either basic or advanced for its entire
 lifetime.
 
-The following table compares the networking features in the two
-networking models.
+The following table compares the networking features in the two networking models.
 
-Networking Feature
-
-Basic Network
-
-Advanced Network
-
-Number of networks
-
-Single network
-
-Multiple networks
-
-Firewall type
-
-Physical
-
-Physical and Virtual
-
-Load balancer
-
-Physical
-
-Physical and Virtual
-
-Isolation type
-
-Layer 3
-
-Layer 2 and Layer 3
-
-VPN support
-
-No
-
-Yes
-
-Port forwarding
-
-Physical
-
-Physical and Virtual
-
-1:1 NAT
-
-Physical
-
-Physical and Virtual
-
-Source NAT
-
-No
-
-Physical and Virtual
-
-Userdata
-
-Yes
-
-Yes
-
-Network usage monitoring
-
-sFlow / netFlow at physical router
-
-Hypervisor and Virtual Router
-
-DNS and DHCP
-
-Yes
-
-Yes
+=========================  ===================================  ===============================
+Networking Feature         Basic Network                        Advanced Network
+=========================  ===================================  ===============================
+Number of networks         Single network                       Multiple networks
+Firewall type              Physical                             Physical and Virtual
+Load balancer              Physical                             Physical and Virtual
+Isolation type             Layer 3                              Layer 2 and Layer 3
+VPN support                No                                   Yes
+Port forwarding            Physical                             Physical and Virtual
+1:1 NAT                    Physical                             Physical and Virtual
+Source NAT                 No                                   Physical and Virtual
+Userdata                   Yes                                  Yes
+Network usage monitoring   sFlow / netFlow at physical router   Hypervisor and Virtual Router
+DNS and DHCP               Yes                                  Yes
+=========================  ===================================  ===============================
 
 The two types of networking may be in use in the same cloud. However, a
 given zone must use either Basic Networking or Advanced Networking.
@@ -135,46 +70,16 @@ VLAN Allocation Example
 VLANs are required for public and guest traffic. The following is an
 example of a VLAN allocation scheme:
 
-VLAN IDs
-
-Traffic type
-
-Scope
-
-less than 500
-
-Management traffic. Reserved for administrative purposes.
-
-CloudStack software can access this, hypervisors, system VMs.
-
-500-599
-
-VLAN carrying public traffic.
-
-CloudStack accounts.
-
-600-799
-
-VLANs carrying guest traffic.
-
-CloudStack accounts. Account-specific VLAN is chosen from this pool.
-
-800-899
-
-VLANs carrying guest traffic.
-
-CloudStack accounts. Account-specific VLAN chosen by CloudStack admin to
-assign to that account.
-
-900-999
-
-VLAN carrying guest traffic
-
-CloudStack accounts. Can be scoped by project, domain, or all accounts.
-
-greater than 1000
-
-Reserved for future use
+==================  =========================================================  =======================================================================
+VLAN IDs            Traffic type                                               Scope
+==================  =========================================================  =======================================================================
+less than 500       Management traffic. Reserved for administrative purposes.  CloudStack software can access this, hypervisors, system VMs.
+500-599             VLAN carrying public traffic.                              CloudStack accounts.
+600-799             VLANs carrying guest traffic.                              CloudStack accounts. Account-specific VLAN is chosen from this pool.
+800-899             VLANs carrying guest traffic.                              CloudStack accounts. Account-specific VLAN chosen by CloudStack admin to assign to that account.
+900-999             VLAN carrying guest traffic                                CloudStack accounts. Can be scoped by project, domain, or all accounts.
+greater than 1000   Reserved for future use
+==================  =========================================================  =======================================================================
 
 Example Hardware Configuration
 ------------------------------
@@ -285,10 +190,7 @@ The layer-2 switch is the access switching layer inside the pod.
    computing and storage hosts. The layer-3 switch will serve as the
    gateway for the management network.
 
-Example Configurations
-''''''''''''''''''''''
-
-This section contains example configurations for specific switch models
+The following sections contain example configurations for specific switch models
 for pod-level layer-2 switching. It assumes VLAN management protocols
 such as VTP or GVRP have been disabled. The scripts must be changed
 appropriately if you choose to use VTP or GVRP.
@@ -417,7 +319,7 @@ side-by-side or inline configuration.
 |parallel-mode.png: adding a firewall and load balancer in parallel
 mode.|
 
-CloudStack requires the Juniper to be configured as follows:
+CloudStack requires the Juniper SRX firewall to be configured as follows:
 
 .. note:: Supported SRX software version is 10.3 or higher.
 
@@ -471,7 +373,7 @@ CloudStack requires the Juniper to be configured as follows:
 
    #. 
 
-      a. Create an incoming firewall filter and an outgoing firewall
+      Create an incoming firewall filter and an outgoing firewall
       filter. These filters should be the same names as your public
       security zone name and private security zone name respectively.
       The filters should be set to be "interface-specific". For example,
@@ -1224,37 +1126,13 @@ persistence is required.
 
 Even if persistence is not required, enabling it is permitted.
 
-Source Port
-
-Destination Port
-
-Protocol
-
-Persistence Required?
-
-80 or 443
-
-8080 (or 20400 with AJP)
-
-HTTP (or AJP)
-
-Yes
-
-8250
-
-8250
-
-TCP
-
-Yes
-
-8096
-
-8096
-
-HTTP
-
-No
+===========  ========================   =============   =====================
+Source Port  Destination Port           Protocol        Persistence Required?
+===========  ========================   =============   =====================
+80 or 443    8080 (or 20400 with AJP)   HTTP (or AJP)   Yes
+8250         8250                       TCP             Yes
+8096         8096                       HTTP            No
+===========  ========================   =============   =====================
 
 In addition to above settings, the administrator is responsible for
 setting the 'host' global config value from the management server IP to
@@ -1441,35 +1319,14 @@ running in the Zone at any one time.
 Use the following table to determine how to configure CloudStack for
 your deployment.
 
-guest.vlan.bits
-
-Maximum Running VMs per Zone
-
-Maximum Zone VLANs
-
-12
-
-4096
-
-4094
-
-11
-
-8192
-
-2048
-
-10
-
-16384
-
-1024
-
-10
-
-32768
-
-512
+===============   ============================   ==================
+guest.vlan.bits   Maximum Running VMs per Zone   Maximum Zone VLANs
+===============   ============================   ==================
+12                4096                           4094
+11                8192                           2048
+10                16384                          1024
+10                32768                          512
+===============   ============================   ==================
 
 Based on your deployment's needs, choose the appropriate value of
 guest.vlan.bits. Set it as described in Edit the Global Configuration
