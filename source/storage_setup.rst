@@ -21,43 +21,14 @@ enterprise-grade storage. Local disk may be used as well, if supported
 by the selected hypervisor. Storage type support for guest virtual disks
 differs based on hypervisor selection.
 
-XenServer
-
-vSphere
-
-KVM
-
-NFS
-
-Supported
-
-Supported
-
-Supported
-
-iSCSI
-
-Supported
-
-Supported via VMFS
-
-Supported via Clustered Filesystems
-
-Fiber Channel
-
-Supported via Pre-existing SR
-
-Supported
-
-Supported via Clustered Filesystems
-
-Local Disk
-
-Supported
-
-Supported
-
-Supported
+=============  ==============================  ==================  ===================================
+Storage Type   XenServer                       vSphere             KVM
+=============  ==============================  ==================  ===================================
+NFS            Supported                       Supported           Supported
+iSCSI          Supported                       Supported via VMFS  Supported via Clustered Filesystems
+Fiber Channel  Supported via Pre-existing SR   Supported           Supported via Clustered Filesystems
+Local Disk     Supported                       Supported           Supported
+=============  ==============================  ==================  ===================================
 
 The use of the Cluster Logical Volume Manager (CLVM) for KVM is not
 officially supported with CloudStack.
@@ -76,11 +47,7 @@ CloudStack is designed to work with any scalable secondary storage
 system. The only requirement is the secondary storage system supports
 the NFS protocol.
 
-.. note:: The storage server should be a machine with a large number of disks. The
-disks should ideally be managed by a hardware RAID controller. Modern
-hardware RAID controllers support hot plug functionality independent of
-the operating system so you can replace faulty disks without impacting
-the running operating system.
+.. note:: The storage server should be a machine with a large number of disks. The disks should ideally be managed by a hardware RAID controller. Modern hardware RAID controllers support hot plug functionality independent of the operating system so you can replace faulty disks without impacting the running operating system.
 
 Example Configurations
 ----------------------
@@ -199,9 +166,7 @@ operating system version.
 
    An NFS share called /export is now set up.
 
-.. note:: When copying and pasting a command, be sure the command has pasted as a
-single line before executing. Some document viewers may introduce
-unwanted line breaks in copied text.
+.. note:: When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
 
 Linux NFS on iSCSI
 ~~~~~~~~~~~~~~~~~~
