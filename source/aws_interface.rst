@@ -6,7 +6,6 @@
    "License"); you may not use this file except in compliance
    with the License.  You may obtain a copy of the License at
    http://www.apache.org/licenses/LICENSE-2.0
-
    Unless required by applicable law or agreed to in writing,
    software distributed under the License is distributed on an
    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -16,7 +15,7 @@
 
 
 Amazon Web Services Interface
-============================
+=============================
 
 Amazon Web Services Compatible Interface
 ----------------------------------------
@@ -29,14 +28,9 @@ CloudStack, listening on a different port. The Amazon Web Services (AWS)
 compatible interface provides the EC2 SOAP and Query APIs as well as the
 S3 REST API.
 
-.. note:: This service was previously enabled by separate software called
-CloudBridge. It is now fully integrated with the CloudStack management
-server.
+.. note:: This service was previously enabled by separate software called CloudBridge. It is now fully integrated with the CloudStack management server.
 
-.. warning:: The compatible interface for the EC2 Query API and the S3 API are Work
-In Progress. The S3 compatible API offers a way to store data on the
-management server file system, it is not an implementation of the S3
-backend.
+.. warning:: The compatible interface for the EC2 Query API and the S3 API are Work In Progress. The S3 compatible API offers a way to store data on the management server file system, it is not an implementation of the S3 backend.
 
 Limitations
 
@@ -92,14 +86,14 @@ prior to using it.
    the Amazon service offerings. You can do this through the CloudStack
    UI as described in the Administration Guide.
 
-.. warning:: Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use.
+   .. warning:: Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use.
 
 #. 
 
    If you did not already do so when you set the configuration parameter
    in step `1 <#set-global-config>`__, restart the Management Server.
 
-::
+   ::
 
      # service cloudstack-management restart
 
@@ -147,29 +141,25 @@ instance type API name.|
 Modifying the AWS API Port
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: (Optional) The AWS API listens for requests on port 7080. If you prefer
-AWS API to listen on another port, you can change it as follows:
+.. note:: (Optional) The AWS API listens for requests on port 7080. If you prefer AWS API to listen on another port, you can change it as follows:
 
-#. 
+   #. 
 
-   Edit the files /etc/cloudstack/management/server.xml,
-   /etc/cloudstack/management/server-nonssl.xml, and
-   /etc/cloudstack/management/server-ssl.xml.
+      Edit the files ``/etc/cloudstack/management/server.xml``,
+      ``/etc/cloudstack/management/server-nonssl.xml``, and
+      ``/etc/cloudstack/management/server-ssl.xml``.
 
-#. 
+   #. 
 
-   In each file, find the tag <Service name="Catalina7080">. Under this
-   tag, locate <Connector executor="tomcatThreadPool-internal" port=
-   ....<.
+      In each file, find the tag <Service name="Catalina7080">. Under this tag, locate <Connector executor="tomcatThreadPool-internal" port=   ....<.
 
-#. 
+   #. 
 
-   Change the port to whatever port you want to use, then save the
-   files.
+      Change the port to whatever port you want to use, then save the files.
 
-#. 
+   #. 
 
-   Restart the Management Server.
+      Restart the Management Server.
 
 If you re-install CloudStack, you will have to re-enable the services
 and if need be update the port.
@@ -235,25 +225,17 @@ commands. If you find that commands are not completing due to timeouts,
 you can specify a custom timeouts. You can add the following optional
 command-line parameters to any CloudStack-supported EC2 command:
 
-.. code:: bash
-
-    --connection-timeout TIMEOUT
-
-Specifies a connection timeout (in seconds). Example:
+Specifies a connection timeout (in seconds)
 
 .. code:: bash
+                               
+     --connection-timeout TIMEOUT
 
-    --connection-timeout 30
+Specifies a request timeout (in seconds)
 
 .. code:: bash
 
     --request-timeout TIMEOUT
-
-Specifies a request timeout (in seconds). Example:
-
-.. code:: bash
-
-    --request-timeout 45
 
 Example:
 
@@ -504,9 +486,7 @@ Example 1. An EC2 Boto example
 
 | 
 
-Second is an S3 example. Replace the Access and Secret keys with your
-own, as well as the endpoint of the service. Be sure to also update the
-file paths to something that exists on your machine.
+Second is an S3 example. The S3 interface in CloudStack is obsolete. If you need an S3 interface you should look at systems like RiakCS, Ceph or GlusterFS. This example is here for completeness and can be adapted to other S3 endpoint.
 
 Example 2. An S3 Boto Example
                                 

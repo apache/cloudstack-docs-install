@@ -49,7 +49,7 @@ Steps to Install the Usage Server
 
 #. 
 
-   Run ./install.sh.
+   Run ./install.sh (NOT VALID, NEED CORRECTION)
 
    .. code:: bash
 
@@ -102,8 +102,7 @@ standby node that receives all write operations from the master and
 applies them to a local, redundant copy of the database. The following
 steps are a guide to implementing MySQL replication.
 
-.. note:: Creating a replica is not a backup solution. You should develop a backup
-procedure for the MySQL data that is distinct from replication.
+.. note:: Creating a replica is not a backup solution. You should develop a backup procedure for the MySQL data that is distinct from replication.
 
 #. 
 

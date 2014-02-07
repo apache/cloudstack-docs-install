@@ -257,12 +257,7 @@ call to the cloudstack api.
 For example, make a call from the cloudstack server to create a SSH
 keypair called "keypair-doc" for the admin account in the root domain:
 
-Note
-
-
-Ensure that you adjust these values to meet your needs. If you are
-making the API call from a different server, your URL/PORT will be
-different, and you will need to use the API keys.
+.. note:: Ensure that you adjust these values to meet your needs. If you are making the API call from a different server, your URL/PORT will be different, and you will need to use the API keys.
 
 #. 
 

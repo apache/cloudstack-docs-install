@@ -428,9 +428,6 @@ other non-Open Source Software (nonoss) plugins, you'll need to download
 a few components on your own and follow a slightly different procedure
 to build from source.
 
-Why Non-OSS?
-------------
-
 .. warning:: Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`__.
 
 #. 

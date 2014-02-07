@@ -431,13 +431,14 @@ Basic Zone Configuration
       **Network Offering.** Your choice here determines what network
       services will be available on the network for guest VMs.
 
-      +------------------+-------------+
-      | Network Offering | Description |
-	  +==================+=============+
-      | DefaultSharedNetworkOfferingWithSGService | If you want to enable security groups for guest traffic isolation, choose this. (See Using Security Groups to Control Traffic to VMs.) |
-	  | DefaultSharedNetworkOffering | If you do not need security groups, choose this. |
-      | DefaultSharedNetscalerEIPandELBNetworkOffering | If you have installed a Citrix NetScaler appliance as part of your zone network, and you will be using its Elastic IP and Elastic Load Balancing features, choose this. With the EIP and ELB features, a basic zone with security groups enabled can offer 1:1 static NAT and load balancing. |
-	  +-------------------+--------------+
+      ===============================================  ===================================================================================================================
+      Network Offering                                 Description 
+      ===============================================  ===================================================================================================================
+      DefaultSharedNetworkOfferingWithSGService        If you want to enable security groups for guest traffic isolation, choose this. (See Using Security Groups to                                                              Control Traffic to VMs.)
+	  DefaultSharedNetworkOffering                     If you do not need security groups, choose this.
+      DefaultSharedNetscalerEIPandELBNetworkOffering   If you have installed a Citrix NetScaler appliance as part of your zone network, and you will be using its Elastic                                                         IP and Elastic Load Balancing features, choose this. With the EIP and ELB features, a basic zone with security                                                             groups enabled can offer 1:1 static NAT and load balancing. 
+      ===============================================  ===================================================================================================================
+
 
    -  
 
@@ -640,11 +641,8 @@ Basic Zone Configuration
    always add more hosts later. For an overview of what a host is, see
    About Hosts.
 
-   Note
-
-
-   When you add a hypervisor host to CloudStack, the host must not have
-   any VMs already running.
+   ..  note:: When you add a hypervisor host to CloudStack, the host must not have
+              any VMs already running.
 
    Before you can configure the host, you need to install the hypervisor
    software on the host. You will need to know which version of the
@@ -896,11 +894,8 @@ Advanced Zone Configuration
    always add more hosts later. For an overview of what a host is, see
    `Section 2.5, “About Hosts” <#about-hosts>`__.
 
-   Note
-
-
-   When you deploy CloudStack, the hypervisor host must not have any VMs
-   already running.
+   .. note:: When you deploy CloudStack, the hypervisor host must not have any VMs
+             already running.
 
    Before you can configure the host, you need to install the hypervisor
    software on the host. You will need to know which version of the
@@ -967,110 +962,78 @@ Advanced Zone Configuration
       remaining fields in the screen vary depending on what you choose
       here.
 
-      NFS
+      ===================  ================================================================== 
+      NFS                  -  
 
-      -  
+                             **Server.** The IP address or DNS name of the storage device.
 
-         **Server.** The IP address or DNS name of the storage device.
+                           -  
 
-      -  
+                             **Path.** The exported path from the server.
 
-         **Path.** The exported path from the server.
+                           -  
 
-      -  
+                             **Tags (optional).** The comma-separated list of tags for this
+                             storage device. It should be an equivalent set or superset of
+                             the tags on your disk offerings.
+      iSCSI                -  
 
-         **Tags (optional).** The comma-separated list of tags for this
-         storage device. It should be an equivalent set or superset of
-         the tags on your disk offerings.
+                             **Server.** The IP address or DNS name of the storage device.
 
-      The tag sets on primary storage across clusters in a Zone must be
-      identical. For example, if cluster A provides primary storage that
-      has tags T1 and T2, all other clusters in the Zone must also
-      provide primary storage that has tags T1 and T2.
+                           -  
 
-      iSCSI
+                             **Target IQN.** The IQN of the target. For example,
+                             iqn.1986-03.com.sun:02:01ec9bb549-1271378984.
 
-      -  
+                           -  
 
-         **Server.** The IP address or DNS name of the storage device.
+                             **Lun.** The LUN number. For example, 3.
 
-      -  
+                           -  
 
-         **Target IQN.** The IQN of the target. For example,
-         iqn.1986-03.com.sun:02:01ec9bb549-1271378984.
+                             **Tags (optional).** The comma-separated list of tags for this
+                             storage device. It should be an equivalent set or superset of
+                             the tags on your disk offerings.
+      preSetup             -  
 
-      -  
+                             **Server.** The IP address or DNS name of the storage device.
 
-         **Lun.** The LUN number. For example, 3.
+                           -  
 
-      -  
+                             **SR Name-Label.** Enter the name-label of the SR that has been
+                             set up outside CloudStack.
 
-         **Tags (optional).** The comma-separated list of tags for this
-         storage device. It should be an equivalent set or superset of
-         the tags on your disk offerings.
+                           -  
 
-      The tag sets on primary storage across clusters in a Zone must be
-      identical. For example, if cluster A provides primary storage that
-      has tags T1 and T2, all other clusters in the Zone must also
-      provide primary storage that has tags T1 and T2.
+                             **Tags (optional).** The comma-separated list of tags for this
+                             storage device. It should be an equivalent set or superset of
+                             the tags on your disk offerings.
+      SharedMountPoint     -  
 
-      preSetup
+                             **Path.** The path on each host that is where this primary
+                             storage is mounted. For example, "/mnt/primary".
 
-      -  
+                           -  
 
-         **Server.** The IP address or DNS name of the storage device.
+                             **Tags (optional).** The comma-separated list of tags for this
+                             storage device. It should be an equivalent set or superset of
+                             the tags on your disk offerings.
+      VMFS                 -  
 
-      -  
+                             **Server.** The IP address or DNS name of the vCenter server.
 
-         **SR Name-Label.** Enter the name-label of the SR that has been
-         set up outside CloudStack.
+                           -  
 
-      -  
+                             **Path.** A combination of the datacenter name and the
+                             datastore name. The format is "/" datacenter name "/" datastore
+                             name. For example, "/cloud.dc.VM/cluster1datastore".
 
-         **Tags (optional).** The comma-separated list of tags for this
-         storage device. It should be an equivalent set or superset of
-         the tags on your disk offerings.
+                           -  
 
-      The tag sets on primary storage across clusters in a Zone must be
-      identical. For example, if cluster A provides primary storage that
-      has tags T1 and T2, all other clusters in the Zone must also
-      provide primary storage that has tags T1 and T2.
-
-      SharedMountPoint
-
-      -  
-
-         **Path.** The path on each host that is where this primary
-         storage is mounted. For example, "/mnt/primary".
-
-      -  
-
-         **Tags (optional).** The comma-separated list of tags for this
-         storage device. It should be an equivalent set or superset of
-         the tags on your disk offerings.
-
-      The tag sets on primary storage across clusters in a Zone must be
-      identical. For example, if cluster A provides primary storage that
-      has tags T1 and T2, all other clusters in the Zone must also
-      provide primary storage that has tags T1 and T2.
-
-      VMFS
-
-      -  
-
-         **Server.** The IP address or DNS name of the vCenter server.
-
-      -  
-
-         **Path.** A combination of the datacenter name and the
-         datastore name. The format is "/" datacenter name "/" datastore
-         name. For example, "/cloud.dc.VM/cluster1datastore".
-
-      -  
-
-         **Tags (optional).** The comma-separated list of tags for this
-         storage device. It should be an equivalent set or superset of
-         the tags on your disk offerings.
+                             **Tags (optional).** The comma-separated list of tags for this
+                             storage device. It should be an equivalent set or superset of
+                             the tags on your disk offerings.
+      ===================  ==========================================================
 
       The tag sets on primary storage across clusters in a Zone must be
       identical. For example, if cluster A provides primary storage that
@@ -1393,9 +1356,8 @@ Adding a Host
    supported, as well as crucial additional steps to configure the
    hypervisor hosts for use with CloudStack.
 
-   .. warning:: Be sure you have performed the additional CloudStack-specific
-   configuration steps described in the hypervisor installation section
-   for your particular hypervisor.
+   .. warning:: Be sure you have performed the additional CloudStack-specific configuration steps described in the hypervisor installation section
+                for your particular hypervisor.
 
 #. 
 
@@ -1419,8 +1381,7 @@ XenServer and KVM hosts can be added to a cluster at any time.
 Requirements for XenServer and KVM Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning:: Make sure the hypervisor host does not have any VMs already running
-before you add it to CloudStack.
+.. warning:: Make sure the hypervisor host does not have any VMs already running before you add it to CloudStack.
 
 Configuration requirements:
 
@@ -1453,12 +1414,7 @@ pool.
 
     # xe pool-join master-address=[master IP] master-username=root master-password=[your password]
 
-Note
-
-
-When copying and pasting a command, be sure the command has pasted as a
-single line before executing. Some document viewers may introduce
-unwanted line breaks in copied text.
+.. note:: When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks             in copied text.
 
 With all hosts added to the XenServer pool, run the cloud-setup-bond
 script. This script will complete the configuration and setup of the
@@ -1618,13 +1574,9 @@ of that procedure. You can add primary storage servers at any time, such
 as when adding a new cluster or adding more servers to an existing
 cluster.
 
-.. warning:: When using preallocated storage for primary storage, be sure there is
-nothing on the storage (ex. you have an empty SAN volume or an empty NFS
-share). Adding the storage to CloudStack will destroy any existing data.
+.. warning:: When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share). Adding              the storage to CloudStack will destroy any existing data.
 
-.. note:: Primary storage can also be added at the zone level through the
-CloudStack API (adding zone-level primary storage is not yet supported
-through the CloudStack UI).
+.. note:: Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the CloudStack              UI).
 
 Once primary storage has been added at the zone level, it can be managed
 through the CloudStack UI.
@@ -1762,27 +1714,11 @@ through the CloudStack UI.
 Configuring a Storage Plug-in
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note
+.. note:: Primary storage that is based on a custom plug-in (ex. SolidFire) must be added through the CloudStack API (described later in this section). There is no support at this time through the CloudStack UI to add this type of primary storage (although most of its features are available through the CloudStack UI).
 
+.. note::  At this time, a custom storage plug-in, such as the SolidFire storage plug-in, can only be leveraged for data disks (through Disk Offerings).
 
-Primary storage that is based on a custom plug-in (ex. SolidFire) must
-be added through the CloudStack API (described later in this section).
-There is no support at this time through the CloudStack UI to add this
-type of primary storage (although most of its features are available
-through the CloudStack UI).
-
-Note
-
-
-At this time, a custom storage plug-in, such as the SolidFire storage
-plug-in, can only be leveraged for data disks (through Disk Offerings).
-
-Note
-
-
-The SolidFire storage plug-in for CloudStack is part of the standard
-CloudStack install. There is no additional work required to add this
-component.
+.. note:: The SolidFire storage plug-in for CloudStack is part of the standard CloudStack install. There is no additional work required to add this component.
 
 Adding primary storage that is based on the SolidFire plug-in enables
 CloudStack to provide hard quality-of-service (QoS) guarantees.
@@ -1873,53 +1809,6 @@ example, '=' is represented as '%3D')]
    by (Min IOPS \* clusterDefaultBurstIopsPercentOfMaxIops parameter)
    (can be a decimal value)]
 
-Example URL to add primary storage to CloudStack based on the SolidFire
-plug-in (note that URL encoding is used with the value of the url key,
-so '%3A' equals ':','%3B' equals ';' (';' is a key/value pair delimiter
-for the url field) and '%3D' equals '='):
-
-http://127.0.0.1:8080/client/api?
-
-command=createStoragePool
-
-&scope=zone
-
-&zoneId=cf4e6ddf-8ae7-4194-8270-d46733a52b55
-
-&name=SolidFire\_121258566
-
-&url=
-
-MVIP%3D192.168.138.180%3A443
-
-%3BSVIP%3D192.168.56.7
-
-%3BclusterAdminUsername%3Dadmin
-
-%3BclusterAdminPassword%3Dpassword
-
-%3BclusterDefaultMinIops%3D200
-
-%3BclusterDefaultMaxIops%3D300
-
-%3BclusterDefaultBurstIopsPercentOfMaxIops%3D2.5
-
-&provider=SolidFire
-
-&tags=SolidFire\_SAN\_1
-
-&capacityIops=4000000
-
-&capacityBytes=2251799813685248
-
-&hypervisor=Any
-
-&response=json
-
-&apiKey=VrrkiZQWFFgSdA6k3DYtoKLcrgQJjZXoSWzicHXt8rYd9Bl47p8L39p0p8vfDpiljtlcMLn\_jatMSqCWv5Cs-Q
-
-&signature=wqf8KzcPpY2JmT1Sxk%2F%2BWbgX3l8%3D
-
 Add Secondary Storage
 ---------------------
 
@@ -1960,8 +1849,7 @@ When you create a new zone, the first secondary storage is added as part
 of that procedure. You can add secondary storage servers at any time to
 add more servers to an existing zone.
 
-.. warning:: Ensure that nothing is stored on the server. Adding the server to
-CloudStack will destroy any existing data.
+.. warning:: Ensure that nothing is stored on the server. Adding the server to CloudStack will destroy any existing data.
 
 #. 
 
@@ -2012,18 +1900,15 @@ CloudStack will destroy any existing data.
       for zone-based storage, and the others for region-wide storage.
       For Hyper-V, select SMB/CIFS.
 
-      .. warning:: Heterogeneous Secondary Storage is not supported in Regions. You
-      can use only a single NFS, S3, or Swift account per region.
+      .. warning:: Heterogeneous Secondary Storage is not supported in Regions. You can use only a single NFS, S3, or Swift account per region.
 
    -  
 
       Create NFS Secondary Staging Store. This box must always be
       checked.
 
-      .. warning:: Even if the UI allows you to uncheck this box, do not do so. This
-      checkbox and the three fields below it must be filled in. Even
-      when Swift or S3 is used as the secondary storage provider, an NFS
-      staging storage in each zone is still required.
+      .. warning:: Even if the UI allows you to uncheck this box, do not do so. This checkbox and the three fields below it must be filled in. Even
+      when Swift or S3 is used as the secondary storage provider, an NFS staging storage in each zone is still required.
 
    -  
 

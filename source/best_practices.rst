@@ -123,4 +123,6 @@ Maintenance Best Practices
    (per-host-limit). Once a cluster reaches this number of VMs, use the
    CloudStack UI to disable allocation to the cluster.
 
-.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost VMs. Be sure all the hotfixes provided by the hypervisor vendor are applied. Track the release of hypervisor patches through your hypervisor vendor’s support channel, and apply patches as soon as possible after they are released. CloudStack will not track or notify you of required hypervisor patches. It is essential that your hosts are completely up to date with the provided hypervisor patches. The hypervisor vendor is likely to refuse to support any system that is not up to date with patches.
+.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+
+Be sure all the hotfixes provided by the hypervisor vendor are applied. Track the release of hypervisor patches through your hypervisor vendor’s support channel, and apply patches as soon as possible after they are released. CloudStack will not track or notify you of required hypervisor patches. It is essential that your hosts are completely up to date with the provided hypervisor patches. The hypervisor vendor is likely to refuse to support any system that is not up to date with patches.

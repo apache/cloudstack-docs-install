@@ -369,11 +369,11 @@ node.
 
     ::
 
-    yum install ntp
+      yum install ntp
 
     ::
 
-    apt-get install openntpd
+      apt-get install openntpd
 
 #. 
 
@@ -387,9 +387,7 @@ The first step in installation, whether you are installing the
 Management Server on one host or many, is to install the software on a
 single node.
 
-.. note:: If you are planning to install the Management Server on multiple nodes
-for high availability, do not proceed to the additional nodes yet. That
-step will come later.
+.. note:: If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will come later.
 
 The CloudStack Management server can be installed using either RPM or
 DEB packages. These packages will depend on everything you need to run
@@ -420,11 +418,9 @@ installed on the hypervisor hosts.
 Before setting up the Management Server, download vhd-util from
 `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`__.
 
-If the Management Server is RHEL or CentOS, copy vhd-util to
-/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver.
+If the Management Server is RHEL or CentOS, copy vhd-util to `/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver`
 
-If the Management Server is Ubuntu, copy vhd-util to
-/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver.
+If the Management Server is Ubuntu, copy vhd-util to `/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver`
 
 Install the database server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -454,11 +450,11 @@ Node” <#management-server-install-db-external>`__.
 
    ::
 
-   yum install mysql-server
+     yum install mysql-server
 
    ::
 
-   apt-get install mysql-server
+     apt-get install mysql-server
 
 #. 
 
@@ -505,13 +501,13 @@ Node” <#management-server-install-db-external>`__.
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-.. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
+   .. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
 
-Run the following command to secure your installation. You can answer "Y" to all questions.
+   Run the following command to secure your installation. You can answer "Y" to all questions.
 
-::
+   ::
 
-    mysql_secure_installation
+     mysql_secure_installation
 
 #. 
 
@@ -562,7 +558,7 @@ Run the following command to secure your installation. You can answer "Y" to all
       Set SELinux to permissive starting immediately, without requiring
       a system reboot.
 
-   ::
+      ::
 
           $ setenforce permissive
 
@@ -626,7 +622,7 @@ Run the following command to secure your installation. You can answer "Y" to all
    When this script is finished, you should see a message like
    “Successfully initialized the database.”
 
-.. note:: If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
+   .. note:: If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
 
 #. 
 
@@ -715,9 +711,9 @@ Management Server Node” <#management-server-install-db-local>`__.
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-.. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
+   .. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
 
-::
+   ::
 
        mysql_secure_installation
 
@@ -740,7 +736,7 @@ Management Server Node” <#management-server-install-db-local>`__.
       Edit the /etc/sysconfig/iptables file and add the following line
       at the beginning of the INPUT chain.
 
-   ::
+      ::
 
           -A INPUT -p tcp --dport 3306 -j ACCEPT
 
@@ -748,7 +744,7 @@ Management Server Node” <#management-server-install-db-local>`__.
 
       Now reload the iptables rules.
 
-   ::
+      ::
 
           service iptables restart
 
@@ -948,9 +944,7 @@ Cloud Infrastructure Overview). Both of these can be NFS shares. This
 section tells how to set up the NFS shares before adding the storage to
 CloudStack.
 
-NFS is not the only option for primary or secondary storage. For
-example, you may use Ceph RBD, GlusterFS, iSCSI, and others. The choice
-of storage system will depend on the choice of hypervisor and whether
+.. note:: NFS is not the only option for primary or secondary storage. For example, you may use Ceph RBD, GlusterFS, iSCSI, and others. The choice of storage system will depend on the choice of hypervisor and whether
 you are dealing with primary or secondary storage.
 
 The requirements for primary and secondary storage are described in:
@@ -1184,7 +1178,7 @@ operating system version.
       Be sure NFS and rpcbind are running. The commands might be
       different depending on your OS. For example:
 
-   ::
+      ::
 
           # service rpcbind start
           # service nfs start
@@ -1198,7 +1192,7 @@ operating system version.
       directories. For example, substitute your own management server
       name:
 
-   ::
+      ::
 
           # mkdir /primary
           # mount -t nfs <management-server-name>:/export/primary
