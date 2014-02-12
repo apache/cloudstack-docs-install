@@ -31,26 +31,33 @@ Concepts
 
     concepts
 
-Terminology
------------
+Choosing a Deployment Architecture
+----------------------------------
 .. toctree::
     :maxdepth: 2
 
-    terminology
+    choosing_deployment_architecture
 
-Building from Source
----------------------
+Quick Installation Guide
+------------------------
 .. toctree::
     :maxdepth: 2
 
-    building_from_source
+    qig
 
-Installation
--------------
+General Installation
+--------------------
 .. toctree::
     :maxdepth: 2
 
     installation
+
+Source Installation
+-------------------
+.. toctree::
+    :maxdepth: 2
+
+    building_from_source
 
 User Interface
 ---------------
@@ -66,47 +73,12 @@ Configuration
 
     configuration
 
-Configuration Parameters
-------------------------
-.. toctree::
-    :maxdepth: 2
-
-    config_params
-
 Hypervisor Installation
 -----------------------
 .. toctree::
     :maxdepth: 2
 
     hypervisor_installation
-
-Additional Installation Options
--------------------------------
-.. toctree::
-    :maxdepth: 2
-
-    optional_installation
-
-Choosing a Deployment Architecture
-----------------------------------
-.. toctree::
-    :maxdepth: 2
-
-    choosing_deployment_architecture
-
-Choosing a Hypervisor
-----------------------
-.. toctree::
-    :maxdepth: 2
-
-    choosing_hypervisor
-
-Amazon Web Services Interface
------------------------------
-.. toctree::
-    :maxdepth: 2
-
-    aws_interface
 
 Network Setup
 -------------
@@ -122,6 +94,13 @@ Storage Setup
 
     storage_setup
 
+Additional Installation Options
+-------------------------------
+.. toctree::
+    :maxdepth: 2
+
+    optional_installation
+
 Managing Networks and Traffics
 -------------------------------
 .. toctree::
@@ -129,13 +108,12 @@ Managing Networks and Traffics
 
     managing_networks
 
-Best Practices
----------------
+Amazon Web Services Interface
+-----------------------------
 .. toctree::
     :maxdepth: 2
 
-    best_practices
-
+    aws_interface
 
 Indices and tables
 ==================
