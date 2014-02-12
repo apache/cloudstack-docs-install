@@ -94,26 +94,12 @@ Storage Setup
 
     storage_setup
 
-Additional Installation Options
--------------------------------
+Optional Installation 
+---------------------
 .. toctree::
     :maxdepth: 2
 
     optional_installation
-
-Managing Networks and Traffics
--------------------------------
-.. toctree::
-    :maxdepth: 2
-
-    managing_networks
-
-Amazon Web Services Interface
------------------------------
-.. toctree::
-    :maxdepth: 2
-
-    aws_interface
 
 Indices and tables
 ==================
