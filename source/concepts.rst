@@ -23,7 +23,8 @@ Apache CloudStack is an open source Infrastructure-as-a-Service platform that
 manages and orchestrates pools of storage, network, and computer resources to 
 build a public or private IaaS compute cloud. 
 
-With CloudStack you can: 
+With CloudStack you can:
+
 * Set up an on-demand elastic cloud computing service. 
 * Allow end-users to provision resources
 
@@ -36,6 +37,7 @@ Multiple Hypervisor Support
 CloudStack works with a variety of hypervisors and hypervisor-like technologies. A single 
 cloud can contain multiple hypervisor implementations. As of the current release CloudStack 
 supports: 
+
 * vSphere (via vCenter)
 * KVM
 * Xenserver
@@ -112,6 +114,7 @@ virtual machines to hosts and assigns storage and IP addresses to the virtual ma
 Server runs in an Apache Tomcat container and requires a MySQL database for persistence.
 
 The management server:
+
 * Provides the web interface for both the adminstrator and end user. 
 * Provides the API interfaces for both the CloudStack API as well as the EC2 interface. 
 * Manages the assignment of guest VMs to a specific compute resource
@@ -176,6 +179,7 @@ infrastructure into zones is to provide physical isolation and redundancy. For e
 own power supply and network uplink, and the zones can be widely separated geographically (though this is not required).
 
 A zone consists of:
+
 * One or more pods. Each pod contains one or more clusters of hosts and one or more primary storage servers.
 * A zone may contain one or more primary storage servers, which are shared by all the pods in the zone.
 * Secondary storage, which is shared by all the pods in the zone.
@@ -194,6 +198,7 @@ Hosts in the same zone are directly accessible to each other without having to g
 in different zones can access each other through statically configured VPN tunnels.
 
 For each zone, the administrator must decide the following.
+
 * How many pods to place in each zone.
 * How many clusters to place in each pod.
 * How many hosts to place in each cluster.
@@ -267,6 +272,7 @@ Secondary Storage
 ~~~~~~~~~~~~~~~~~
 
 Secondary storage stores the following:
+
 * Templates — OS images that can be used to boot VMs and can include additional configuration information, such as installed applications
 * ISO images — disc images containing data or bootable media for operating systems
 * Disk volume snapshots — saved copies of VM data which can be used for data recovery or to create new templates
@@ -284,7 +290,8 @@ can carry one or more types of network traffic. The choices of traffic type for 
 
 A physical network is the actual network hardware and wiring in a zone. A zone can have multiple physical networks. 
 
-* An administrator can:
+An administrator can:
+
 * Add/Remove/Update physical networks in a zone
 * Configure VLANs on the physical network
 * Configure a name so the network can be recognized by hypervisors
@@ -382,6 +389,7 @@ shared by physical machines, the guest virtual router, and other entities, it is
 scaling up a pod whose nodes are running ESXi.
 
 To ensure adequate headroom to scale private IP space in an ESXi pod that uses advanced networking, use one or both of the following techniques:
+
 * Specify a larger CIDR block for the subnet. A subnet mask with a /20 suffix will provide more than 4,000 IP addresses.
 * Create multiple pods, each with its own subnet. In example, if you create 10 pods and each pod has 255 IPs, this will provide 2,550 IP addresses.
 
