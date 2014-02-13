@@ -519,7 +519,7 @@ Specifies a request timeout (in seconds)
 
 Example:
 
-.. code:: bash
+.. code::
 
     ec2-run-instances 2 –z us-test1 –n 1-3 --connection-timeout 120 --request-timeout 120
 
@@ -727,6 +727,7 @@ AWS API Interface.
 First is an EC2 example. Replace the Access and Secret Keys with your
 own and update the endpoint.
 
+ 
 Example 1. An EC2 Boto example
                                  
 
@@ -740,8 +741,10 @@ Example 1. An EC2 Boto example
     import boto.ec2
 
     region = boto.ec2.regioninfo.RegionInfo(name="ROOT",endpoint="localhost")
-    apikey='GwNnpUPrO6KgIdZu01z_ZhhZnKjtSdRwuYd4DvpzvFpyxGMvrzno2q05MB0ViBoFYtdqKd'
-    secretkey='t4eXLEYWw7chBhDlaKf38adCMSHx_wlds6JfSx3z9fSpSOm0AbP9Moj0oGIzy2LSC8iw'
+    apikey = \
+          'GwNnpUPrO6KgIdZu01z_ZhhZnKjtSdRwuYd4DvpzvFpyxGMvrzno2q05MB0ViBoFYtdqKd'
+    secretkey = \
+          't4eXLEYWw7chBhDlaKf38adCMSHx_wlds6JfSx3z9fSpSOm0AbP9Moj0oGIzy2LSC8iw'
 
     def main():
         '''Establish connection to EC2 cloud'''
@@ -759,7 +762,8 @@ Example 1. An EC2 Boto example
         myimage = images[0]
         '''Pick an instance type'''
         vm_type='m1.small'
-        reservation = myimage.run(instance_type=vm_type,security_groups=['default'])
+        reservation = myimage.run(instance_type = 
+                              vm_type,security_groups=['default'])
 
     if __name__ == '__main__':
         main()
@@ -781,14 +785,17 @@ Example 2. An S3 Boto Example
     from boto.s3.connection import S3Connection
     from boto.s3.connection import OrdinaryCallingFormat
 
-    apikey='ChOw-pwdcCFy6fpeyv6kUaR0NnhzmG3tE7HLN2z3OB_s-ogF5HjZtN4rnzKnq2UjtnHeg_yLA5gOw'
-    secretkey='IMY8R7CJQiSGFk4cHwfXXN3DUFXz07cCiU80eM3MCmfLs7kusgyOfm0g9qzXRXhoAPCH-IRxXc3w'
+    apikey = \
+        'ChOw-pwdcCFy6fpeyv6kUaR0NnhzmG3tE7HLN2z3OB_s-ogF5HjZtN4rnzKnq2UjtnHeg_yLA5gOw'
+    secretkey = \
+        'IMY8R7CJQiSGFk4cHwfXXN3DUFXz07cCiU80eM3MCmfLs7kusgyOfm0g9qzXRXhoAPCH-IRxXc3w'
 
     cf=OrdinaryCallingFormat()
 
     def main(): 
         '''Establish connection to S3 service'''
-            conn =S3Connection(aws_access_key_id=apikey,aws_secret_access_key=secretkey, \
+            conn =S3Connection(aws_access_key_id=apikey, \
+                              aws_secret_access_key=secretkey, \
                               is_secure=False, \
                               host='localhost', \
                               port=7080, \
@@ -800,7 +807,8 @@ Example 2. An S3 Boto Example
                 k = Key(bucket)
                 k.key = 'test'
                 try:
-                   k.set_contents_from_filename('/Users/runseb/Desktop/s3cs.py')
+                   k. \
+                   set_contents_from_filename('/Users/runseb/Desktop/s3cs.py')
                 except:
                    print 'could not write file'
                    pass
