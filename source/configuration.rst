@@ -112,7 +112,7 @@ region.
 
    .. code:: bash
 
-       cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
+      # cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
 
 #. 
 
@@ -189,7 +189,7 @@ region.
 
    .. code:: bash
 
-       mysql> delete from account where type = 5;
+          # mysql> delete from account where type = 5;
 
 #. 
 
@@ -197,7 +197,7 @@ region.
 
    .. code:: bash
 
-       mysql> update account set default_zone_id = null;
+          # mysql> update account set default_zone_id = null;
 
 #. 
 
