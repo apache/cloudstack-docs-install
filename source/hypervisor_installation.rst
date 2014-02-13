@@ -225,10 +225,13 @@ specify the guest CPU config in the per-host configuration file
 (/etc/cloudstack/agent/agent.properties). This will be achieved by
 introducing two new configuration parameters:
 
-.. code:: bash
-
+.. code::
+ 
     guest.cpu.mode=custom|host-model|host-passthrough
-    guest.cpu.model=from /usr/share/libvirt/cpu_map.xml(only valid when guest.cpu.mode=custom)
+    guest.cpu.model=from /usr/share/libvirt/cpu_map.xml (only valid when guest.cpu.mode=custom)
+    
+    
+                                                                
 
 There are three choices to fulfill the cpu model changes:
 
@@ -451,19 +454,19 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: bash
+      .. code::
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. code::
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. code::
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: bash
+      .. code::
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
@@ -1400,7 +1403,7 @@ name-label of the XenServer network must match the XenServer traffic
 label specified while creating the CloudStack network. This is set by
 running the following command:
 
-.. code:: bash
+.. code::
 
     xe network-param-set uuid=<network id> name-label=<CloudStack traffic label>
 
@@ -1505,12 +1508,14 @@ separate storage network on all hosts (masters and slaves).
 Here is an example to set up eth5 to access a storage network on
 172.16.0.0/24.
 
-.. code:: bash
+.. code::
 
     # xe pif-list host-name-label='hostname' device=eth5
     uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
     device ( RO): eth5
-    #xe pif-reconfigure-ip DNS=172.16.3.3 gateway=172.16.0.1 IP=172.16.0.55 mode=static netmask=255.255.255.0 uuid=ab0d3dd4-5744-8fae-9693-a022c7a3471d
+    
+    #xe pif-reconfigure-ip DNS=172.16.3.3 gateway=172.16.0.1 IP=172.16.0.55 mode=static netmask=255.255.255.0 
+        uuid=ab0d3dd4-5744-8fae-9693-a022c7a3471d
 
 NIC Bonding for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1798,7 +1803,7 @@ To upgrade XenServer:
       Troubleshooting: You might see the following error when you
       migrate a VM:
 
-      .. code:: bash
+      .. code::
 
           [root@xenserver-qa-2-49-4 ~]# xe vm-migrate live=true host=xenserver-qa-2-49-5 vm=i-2-8-VM
           You attempted an operation on a VM which requires PV drivers to be installed but the drivers were not detected.
@@ -2149,7 +2154,7 @@ host, install a self-signed certificate on port 8250.
 
       Add the created certificate to port 8250 for https communication:
 
-      .. code:: bash
+      .. code::
 
           netsh http add sslcert ipport=0.0.0.0:8250 certhash=<thumbprint> appid="{727beb1c-6e7c-49b2-8fbd-f03dbe481b08}"
 
@@ -3713,19 +3718,19 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: bash
+      .. code::
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. code::
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. code::
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: bash
+      .. code::
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
