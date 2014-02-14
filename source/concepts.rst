@@ -512,7 +512,9 @@ creating a new CloudStack zone, you can select a VMware Datacenter for
 the zone. If you are provisioning multiple VMware Datacenters, each one
 will be set up as a single zone in CloudStack.
 
-.. note:: If you are upgrading from a previous CloudStack version, and your existing deployment contains a zone with clusters from multiple VMware Datacenters, that zone will not be forcibly migrated to the new model. It will continue to function as before. However, any new zone-wide operations, such as zone-wide primary storage and live storage migration, will not be available in that zone.
+.. note::
+
+   If you are upgrading from a previous CloudStack version, and your existing deployment contains a zone with clusters from multiple VMware Datacenters, that zone will not be forcibly migrated to the new model. It will continue to function as before. However, any new zone-wide operations, such as zone-wide primary storage and live storage migration, will not be available in that zone.
 
 About Pods
 ~~~~~~~~~~
@@ -706,7 +708,9 @@ to Swift or S3. The backing object storage acts as a cloud-wide
 resource, making templates and other data available to any zone in the
 cloud.
 
-.. warning:: Heterogeneous Secondary Storage is not supported in Regions. For example, you cannot set up multiple zones, one using NFS secondary and the other using S3 or Swift secondary.
+.. warning::
+
+   Heterogeneous Secondary Storage is not supported in Regions. For example, you cannot set up multiple zones, one using NFS secondary and the other using S3 or Swift secondary.
 
 About Physical Networks
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -770,7 +774,9 @@ the zone. That physical network carries the following traffic types:
    communicates directly with the CloudStack Management Server. You must
    configure the IP range for the system VMs to use.
 
-.. note:: We strongly recommend the use of separate NICs for management traffic
+.. note::
+
+   We strongly recommend the use of separate NICs for management traffic
    and guest traffic.
 
 -  
@@ -962,65 +968,3 @@ techniques:
 .. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
 .. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
 .. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

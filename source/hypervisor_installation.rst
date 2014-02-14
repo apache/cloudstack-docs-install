@@ -100,9 +100,13 @@ The material in this section doesn't duplicate KVM installation docs. It
 provides the CloudStack-specific steps that are needed to prepare a KVM
 host to work with CloudStack.
 
-.. warning:: Before continuing, make sure that you have applied the latest updates to your host.
+.. warning::
 
-.. warning:: It is NOT recommended to run services on this host not controlled by CloudStack.
+   Before continuing, make sure that you have applied the latest updates to your host.
+
+.. warning::
+
+   It is NOT recommended to run services on this host not controlled by CloudStack.
 
 The procedure for installing a KVM Hypervisor Host is:
 
@@ -136,7 +140,7 @@ KVM instances.
 
    Check for a fully qualified hostname.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ hostname --fqdn
 
@@ -148,7 +152,7 @@ KVM instances.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ ping www.cloudstack.org
 
@@ -156,18 +160,20 @@ KVM instances.
 
    Turn on NTP for time synchronization.
 
-   .. note:: NTP is required to synchronize the clocks of the servers in your
-   cloud. Unsynchronized clocks can cause unexpected problems.
+   .. note::
+   
+      NTP is required to synchronize the clocks of the servers in your
+      cloud. Unsynchronized clocks can cause unexpected problems.
 
    #. 
 
       Install NTP
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ yum install ntp
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apt-get install openntpd
 
@@ -186,13 +192,13 @@ First we start by installing the agent:
 
 In RHEL or CentOS:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ yum install cloudstack-agent
 
 In Ubuntu:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ apt-get install cloudstack-agent
 
@@ -225,7 +231,7 @@ specify the guest CPU config in the per-host configuration file
 (/etc/cloudstack/agent/agent.properties). This will be achieved by
 introducing two new configuration parameters:
 
-.. code:: bash
+.. sourcecode:: bash
 
     guest.cpu.mode=custom|host-model|host-passthrough
     guest.cpu.model=from /usr/share/libvirt/cpu_map.xml(only valid when guest.cpu.mode=custom)
@@ -262,7 +268,7 @@ Here are some examples:
 
    custom
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        guest.cpu.mode=custom
        guest.cpu.model=SandyBridge
@@ -271,7 +277,7 @@ Here are some examples:
 
    host-model
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        guest.cpu.mode=host-model
 
@@ -279,7 +285,7 @@ Here are some examples:
 
    host-passthrough
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        guest.cpu.mode=host-passthrough
 
@@ -301,23 +307,23 @@ cloudstack-agent and should already be installed.
 
    Set the following parameters:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        listen_tls = 0
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        listen_tcp = 1
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        tcp_port = "16509"
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        auth_tcp = "none"
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mdns_adv = 0
 
@@ -330,7 +336,7 @@ cloudstack-agent and should already be installed.
 
    Uncomment the following line:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        #LIBVIRTD_ARGS="--listen"
 
@@ -338,13 +344,13 @@ cloudstack-agent and should already be installed.
 
    Add "-l" to the following line
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        libvirtd_opts="-d"
 
    so it looks like:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        libvirtd_opts="-d -l"
 
@@ -355,7 +361,7 @@ cloudstack-agent and should already be installed.
 
    Make sure this parameter is set:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vnc_listen = "0.0.0.0"
 
@@ -365,13 +371,13 @@ cloudstack-agent and should already be installed.
 
    In RHEL or CentOS:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ service libvirtd restart
 
    In Ubuntu:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ service libvirt-bin restart
 
@@ -394,7 +400,7 @@ ensure the Agent has all the required permissions.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ rpm -qa | grep selinux
 
@@ -406,19 +412,19 @@ ensure the Agent has all the required permissions.
 
       In RHEL or CentOS:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           SELINUX=enforcing
 
       to this
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           SELINUX=permissive
 
@@ -427,7 +433,7 @@ ensure the Agent has all the required permissions.
       Then set SELinux to permissive starting immediately, without
       requiring a system reboot.
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ setenforce permissive
 
@@ -443,7 +449,7 @@ ensure the Agent has all the required permissions.
       In Ubuntu AppArmor is installed and enabled by default. You can
       verify this with:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ dpkg --list 'apparmor'
 
@@ -451,19 +457,19 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
@@ -526,13 +532,13 @@ proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -543,11 +549,11 @@ Make sure it looks similar to:
 
 We now have to configure the three VLAN interfaces:
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.100
     HWADDR=00:04:xx:xx:xx:xx
@@ -560,11 +566,11 @@ We now have to configure the three VLAN interfaces:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.200
     HWADDR=00:04:xx:xx:xx:xx
@@ -575,11 +581,11 @@ We now have to configure the three VLAN interfaces:
     VLAN=yes
     BRIDGE=cloudbr0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.300
     HWADDR=00:04:xx:xx:xx:xx
@@ -593,13 +599,13 @@ We now have to configure the three VLAN interfaces:
 Now we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
 Now we just configure it is a plain bridge without an IP-Address
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr0
     TYPE=Bridge
@@ -612,11 +618,11 @@ Now we just configure it is a plain bridge without an IP-Address
 
 We do the same for cloudbr1
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr1
     TYPE=Bridge
@@ -638,13 +644,13 @@ Configure in Ubuntu
 All the required packages were installed when you installed libvirt, so
 we only have to configure the network.
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/network/interfaces
 
 Modify the interfaces file to look like this:
 
-.. code:: bash
+.. sourcecode:: bash
 
     auto lo
     iface lo inet loopback
@@ -751,7 +757,7 @@ the OpenVswitch database.
 First we create a main bridge connected to the eth0 interface. Next we
 create three fake bridges, each connected to a specific vlan tag.
 
-.. code:: bash
+.. sourcecode:: bash
 
     # ovs-vsctl add-br cloudbr
     # ovs-vsctl add-port cloudbr eth0 
@@ -768,13 +774,13 @@ installed, we can proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -785,11 +791,11 @@ Make sure it looks similar to:
 
 We have to configure the base bridge with the trunk.
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr
     ONBOOT=yes
@@ -800,11 +806,11 @@ We have to configure the base bridge with the trunk.
 
 We now have to configure the three VLAN bridges:
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-mgmt0
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=mgmt0
     ONBOOT=yes
@@ -816,11 +822,11 @@ We now have to configure the three VLAN bridges:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr0
     ONBOOT=yes
@@ -829,11 +835,11 @@ We now have to configure the three VLAN bridges:
     DEVICETYPE=ovs
     TYPE=OVSBridge
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr1
     ONBOOT=yes
@@ -885,30 +891,30 @@ Open ports in RHEL/CentOS
 RHEL and CentOS use iptables for firewalling the system, you can open
 extra ports by executing the following iptable commands:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
 
 These iptable settings are not persistent accross reboots, we have to
 save them first.
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables-save > /etc/sysconfig/iptables
 
@@ -920,23 +926,23 @@ is a Python wrapper around iptables.
 
 To open the required ports, execute the following commands:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 22
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 1798
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 16509
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 5900:6100
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 49152:49216
 
@@ -1135,7 +1141,7 @@ time.
 
    Install NTP.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # yum install ntp
 
@@ -1143,14 +1149,14 @@ time.
 
    Edit the NTP configuration file to point to your NTP server.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # vi /etc/ntp.conf
 
    Add one or more server lines in this file with the names of the NTP
    servers you want to use. For example:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        server 0.xenserver.pool.ntp.org
        server 1.xenserver.pool.ntp.org
@@ -1161,7 +1167,7 @@ time.
 
    Restart the NTP client.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service ntpd restart
 
@@ -1169,7 +1175,7 @@ time.
 
    Make sure NTP will start again upon reboot.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # chkconfig ntpd on
 
@@ -1205,7 +1211,7 @@ steps on each XenServer host.
 
    Extract the file:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # tar xf xenserver-cloud-supp.tgz
 
@@ -1213,7 +1219,7 @@ steps on each XenServer host.
 
    Run the following script:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe-install-supplemental-pack xenserver-cloud-supp.iso
 
@@ -1222,7 +1228,7 @@ steps on each XenServer host.
    If the XenServer host is part of a zone that uses basic networking,
    disable Open vSwitch (OVS):
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe-switch-network-backend  bridge
 
@@ -1254,7 +1260,7 @@ that XenServer.
    Rescan the SCSI bus. Either use the following command or use
    XenCenter to perform an HBA rescan.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # scsi-rescan
 
@@ -1266,14 +1272,14 @@ that XenServer.
 
    Check to be sure you see the new SCSI disk.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # ls /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -l
 
    The output should look like this, although the specific file name
    will be different (scsi-<scsiID>):
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        lrwxrwxrwx 1 root root 9 Mar 16 13:47
        /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -> ../../sdc
@@ -1287,14 +1293,14 @@ that XenServer.
    On the storage server, run this command to get a unique ID for the
    new SR.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # uuidgen
 
    The output should look like this, although the specific ID will be
    different:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        e6849e96-86c3-4f2c-8fcc-350cc711be3d
 
@@ -1303,7 +1309,7 @@ that XenServer.
    Create the FiberChannel SR. In name-label, use the unique ID you just
    generated.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe sr-create type=lvmohba shared=true
        device-config:SCSIid=360a98000503365344e6f6177615a516b
@@ -1312,7 +1318,7 @@ that XenServer.
    This command returns a unique ID for the SR, like the following
    example (your ID will be different):
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        7a143820-e893-6c6a-236e-472da6ee66bf
 
@@ -1322,7 +1328,7 @@ that XenServer.
    command. In uuid, use the SR ID returned by the previous command. In
    name-description, set whatever friendly text you prefer.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe sr-param-set uuid=7a143820-e893-6c6a-236e-472da6ee66bf name-description="Fiber Channel storage repository"
 
@@ -1400,7 +1406,7 @@ name-label of the XenServer network must match the XenServer traffic
 label specified while creating the CloudStack network. This is set by
 running the following command:
 
-.. code:: bash
+.. sourcecode:: bash
 
     xe network-param-set uuid=<network id> name-label=<CloudStack traffic label>
 
@@ -1438,7 +1444,7 @@ CloudStack before adding the host.
 
    Run the following command.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe network-param-set name-label=cloud-public uuid=<UUID-Public>
 
@@ -1465,7 +1471,7 @@ CloudStack:
    Run the following command, substituting your own name-label and uuid
    values.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe network-param-set name-label=<cloud-guestN> uuid=<UUID-Guest>
 
@@ -1505,7 +1511,7 @@ separate storage network on all hosts (masters and slaves).
 Here is an example to set up eth5 to access a storage network on
 172.16.0.0/24.
 
-.. code:: bash
+.. sourcecode:: bash
 
     # xe pif-list host-name-label='hostname' device=eth5
     uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
@@ -1576,7 +1582,7 @@ into it.
 
    Find the physical NICs that you want to bond together.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe pif-list host-name-label='hostname' device=eth0
        # xe pif-list host-name-label='hostname' device=eth1
@@ -1594,7 +1600,7 @@ into it.
    you configure. You must use the same name-label for all hosts in the
    cloud for the management network.**
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe network-create name-label=cloud-private
        # xe bond-create network-uuid=[uuid of cloud-private created above]
@@ -1622,7 +1628,7 @@ and eth3) bonded into it.
 
    Find the physical NICs that you want to bond together.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        #xe pif-list host-name-label='hostname' device=eth2
        # xe pif-list host-name-label='hostname' device=eth3
@@ -1640,7 +1646,7 @@ and eth3) bonded into it.
    you configure. You must use the same name-label for all hosts in the
    cloud for the public network.**
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # xe network-create name-label=cloud-public
        # xe bond-create network-uuid=[uuid of cloud-public created above]
@@ -1657,7 +1663,7 @@ additional, slave hosts. Run the following command for all additional
 hosts to be added to the cluster. This will cause the host to join the
 master in a single XenServer pool.
 
-.. code:: bash
+.. sourcecode:: bash
 
     # xe pool-join master-address=[master IP] master-username=root
     master-password=[your password]
@@ -1679,7 +1685,7 @@ all hosts in the cluster.
 
    Run the script:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # ./cloud-setup-bonding.sh
 
@@ -1705,7 +1711,7 @@ To upgrade XenServer:
 
       Back up the database:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # mysqldump --user=root --databases cloud > cloud.backup.sql
           # mysqldump --user=root --databases cloud_usage > cloud_usage.backup.sql
@@ -1744,7 +1750,7 @@ To upgrade XenServer:
       Restart the Management Server and Usage Server. You only need to
       do this once for all clusters.
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # service cloudstack-management start
           # service cloudstack-usage start
@@ -1770,7 +1776,7 @@ To upgrade XenServer:
    Log in to one of the hosts in the cluster, and run this command to
    clean up the VLAN:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # . /opt/xensource/bin/cloud-clean-vlan.sh
 
@@ -1778,7 +1784,7 @@ To upgrade XenServer:
 
    Still logged in to the host, run the upgrade preparation script:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # /opt/xensource/bin/cloud-prepare-upgrade.sh
 
@@ -1798,7 +1804,7 @@ To upgrade XenServer:
       Troubleshooting: You might see the following error when you
       migrate a VM:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           [root@xenserver-qa-2-49-4 ~]# xe vm-migrate live=true host=xenserver-qa-2-49-5 vm=i-2-8-VM
           You attempted an operation on a VM which requires PV drivers to be installed but the drivers were not detected.
@@ -1806,7 +1812,7 @@ To upgrade XenServer:
 
       To solve this issue, run the following:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # /opt/xensource/bin/make_migratable.sh  b6cf79c8-02ee-050b-922f-49583d9f1a14
 
@@ -1838,14 +1844,14 @@ To upgrade XenServer:
 
       Run the following script:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # /opt/xensource/bin/setupxenserver.sh
 
       Troubleshooting: If you see the following error message, you can
       safely ignore it.
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           mv: cannot stat `/etc/cron.daily/logrotate`: No such file or directory
 
@@ -1854,7 +1860,7 @@ To upgrade XenServer:
       Plug in the storage repositories (physical block devices) to the
       XenServer host:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # for pbd in `xe pbd-list currently-attached=false| grep ^uuid | awk '{print $NF}'`; do xe pbd-plug uuid=$pbd ; done
 
@@ -1870,7 +1876,7 @@ To upgrade XenServer:
    Run the following command on one host in the XenServer cluster to
    clean up the host tags:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # for host in $(xe host-list | grep ^uuid | awk '{print $NF}') ; do xe host-param-clear uuid=$host param-name=tags; done;
 
@@ -1898,7 +1904,7 @@ To upgrade XenServer:
 
    After all hosts are up, run the following on one host in the cluster:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # /opt/xensource/bin/cloud-clean-vlan.sh
 
@@ -2138,7 +2144,7 @@ host, install a self-signed certificate on port 8250.
 
       Create A self-signed SSL certificate:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           #  New-SelfSignedCertificate -DnsName apachecloudstack -CertStoreLocation Cert:\LocalMachine\My
 
@@ -2149,7 +2155,7 @@ host, install a self-signed certificate on port 8250.
 
       Add the created certificate to port 8250 for https communication:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           netsh http add sslcert ipport=0.0.0.0:8250 certhash=<thumbprint> appid="{727beb1c-6e7c-49b2-8fbd-f03dbe481b08}"
 
@@ -2597,7 +2603,7 @@ with VMware-based VMs. The default additional port range is 59000-60000.
 To extend the port range, log in to the VMware ESX service console on
 each host and run the following commands:
 
-.. code:: bash
+.. sourcecode:: bash
 
     esxcfg-firewall -o 59000-60000,tcp,in,vncextras
     esxcfg-firewall -o 59000-60000,tcp,out,vncextras
@@ -2851,7 +2857,7 @@ vlan<range> command to add the VLAN ranges to the port profile.
 
 For example:
 
-.. code:: bash
+.. sourcecode:: bash
 
     switchport trunk allowed vlan 1,140-147,196-203
 
@@ -2867,14 +2873,14 @@ For example:
 If you want the VLAN 200 to be used on the switch, run the following
 command:
 
-.. code:: bash
+.. sourcecode:: bash
 
     vlan 200
 
 If you want the VLAN range 1350-1750 to be used on the switch, run the
 following command:
 
-.. code:: bash
+.. sourcecode:: bash
 
     vlan 1350-1750
 
@@ -3454,7 +3460,7 @@ KVM instances.
 
    Check for a fully qualified hostname.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ hostname --fqdn
 
@@ -3466,7 +3472,7 @@ KVM instances.
 
    Make sure that the machine can reach the Internet.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ ping www.cloudstack.org
 
@@ -3481,11 +3487,11 @@ KVM instances.
 
       Install NTP
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ yum install ntp
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apt-get install openntpd
 
@@ -3504,13 +3510,13 @@ First we start by installing the agent:
 
 In RHEL or CentOS:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ yum install cloudstack-agent
 
 In Ubuntu:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ apt-get install cloudstack-agent
 
@@ -3521,7 +3527,7 @@ are in ``/etc/cloudstack/agent/agent.properties``
 
    Set the Agent to run in LXC mode:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        hypervisor.type=lxc
 
@@ -3530,15 +3536,15 @@ are in ``/etc/cloudstack/agent/agent.properties``
    Optional: If you would like to use direct networking (instead of the
    default bridge networking), configure these lines:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        libvirt.vif.driver=com.cloud.hypervisor.kvm.resource.DirectVifDriver
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        network.direct.source.mode=private
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        network.direct.device=eth0
 
@@ -3563,23 +3569,23 @@ cloudstack-agent and should already be installed.
 
    Set the following parameters:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        listen_tls = 0
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        listen_tcp = 1
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        tcp_port = "16509"
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        auth_tcp = "none"
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mdns_adv = 0
 
@@ -3592,7 +3598,7 @@ cloudstack-agent and should already be installed.
 
    Uncomment the following line:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        #LIBVIRTD_ARGS="--listen"
 
@@ -3600,13 +3606,13 @@ cloudstack-agent and should already be installed.
 
    Add "-l" to the following line
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        libvirtd_opts="-d"
 
    so it looks like:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        libvirtd_opts="-d -l"
 
@@ -3617,7 +3623,7 @@ cloudstack-agent and should already be installed.
 
    Make sure this parameter is set:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vnc_listen = "0.0.0.0"
 
@@ -3627,13 +3633,13 @@ cloudstack-agent and should already be installed.
 
    In RHEL or CentOS:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ service libvirtd restart
 
    In Ubuntu:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        $ service libvirt-bin restart
 
@@ -3656,7 +3662,7 @@ ensure the Agent has all the required permissions.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ rpm -qa | grep selinux
 
@@ -3668,19 +3674,19 @@ ensure the Agent has all the required permissions.
 
       In RHEL or CentOS:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           SELINUX=enforcing
 
       to this
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           SELINUX=permissive
 
@@ -3689,7 +3695,7 @@ ensure the Agent has all the required permissions.
       Then set SELinux to permissive starting immediately, without
       requiring a system reboot.
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ setenforce permissive
 
@@ -3705,7 +3711,7 @@ ensure the Agent has all the required permissions.
       In Ubuntu AppArmor is installed and enabled by default. You can
       verify this with:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ dpkg --list 'apparmor'
 
@@ -3713,19 +3719,19 @@ ensure the Agent has all the required permissions.
 
       Disable the AppArmor profiles for libvirt
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
@@ -3788,13 +3794,13 @@ proceed to configuring the network.
 
 First we configure eth0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0
     HWADDR=00:04:xx:xx:xx:xx
@@ -3805,11 +3811,11 @@ Make sure it looks similar to:
 
 We now have to configure the three VLAN interfaces:
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.100
     HWADDR=00:04:xx:xx:xx:xx
@@ -3822,11 +3828,11 @@ We now have to configure the three VLAN interfaces:
     GATEWAY=192.168.42.1
     NETMASK=255.255.255.0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.200
     HWADDR=00:04:xx:xx:xx:xx
@@ -3837,11 +3843,11 @@ We now have to configure the three VLAN interfaces:
     VLAN=yes
     BRIDGE=cloudbr0
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=eth0.300
     HWADDR=00:04:xx:xx:xx:xx
@@ -3855,13 +3861,13 @@ We now have to configure the three VLAN interfaces:
 Now we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
 Now we just configure it is a plain bridge without an IP-Address
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr0
     TYPE=Bridge
@@ -3874,11 +3880,11 @@ Now we just configure it is a plain bridge without an IP-Address
 
 We do the same for cloudbr1
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
-.. code:: bash
+.. sourcecode:: bash
 
     DEVICE=cloudbr1
     TYPE=Bridge
@@ -3900,13 +3906,13 @@ Configure in Ubuntu
 All the required packages were installed when you installed libvirt, so
 we only have to configure the network.
 
-.. code:: bash
+.. sourcecode:: bash
 
     vi /etc/network/interfaces
 
 Modify the interfaces file to look like this:
 
-.. code:: bash
+.. sourcecode:: bash
 
     auto lo
     iface lo inet loopback
@@ -3979,30 +3985,30 @@ Open ports in RHEL/CentOS
 RHEL and CentOS use iptables for firewalling the system, you can open
 extra ports by executing the following iptable commands:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
 
 These iptable settings are not persistent accross reboots, we have to
 save them first.
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ iptables-save > /etc/sysconfig/iptables
 
@@ -4014,23 +4020,23 @@ is a Python wrapper around iptables.
 
 To open the required ports, execute the following commands:
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 22
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 1798
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 16509
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 5900:6100
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ ufw allow proto tcp from any to any port 49152:49216
 
@@ -4045,18 +4051,6 @@ later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
 recommended that you continue to read the documentation before adding
 the host!
 
-
-
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
 .. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
 .. |vspherephysicalnetwork.png: vSphere client| image:: ./_static/images/vmware-physical-network.png
 .. |vsphereincreaseports.png: vSphere client| image:: ./_static/images/vmware-increase-ports.png
@@ -4069,61 +4063,3 @@ the host!
 .. |vmwareiscsigeneral.png: iscsi general| image:: ./_static/images/vmware-iscsi-general.png
 .. |vmwareiscsitargetadd.png: iscsi target add| image:: ./_static/images/vmware-iscsi-target-add.png
 .. |vmwareiscsidatastore.png: iscsi datastore| image:: ./_static/images/vmware-iscsi-datastore.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

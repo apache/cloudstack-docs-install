@@ -318,40 +318,17 @@ Maintenance Best Practices
    (per-host-limit). Once a cluster reaches this number of VMs, use the
    CloudStack UI to disable allocation to the cluster.
 
-.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+.. warning::
+
+   The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
 
 Be sure all the hotfixes provided by the hypervisor vendor are applied. Track the release of hypervisor patches through your hypervisor vendor’s support channel, and apply patches as soon as possible after they are released. CloudStack will not track or notify you of required hypervisor patches. It is essential that your hosts are completely up to date with the provided hypervisor patches. The hypervisor vendor is likely to refuse to support any system that is not up to date with patches.
 
 
-
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
 .. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
 .. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
 .. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
 .. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
 .. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
 .. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
 

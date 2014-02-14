@@ -39,7 +39,7 @@ Getting the release
 
 You can download the latest CloudStack release from the `Apache
 CloudStack project download
-page <http://incubator.apache.org/cloudstack/downloads.html>`__.
+page <http://cloudstack.apache.org/downloads.html>`__.
 
 Prior releases are available via archive.apache.org as well. See the
 downloads page for more information on archived releases.
@@ -82,7 +82,7 @@ To enable you to verify the GPG signature, you will need to download the
 
 You next need to import those keys, which you can do by running:
 
-::
+.. sourcecode:: bash
 
     # gpg --import KEYS
 
@@ -92,7 +92,7 @@ GPG
 The CloudStack project provides a detached GPG signature of the release.
 To check the signature, run the following command:
 
-::
+.. sourcecode:: bash
 
     $ gpg --verify apache-cloudstack-4.0.0-incubating-src.tar.bz2.asc
 
@@ -106,7 +106,7 @@ In addition to the cryptographic signature, CloudStack has an MD5
 checksum that you can use to verify the download matches the release.
 You can verify this hash by executing the following command:
 
-::
+.. sourcecode:: bash
 
     $ gpg --print-md MD5 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.md5
 
@@ -121,7 +121,7 @@ In addition to the MD5 hash, the CloudStack project provides a SHA512
 cryptographic hash to aid in assurance of the validity of the downloaded
 release. You can verify this hash by executing the following command:
 
-::
+.. sourcecode:: bash
 
     $ gpg --print-md SHA512 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.sha
 
@@ -177,13 +177,13 @@ Extracting source
 Extracting the CloudStack release is relatively simple and can be done
 with a single command as follows:
 
-::
+.. sourcecode:: bash
 
     $ tar -jxvf apache-cloudstack-4.1.0.src.tar.bz2
 
 You can now move into the directory:
 
-::
+.. sourcecode:: bash
 
     $ cd ./apache-cloudstack-4.1.0-src
 
@@ -197,7 +197,7 @@ PPA repository that includes Maven 3. After running the command
 ``add-apt-repository``, you will be prompted to continue and a GPG key
 will be added.
 
-::
+.. sourcecode:: bash
 
     $ sudo apt-get update
     $ sudo apt-get install python-software-properties
@@ -211,7 +211,7 @@ that need to be resolved. CloudStack uses maven for dependency
 resolution. You can resolve the buildtime depdencies for CloudStack by
 running:
 
-::
+.. sourcecode:: bash
 
     $ mvn3 -P deps
 
@@ -219,14 +219,14 @@ Now that we have resolved the dependencies we can move on to building
 CloudStack and packaging them into DEBs by issuing the following
 command.
 
-::
+.. sourcecode:: bash
 
     $ dpkg-buildpackage -uc -us
 
 This command will build the following debian packages. You should have
 all of the following:
 
-::
+.. sourcecode:: bash
 
     cloudstack-common-4.2.0.amd64.deb
     cloudstack-management-4.2.0.amd64.deb
@@ -252,7 +252,7 @@ installed. This should have been installed when you pulled in the
 ``Packages.gz`` on a different system, be sure that it's installed there
 as well.
 
-::
+.. sourcecode:: bash
 
     $ sudo apt-get install dpkg-dev
 
@@ -260,14 +260,16 @@ The next step is to copy the DEBs to the directory where they can be
 served over HTTP. We'll use ``/var/www/cloudstack/repo`` in the
 examples, but change the directory to whatever works for you.
 
-::
+.. sourcecode:: bash
 
     sudo mkdir -p /var/www/cloudstack/repo/binary
     sudo cp *.deb /var/www/cloudstack/repo/binary
     sudo cd /var/www/cloudstack/repo/binary
     sudo dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz
 
-.. note:: You can safely ignore the warning about a missing override file.
+.. note:: 
+
+   You can safely ignore the warning about a missing override file.
 
 Now you should have all of the DEB packages and ``Packages.gz`` in the
 ``binary`` directory and available over HTTP. (You may want to use
@@ -282,14 +284,14 @@ repository file under ``/etc/apt/sources.list.d``. Use your preferred
 editor to create ``/etc/apt/sources.list.d/cloudstack.list`` with this
 line:
 
-::
+.. sourcecode:: bash
 
     deb http://server.url/cloudstack/repo binary ./
 
 Now that you have the repository info in place, you'll want to run
 another update so that APT knows where to find the CloudStack packages.
 
-::
+.. sourcecode:: bash
 
     $ sudo apt-get update
 
@@ -304,11 +306,11 @@ several prerequisites before you can build packages for CloudStack. Here
 we'll assume you're working with a 64-bit build of CentOS or Red Hat
 Enterprise Linux.
 
-::
+.. sourcecode:: bash
 
     # yum groupinstall "Development Tools"
 
-::
+.. sourcecode:: bash
 
     # yum install java-1.6.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
 
@@ -317,24 +319,24 @@ Maven. We're using Maven 3, so you'll want to `grab a Maven 3
 tarball <http://maven.apache.org/download.cgi>`__ and uncompress it in
 your home directory (or whatever location you prefer):
 
-::
+.. sourcecode:: bash
 
     $ tar zxvf apache-maven-3.0.4-bin.tar.gz
 
-::
+.. sourcecode:: bash
 
     $ export PATH=/usr/local/apache-maven-3.0.4//bin:$PATH
 
 Maven also needs to know where Java is, and expects the JAVA\_HOME
 environment variable to be set:
 
-::
+.. sourcecode:: bash
 
     $ export JAVA_HOME=/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/
 
 Verify that Maven is installed correctly:
 
-::
+.. sourcecode:: bash
 
     $ mvn --version
 
@@ -347,21 +349,22 @@ the source downloaded and have uncompressed the tarball into a local
 directory, you're going to be able to generate packages in just a few
 minutes.
 
-.. note:: Packaging has Changed. If you've created packages for CloudStack previously, you should be
-aware that the process has changed considerably since the project has moved to using Apache Maven. Please be sure to follow the steps in this section closely.
+.. note::
+
+   Packaging has Changed. If you've created packages for CloudStack previously, you should be aware that the process has changed considerably since the project has moved to using Apache Maven. Please be sure to follow the steps in this section closely.
 
 Generating RPMS
 ~~~~~~~~~~~~~~~
 
 Now that we have the prerequisites and source, you will cd to the `packaging/centos63/` directory.
 
-::
+.. sourcecode:: bash
 
     $ cd packaging/centos63
 
 Generating RPMs is done using the ``package.sh`` script:
 
-::
+.. sourcecode:: bash
 
     $./package.sh
 
@@ -370,7 +373,7 @@ That will run for a bit and then place the finished packages in
 
 You should see the following RPMs in that directory:
 
-::
+.. sourcecode:: bash
 
     cloudstack-agent-4.2.0.el6.x86_64.rpm
     cloudstack-awsapi-4.2.0.el6.x86_64.rpm
@@ -387,15 +390,15 @@ While RPMs is a useful packaging format - it's most easily consumed from
 Yum repositories over a network. The next step is to create a Yum Repo
 with the finished packages:
 
-::
+.. sourcecode:: bash
 
     $ mkdir -p ~/tmp/repo
 
-::
+.. sourcecode:: bash
 
     $ cp dist/rpmbuild/RPMS/x86_64/*rpm ~/tmp/repo/
 
-::
+.. sourcecode:: bash
 
     $ createrepo ~/tmp/repo
 
@@ -409,7 +412,7 @@ Now that your yum repository is populated with RPMs and metadata we need
 to configure the machines that need to install CloudStack. Create a file
 named ``/etc/yum.repos.d/cloudstack.repo`` with this information:
 
-::
+.. sourcecode:: bash
 
    [apache-cloudstack]
    name=Apache CloudStack
@@ -428,7 +431,9 @@ other non-Open Source Software (nonoss) plugins, you'll need to download
 a few components on your own and follow a slightly different procedure
 to build from source.
 
-.. warning:: Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`__.
+.. warning::
+
+   Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`__.
 
 #. 
 
@@ -453,7 +458,7 @@ to build from source.
    Once you have all the dependencies copied over, you'll be able to
    build CloudStack with the ``nonoss`` option:
 
-::
+.. sourcecode:: bash
 
     $ mvn clean
     $ mvn install -Dnonoss
@@ -464,76 +469,3 @@ to build from source.
    package it using the `Section 3.6, “Building RPMs from
    Source” <#sect-source-buildrpm>`__ or `Section 3.5, “Building DEB
    packages” <#sect-source-builddebs>`__ instructions.
-
-
-
-
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

@@ -179,7 +179,9 @@ requirements:
 
    At least 1 NIC
 
-.. note:: If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
+.. note::
+
+   If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
 
 -  
 
@@ -199,7 +201,9 @@ Hosts have additional requirements depending on the hypervisor. See the
 requirements listed at the top of the Installation section for your
 chosen hypervisor:
 
-.. warning:: Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
+.. warning::
+
+   Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to        work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
 
 Configure package repository
 ----------------------------
@@ -216,7 +220,9 @@ packages” <#sect-source-builddebs>`__ you may find pre-built DEB and RPM
 packages for your convenience linked from the
 `downloads <http://cloudstack.apache.org/downloads.html>`__ page.
 
-.. note:: These repositories contain both the Management Server and KVM Hypervisor packages.
+.. note::
+
+   These repositories contain both the Management Server and KVM Hypervisor packages.
 
 DEB package repository
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -229,19 +235,19 @@ Use your preferred editor and open (or create)
 ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
 repository to the file:
 
-::
+.. sourcecode:: bash
 
     deb http://cloudstack.apt-get.eu/ubuntu precise 4.2
 
 We now have to add the public key to the trusted keys.
 
-::
+.. sourcecode:: bash
 
     $ wget -O - http://cloudstack.apt-get.eu/release.asc|apt-key add -
 
 Now update your local apt cache.
 
-::
+.. sourcecode:: bash
 
     $ apt-get update
 
@@ -264,7 +270,7 @@ To add the CloudStack repository, create
 ``/etc/yum.repos.d/cloudstack.repo`` and insert the following
 information.
 
-::
+.. sourcecode:: bash
 
     [cloudstack]
     name=cloudstack
@@ -296,7 +302,9 @@ Server nodes will be in your cloud:
 In either case, each machine must meet the system requirements described
 in System Requirements.
 
-.. warning:: For the sake of security, be sure the public Internet can not access port 8096 or port 8250 on the Management Server.
+.. warning::
+
+   For the sake of security, be sure the public Internet can not access port 8096 or port 8250 on the Management Server.
 
 The procedure for installing the Management Server is:
 
@@ -343,7 +351,7 @@ node.
 
    Check for a fully qualified hostname.
 
-   ::
+   .. sourcecode:: bash
 
     hostname --fqdn
 
@@ -355,7 +363,7 @@ node.
 
    Make sure that the machine can reach the Internet.
 
-   ::
+   .. sourcecode:: bash
 
     ping www.cloudstack.org
 
@@ -363,15 +371,17 @@ node.
 
    Turn on NTP for time synchronization.
 
-    .. note:: NTP is required to synchronize the clocks of the servers in your cloud.
+    .. note::
+	
+	   NTP is required to synchronize the clocks of the servers in your cloud.
 
     Install NTP.
 
-    ::
+    .. sourcecode:: bash
 
       yum install ntp
 
-    ::
+    .. sourcecode:: bash
 
       apt-get install openntpd
 
@@ -387,7 +397,9 @@ The first step in installation, whether you are installing the
 Management Server on one host or many, is to install the software on a
 single node.
 
-.. note:: If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will come later.
+.. note::
+
+   If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will       come later.
 
 The CloudStack Management server can be installed using either RPM or
 DEB packages. These packages will depend on everything you need to run
@@ -398,14 +410,14 @@ Install on CentOS/RHEL
 
 We start by installing the required packages:
 
-::
+.. sourcecode:: bash
 
     yum install cloudstack-management
 
 Install on Ubuntu
 ^^^^^^^^^^^^^^^^^
 
-::
+.. sourcecode:: bash
 
     apt-get install cloudstack-management
 
@@ -448,11 +460,11 @@ Node” <#management-server-install-db-external>`__.
 
    Install MySQL from the package repository of your distribution:
 
-   ::
+   :.. sourcecode:: bash
 
      yum install mysql-server
 
-   ::
+   .. sourcecode:: bash
 
      apt-get install mysql-server
 
@@ -472,7 +484,7 @@ Node” <#management-server-install-db-external>`__.
 
    .. note:: On Ubuntu, you can also create a file `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
-   ::
+   .. sourcecode:: bash
 
     innodb_rollback_on_timeout=1
     innodb_lock_wait_timeout=600
@@ -487,13 +499,13 @@ Node” <#management-server-install-db-external>`__.
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   ::
+   .. sourcecode:: bash
 
     service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   ::
+   .. sourcecode:: bash
 
     service mysql restart
 
@@ -501,11 +513,13 @@ Node” <#management-server-install-db-external>`__.
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-   .. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
+   .. warning::
+   
+      On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
 
    Run the following command to secure your installation. You can answer "Y" to all questions.
 
-   ::
+   .. sourcecode:: bash
 
      mysql_secure_installation
 
@@ -525,7 +539,7 @@ Node” <#management-server-install-db-external>`__.
       In RHEL or CentOS, SELinux is installed and enabled by default.
       You can verify this with:
 
-      ::
+      .. sourcecode:: bash
 
           $ rpm -qa | grep selinux
 
@@ -537,19 +551,19 @@ Node” <#management-server-install-db-external>`__.
 
       In RHEL or CentOS:
 
-      ::
+      .. sourcecode:: bash
 
           vi /etc/selinux/config
 
       Change the following line
 
-      ::
+      .. sourcecode:: bash
 
           SELINUX=enforcing
 
       to this:
 
-      ::
+      .. sourcecode:: bash
 
           SELINUX=permissive
 
@@ -558,7 +572,7 @@ Node” <#management-server-install-db-external>`__.
       Set SELinux to permissive starting immediately, without requiring
       a system reboot.
 
-      ::
+      .. sourcecode:: bash
 
           $ setenforce permissive
 
@@ -610,7 +624,7 @@ Node” <#management-server-install-db-external>`__.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   ::
+   .. sourcecode:: bash
 
     cloudstack-setup-databases cloud:<dbpassword>@localhost \
     --deploy-as=root:<password> \
@@ -622,14 +636,16 @@ Node” <#management-server-install-db-external>`__.
    When this script is finished, you should see a message like
    “Successfully initialized the database.”
 
-   .. note:: If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
+   .. note::
+   
+      If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
 
 #. 
 
    If you are running the KVM hypervisor on the same machine with the
    Management Server, edit /etc/sudoers and add the following line:
 
-   ::
+   .. sourcecode:: bash
 
        Defaults:cloud !requiretty
 
@@ -639,7 +655,7 @@ Node” <#management-server-install-db-external>`__.
    for the Management Server. This command will set up iptables,
    sudoers, and start the Management Server.
 
-   ::
+   .. sourcecode:: bash
 
        # cloudstack-setup-management
 
@@ -662,11 +678,11 @@ Management Server Node” <#management-server-install-db-local>`__.
 
    Install MySQL from the package repository from your distribution:
 
-   ::
+   .. sourcecode:: bash
 
        yum install mysql-server
 
-   ::
+   .. sourcecode:: bash
 
        apt-get install mysql-server
 
@@ -679,9 +695,11 @@ Management Server Node” <#management-server-install-db-local>`__.
    number of Management Servers you are deploying. This example assumes
    two Management Servers.
 
-   .. note:: On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file and add these directives there. Don't forget to add [mysqld] on the first line of the file.
+   .. note::
+   
+      On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
-   ::
+   .. sourcecode:: bash
 
        innodb_rollback_on_timeout=1
        innodb_lock_wait_timeout=600
@@ -697,13 +715,13 @@ Management Server Node” <#management-server-install-db-local>`__.
    On RHEL/CentOS, MySQL doesn't automatically start after installation.
    Start it manually.
 
-   ::
+   .. sourcecode:: bash
 
        service mysqld start
 
    On Ubuntu, restart MySQL.
 
-   ::
+   .. sourcecode:: bash
 
        service mysql restart
 
@@ -711,9 +729,11 @@ Management Server Node” <#management-server-install-db-local>`__.
 
    (CentOS and RHEL only; not required on Ubuntu)
 
-   .. warning:: On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
+   .. warning::
+   
+      On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
 
-   ::
+   .. sourcecode:: bash
 
        mysql_secure_installation
 
@@ -725,7 +745,7 @@ Management Server Node” <#management-server-install-db-local>`__.
    On Ubuntu, UFW is the default firewall. Open the port with this
    command:
 
-   ::
+   .. sourcecode:: bash
 
        ufw allow mysql
 
@@ -736,7 +756,7 @@ Management Server Node” <#management-server-install-db-local>`__.
       Edit the /etc/sysconfig/iptables file and add the following line
       at the beginning of the INPUT chain.
 
-      ::
+      .. sourcecode:: bash
 
           -A INPUT -p tcp --dport 3306 -j ACCEPT
 
@@ -744,7 +764,7 @@ Management Server Node” <#management-server-install-db-local>`__.
 
       Now reload the iptables rules.
 
-      ::
+      .. sourcecode:: bash
 
           service iptables restart
 
@@ -798,7 +818,7 @@ Management Server Node” <#management-server-install-db-local>`__.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   ::
+   .. sourcecode:: bash
 
        cloudstack-setup-databases cloud:<dbpassword>@<ip address mysql server> \
        --deploy-as=root:<password> \
@@ -908,7 +928,7 @@ Modify the following list properties available in
 ``client/tomcatconf/componentContext.xml.in`` as applicable, to the
 desired order:
 
-::
+.. sourcecode:: xml
 
         <property name="UserAuthenticators">
              <list>
@@ -944,8 +964,9 @@ Cloud Infrastructure Overview). Both of these can be NFS shares. This
 section tells how to set up the NFS shares before adding the storage to
 CloudStack.
 
-.. note:: NFS is not the only option for primary or secondary storage. For example, you may use Ceph RBD, GlusterFS, iSCSI, and others. The choice of storage system will depend on the choice of hypervisor and whether
-you are dealing with primary or secondary storage.
+.. note::
+
+   NFS is not the only option for primary or secondary storage. For example, you may use Ceph RBD, GlusterFS, iSCSI, and others. The choice of storage system     will depend on the choice of hypervisor and whether you are dealing with primary or secondary storage.
 
 The requirements for primary and secondary storage are described in:
 
@@ -976,8 +997,9 @@ from the Management Server.
 The exact commands for the following steps may vary depending on your
 operating system version.
 
-.. warning:: (KVM only) Ensure that no volume is already mounted at your NFS mount
-point.
+.. warning::
+
+   (KVM only) Ensure that no volume is already mounted at your NFS mount point.
 
 #. 
 
@@ -985,7 +1007,7 @@ point.
    if you are using NFS for primary storage as well, create a second NFS
    share. For example:
 
-   ::
+   .. sourcecode:: bash
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -996,13 +1018,13 @@ point.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   ::
+   .. sourcecode:: bash
 
        # vi /etc/exports
 
    Insert the following line.
 
-   ::
+   .. sourcecode:: bash
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -1010,7 +1032,7 @@ point.
 
    Export the /export directory.
 
-   ::
+   .. sourcecode:: bash
 
        # exportfs -a
 
@@ -1019,7 +1041,7 @@ point.
    On the management server, create a mount point for secondary storage.
    For example:
 
-   ::
+   .. sourcecode:: bash
 
        # mkdir -p /mnt/secondary
 
@@ -1028,7 +1050,7 @@ point.
    Mount the secondary storage on your Management Server. Replace the
    example NFS server name and NFS share paths below with your own.
 
-   ::
+   .. sourcecode:: bash
 
        # mount -t nfs nfsservername:/nfs/share/secondary /mnt/secondary
 
@@ -1048,7 +1070,7 @@ operating system version.
 
    On RHEL/CentOS systems, you'll need to install the nfs-utils package:
 
-   ::
+   .. sourcecode:: bash
 
        $ sudo yum install nfs-utils
 
@@ -1057,7 +1079,7 @@ operating system version.
    On the Management Server host, create two directories that you will
    use for primary and secondary storage. For example:
 
-   ::
+   .. sourcecode:: bash
 
        # mkdir -p /export/primary
        # mkdir -p /export/secondary
@@ -1068,13 +1090,13 @@ operating system version.
    Export the NFS share(s) with
    rw,async,no\_root\_squash,no\_subtree\_check. For example:
 
-   ::
+   .. sourcecode:: bash
 
        # vi /etc/exports
 
    Insert the following line.
 
-   ::
+   .. sourcecode:: bash
 
        /export  *(rw,async,no_root_squash,no_subtree_check)
 
@@ -1082,7 +1104,7 @@ operating system version.
 
    Export the /export directory.
 
-   ::
+   .. sourcecode:: bash
 
        # exportfs -a
 
@@ -1090,13 +1112,13 @@ operating system version.
 
    Edit the /etc/sysconfig/nfs file.
 
-   ::
+   .. sourcecode:: bash
 
        # vi /etc/sysconfig/nfs
 
    Uncomment the following lines:
 
-   ::
+   .. sourcecode:: bash
 
        LOCKD_TCPPORT=32803
        LOCKD_UDPPORT=32769
@@ -1109,14 +1131,14 @@ operating system version.
 
    Edit the /etc/sysconfig/iptables file.
 
-   ::
+   .. sourcecode:: bash
 
        # vi /etc/sysconfig/iptables
 
    Add the following lines at the beginning of the INPUT chain, where
    <NETWORK> is the network that you'll be using:
 
-   ::
+   .. sourcecode:: bash
 
        -A INPUT -s <NETWORK> -m state --state NEW -p udp --dport 111 -j ACCEPT
        -A INPUT -s <NETWORK> -m state --state NEW -p tcp --dport 111 -j ACCEPT
@@ -1134,7 +1156,7 @@ operating system version.
 
    Run the following commands:
 
-   ::
+   .. sourcecode:: bash
 
        # service iptables restart
        # service iptables save
@@ -1145,7 +1167,7 @@ operating system version.
    domain to /etc/idmapd.conf on both the hypervisor host and Management
    Server.
 
-   ::
+   .. sourcecode:: bash
 
        # vi /etc/idmapd.conf
 
@@ -1153,7 +1175,7 @@ operating system version.
    idmapd.conf and replace the value in the file with your own domain.
    In the example below, the domain is company.com.
 
-   ::
+   .. sourcecode:: bash
 
        Domain = company.com
 
@@ -1178,7 +1200,7 @@ operating system version.
       Be sure NFS and rpcbind are running. The commands might be
       different depending on your OS. For example:
 
-      ::
+      .. sourcecode:: bash
 
           # service rpcbind start
           # service nfs start
@@ -1192,7 +1214,7 @@ operating system version.
       directories. For example, substitute your own management server
       name:
 
-      ::
+      .. sourcecode:: bash
 
           # mkdir /primary
           # mount -t nfs <management-server-name>:/export/primary
@@ -1230,7 +1252,7 @@ OS for the Management Server.
 
    Ensure that necessary services are started and set to start on boot.
 
-   ::
+   .. sourcecode:: bash
 
        # service rpcbind start
        # service nfs start
@@ -1244,7 +1266,7 @@ OS for the Management Server.
    command, see `Section 4.5.4.2, “Install the Database on a Separate
    Node” <#management-server-install-db-external>`__.)
 
-   ::
+   .. sourcecode:: bash
 
        # cloudstack-setup-databases cloud:dbpassword@dbhost -e encryption_type -m management_server_key -k database_key -i management_server_ip
 
@@ -1252,7 +1274,7 @@ OS for the Management Server.
 
    Configure the OS and start the Management Server:
 
-   ::
+   .. sourcecode:: bash
 
        # cloudstack-setup-management
 
@@ -1274,7 +1296,9 @@ Prepare the System VM Template
 Secondary storage must be seeded with a template that is used for
 CloudStack system VMs.
 
-.. note:: When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
+.. note::
+
+   When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
 
 #. 
 
@@ -1298,7 +1322,7 @@ CloudStack system VMs.
 
       For Hyper-V
 
-   ::
+   .. sourcecode:: bash
 
           # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2013-12-23-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
 
@@ -1306,7 +1330,7 @@ CloudStack system VMs.
 
       For XenServer:
 
-   ::
+   .. sourcecode:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
 
@@ -1314,7 +1338,7 @@ CloudStack system VMs.
 
       For vSphere:
 
-   ::
+   .. sourcecode:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova -h vmware -s <optional-management-server-secret-key>  -F
 
@@ -1322,7 +1346,7 @@ CloudStack system VMs.
 
       For KVM:
 
-   ::
+   .. sourcecode:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
 
@@ -1330,13 +1354,13 @@ CloudStack system VMs.
 
       For LXC:
 
-   ::
+   .. sourcecode:: bash
 
           # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
 
    On Ubuntu, use the following path instead:
 
-   ::
+   .. sourcecode:: bash
 
        # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt
 
@@ -1349,7 +1373,7 @@ CloudStack system VMs.
    When the script has finished, unmount secondary storage and remove
    the created directory.
 
-   ::
+   .. sourcecode:: bash
 
        # umount /mnt/secondary
        # rmdir /mnt/secondary
@@ -1382,72 +1406,4 @@ What should you do next?
    infrastructure. See Provision Your Cloud Infrastructure.
 
 
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
 .. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

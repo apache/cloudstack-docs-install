@@ -103,7 +103,7 @@ The Dell 62xx Series switch supports up to 1024 VLANs.
 
    Configure all the VLANs in the database.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vlan database
        vlan 200-999
@@ -113,7 +113,7 @@ The Dell 62xx Series switch supports up to 1024 VLANs.
 
    Configure Ethernet port 1/g1.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        interface ethernet 1/g1
        switchport mode general
@@ -146,7 +146,7 @@ GigabitEthernet1/0/1.
    1000. Since we only use VLANs up to 999, vtp transparent mode is not
    strictly required.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vtp mode transparent
        vlan 200-999
@@ -156,7 +156,7 @@ GigabitEthernet1/0/1.
 
    Configure GigabitEthernet1/0/1.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        interface GigabitEthernet1/0/1
        switchport trunk encapsulation dot1q
@@ -205,7 +205,7 @@ layer-2 switching.
 
    Configure all the VLANs in the database.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vlan database
        vlan 300-999
@@ -216,7 +216,7 @@ layer-2 switching.
    VLAN 201 is used to route untagged private IP addresses for pod 1,
    and pod 1 is connected to this layer-2 switch.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        interface range ethernet all
        switchport mode general
@@ -246,7 +246,7 @@ layer-2 switching.
    1000. Since we only use VLANs up to 999, vtp transparent mode is not
    strictly required.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        vtp mode transparent
        vlan 300-999
@@ -256,7 +256,7 @@ layer-2 switching.
 
    Configure all ports to dot1q and set 201 as the native VLAN.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        interface range GigabitEthernet 1/0/1-24
        switchport trunk encapsulation dot1q
@@ -303,7 +303,9 @@ NAT and site-to-site VPN can be used.
 External Guest Firewall Integration for Juniper SRX (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: Available only for guests using advanced networking.
+.. note::
+
+   Available only for guests using advanced networking.
 
 CloudStack provides for direct management of the Juniper SRX series of
 firewalls. This enables CloudStack to establish static NAT mappings from
@@ -321,7 +323,9 @@ mode.|
 
 CloudStack requires the Juniper SRX firewall to be configured as follows:
 
-.. note:: Supported SRX software version is 10.3 or higher.
+.. note::
+
+   Supported SRX software version is 10.3 or higher.
 
 #. 
 
@@ -380,7 +384,7 @@ CloudStack requires the Juniper SRX firewall to be configured as follows:
       here is the configuration where the public zone is "untrust" and
       the private zone is "trust":
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           root@cloud-srx# show firewall
           filter trust {
@@ -396,7 +400,7 @@ CloudStack requires the Juniper SRX firewall to be configured as follows:
       sample configuration output (for public interface ge-0/0/3.0,
       public security zone untrust, and private security zone trust) is:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           ge-0/0/3 {
               unit 0 {
@@ -632,9 +636,7 @@ Prerequisites
 
    Deploy and configure Cisco VNMC.
 
-   For more information, see `Installing Cisco Virtual Network
-   Management
-   Center <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_2_1_1/install_upgrade/guide/b_Cisco_VSG_for_VMware_vSphere_Rel_4_2_1_VSG_2_1_1_and_Cisco_VNMC_Rel_2_1_Installation_and_Upgrade_Guide_chapter_011.html>`__
+   For more information, see `Installing Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_2_1_1/install_upgrade/guide/b_Cisco_VSG_for_VMware_vSphere_Rel_4_2_1_VSG_2_1_1_and_Cisco_VNMC_Rel_2_1_Installation_and_Upgrade_Guide_chapter_011.html>`__
    and `Configuring Cisco Virtual Network Management
    Center <http://www.cisco.com/en/US/docs/unified_computing/vnmc/sw/1.2/VNMC_GUI_Configuration/b_VNMC_GUI_Configuration_Guide_1_2_chapter_010.html>`__.
 
@@ -965,13 +967,13 @@ the SSH credentials by registering on VNMC.
 
       Run the following:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           ASA1000V(config)# reload
 
       You are prompted with the following message:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           System config has been modified. Save? [Y]es/[N]o:"
 
@@ -981,7 +983,7 @@ the SSH credentials by registering on VNMC.
 
       You will get the following confirmation message:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           "Proceed with reload? [confirm]"
 
@@ -993,7 +995,7 @@ the SSH credentials by registering on VNMC.
 
    Register the ASA 1000v appliance with the VNMC:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        ASA1000V(config)# vnmc policy-agent
        ASA1000V(config-vnmc-policy-agent)# registration host vnmc_ip_address
@@ -1332,73 +1334,4 @@ Based on your deployment's needs, choose the appropriate value of
 guest.vlan.bits. Set it as described in Edit the Global Configuration
 Settings (Optional) section and restart the Management Server.
 
-
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
-.. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
-.. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
-.. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
-.. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
 .. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

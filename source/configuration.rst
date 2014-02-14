@@ -110,7 +110,7 @@ region.
    for the new region. The default region is automatically assigned a
    region ID of 1, so your first additional region might be region 2.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
       # cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
 
@@ -171,7 +171,7 @@ region.
 
       First, run this command to copy the contents of the database:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # mysqldump -u root -p<mysql_password> -h <region1_db_host> cloud account user domain > region1.sql
 
@@ -179,7 +179,7 @@ region.
 
       Then run this command to put the data onto the region 2 database:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # mysql -u root -p<mysql_password> -h <region2_db_host> cloud < region1.sql
 
@@ -187,7 +187,7 @@ region.
 
    Remove project accounts. Run these commands on the region 2 database:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
           # mysql> delete from account where type = 5;
 
@@ -195,7 +195,7 @@ region.
 
    Set the default zone as null:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
           # mysql> update account set default_zone_id = null;
 
@@ -215,9 +215,9 @@ repeat certain steps additional times for each additional region:
    Install CloudStack in each additional region. Set the region ID for
    each region during the database setup step.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
-       cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
+      cloudstack-setup-databases cloud:<dbpassword>@localhost --deploy-as=root:<password> -e <encryption_type> -m <management_server_key> -k <database_key> -r <region_id>
 
 #. 
 
@@ -273,7 +273,7 @@ repeat certain steps additional times for each additional region:
 
       First, run this command to copy the contents of the database:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # mysqldump -u root -p<mysql_password> -h <region1_db_host> cloud account user domain > region1.sql
 
@@ -282,7 +282,7 @@ repeat certain steps additional times for each additional region:
       Then run this command to put the data onto the new region's
       database. For example, for region 3:
 
-      .. code:: bash
+      .. sourcecode:: bash
 
           # mysql -u root -p<mysql_password> -h <region3_db_host> cloud < region1.sql
 
@@ -290,7 +290,7 @@ repeat certain steps additional times for each additional region:
 
    Remove project accounts. Run these commands on the region 3 database:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mysql> delete from account where type = 5;
 
@@ -298,7 +298,7 @@ repeat certain steps additional times for each additional region:
 
    Set the default zone as null:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mysql> update account set default_zone_id = null;
 
@@ -641,8 +641,10 @@ Basic Zone Configuration
    always add more hosts later. For an overview of what a host is, see
    About Hosts.
 
-   ..  note:: When you add a hypervisor host to CloudStack, the host must not have
-              any VMs already running.
+   ..  note::
+   
+        When you add a hypervisor host to CloudStack, the host must not have
+        any VMs already running.
 
    Before you can configure the host, you need to install the hypervisor
    software on the host. You will need to know which version of the
@@ -894,8 +896,10 @@ Advanced Zone Configuration
    always add more hosts later. For an overview of what a host is, see
    `Section 2.5, “About Hosts” <#about-hosts>`__.
 
-   .. note:: When you deploy CloudStack, the hypervisor host must not have any VMs
-             already running.
+   .. note::
+   
+       When you deploy CloudStack, the hypervisor host must not have any VMs
+       already running.
 
    Before you can configure the host, you need to install the hypervisor
    software on the host. You will need to know which version of the
@@ -1356,8 +1360,10 @@ Adding a Host
    supported, as well as crucial additional steps to configure the
    hypervisor hosts for use with CloudStack.
 
-   .. warning:: Be sure you have performed the additional CloudStack-specific configuration steps described in the hypervisor installation section
-                for your particular hypervisor.
+   .. warning::
+       
+	  Be sure you have performed the additional CloudStack-specific configuration steps described in the hypervisor installation section
+      for your particular hypervisor.
 
 #. 
 
@@ -1381,7 +1387,9 @@ XenServer and KVM hosts can be added to a cluster at any time.
 Requirements for XenServer and KVM Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning:: Make sure the hypervisor host does not have any VMs already running before you add it to CloudStack.
+.. warning::
+
+   Make sure the hypervisor host does not have any VMs already running before you add it to CloudStack.
 
 Configuration requirements:
 
@@ -1410,11 +1418,13 @@ For all additional hosts to be added to the cluster, run the following
 command. This will cause the host to join the master in a XenServer
 pool.
 
-.. code:: bash
+.. sourcecode:: bash
 
     # xe pool-join master-address=[master IP] master-username=root master-password=[your password]
 
-.. note:: When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks             in copied text.
+.. note:: 
+
+   When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line        breaks in copied text.
 
 With all hosts added to the XenServer pool, run the cloud-setup-bond
 script. This script will complete the configuration and setup of the
@@ -1430,7 +1440,7 @@ bonds on the new hosts in the cluster.
 
    Run the script:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # ./cloud-setup-bonding.sh
 
@@ -1574,9 +1584,13 @@ of that procedure. You can add primary storage servers at any time, such
 as when adding a new cluster or adding more servers to an existing
 cluster.
 
-.. warning:: When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share). Adding              the storage to CloudStack will destroy any existing data.
+.. warning:: 
 
-.. note:: Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the CloudStack              UI).
+   When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share).         Adding the storage to CloudStack will destroy any existing data.
+
+.. note:: 
+
+   Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the             CloudStack UI).
 
 Once primary storage has been added at the zone level, it can be managed
 through the CloudStack UI.
@@ -1714,11 +1728,17 @@ through the CloudStack UI.
 Configuring a Storage Plug-in
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: Primary storage that is based on a custom plug-in (ex. SolidFire) must be added through the CloudStack API (described later in this section). There is no support at this time through the CloudStack UI to add this type of primary storage (although most of its features are available through the CloudStack UI).
+.. note::
 
-.. note::  At this time, a custom storage plug-in, such as the SolidFire storage plug-in, can only be leveraged for data disks (through Disk Offerings).
+   Primary storage that is based on a custom plug-in (ex. SolidFire) must be added through the CloudStack API (described later in this section). There is no      support at this time through the CloudStack UI to add this type of primary storage (although most of its features are available through the CloudStack UI).
 
-.. note:: The SolidFire storage plug-in for CloudStack is part of the standard CloudStack install. There is no additional work required to add this component.
+.. note::
+
+   At this time, a custom storage plug-in, such as the SolidFire storage plug-in, can only be leveraged for data disks (through Disk Offerings).
+
+.. note::
+
+   The SolidFire storage plug-in for CloudStack is part of the standard CloudStack install. There is no additional work required to add this component.
 
 Adding primary storage that is based on the SolidFire plug-in enables
 CloudStack to provide hard quality-of-service (QoS) guarantees.
@@ -1849,7 +1869,9 @@ When you create a new zone, the first secondary storage is added as part
 of that procedure. You can add secondary storage servers at any time to
 add more servers to an existing zone.
 
-.. warning:: Ensure that nothing is stored on the server. Adding the server to CloudStack will destroy any existing data.
+.. warning::
+
+   Ensure that nothing is stored on the server. Adding the server to CloudStack will destroy any existing data.
 
 #. 
 
@@ -1900,15 +1922,19 @@ add more servers to an existing zone.
       for zone-based storage, and the others for region-wide storage.
       For Hyper-V, select SMB/CIFS.
 
-      .. warning:: Heterogeneous Secondary Storage is not supported in Regions. You can use only a single NFS, S3, or Swift account per region.
+      .. warning::
+	  
+	     Heterogeneous Secondary Storage is not supported in Regions. You can use only a single NFS, S3, or Swift account per region.
 
    -  
 
       Create NFS Secondary Staging Store. This box must always be
       checked.
 
-      .. warning:: Even if the UI allows you to uncheck this box, do not do so. This checkbox and the three fields below it must be filled in. Even
-      when Swift or S3 is used as the secondary storage provider, an NFS staging storage in each zone is still required.
+      .. warning:: 
+	  
+	     Even if the UI allows you to uncheck this box, do not do so. This checkbox and the three fields below it must be filled in. Even
+         when Swift or S3 is used as the secondary storage provider, an NFS staging storage in each zone is still required.
 
    -  
 
@@ -2216,73 +2242,7 @@ zone      blacklisted.routes                                         Routes that
 ========  =========================================================  ======================================================================================================================================  
 
 
-
-.. |1000-foot-view.png: Overview of CloudStack| image:: ./_static/images/1000-foot-view.png
-.. |basic-deployment.png: Basic two-machine deployment| image:: ./_static/images/basic-deployment.png
-.. |infrastructure_overview.png: Nested organization of a zone| image:: ./_static/images/infrastructure-overview.png
-.. |region-overview.png: Nested structure of a region.| image:: ./_static/images/region-overview.png
-.. |zone-overview.png: Nested structure of a simple zone.| image:: ./_static/images/zone-overview.png
-.. |pod-overview.png: Nested structure of a simple pod| image:: ./_static/images/pod-overview.png
-.. |cluster-overview.png: Structure of a simple cluster| image:: ./_static/images/cluster-overview.png
-.. |installation-complete.png: Finished installs with single Management Server and multiple Management Servers| image:: ./_static/images/installation-complete.png
-.. |change-password.png: button to change a user's password| image:: ./_static/images/change-password.png
 .. |provisioning-overview.png: Conceptual overview of a basic deployment| image:: ./_static/images/provisioning-overview.png
 .. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
 .. |addcluster.png: add a cluster| image:: ./_static/images/add-cluster.png
 .. |ConsoleButton.png: button to launch a console| image:: ./_static/images/console-icon.png
-.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
-.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
-.. |traffic-type.png: virtual switch type| image:: ./_static/images/traffic-type.png
-.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvSwitch-config.png
-.. |Small-Scale Deployment| image:: ./_static/images/small-scale-deployment.png
-.. |Large-Scale Redundant Setup| image:: ./_static/images/large-scale-redundant-setup.png
-.. |Multi-Node Management Server| image:: ./_static/images/multi-node-management-server.png
-.. |Example Of A Multi-Site Deployment| image:: ./_static/images/multi-site-deployment.png
-.. |Separate Storage Network| image:: ./_static/images/separate-storage-network.png
-.. |NIC Bonding And Multipath I/O| image:: ./_static/images/nic-bonding-and-multipath-io.png
-.. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
-.. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
-.. |parallel-mode.png: adding a firewall and load balancer in parallel mode.| image:: ./_static/images/parallel-mode.png
-.. |guest-traffic-setup.png: Depicts a guest traffic setup| image:: ./_static/images/guest-traffic-setup.png
-.. |networksinglepod.png: diagram showing logical view of network in a pod| image:: ./_static/images/network-singlepod.png
-.. |networksetupzone.png: Depicts network setup in a single zone| image:: ./_static/images/network-setup-zone.png
-.. |addguestnetwork.png: Add Guest network setup in a single zone| image:: ./_static/images/add-guest-network.png
-.. |remove-nic.png: button to remove a NIC| image:: ./_static/images/remove-nic.png
-.. |set-default-nic.png: button to set a NIC as default one.| image:: ./_static/images/set-default-nic.png
-.. |EditButton.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |edit-icon.png: button to edit a network| image:: ./_static/images/edit-icon.png
-.. |addAccount-icon.png: button to assign an IP range to an account.| image:: ./_static/images/addAccount-icon.png
-.. |eip-ns-basiczone.png: Elastic IP in a NetScaler-enabled Basic Zone.| image:: ./_static/images/eip-ns-basiczone.png
-.. |add-ip-range.png: adding an IP range to a network.| image:: ./_static/images/add-ip-range.png
-.. |httpaccess.png: allows inbound HTTP access from anywhere| image:: ./_static/images/http-access.png
-.. |autoscaleateconfig.png: Configuring AutoScale| image:: ./_static/images/autoscale-config.png
-.. |EnableDisable.png: button to enable or disable AutoScale.| image:: ./_static/images/enable-disable-autoscale.png
-.. |gslb.png: GSLB architecture| image:: ./_static/images/gslb.png
-.. |gslb-add.png: adding a gslb rule| image:: ./_static/images/add-gslb.png
-.. |ReleaseIPButton.png: button to release an IP| image:: ./_static/images/release-ip-icon.png
-.. |EnableNATButton.png: button to enable NAT| image:: ./_static/images/enable-disable.png
-.. |egress-firewall-rule.png: adding an egress firewall rule| image:: ./_static/images/egress-firewall-rule.png
-.. |AttachDiskButton.png: button to attach a volume| image:: ./_static/images/vpn-icon.png
-.. |vpn-icon.png: button to enable VPN| image:: ./_static/images/vpn-icon.png
-.. |addvpncustomergateway.png: adding a customer gateway.| image:: ./_static/images/add-vpn-customer-gateway.png
-.. |edit.png: button to edit a VPN customer gateway| image:: ./_static/images/edit-icon.png
-.. |delete.png: button to remove a VPN customer gateway| image:: ./_static/images/delete-button.png
-.. |createvpnconnection.png: creating a VPN connection to the customer gateway.| image:: ./_static/images/create-vpn-connection.png
-.. |remove-vpn.png: button to remove a VPN connection| image:: ./_static/images/remove-vpn.png
-.. |reset-vpn.png: button to reset a VPN connection| image:: ./_static/images/reset-vpn.png
-.. |mutltier.png: a multi-tier setup.| image:: ./_static/images/multi-tier-app.png
-.. |add-vpc.png: adding a vpc.| image:: ./_static/images/add-vpc.png
-.. |add-tier.png: adding a tier to a vpc.| image:: ./_static/images/add-tier.png
-.. |replace-acl-icon.png: button to replace an ACL list| image:: ./_static/images/replace-acl-icon.png
-.. |add-new-gateway-vpc.png: adding a private gateway for the VPC.| image:: ./_static/images/add-new-gateway-vpc.png
-.. |replace-acl-icon.png: button to replace the default ACL behaviour.| image:: ./_static/images/replace-acl-icon.png
-.. |add-vm-vpc.png: adding a VM to a vpc.| image:: ./_static/images/add-vm-vpc.png
-.. |addvm-tier-sharednw.png: adding a VM to a VPC tier and shared network.| image:: ./_static/images/addvm-tier-sharednw.png
-.. |release-ip-icon.png: button to release an IP.| image:: ./_static/images/release-ip-icon.png
-.. |enable-disable.png: button to enable Static NAT.| image:: ./_static/images/enable-disable.png
-.. |select-vmstatic-nat.png: selecting a tier to apply staticNAT.| image:: ./_static/images/select-vm-staticnat-vpc.png
-.. |vpc-lb.png: Configuring internal LB for VPC| image:: ./_static/images/vpc-lb.png
-.. |del-tier.png: button to remove a tier| image:: ./_static/images/del-tier.png
-.. |remove-vpc.png: button to remove a VPC| image:: ./_static/images/remove-vpc.png
-.. |edit-icon.png: button to edit a VPC| image:: ./_static/images/edit-icon.png
-.. |restart-vpc.png: button to restart a VPC| image:: ./_static/images/restart-vpc.png

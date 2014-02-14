@@ -51,7 +51,7 @@ Steps to Install the Usage Server
 
    Run ./install.sh (NOT VALID, NEED CORRECTION)
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # ./install.sh
 
@@ -62,7 +62,7 @@ Steps to Install the Usage Server
 
    Choose "S" to install the Usage Server.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
           > S
 
@@ -70,7 +70,7 @@ Steps to Install the Usage Server
 
    Once installed, start the Usage Server with the following command.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service cloudstack-usage start
 
@@ -102,7 +102,9 @@ standby node that receives all write operations from the master and
 applies them to a local, redundant copy of the database. The following
 steps are a guide to implementing MySQL replication.
 
-.. note:: Creating a replica is not a backup solution. You should develop a backup procedure for the MySQL data that is distinct from replication.
+.. note:: 
+
+   Creating a replica is not a backup solution. You should develop a backup procedure for the MySQL data that is distinct from replication.
 
 #. 
 
@@ -113,7 +115,7 @@ steps are a guide to implementing MySQL replication.
    Edit my.cnf on the master and add the following in the [mysqld]
    section below datadir.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        log_bin=mysql-bin
        server_id=1
@@ -127,13 +129,13 @@ steps are a guide to implementing MySQL replication.
 
    Restart the MySQL service. On RHEL/CentOS systems, use:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service mysqld restart
 
    On Debian/Ubuntu systems, use:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service mysql restart
 
@@ -143,7 +145,7 @@ steps are a guide to implementing MySQL replication.
    will use the "cloud-repl" user with the password "password". This
    assumes that master and slave run on the 172.16.1.0/24 network.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # mysql -u root
        mysql> create user 'cloud-repl'@'172.16.1.%' identified by 'password';
@@ -163,7 +165,7 @@ steps are a guide to implementing MySQL replication.
 
    Retrieve the current position of the database.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # mysql -u root
        mysql> show master status;
@@ -186,7 +188,7 @@ steps are a guide to implementing MySQL replication.
    Complete the master setup. Returning to your first session on the
    master, release the locks and exit MySQL.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mysql> unlock tables;
 
@@ -195,7 +197,7 @@ steps are a guide to implementing MySQL replication.
    Install and configure the slave. On the slave server, run the
    following commands.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # yum install mysql-server
        # chkconfig mysqld on
@@ -205,7 +207,7 @@ steps are a guide to implementing MySQL replication.
    Edit my.cnf and add the following lines in the [mysqld] section below
    datadir.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        server_id=2
        innodb_rollback_on_timeout=1
@@ -215,13 +217,13 @@ steps are a guide to implementing MySQL replication.
 
    Restart MySQL. Use "mysqld" on RHEL/CentOS systems:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service mysqld restart
 
    On Ubuntu/Debian systems use "mysql."
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service mysql restart
 
@@ -231,7 +233,7 @@ steps are a guide to implementing MySQL replication.
    Replace the IP address, password, log file, and position with the
    values you have used in the previous steps.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mysql> change master to
            -> master_host='172.16.1.217',
@@ -244,7 +246,7 @@ steps are a guide to implementing MySQL replication.
 
    Then start replication on the slave.
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        mysql> start slave;
 
@@ -289,7 +291,7 @@ administrator. In the event of a database failure you should:
 
    Restart the Management Servers:
 
-   .. code:: bash
+   .. sourcecode:: bash
 
        # service cloudstack-management start
 
@@ -308,9 +310,13 @@ CloudStack, listening on a different port. The Amazon Web Services (AWS)
 compatible interface provides the EC2 SOAP and Query APIs as well as the
 S3 REST API.
 
-.. note:: This service was previously enabled by separate software called CloudBridge. It is now fully integrated with the CloudStack management server.
+.. note::
 
-.. warning:: The compatible interface for the EC2 Query API and the S3 API are Work In Progress. The S3 compatible API offers a way to store data on the management server file system, it is not an implementation of the S3 backend.
+   This service was previously enabled by separate software called CloudBridge. It is now fully integrated with the CloudStack management server.
+
+.. warning::
+
+   The compatible interface for the EC2 Query API and the S3 API are Work In Progress. The S3 compatible API offers a way to store data on the management         server file system, it is not an implementation of the S3 backend.
 
 Limitations
 
@@ -346,7 +352,9 @@ Supported API Version
    tools v. 1.3.6230*, which can be downloaded at
    `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`__.
 
-.. note:: Work is underway to support a more recent version of the EC2 API
+.. note:: 
+
+   Work is underway to support a more recent version of the EC2 API
 
 Enabling the EC2 and S3 Compatible Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -366,14 +374,16 @@ prior to using it.
    the Amazon service offerings. You can do this through the CloudStack
    UI as described in the Administration Guide.
 
-   .. warning:: Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use.
+   .. warning::
+   
+      Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use.
 
 #. 
 
    If you did not already do so when you set the configuration parameter
    in step `1 <#set-global-config>`__, restart the Management Server.
 
-   ::
+   .. sourcecode:: bash
 
      # service cloudstack-management restart
 
@@ -397,7 +407,7 @@ integration port on which you can make unauthenticated calls. In Global
 Settings set the port to 8096 and subsequently call the
 *updateConfiguration* method. The following urls shows you how:
 
-::
+.. sourcecode:: bash
 
     http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
     http://localhost:8096/client/api?command=updateConfiguration&name=enable.ec2.api&value=true
@@ -421,7 +431,9 @@ instance type API name.|
 Modifying the AWS API Port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: (Optional) The AWS API listens for requests on port 7080. If you prefer AWS API to listen on another port, you can change it as follows:
+.. note::
+
+   (Optional) The AWS API listens for requests on port 7080. If you prefer AWS API to listen on another port, you can change it as follows:
 
    #. 
 
@@ -489,7 +501,7 @@ To use the EC2 command-line tools, the user must perform these steps:
    CloudStack management server and port. In a bash shell do the
    following.
 
-.. code:: bash
+.. sourcecode:: bash
 
     $ export EC2_CERT=/path/to/cert.pem
     $ export EC2_PRIVATE_KEY=/path/to/private_key.pem
@@ -507,23 +519,25 @@ command-line parameters to any CloudStack-supported EC2 command:
 
 Specifies a connection timeout (in seconds)
 
-.. code:: bash
+.. sourcecode:: bash
                                
      --connection-timeout TIMEOUT
 
 Specifies a request timeout (in seconds)
 
-.. code:: bash
+.. sourcecode:: bash
 
     --request-timeout TIMEOUT
 
 Example:
 
-.. code:: bash
+.. sourcecode:: bash
 
     ec2-run-instances 2 –z us-test1 –n 1-3 --connection-timeout 120 --request-timeout 120
 
-.. note:: The timeouts optional arguments are not specific to CloudStack.
+.. note::
+
+    The timeouts optional arguments are not specific to CloudStack.
 
 Supported AWS API Calls
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -730,7 +744,7 @@ own and update the endpoint.
 Example 1. An EC2 Boto example
                                  
 
-.. code:: python
+.. sourcecode:: python
 
     #!/usr/bin/env python
 
@@ -771,7 +785,7 @@ Second is an S3 example. The S3 interface in CloudStack is obsolete. If you need
 Example 2. An S3 Boto Example
                                 
 
-.. code:: python
+.. sourcecode:: python
 
     #!/usr/bin/env python
 
