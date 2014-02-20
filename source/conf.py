@@ -198,7 +198,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'CloudStackInstallationDocumentation.tex', u'CloudStack Installation Documentation Documentation',
+  ('index', 'CloudStackInstallationDocumentation.tex', u'CloudStack Installation Documentation',
    u'Apache Software Foundation', 'manual'),
 ]
 
@@ -228,7 +228,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'cloudstackinstallationdocumentation', u'CloudStack Installation Documentation Documentation',
+    ('index', 'cloudstackinstallationdocumentation', u'CloudStack Installation Documentation',
      [u'Apache Software Foundation'], 1)
 ]
 
@@ -242,7 +242,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'CloudStackInstallationDocumentation', u'CloudStack Installation Documentation Documentation',
+  ('index', 'CloudStackInstallationDocumentation', u'CloudStack Installation Documentation',
    u'Apache Software Foundation', 'CloudStackInstallationDocumentation', 'One line description of project.',
    'Miscellaneous'),
 ]
