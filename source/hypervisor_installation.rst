@@ -356,17 +356,6 @@ cloudstack-agent and should already be installed.
 
 #. 
 
-   In order to have the VNC Console work we have to make sure it will
-   bind on 0.0.0.0. We do this by editing ``/etc/libvirt/qemu.conf``
-
-   Make sure this parameter is set:
-
-   .. sourcecode:: bash
-
-       vnc_listen = "0.0.0.0"
-
-#. 
-
    Restart libvirt
 
    In RHEL or CentOS:
