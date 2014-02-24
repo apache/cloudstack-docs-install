@@ -59,13 +59,6 @@ Source Installation
 
     building_from_source
 
-User Interface
----------------
-.. toctree::
-    :maxdepth: 2
-
-    ui 
-
 Configuration
 -------------
 .. toctree::
