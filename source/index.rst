@@ -24,13 +24,6 @@ Welcome to CloudStack Installation Documentation
 .. toctree::
    :maxdepth: 2
 
-Concepts
---------
-.. toctree::
-    :maxdepth: 2
-
-    concepts
-
 Choosing a Deployment Architecture
 ----------------------------------
 .. toctree::
@@ -93,10 +86,3 @@ Optional Installation
     :maxdepth: 2
 
     optional_installation
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
