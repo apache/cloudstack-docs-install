@@ -38,8 +38,7 @@ Getting the release
 -------------------
 
 You can download the latest CloudStack release from the `Apache
-CloudStack project download
-page <http://cloudstack.apache.org/downloads.html>`__.
+CloudStack project download page <http://cloudstack.apache.org/downloads.html>`_.
 
 Prior releases are available via archive.apache.org as well. See the
 downloads page for more information on archived releases.
@@ -78,7 +77,7 @@ Getting the KEYS
 ~~~~~~~~~~~~~~~~
 
 To enable you to verify the GPG signature, you will need to download the
-`KEYS <http://www.apache.org/dist/incubator/cloudstack/KEYS>`__ file.
+`KEYS <http://www.apache.org/dist/cloudstack/KEYS>`_ file.
 
 You next need to import those keys, which you can do by running:
 
@@ -94,7 +93,7 @@ To check the signature, run the following command:
 
 .. sourcecode:: bash
 
-    $ gpg --verify apache-cloudstack-4.0.0-incubating-src.tar.bz2.asc
+    $ gpg --verify apache-cloudstack-4.3.0-src.tar.bz2.asc
 
 If the signature is valid you will see a line of output that contains
 'Good signature'.
@@ -108,7 +107,7 @@ You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-    $ gpg --print-md MD5 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.md5
+    $ gpg --print-md MD5 apache-cloudstack-4.3.0-src.tar.bz2 | diff - apache-cloudstack-4.3.0-src.tar.bz2.md5
 
 If this successfully completes you should see no output. If there is any
 output from them, then there is a difference between the hash you
@@ -123,7 +122,7 @@ release. You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-    $ gpg --print-md SHA512 apache-cloudstack-4.0.0-incubating-src.tar.bz2 | diff - apache-cloudstack-4.0.0-incubating-src.tar.bz2.sha
+    $ gpg --print-md SHA512 apache-cloudstack-4.3.0-src.tar.bz2 | diff - apache-cloudstack-4.3.0-src.tar.bz2.sha
 
 If this command successfully completes you should see no output. If
 there is any output from them, then there is a difference between the
@@ -179,13 +178,13 @@ with a single command as follows:
 
 .. sourcecode:: bash
 
-    $ tar -jxvf apache-cloudstack-4.1.0.src.tar.bz2
+    $ tar -jxvf apache-cloudstack-4.3.0-src.tar.bz2
 
 You can now move into the directory:
 
 .. sourcecode:: bash
 
-    $ cd ./apache-cloudstack-4.1.0-src
+    $ cd ./apache-cloudstack-4.3.0-src
 
 Building DEB packages
 ---------------------
@@ -228,13 +227,13 @@ all of the following:
 
 .. sourcecode:: bash
 
-    cloudstack-common-4.2.0.amd64.deb
-    cloudstack-management-4.2.0.amd64.deb
-    cloudstack-agent-4.2.0.amd64.deb
-    cloudstack-usage-4.2.0.amd64.deb
-    cloudstack-awsapi-4.2.0.amd64.deb
-    cloudstack-cli-4.2.0.amd64.deb
-    cloudstack-docs-4.2.0.amd64.deb
+    cloudstack-common-4.3.0.amd64.deb
+    cloudstack-management-4.3.0.amd64.deb
+    cloudstack-agent-4.3.0.amd64.deb
+    cloudstack-usage-4.3.0.amd64.deb
+    cloudstack-awsapi-4.3.0.amd64.deb
+    cloudstack-cli-4.3.0.amd64.deb
+    cloudstack-docs-4.3.0.amd64.deb
 
 Setting up an APT repo
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -300,8 +299,8 @@ You can now move on to the instructions under Install on Ubuntu.
 Building RPMs from Source
 -------------------------
 
-As mentioned previously in `Section 3.3, “Prerequisites for building
-Apache CloudStack” <#sect-source-prereq>`__, you will need to install
+As mentioned previously in `“Prerequisites for building
+Apache CloudStack” <#prerequisites-for-building-apache-cloudstack>`_, you will need to install
 several prerequisites before you can build packages for CloudStack. Here
 we'll assume you're working with a 64-bit build of CentOS or Red Hat
 Enterprise Linux.
@@ -316,7 +315,7 @@ Enterprise Linux.
 
 Next, you'll need to install build-time dependencies for CloudStack with
 Maven. We're using Maven 3, so you'll want to `grab a Maven 3
-tarball <http://maven.apache.org/download.cgi>`__ and uncompress it in
+tarball <http://maven.apache.org/download.cgi>`_ and uncompress it in
 your home directory (or whatever location you prefer):
 
 .. sourcecode:: bash
@@ -325,7 +324,7 @@ your home directory (or whatever location you prefer):
 
 .. sourcecode:: bash
 
-    $ export PATH=/usr/local/apache-maven-3.0.4//bin:$PATH
+    $ export PATH=/usr/local/apache-maven-3.0.4/bin:$PATH
 
 Maven also needs to know where Java is, and expects the JAVA\_HOME
 environment variable to be set:
@@ -375,13 +374,13 @@ You should see the following RPMs in that directory:
 
 .. sourcecode:: bash
 
-    cloudstack-agent-4.2.0.el6.x86_64.rpm
-    cloudstack-awsapi-4.2.0.el6.x86_64.rpm
-    cloudstack-cli-4.2.0.el6.x86_64.rpm
-    cloudstack-common-4.2.0.el6.x86_64.rpm
-    cloudstack-docs-4.2.0.el6.x86_64.rpm
-    cloudstack-management-4.2.0.el6.x86_64.rpm
-    cloudstack-usage-4.2.0.el6.x86_64.rpm
+    cloudstack-agent-4.3.0.el6.x86_64.rpm
+    cloudstack-awsapi-4.3.0.el6.x86_64.rpm
+    cloudstack-cli-4.3.0.el6.x86_64.rpm
+    cloudstack-common-4.3.0.el6.x86_64.rpm
+    cloudstack-docs-4.3.0.el6.x86_64.rpm
+    cloudstack-management-4.3.0.el6.x86_64.rpm
+    cloudstack-usage-4.3.0.el6.x86_64.rpm
 
 Creating a yum repo
 ^^^^^^^^^^^^^^^^^^^
@@ -433,7 +432,7 @@ to build from source.
 
 .. warning::
 
-   Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`__.
+   Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`_.
 
 #. 
 
@@ -442,30 +441,28 @@ to build from source.
 
    Because these modules require dependencies that can't be distributed
    with CloudStack you'll need to download them yourself. Links to the
-   most recent dependencies are listed on the `*How to build on master
-   branch* <https://cwiki.apache.org/CLOUDSTACK/how-to-build-on-master-branch.html>`__
+   most recent dependencies are listed on the `*How to build CloudStack* <https://cwiki.apache.org/confluence/display/CLOUDSTACK/How+to+build+CloudStack>`_
    page on the wiki.
 
 #. 
 
    You may also need to download
-   `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`__,
+   `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`_,
    which was removed due to licensing issues. You'll copy vhd-util to
    the ``scripts/vm/hypervisor/xenserver/`` directory.
 
 #. 
 
    Once you have all the dependencies copied over, you'll be able to
-   build CloudStack with the ``nonoss`` option:
+   build CloudStack with the ``noredist`` option:
 
 .. sourcecode:: bash
 
     $ mvn clean
-    $ mvn install -Dnonoss
+    $ mvn install -Dnoredist
 
 #. 
 
-   Once you've built CloudStack with the ``nonoss`` profile, you can
-   package it using the `Section 3.6, “Building RPMs from
-   Source” <#sect-source-buildrpm>`__ or `Section 3.5, “Building DEB
-   packages” <#sect-source-builddebs>`__ instructions.
+   Once you've built CloudStack with the ``noredist`` profile, you can
+   package it using the `“Building RPMs from Source” <#building-rpms-from-source>`_ 
+   or `“Building DEB packages” <#building-deb-packages>`_ instructions.
