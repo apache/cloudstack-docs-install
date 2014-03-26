@@ -344,13 +344,13 @@ Supported API Version
 
    The EC2 interface complies with Amazon's WDSL version dated November
    15, 2010, available at
-   `http://ec2.amazonaws.com/doc/2010-11-15/ <http://ec2.amazonaws.com/doc/2010-11-15/>`__.
+   `http://ec2.amazonaws.com/doc/2010-11-15/ <http://ec2.amazonaws.com/doc/2010-11-15/>`_.
 
 -  
 
    The interface is compatible with the EC2 command-line tools *EC2
    tools v. 1.3.6230*, which can be downloaded at
-   `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`__.
+   `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`_.
 
 .. note:: 
 
@@ -366,7 +366,7 @@ prior to using it.
 #. 
 
    Set the global configuration parameters for each service to true. See
-   `Chapter 7, *Setting Configuration Parameters* <#global-config>`__.
+   `*Setting Global Configuration Parameters* <configuration.html#setting-global-configuration-parameters>`_.
 
 #. 
 
@@ -381,7 +381,7 @@ prior to using it.
 #. 
 
    If you did not already do so when you set the configuration parameter
-   in step `1 <#set-global-config>`__, restart the Management Server.
+   in step 1, restart the Management Server.
 
    .. sourcecode:: bash
 
@@ -419,7 +419,7 @@ Creating EC2 Compatible Service Offerings
 
 You will also need to define compute service offerings with names
 compatible with the `Amazon EC2 instance
-types <http://aws.amazon.com/ec2/instance-types/>`__ API names (e.g
+types <http://aws.amazon.com/ec2/instance-types/>`_ API names (e.g
 m1.small,m1.large). This can be done via the CloudStack GUI. Go under
 *Service Offerings* select *Compute offering* and either create a new
 compute offering or modify an existing one, ensuring that the name
@@ -491,7 +491,7 @@ To use the EC2 command-line tools, the user must perform these steps:
 
    Be sure you have the right version of EC2 Tools. The supported
    version is available at
-   `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`__.
+   `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`_.
 
 #. 
 

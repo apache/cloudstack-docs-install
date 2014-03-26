@@ -18,71 +18,63 @@ Configuring your CloudStack Installation
 
 This section tells how to add regions, zones, pods, clusters, hosts,
 storage, and networks to your cloud. If you are unfamiliar with these
-entities, please begin by looking through `Chapter 2, *Cloud
-Infrastructure Concepts* <#cloud-infrastructure-concepts>`__.
+entities, please begin by looking through `*Cloud Infrastructure Concepts* <http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-infrastructure-concepts>`_.
 
 Overview of Provisioning Steps
 ------------------------------
 
 After the Management Server is installed and running, you can add the
 compute resources for it to manage. For an overview of how a CloudStack
-cloud infrastructure is organized, see `Section 1.3.2, “Cloud
-Infrastructure Overview” <#cloud-infrastructure-overview>`__.
+cloud infrastructure is organized, see `“Cloud Infrastructure Overview” <http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-infrastructure-overview>`_.
 
 To provision the cloud infrastructure, or to scale it up at any time,
 follow these procedures:
 
 #. 
 
-   Define regions (optional). See `Section 6.2, “Adding Regions
-   (optional)” <#region-add>`__.
+   Define regions (optional). See :ref:`adding-regions`.
 
 #. 
 
-   Add a zone to the region. See `Section 6.3, “Adding a
-   Zone” <#zone-add>`__.
+   Add a zone to the region. See :ref:`adding-a-zone`.
 
 #. 
 
-   Add more pods to the zone (optional). See `Section 6.4, “Adding a
-   Pod” <#pod-add>`__.
+   Add more pods to the zone (optional). See :ref:`adding-a-pod`.
 
 #. 
 
-   Add more clusters to the pod (optional). See `Section 6.5, “Adding a
-   Cluster” <#cluster-add>`__.
+   Add more clusters to the pod (optional). See :ref:`adding-a-cluster`.
 
 #. 
 
-   Add more hosts to the cluster (optional). See `Section 6.6, “Adding a
-   Host” <#host-add>`__.
+   Add more hosts to the cluster (optional). See :ref:`adding-a-host`.
 
 #. 
 
-   Add primary storage to the cluster. See `Section 6.7, “Add Primary
-   Storage” <#primary-storage-add>`__.
+   Add primary storage to the cluster. See :ref:`add-primary-storage`.
 
 #. 
 
-   Add secondary storage to the zone. See `Section 6.8, “Add Secondary
-   Storage” <#secondary-storage-add>`__.
+   Add secondary storage to the zone. See :ref:`add-secondary-storage`.
 
 #. 
 
-   Initialize and test the new cloud. See `Section 6.9, “Initialize and
-   Test” <#initialize-and-test>`__.
+   Initialize and test the new cloud. See :ref:`initialize-and-test`.
 
 When you have finished these steps, you will have a deployment with the
 following basic structure:
 
 |provisioning-overview.png: Conceptual overview of a basic deployment|
 
+.. _adding-regions:
+
 Adding Regions (optional)
 -------------------------
 
 Grouping your cloud resources into geographic regions is an optional
 step when provisioning the cloud. For an overview of regions, see
-`Section 2.1, “About Regions” <#about-regions>`__.
+`“About Regions” <http://docs.cloudstack.apache.org/en/latest/concepts.html#about-regions>`_.
 
 The First Region: The Default Region
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -333,6 +325,8 @@ in a 3-region cloud:
 
    Repeat these steps for <region.2.IP.address>:8080/client.
 
+.. _adding-a-zone:
+
 Adding a Zone
 -------------
 
@@ -342,8 +336,7 @@ and secondary storage.
 
 #. 
 
-   Log in to the CloudStack UI as the root administrator. See
-   `Section 5.1, “Log In to the UI” <#log-in>`__.
+   Log in to the CloudStack UI as the root administrator. See `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_.
 
 #. 
 
@@ -382,13 +375,11 @@ and secondary storage.
 
    -  
 
-      `Section 6.3.1, “Basic Zone
-      Configuration” <#basic-zone-configuration>`__
+      `“Basic Zone Configuration” <#basic-zone-configuration>`_
 
    -  
 
-      `Section 6.3.2, “Advanced Zone
-      Configuration” <#advanced-zone-configuration>`__
+      `“Advanced Zone Configuration” <#advanced-zone-configuration>`_
 
 Basic Zone Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -435,7 +426,7 @@ Basic Zone Configuration
       Network Offering                                 Description 
       ===============================================  ===================================================================================================================
       DefaultSharedNetworkOfferingWithSGService        If you want to enable security groups for guest traffic isolation, choose this. (See Using Security Groups to                                                              Control Traffic to VMs.)
-	  DefaultSharedNetworkOffering                     If you do not need security groups, choose this.
+	  DefaultSharedNetworkOffering                      If you do not need security groups, choose this.
       DefaultSharedNetscalerEIPandELBNetworkOffering   If you have installed a Citrix NetScaler appliance as part of your zone network, and you will be using its Elastic                                                         IP and Elastic Load Balancing features, choose this. With the EIP and ELB features, a basic zone with security                                                             groups enabled can offer 1:1 static NAT and load balancing. 
       ===============================================  ===================================================================================================================
 
@@ -558,7 +549,7 @@ Basic Zone Configuration
 
    In a new zone, CloudStack adds the first pod for you. You can always
    add more pods later. For an overview of what a pod is, see
-   `Section 2.3, “About Pods” <#about-pods>`__.
+   `“About Pods” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-pods>`_.
 
    To configure the first pod, enter the following, then click Next:
 
@@ -770,8 +761,7 @@ Advanced Zone Configuration
 
    The traffic types are management, public, guest, and storage traffic.
    For more information about the types, roll over the icons to display
-   their tool tips, or see `Section 2.8.3, “Advanced Zone Network
-   Traffic Types” <#advanced-zone-network-traffic-types>`__. This screen
+   their tool tips, or see `“Advanced Zone Network Traffic Types” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#advanced-zone-network-traffic-types>`_. This screen
    starts out with one network already configured. If you have multiple
    physical networks, you need to add more. Drag and drop traffic types
    onto a greyed-out network and it will become active. You can move the
@@ -836,7 +826,7 @@ Advanced Zone Configuration
 
    In a new zone, CloudStack adds the first pod for you. You can always
    add more pods later. For an overview of what a pod is, see
-   `Section 2.3, “About Pods” <#about-pods>`__.
+   `“About Pods” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-pods>`_.
 
    To configure the first pod, enter the following, then click Next:
 
@@ -859,8 +849,7 @@ Advanced Zone Configuration
       **Start/End Reserved System IP.** The IP range in the management
       network that CloudStack uses to manage various system VMs, such as
       Secondary Storage VMs, Console Proxy VMs, and DHCP. For more
-      information, see `Section 2.8.6, “System Reserved IP
-      Addresses” <#system-reserved-ip-addresses>`__.
+      information, see `“System Reserved IP Addresses” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#id4>`_.
 
 #. 
 
@@ -871,7 +860,7 @@ Advanced Zone Configuration
 
    In a new pod, CloudStack adds the first cluster for you. You can
    always add more clusters later. For an overview of what a cluster is,
-   see `Section 2.4, “About Clusters” <#about-clusters>`__.
+   see `“About Clusters” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-clusters>`_.
 
    To configure the first cluster, enter the following, then click Next:
 
@@ -894,7 +883,7 @@ Advanced Zone Configuration
 
    In a new cluster, CloudStack adds the first host for you. You can
    always add more hosts later. For an overview of what a host is, see
-   `Section 2.5, “About Hosts” <#about-hosts>`__.
+   `“About Hosts” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-hosts>`_.
 
    .. note::
    
@@ -948,8 +937,7 @@ Advanced Zone Configuration
 
    In a new cluster, CloudStack adds the first primary storage server
    for you. You can always add more servers later. For an overview of
-   what primary storage is, see `Section 2.6, “About Primary
-   Storage” <#about-primary-storage>`__.
+   what primary storage is, see `“About Primary Storage” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-primary-storage>`_.
 
    To configure the first primary storage server, enter the following,
    then click Next:
@@ -966,7 +954,7 @@ Advanced Zone Configuration
       remaining fields in the screen vary depending on what you choose
       here.
 
-      ===================  ================================================================== 
+      ===================  ===========================================================================
       NFS                  -  
 
                              **Server.** The IP address or DNS name of the storage device.
@@ -980,6 +968,7 @@ Advanced Zone Configuration
                              **Tags (optional).** The comma-separated list of tags for this
                              storage device. It should be an equivalent set or superset of
                              the tags on your disk offerings.
+
       iSCSI                -  
 
                              **Server.** The IP address or DNS name of the storage device.
@@ -998,6 +987,7 @@ Advanced Zone Configuration
                              **Tags (optional).** The comma-separated list of tags for this
                              storage device. It should be an equivalent set or superset of
                              the tags on your disk offerings.
+
       preSetup             -  
 
                              **Server.** The IP address or DNS name of the storage device.
@@ -1012,6 +1002,7 @@ Advanced Zone Configuration
                              **Tags (optional).** The comma-separated list of tags for this
                              storage device. It should be an equivalent set or superset of
                              the tags on your disk offerings.
+
       SharedMountPoint     -  
 
                              **Path.** The path on each host that is where this primary
@@ -1022,6 +1013,7 @@ Advanced Zone Configuration
                              **Tags (optional).** The comma-separated list of tags for this
                              storage device. It should be an equivalent set or superset of
                              the tags on your disk offerings.
+
       VMFS                 -  
 
                              **Server.** The IP address or DNS name of the vCenter server.
@@ -1037,7 +1029,8 @@ Advanced Zone Configuration
                              **Tags (optional).** The comma-separated list of tags for this
                              storage device. It should be an equivalent set or superset of
                              the tags on your disk offerings.
-      ===================  ==========================================================
+      ===================  ===========================================================================
+
 
       The tag sets on primary storage across clusters in a Zone must be
       identical. For example, if cluster A provides primary storage that
@@ -1047,8 +1040,7 @@ Advanced Zone Configuration
 #. 
 
    In a new zone, CloudStack adds the first secondary storage server for
-   you. For an overview of what secondary storage is, see `Section 2.7,
-   “About Secondary Storage” <#about-secondary-storage>`__.
+   you. For an overview of what secondary storage is, see `“About Secondary Storage” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-secondary-storage>`_.
 
    Before you can fill out this screen, you need to prepare the
    secondary storage by setting up NFS shares and installing the latest
@@ -1067,6 +1059,8 @@ Advanced Zone Configuration
 
    Click Launch.
 
+.. _adding-a-pod:
+
 Adding a Pod
 ------------
 
@@ -1075,8 +1069,7 @@ can add more pods at any time using the procedure in this section.
 
 #. 
 
-   Log in to the CloudStack UI. See `Section 5.1, “Log In to the
-   UI” <#log-in>`__.
+   Log in to the CloudStack UI. See `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_.
 
 #. 
 
@@ -1119,6 +1112,8 @@ can add more pods at any time using the procedure in this section.
 #. 
 
    Click OK.
+
+.. _adding-a-cluster:
 
 Adding a Cluster
 ----------------
@@ -1344,6 +1339,8 @@ To add a vSphere cluster to CloudStack:
       There might be a slight delay while the cluster is provisioned. It
       will automatically display in the UI.
 
+.. _adding-a-host:
+
 Adding a Host
 -------------
 
@@ -1362,8 +1359,7 @@ Adding a Host
 
    .. warning::
        
-	  Be sure you have performed the additional CloudStack-specific configuration steps described in the hypervisor installation section
-      for your particular hypervisor.
+	  Be sure you have performed the additional CloudStack-specific configuration steps described in the hypervisor installation section for your particular hypervisor.
 
 #. 
 
@@ -1372,12 +1368,13 @@ Adding a Host
 
    -  
 
-      `Section 6.6.1, “Adding a Host (XenServer or
-      KVM)” <#host-add-xenserver-kvm-ovm>`__
+      :ref:`adding-a-host-xenserver-kvm`
 
    -  
 
-      `Section 6.6.2, “Adding a Host (vSphere)” <#host-add-vsphere>`__
+      :ref:`adding-a-host-vsphere`
+
+.. _adding-a-host-xenserver-kvm:
 
 Adding a Host (XenServer or KVM)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1424,7 +1421,7 @@ pool.
 
 .. note:: 
 
-   When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line        breaks in copied text.
+   When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
 
 With all hosts added to the XenServer pool, run the cloud-setup-bond
 script. This script will complete the configuration and setup of the
@@ -1534,12 +1531,16 @@ Adding a XenServer or KVM Host
 
    Repeat for additional hosts.
 
+.. _adding-a-host-vsphere:
+
 Adding a Host (vSphere)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 For vSphere servers, we recommend creating the cluster of hosts in
 vCenter and then adding the entire cluster to CloudStack. See Add
 Cluster: vSphere.
+
+.. _add-primary-storage:
 
 Add Primary Storage
 -------------------
@@ -1586,19 +1587,18 @@ cluster.
 
 .. warning:: 
 
-   When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share).         Adding the storage to CloudStack will destroy any existing data.
+   When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share). Adding the storage to CloudStack will destroy any existing data.
 
 .. note:: 
 
-   Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the             CloudStack UI).
+   Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the CloudStack UI).
 
 Once primary storage has been added at the zone level, it can be managed
 through the CloudStack UI.
 
 #. 
 
-   Log in to the CloudStack UI (see `Section 5.1, “Log In to the
-   UI” <#log-in>`__).
+   Log in to the CloudStack UI (see `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_).
 
 #. 
 
@@ -1829,6 +1829,8 @@ example, '=' is represented as '%3D')]
    by (Min IOPS \* clusterDefaultBurstIopsPercentOfMaxIops parameter)
    (can be a decimal value)]
 
+.. _add-secondary-storage:
+
 Add Secondary Storage
 ---------------------
 
@@ -1877,8 +1879,7 @@ add more servers to an existing zone.
 
    To prepare for the zone-based Secondary Staging Store, you should
    have created and mounted an NFS share during Management Server
-   installation. See `Section 4.5.7, “Prepare NFS
-   Shares” <#prepare-nfs-shares>`__.
+   installation. See `“Prepare NFS Shares” <installation.html#prepare-nfs-shares>`_.
 
    If you are using an Hyper-V host, ensure that you have created a SMB
    share.
@@ -1886,8 +1887,7 @@ add more servers to an existing zone.
 #. 
 
    Make sure you prepared the system VM template during Management
-   Server installation. See `Section 4.5.9, “Prepare the System VM
-   Template” <#prepare-system-vm-template>`__.
+   Server installation. See `“Prepare the System VM Template” <installation.html#prepare-the-system-vm-template>`_.
 
 #. 
 
@@ -1933,8 +1933,7 @@ add more servers to an existing zone.
 
       .. warning:: 
 	  
-	     Even if the UI allows you to uncheck this box, do not do so. This checkbox and the three fields below it must be filled in. Even
-         when Swift or S3 is used as the secondary storage provider, an NFS staging storage in each zone is still required.
+	     Even if the UI allows you to uncheck this box, do not do so. This checkbox and the three fields below it must be filled in. Even when Swift or S3 is used as the secondary storage provider, an NFS staging storage in each zone is still required.
 
    -  
 
@@ -2009,6 +2008,8 @@ zone:
    -  
 
       Path. The path to the zone's Secondary Staging Store.
+
+.. _initialize-and-test:
 
 Initialize and Test
 -------------------

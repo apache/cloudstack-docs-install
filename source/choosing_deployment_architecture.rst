@@ -288,7 +288,7 @@ Setup Best Practices
    memory to dom0. This can enable XenServer to handle larger numbers of
    virtual machines. We recommend 2940 MB of RAM for XenServer dom0. For
    instructions on how to do this, see
-   `http://support.citrix.com/article/CTX126531 <http://support.citrix.com/article/CTX126531>`__.
+   `http://support.citrix.com/article/CTX126531 <http://support.citrix.com/article/CTX126531>`_.
    The article refers to XenServer 5.6, but the same information applies
    to XenServer 6.0.
 
