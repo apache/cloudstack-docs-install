@@ -1332,7 +1332,7 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-          # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
+          # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-xen.vhd.bz2 -u  -h xenserver -s <optional-management-server-secret-key> -F
 
    -  
 
@@ -1340,7 +1340,7 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-          # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/burbank/burbank-systemvm-08012012.ova -h vmware -s <optional-management-server-secret-key>  -F
+          # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-vmware.ova -h vmware -s <optional-management-server-secret-key>  -F
 
    -  
 
@@ -1348,7 +1348,7 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-          # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
+          # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
 
    -  
 
@@ -1356,7 +1356,7 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-          # /usr/lib64/cloud/common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
+          # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
 
    On Ubuntu, use the following path instead:
 
