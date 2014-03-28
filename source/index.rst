@@ -18,6 +18,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. figure:: /_static/images/acslogo.png
+    :align: center
+
+Quicklinks to CloudStack documentations:
+
+  * `Documentation home <http://docs.cloudstack.apache.org>`_
+  * `Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
+  * `Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
+
+
+
 Welcome to CloudStack Installation Documentation
 ================================================
 

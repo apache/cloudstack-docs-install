@@ -56,53 +56,46 @@ recommended that you read the following:
 
 #. 
 
-   Make sure you have the required hardware ready. See `Section 4.3,
-   “Minimum System Requirements” <#minimum-system-requirements>`__
+   Make sure you have the required hardware ready. See :ref:`minimum-system-requirements`
 
 #. 
 
    Install the Management Server (choose single-node or multi-node). See
-   `Section 4.5, “Management Server
-   Installation” <#management-server-install-flow>`__
+   :ref:`adding-a-zone`
 
 #. 
 
-   Log in to the UI. See `Chapter 5, *User Interface* <#ui>`__
+   Log in to the UI. See `*User Interface* <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_
 
 #. 
 
-   Add a zone. Includes the first pod, cluster, and host. See
-   `Section 6.3, “Adding a Zone” <#zone-add>`__
+   Add a zone. Includes the first pod, cluster, and host. See :ref:`adding-a-host`
 
 #. 
 
-   Add more pods (optional). See `Section 6.4, “Adding a
-   Pod” <#pod-add>`__
+   Add more pods (optional). See :ref:`adding-a-pod`
 
 #. 
 
-   Add more clusters (optional). See `Section 6.5, “Adding a
-   Cluster” <#cluster-add>`__
+   Add more clusters (optional). See :ref:`adding-a-cluster`
 
 #. 
 
-   Add more hosts (optional). See `Section 6.6, “Adding a
-   Host” <#host-add>`__
+   Add more hosts (optional). See :ref:`adding-a-host`
 
 #. 
 
-   Add more primary storage (optional). See `Section 6.7, “Add Primary
-   Storage” <#primary-storage-add>`__
+   Add more primary storage (optional). See :ref:`add-primary-storage`
 
 #. 
 
-   Add more secondary storage (optional). See `Section 6.8, “Add
-   Secondary Storage” <#secondary-storage-add>`__
+   Add more secondary storage (optional). See :ref:`add-secondary-storage`
 
 #. 
 
-   Try using the cloud. See `Section 6.9, “Initialize and
-   Test” <#initialize-and-test>`__
+   Try using the cloud. See :ref:`initialize-and-test`
+
+.. _minimum-system-requirements:
 
 Minimum System Requirements
 ---------------------------
@@ -180,7 +173,6 @@ requirements:
    At least 1 NIC
 
 .. note::
-
    If DHCP is used for hosts, ensure that no conflict occurs between DHCP server used for these hosts and the DHCP router created by CloudStack.
 
 -  
@@ -202,8 +194,7 @@ requirements listed at the top of the Installation section for your
 chosen hypervisor:
 
 .. warning::
-
-   Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to        work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
+   Be sure you fulfill the additional hypervisor requirements and installation steps provided in this Guide. Hypervisor hosts must be properly prepared to work with CloudStack. For example, the requirements for XenServer are listed under Citrix XenServer Installation.
 
 Configure package repository
 ----------------------------
@@ -214,14 +205,11 @@ binaries so that users can install Apache CloudStack without needing to
 build from source.
 
 If you didn't follow the steps to build your own packages from source in
-the sections for `Section 3.6, “Building RPMs from
-Source” <#sect-source-buildrpm>`__ or `Section 3.5, “Building DEB
-packages” <#sect-source-builddebs>`__ you may find pre-built DEB and RPM
-packages for your convenience linked from the
-`downloads <http://cloudstack.apache.org/downloads.html>`__ page.
+the sections for `“Building RPMs from Source” <building_from_source.html#building-rpms-from-source>`_ 
+or `“Building DEB packages” <building_from_source.html#building-deb-packages>`_ you may find pre-built DEB and RPM
+packages for your convenience linked from the `downloads <http://cloudstack.apache.org/downloads.html>`_ page.
 
 .. note::
-
    These repositories contain both the Management Server and KVM Hypervisor packages.
 
 DEB package repository
@@ -303,7 +291,6 @@ In either case, each machine must meet the system requirements described
 in System Requirements.
 
 .. warning::
-
    For the sake of security, be sure the public Internet can not access port 8096 or port 8250 on the Management Server.
 
 The procedure for installing the Management Server is:
@@ -372,8 +359,7 @@ node.
    Turn on NTP for time synchronization.
 
     .. note::
-	
-	   NTP is required to synchronize the clocks of the servers in your cloud.
+	     NTP is required to synchronize the clocks of the servers in your cloud.
 
     Install NTP.
 
@@ -398,7 +384,6 @@ Management Server on one host or many, is to install the software on a
 single node.
 
 .. note::
-
    If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will       come later.
 
 The CloudStack Management server can be installed using either RPM or
@@ -428,7 +413,7 @@ This procedure is required only for installations where XenServer is
 installed on the hypervisor hosts.
 
 Before setting up the Management Server, download vhd-util from
-`vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`__.
+`vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`_.
 
 If the Management Server is RHEL or CentOS, copy vhd-util to `/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver`
 
@@ -453,8 +438,7 @@ This section describes how to install MySQL on the same machine with the
 Management Server. This technique is intended for a simple deployment
 that has a single Management Server node. If you have a multi-node
 Management Server deployment, you will typically use a separate node for
-MySQL. See `Section 4.5.4.2, “Install the Database on a Separate
-Node” <#management-server-install-db-external>`__.
+MySQL. See :ref:`install-database-on-separate-node`.
 
 #. 
 
@@ -482,7 +466,8 @@ Node” <#management-server-install-db-external>`__.
    Servers you are deploying. This example assumes one Management
    Server.
 
-   .. note:: On Ubuntu, you can also create a file `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there. Don't forget to add [mysqld] on the first line of the file.
+   .. note:: 
+      On Ubuntu, you can also create a file `/etc/mysql/conf.d/cloudstack.cnf` and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
    .. sourcecode:: bash
 
@@ -514,7 +499,6 @@ Node” <#management-server-install-db-external>`__.
    (CentOS and RHEL only; not required on Ubuntu)
 
    .. warning::
-   
       On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution.
 
    Run the following command to secure your installation. You can answer "Y" to all questions.
@@ -598,25 +582,23 @@ Node” <#management-server-install-db-external>`__.
 
       (Optional) For encryption\_type, use file or web to indicate the
       technique used to pass in the database encryption password.
-      Default: file. See `Section 4.5.5, “About Password and Key
-      Encryption” <#about-password-encryption>`__.
+      Default: file. See :ref:`about-password-key-encryption`.
 
    -  
 
       (Optional) For management\_server\_key, substitute the default key
       that is used to encrypt confidential parameters in the CloudStack
       properties file. Default: password. It is highly recommended that
-      you replace this with a more secure value. See `Section 4.5.5,
-      “About Password and Key
-      Encryption” <#about-password-encryption>`__.
+      you replace this with a more secure value. See 
+      :ref:`about-password-key-encryption`.
 
    -  
 
       (Optional) For database\_key, substitute the default key that is
       used to encrypt confidential parameters in the CloudStack
       database. Default: password. It is highly recommended that you
-      replace this with a more secure value. See `Section 4.5.5, “About
-      Password and Key Encryption” <#about-password-encryption>`__.
+      replace this with a more secure value. See 
+      :ref:`about-password-key-encryption`.
 
    -  
 
@@ -637,7 +619,6 @@ Node” <#management-server-install-db-external>`__.
    “Successfully initialized the database.”
 
    .. note::
-   
       If the script is unable to connect to the MySQL database, check the "localhost" loopback address in ``/etc/hosts``. It should be pointing to the IPv4 loopback address "127.0.0.1" and not the IPv6 loopback address ::1. Alternatively, reconfigure MySQL to bind to the IPv6 loopback interface.
 
 #. 
@@ -662,6 +643,8 @@ Node” <#management-server-install-db-external>`__.
    You should see the message “CloudStack Management Server setup is
    done.”
 
+.. _install-database-on-separate-node:
+
 Install the Database on a Separate Node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -669,10 +652,11 @@ This section describes how to install MySQL on a standalone machine,
 separate from the Management Server. This technique is intended for a
 deployment that includes several Management Server nodes. If you have a
 single-node Management Server deployment, you will typically use the
-same node for MySQL. See `Section 4.5.4.1, “Install the Database on the
-Management Server Node” <#management-server-install-db-local>`__.
+same node for MySQL. See `
+“Install the Database on the Management Server Node” <#install-the-database-on-the-management-server-node>`_.
 
-.. note:: The management server doesn't require a specific distribution for the MySQL node. You can use a distribution or Operating System of your choice. Using the same distribution as the management server is recommended, but not required. See `Section 4.3.1, “Management Server, Database, and Storage System Requirements” <#management-server-system-requirements>`__.
+.. note:: 
+   The management server doesn't require a specific distribution for the MySQL node. You can use a distribution or Operating System of your choice. Using the same distribution as the management server is recommended, but not required. See `“Management Server, Database, and Storage System Requirements” <#management-server-database-and-storage-system-requirements>`_.
 
 #. 
 
@@ -696,7 +680,6 @@ Management Server Node” <#management-server-install-db-local>`__.
    two Management Servers.
 
    .. note::
-   
       On Ubuntu, you can also create /etc/mysql/conf.d/cloudstack.cnf file and add these directives there. Don't forget to add [mysqld] on the first line of the file.
 
    .. sourcecode:: bash
@@ -730,7 +713,6 @@ Management Server Node” <#management-server-install-db-local>`__.
    (CentOS and RHEL only; not required on Ubuntu)
 
    .. warning::
-   
       On RHEL and CentOS, MySQL does not set a root password by default. It is very strongly recommended that you set a root password as a security precaution. Run the following command to secure your installation. You can answer "Y" to all questions except "Disallow root login remotely?". Remote root login is required to set up the databases.
 
    .. sourcecode:: bash
@@ -793,8 +775,7 @@ Management Server Node” <#management-server-install-db-local>`__.
 
       (Optional) For encryption\_type, use file or web to indicate the
       technique used to pass in the database encryption password.
-      Default: file. See `Section 4.5.5, “About Password and Key
-      Encryption” <#about-password-encryption>`__.
+      Default: file. See :ref:`about-password-key-encryption`.
 
    -  
 
@@ -809,8 +790,8 @@ Management Server Node” <#management-server-install-db-local>`__.
       (Optional) For database\_key, substitute the default key that is
       used to encrypt confidential parameters in the CloudStack
       database. Default: password. It is highly recommended that you
-      replace this with a more secure value. See `Section 4.5.5, “About
-      Password and Key Encryption” <#about-password-encryption>`__.
+      replace this with a more secure value. See 
+      :ref:`about-password-key-encryption`.
 
    -  
 
@@ -828,6 +809,8 @@ Management Server Node” <#management-server-install-db-local>`__.
        -i <management_server_ip>
 
    When this script is finished, you should see a message like “Successfully initialized the database.”
+
+.. _about-password-key-encryption:
 
 About Password and Key Encryption
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -972,20 +955,19 @@ The requirements for primary and secondary storage are described in:
 
 -  
 
-   `Section 2.6, “About Primary Storage” <#about-primary-storage>`__
+   `“About Primary Storage” <http://docs.cloudstack.apache.org/en/latest/concepts.html#about-primary-storage>`_
 
 -  
 
-   `Section 2.7, “About Secondary Storage” <#about-secondary-storage>`__
+   `“About Secondary Storage” <http://docs.cloudstack.apache.org/en/latest/concepts.html#about-secondary-storage>`_
 
-A production installation typically uses a separate NFS server. See
-`Section 4.5.7.1, “Using a Separate NFS
-Server” <#nfs-shares-on-separate-server>`__.
+A production installation typically uses a separate NFS server. See :ref:`using-a-separage-nfs-server`.
 
 You can also use the Management Server node as the NFS server. This is
 more typical of a trial installation, but is technically possible in a
-larger deployment. See `Section 4.5.7.2, “Using the Management Server as
-the NFS Server” <#nfs-shares-on-management-server>`__.
+larger deployment. See :ref:`using-the-management-server-as-the-nfs-server`.
+
+.. _using-a-separage-nfs-server:
 
 Using a Separate NFS Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -998,7 +980,6 @@ The exact commands for the following steps may vary depending on your
 operating system version.
 
 .. warning::
-
    (KVM only) Ensure that no volume is already mounted at your NFS mount point.
 
 #. 
@@ -1053,6 +1034,8 @@ operating system version.
    .. sourcecode:: bash
 
        # mount -t nfs nfsservername:/nfs/share/secondary /mnt/secondary
+
+.. _using-the-management-server-as-the-nfs-server:
 
 Using the Management Server as the NFS Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1232,10 +1215,9 @@ OS for the Management Server.
 
 #. 
 
-   Perform the steps in `Section 4.5.2, “Prepare the Operating
-   System” <#prepare-os>`__ and `Section 3.6, “Building RPMs from
-   Source” <#sect-source-buildrpm>`__ or `Section 3.5, “Building DEB
-   packages” <#sect-source-builddebs>`__ as appropriate.
+   Perform the steps in `“Prepare the Operating System” <#prepare-the-operating-system>`_ and 
+   `“Building RPMs from Source” <building_from_source.html#building-rpms-from-source>`_ or 
+   `“Building DEB packages” <building_from_source.html#building-deb-packages>`_ as appropriate.
 
 #. 
 
@@ -1243,7 +1225,7 @@ OS for the Management Server.
    installed on the hypervisor hosts.
 
    Download vhd-util from
-   `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`__
+   `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`_
 
    Copy vhd-util to
    /usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver.
@@ -1263,8 +1245,7 @@ OS for the Management Server.
 
    Configure the database client. Note the absence of the --deploy-as
    argument in this case. (For more details about the arguments to this
-   command, see `Section 4.5.4.2, “Install the Database on a Separate
-   Node” <#management-server-install-db-external>`__.)
+   command, see :ref:`install-database-on-separate-node`.)
 
    .. sourcecode:: bash
 
@@ -1287,8 +1268,7 @@ OS for the Management Server.
 #. 
 
    Be sure to configure a load balancer for the Management Servers. See
-   `Section 13.6, “Management Server Load
-   Balancing” <#management-server-lb>`__.
+   `“Management Server Load Balancing” <http://docs.cloudstack.apache.org/en/latest/administration_guide.html?highlight=management%20server%20load#management-server-load-balancing>`_.
 
 Prepare the System VM Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1297,7 +1277,6 @@ Secondary storage must be seeded with a template that is used for
 CloudStack system VMs.
 
 .. note::
-
    When copying and pasting a command, be sure the command has pasted as a single line before executing. Some document viewers may introduce unwanted line breaks in copied text.
 
 #. 
@@ -1312,8 +1291,7 @@ CloudStack system VMs.
 
    If you set the CloudStack database encryption type to "web" when you
    set up the database, you must now add the parameter -s
-   <management-server-secret-key>. See `Section 4.5.5, “About Password
-   and Key Encryption” <#about-password-encryption>`__.
+   <management-server-secret-key>. See :ref:`about-password-key-encryption`.
 
    This process will require approximately 5 GB of free space on the
    local file system and up to 30 minutes each time it runs.
