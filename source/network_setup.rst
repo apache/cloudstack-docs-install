@@ -275,9 +275,7 @@ Hardware Firewall
 All deployments should have a firewall protecting the management server;
 see Generic Firewall Provisions. Optionally, some deployments may also
 have a Juniper SRX firewall that will be the default gateway for the
-guest networks; see `Section 13.5.2, “External Guest Firewall
-Integration for Juniper SRX
-(Optional)” <#external-guest-firewall-integration>`__.
+guest networks; see `“External Guest Firewall Integration for Juniper SRX (Optional)” <#external-guest-firewall-integration-for-juniper-srx-optional>`_.
 
 Generic Firewall Provisions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -628,40 +626,35 @@ Prerequisites
    profile, which needs to be provided while adding the ASA appliance to
    CloudStack.
 
-   For information on configuration, see `Section 8.4.6, “Configuring a
-   vSphere Cluster with Nexus 1000v Virtual
-   Switch” <#vmware-vsphere-cluster-config-nexus-vswitch>`__.
+   For information on configuration, see 
+   `“Configuring a vSphere Cluster with Nexus 1000v Virtual Switch” <hypervisor_installation.html#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_.
 
 #. 
 
    Deploy and configure Cisco VNMC.
 
-   For more information, see `Installing Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_2_1_1/install_upgrade/guide/b_Cisco_VSG_for_VMware_vSphere_Rel_4_2_1_VSG_2_1_1_and_Cisco_VNMC_Rel_2_1_Installation_and_Upgrade_Guide_chapter_011.html>`__
-   and `Configuring Cisco Virtual Network Management
-   Center <http://www.cisco.com/en/US/docs/unified_computing/vnmc/sw/1.2/VNMC_GUI_Configuration/b_VNMC_GUI_Configuration_Guide_1_2_chapter_010.html>`__.
+   For more information, see `Installing Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_2_1_1/install_upgrade/guide/b_Cisco_VSG_for_VMware_vSphere_Rel_4_2_1_VSG_2_1_1_and_Cisco_VNMC_Rel_2_1_Installation_and_Upgrade_Guide_chapter_011.html>`_
+   and `Configuring Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/unified_computing/vnmc/sw/1.2/VNMC_GUI_Configuration/b_VNMC_GUI_Configuration_Guide_1_2_chapter_010.html>`_.
 
 #. 
 
    Register Cisco Nexus 1000v dvSwitch with Cisco VNMC.
 
    For more information, see `Registering a Cisco Nexus 1000V with Cisco
-   VNMC <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_1_2/vnmc_and_vsg_qi/guide/vnmc_vsg_install_5register.html#wp1064301>`__.
+   VNMC <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_1_2/vnmc_and_vsg_qi/guide/vnmc_vsg_install_5register.html#wp1064301>`_.
 
 #. 
 
    Create Inside and Outside port profiles in Cisco Nexus 1000v
    dvSwitch.
 
-   For more information, see `Section 8.4.6, “Configuring a vSphere
-   Cluster with Nexus 1000v Virtual
-   Switch” <#vmware-vsphere-cluster-config-nexus-vswitch>`__.
+   For more information, see `“Configuring a vSphere Cluster with Nexus 1000v Virtual Switch” <hypervisor_installation.html#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_.
 
 #. 
 
    Deploy and Cisco ASA 1000v appliance.
 
-   For more information, see `Setting Up the ASA 1000V Using
-   VNMC <http://www.cisco.com/en/US/docs/security/asa/quick_start/asa1000V/setup_vnmc.html>`__.
+   For more information, see `Setting Up the ASA 1000V Using VNMC <http://www.cisco.com/en/US/docs/security/asa/quick_start/asa1000V/setup_vnmc.html>`_.
 
    Typically, you create a pool of ASA 1000v appliances and register
    them with CloudStack.
@@ -712,27 +705,26 @@ Using Cisco ASA 1000v Services
 
    Ensure that all the prerequisites are met.
 
-   See `Section 13.5.3.1.2, “Prerequisites” <#prereq-asa>`__.
+   See `“Prerequisites” <#prerequisites>`_.
 
 #. 
 
    Add a VNMC instance.
 
-   See `Section 13.5.3.2, “Adding a VNMC Instance” <#add-vnmc>`__.
+   See `“Adding a VNMC Instance” <#adding-a-vnmc-instance>`_.
 
 #. 
 
    Add a ASA 1000v instance.
 
-   See `Section 13.5.3.3, “Adding an ASA 1000v Instance” <#add-asa>`__.
+   See `“Adding an ASA 1000v Instance” <#adding-an-asa-1000v-instance>`_.
 
 #. 
 
    Create a Network Offering and use Cisco VNMC as the service provider
    for desired services.
 
-   See `Section 13.5.3.4, “Creating a Network Offering Using Cisco ASA
-   1000v” <#asa-offering>`__.
+   See `“Creating a Network Offering Using Cisco ASA 1000v” <#creating-a-network-offering-using-cisco-asa-1000v>`_.
 
 #. 
 
@@ -918,8 +910,7 @@ offering as follows:
       Private Cloud-enabled. A Virtual Private Cloud (VPC) is a private,
       isolated part of CloudStack. A VPC can have its own virtual
       network topology that resembles a traditional physical network.
-      For more information on VPCs, see `Section 15.27.1, “About Virtual
-      Private Clouds” <#vpc>`__.
+      For more information on VPCs, see `“About Virtual Private Clouds” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/networking2.html#about-virtual-private-clouds>`_.
 
    -  
 
@@ -1271,8 +1262,8 @@ To set up the integration between CloudStack and Traffic Sentinel:
 
    On your network infrastructure, install Traffic Sentinel and
    configure it to gather traffic data. For installation and
-   configuration steps, see inMon documentation at `Traffic Sentinel
-   Documentation <http://inmon.com.>`__.
+   configuration steps, see inMon documentation at 
+   `Traffic Sentinel Documentation <http://inmon.com.>`_.
 
 #. 
 
@@ -1290,12 +1281,10 @@ To set up the integration between CloudStack and Traffic Sentinel:
    CloudStack API command addTrafficMonitor. Pass in the URL of the
    Traffic Sentinel as protocol + host + port (optional); for example,
    http://10.147.28.100:8080. For the addTrafficMonitor command syntax,
-   see the API Reference at `API
-   Documentation <http://cloudstack.apache.org/docs/api/index.html>`__.
+   see the API Reference at `API Documentation <http://cloudstack.apache.org/docs/api/index.html>`_.
 
    For information about how to call the CloudStack API, see the
-   Developer’s Guide at `CloudStack API Developer's
-   Guide <http://cloudstack.apache.org/docs/en-US/index.html>`__.
+   Developer’s Guide at `CloudStack API Developer's Guide <http://docs.cloudstack.apache.org/en/latest/index.html#developers>`_.
 
 #. 
 

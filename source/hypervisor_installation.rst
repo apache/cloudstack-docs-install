@@ -203,7 +203,7 @@ In Ubuntu:
     $ apt-get install cloudstack-agent
 
 The host is now ready to be added to a cluster. This is covered in a
-later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
+later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
 
@@ -941,7 +941,7 @@ Add the host to CloudStack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The host is now ready to be added to a cluster. This is covered in a
-later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
+later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
 
@@ -1000,8 +1000,7 @@ If you want to use the Citrix XenServer hypervisor to run guest virtual
 machines, install XenServer 6.0 or XenServer 6.0.2 on the host(s) in
 your cloud. For an initial installation, follow the steps below. If you
 have previously installed XenServer and want to upgrade to another
-version, see `Section 8.2.11, “Upgrading XenServer
-Versions” <#xenserver-version-upgrading>`__.
+version, see :ref:`upgrading-xenserver-version`.
 
 System Requirements for XenServer Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1010,19 +1009,13 @@ System Requirements for XenServer Hosts
 
    The host must be certified as compatible with one of the following.
    See the Citrix Hardware Compatibility Guide:
-   `http://hcl.xensource.com <http://hcl.xensource.com>`__
+   `http://hcl.xensource.com <http://hcl.xensource.com>`_
 
-   -  
-
-      XenServer 5.6 SP2
-
-   -  
-
-      XenServer 6.0
-
-   -  
-
-      XenServer 6.0.2
+    -  XenServer 5.6 SP2
+    -  XenServer 6.0
+    -  XenServer 6.0.2
+    -  XenServer 6.1.0
+    -  XenServer 6.2.0
 
 -  
 
@@ -1090,10 +1083,9 @@ XenServer Installation Steps
 #. 
 
    From
-   `https://www.citrix.com/English/ss/downloads/ <https://www.citrix.com/English/ss/downloads/>`__,
+   `https://www.citrix.com/English/ss/downloads/ <https://www.citrix.com/English/ss/downloads/>`_,
    download the appropriate version of XenServer for your CloudStack
-   version (see `Section 8.2.1, “System Requirements for XenServer
-   Hosts” <#system-requirements-xenserver-hosts>`__). Install it using
+   version (see `"System Requirements for XenServer Hosts" <#system-requirements-for-xenserver-hosts>`_). Install it using
    the Citrix XenServer Installation Guide.
 
    Older Versions of XenServer:
@@ -1110,7 +1102,7 @@ Configure the XenServer dom0 settings to allocate more memory to dom0.
 This can enable XenServer to handle larger numbers of virtual machines.
 We recommend 2940 MB of RAM for XenServer dom0. For instructions on how
 to do this, see
-`http://support.citrix.com/article/CTX126531 <http://support.citrix.com/article/CTX126531>`__.
+`http://support.citrix.com/article/CTX126531 <http://support.citrix.com/article/CTX126531>`_.
 The article refers to XenServer 5.6, but the same information applies to
 XenServer 6.0.
 
@@ -1186,15 +1178,15 @@ steps on each XenServer host.
 
    For XenServer 6.0.2:
 
-   `http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz>`__
+   `http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz>`_
 
    For XenServer 5.6 SP2:
 
-   `http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz>`__
+   `http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz>`_
 
    For XenServer 6.0:
 
-   `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`__
+   `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`_
 
 #. 
 
@@ -1255,7 +1247,7 @@ that XenServer.
 
 #. 
 
-   Repeat step `2 <#rescan-scsi>`__ on every host.
+   Repeat step 2 on every host.
 
 #. 
 
@@ -1275,7 +1267,7 @@ that XenServer.
 
 #. 
 
-   Repeat step `4 <#verify-scsi>`__ on every host.
+   Repeat step 4 on every host.
 
 #. 
 
@@ -1322,8 +1314,7 @@ that XenServer.
        # xe sr-param-set uuid=7a143820-e893-6c6a-236e-472da6ee66bf name-description="Fiber Channel storage repository"
 
    Make note of the values you will need when you add this storage to
-   CloudStack later (see `Section 6.7, “Add Primary
-   Storage” <#primary-storage-add>`__). In the Add Primary Storage
+   CloudStack later (see `"Add Primary Storage" <configuration.html#add-primary-storage>`_). In the Add Primary Storage
    dialog, in Protocol, you will choose PreSetup. In SR Name-Label, you
    will enter the name-label you set earlier (in this example,
    e6849e96-86c3-4f2c-8fcc-350cc711be3d).
@@ -1345,18 +1336,17 @@ following links provide a starting point:
 
 -  
 
-   `http://support.citrix.com/article/CTX118791 <http://support.citrix.com/article/CTX118791>`__
+   `http://support.citrix.com/article/CTX118791 <http://support.citrix.com/article/CTX118791>`_
 
 -  
 
-   `http://support.citrix.com/article/CTX125403 <http://support.citrix.com/article/CTX125403>`__
+   `http://support.citrix.com/article/CTX125403 <http://support.citrix.com/article/CTX125403>`_
 
 You can also ask your SAN vendor for advice about setting up your Citrix
 repository for multipathing.
 
 Make note of the values you will need when you add this storage to the
-CloudStack later (see `Section 6.7, “Add Primary
-Storage” <#primary-storage-add>`__). In the Add Primary Storage dialog,
+CloudStack later (see `"Add Primary Storage" <configuration.html#add-primary-storage>`_). In the Add Primary Storage dialog,
 in Protocol, you will choose PreSetup. In SR Name-Label, you will enter
 the same name used to create the SR.
 
@@ -1403,8 +1393,7 @@ Configuring Public Network with a Dedicated NIC for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 CloudStack supports the use of a second NIC (or bonded pair of NICs,
-described in `Section 8.2.10.4, “NIC Bonding for XenServer
-(Optional)” <#xenserver-nic-bonding>`__) for the public network. If
+described in :ref:`nic-bonding-for-xenserver`) for the public network. If
 bonding is not used, the public network can be on any NIC and can be on
 different NICs on the hosts in a cluster. For example, the public
 network can be on eth0 on node A and eth1 on node B. However, the
@@ -1412,12 +1401,10 @@ XenServer name-label for the public network must be identical across all
 hosts. The following examples set the network label to "cloud-public".
 After the management server is installed and running you must configure
 it with the name of the chosen network label (e.g. "cloud-public"); this
-is discussed in `Section 4.5, “Management Server
-Installation” <#management-server-install-flow>`__.
+is discussed in `"Management Server Installation" <installation.html#management-server-installation>`_.
 
 If you are using two NICs bonded together to create a public network,
-see `Section 8.2.10.4, “NIC Bonding for XenServer
-(Optional)” <#xenserver-nic-bonding>`__.
+see :ref:`nic-bonding-for-xenserver`.
 
 If you are using a single dedicated NIC to provide public network
 access, follow this procedure on each new host that is added to
@@ -1506,6 +1493,8 @@ Here is an example to set up eth5 to access a storage network on
     uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
     device ( RO): eth5
     #xe pif-reconfigure-ip DNS=172.16.3.3 gateway=172.16.0.1 IP=172.16.0.55 mode=static netmask=255.255.255.0 uuid=ab0d3dd4-5744-8fae-9693-a022c7a3471d
+
+.. _nic-bonding-for-xenserver:
 
 NIC Bonding for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1679,6 +1668,8 @@ all hosts in the cluster.
        # ./cloud-setup-bonding.sh
 
 Now the bonds are set up and configured properly across the cluster.
+
+.. _upgrading-xenserver-version:
 
 Upgrading XenServer Versions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1869,9 +1860,10 @@ To upgrade XenServer:
 
        # for host in $(xe host-list | grep ^uuid | awk '{print $NF}') ; do xe host-param-clear uuid=$host param-name=tags; done;
 
-   .. note:: When copying and pasting a command, be sure the command has pasted as
-   a single line before executing. Some document viewers may introduce
-   unwanted line breaks in copied text.
+   .. note:: 
+      When copying and pasting a command, be sure the command has pasted as
+      a single line before executing. Some document viewers may introduce
+      unwanted line breaks in copied text.
 
 #. 
 
@@ -1960,9 +1952,9 @@ Preparation Checklist for Hyper-V
 For a smoother installation, gather the following information before you
 start:
 
-Hyper-V Requirements
+Hyper-V Requirements              
 
-Value
+Value             
 
 Description
 
@@ -1971,8 +1963,7 @@ Server Roles
 Hyper-V
 
 After the Windows Server 2012 R2 installation, ensure that Hyper-V is
-selected from Server Roles. For more information, see `Installing
-Hyper-V <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step2>`__.
+selected from Server Roles. For more information, see `Installing Hyper-V <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step2>`_.
 
 Share Location
 
@@ -2053,8 +2044,7 @@ Migration
 
 Enable Migration.
 
-For more information, see `Configuring Live
-Migration <http://technet.microsoft.com/en-us/library/jj134199.aspx%20>`__.
+For more information, see `Configuring Live Migration <http://technet.microsoft.com/en-us/library/jj134199.aspx>`_.
 
 Migration
 
@@ -2081,13 +2071,11 @@ Hyper-V Installation Steps
 
 #. 
 
-   Download the operating system from `Windows Server 2012
-   R2 <http://technet.microsoft.com/en-us/windowsserver/hh534429>`__ .
+   Download the operating system from `Windows Server 2012 R2 <http://technet.microsoft.com/en-us/windowsserver/hh534429>`_.
 
 #. 
 
-   Install it on the host as given in `Install and Deploy Windows Server
-   2012 R2 <http://technet.microsoft.com/library/hh831620>`__.
+   Install it on the host as given in `Install and Deploy Windows Server 2012 R2 <http://technet.microsoft.com/library/hh831620>`_.
 
 #. 
 
@@ -2123,7 +2111,8 @@ CloudStack Management Server communicates with Hyper-V Agent by using
 HTTPS. For secure communication between the Management Server and the
 host, install a self-signed certificate on port 8250.
 
-.. note:: The Agent installer automatically perform this operation. You have not selected this option during the Agent installation, it can also be done manually as given in step 1.
+.. note:: 
+    The Agent installer automatically perform this operation. You have not selected this option during the Agent installation, it can also be done manually as given in step 1.
 
 #. 
 
@@ -2193,14 +2182,12 @@ Secondary Storage that uses SMB.
 
    Create a SMB storage and expose it over SMB Version 3.
 
-   For more information, see `Deploying Hyper-V over
-   SMB <http://technet.microsoft.com/en-us/library/jj134187.aspx>`__.
+   For more information, see `Deploying Hyper-V over SMB <http://technet.microsoft.com/en-us/library/jj134187.aspx>`_.
 
    You can also create and export SMB share using Windows. After the
    Windows Server 2012 R2 installation, select File and Storage Services
    from Server Roles to create an SMB file share. For more information,
-   see `Creating an SMB File Share Using Server
-   Manager <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step3>`__.
+   see `Creating an SMB File Share Using Server Manager <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step3>`_.
 
 #. 
 
@@ -2234,7 +2221,7 @@ Software requirements:
 
    vSphere Standard is recommended. Note however that customers need to
    consider the CPU constraints in place with vSphere licensing. See
-   `http://www.vmware.com/files/pdf/vsphere\_pricing.pdf <http://www.vmware.com/files/pdf/vsphere_pricing.pdf>`__
+   `http://www.vmware.com/files/pdf/vsphere\_pricing.pdf <http://www.vmware.com/files/pdf/vsphere_pricing.pdf>`_
    and discuss with your VMware sales representative.
 
    vCenter Server Standard is recommended.
@@ -2259,7 +2246,7 @@ Hardware requirements:
 
    The host must be certified as compatible with vSphere. See the VMware
    Hardware Compatibility Guide at
-   `http://www.vmware.com/resources/compatibility/search.php <http://www.vmware.com/resources/compatibility/search.php>`__.
+   `http://www.vmware.com/resources/compatibility/search.php <http://www.vmware.com/resources/compatibility/search.php>`_.
 
 -  
 
@@ -2324,9 +2311,7 @@ vCenter Server requirements:
 
    Networking - 1Gbit or 10Gbit.
 
-For more information, see "vCenter Server and the vSphere Client
-Hardware Requirements" at
-`http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#href=install/c\_vc\_hw.html <http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#href=install/c_vc_hw.html>`__.
+For more information, see `"vCenter Server and the vSphere Client Hardware Requirements" <http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#href=install/c_vc_hw.html>`_.
 
 Other requirements:
 ^^^^^^^^^^^^^^^^^^^
@@ -2362,8 +2347,7 @@ Other requirements:
    The CloudStack management network must not be configured as a
    separate virtual network. The CloudStack management network is the
    same as the vCenter management network, and will inherit its
-   configuration. See `Section 8.4.5.2, “Configure vCenter Management
-   Network” <#vmware-physical-host-networking-config-vcenter-mgt>`__.
+   configuration. See :ref:`configure-vcenter-management-network`.
 
 -  
 
@@ -2406,13 +2390,13 @@ start:
 
 -  
 
-   Information listed in `Section 8.4.2.1, “vCenter
-   Checklist” <#vmware-vcenter-checklist>`__
+   Information listed in :ref:`vcenter-checklist`
 
 -  
 
-   Information listed in `Section 8.4.2.2, “Networking Checklist for
-   VMware” <#vmware-network-checklist>`__
+   Information listed in :ref:`networking-checklist-for-vmware`
+
+.. _vcenter-checklist:
 
 vCenter Checklist
 ^^^^^^^^^^^^^^^^^
@@ -2427,6 +2411,8 @@ vCenter User Password     Password for the above user.
 vCenter Datacenter Name   Name of the datacenter.
 vCenter Cluster Name      Name of the cluster.
 ========================  =====================================
+
+.. _networking-checklist-for-vmware:
 
 Networking Checklist for VMware
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2459,7 +2445,7 @@ vSphere Installation Steps
 
    If you haven't already, you'll need to download and purchase vSphere
    from the VMware Website
-   (`https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1 <https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1>`__)
+   (`https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1 <https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1>`_)
    and install it by following the VMware vSphere Installation Guide.
 
 #. 
@@ -2541,6 +2527,8 @@ In this dialog, you can change the number of switch ports. After you've
 done that, ESXi hosts are required to reboot in order for the setting to
 take effect.
 
+.. _configure-vcenter-management-network:
+
 Configure vCenter Management Network
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2610,8 +2598,8 @@ CloudStack supports Cisco Nexus 1000v dvSwitch (Distributed Virtual
 Switch) for virtual network configuration in a VMware vSphere
 environment. This section helps you configure a vSphere cluster with
 Nexus 1000v virtual switch in a VMware vCenter environment. For
-information on creating a vSphere cluster, see `Section 8.4, “VMware
-vSphere Installation and Configuration” <#vmware-install>`__
+information on creating a vSphere cluster, see 
+`"VMware vSphere Installation and Configuration" <#vmware-vsphere-installation-and-configuration>`_
 
 About Cisco Nexus 1000v Distributed Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2665,7 +2653,7 @@ ensure that your system meets the following requirements:
    CloudStack doesn't have to deal with dynamic migration of virtual
    adapters or networks across other existing virtual switches. See
    `Cisco Nexus 1000V Installation and Upgrade
-   Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_5_1/install_upgrade/vsm_vem/guide/n1000v_installupgrade.html>`__
+   Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_5_1/install_upgrade/vsm_vem/guide/n1000v_installupgrade.html>`_
    for guidelines on how to install the Nexus 1000v VSM and VEM modules.
 
 -  
@@ -2689,9 +2677,9 @@ ensure that your system meets the following requirements:
 
 -  
 
-   All information given in `Section 8.4.6.3, “Nexus 1000v Virtual
-   Switch
-   Preconfiguration” <#vmware-vsphere-cluster-config-nexus-vswitch-preconfig>`__
+   All information given in :ref:`nexus-vswift-preconf`
+
+.. _nexus-vswift-preconf:
 
 Nexus 1000v Virtual Switch Preconfiguration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2753,8 +2741,7 @@ CloudStack UI:
 
 .. note:: The VLANs used for control, packet, and management port groups can be the same.
 
-For more information, see `Cisco Nexus 1000V Getting Started
-Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_b/getting_started/configuration/guide/n1000v_gsg.pdf>`__.
+For more information, see `Cisco Nexus 1000V Getting Started Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_b/getting_started/configuration/guide/n1000v_gsg.pdf>`_.
 
 VSM Configuration Checklist
 '''''''''''''''''''''''''''                                        
@@ -2767,8 +2754,8 @@ You will need the following VSM configuration parameters:
                        This is the IP address of the VSM appliance. This is the IP address you specify in the virtual switch IP Address field while configuting Nexus virtual switch.
 **SSL**
                        Should be set to Enable.Always enable SSL. SSH is usually enabled by default during the VSM
-installation. However, check whether the SSH connection to the VSM is
-working, without which CloudStack failes to connect to the VSM.
+                       installation. However, check whether the SSH connection to the VSM is
+                       working, without which CloudStack failes to connect to the VSM.
 
 Creating a Port Profile
 '''''''''''''''''''''''
@@ -2818,7 +2805,7 @@ Creating a Port Profile
 
 For information on creating a port profile, see `Cisco Nexus 1000V Port
 Profile Configuration
-Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_a/port_profile/configuration/guide/n1000v_port_profile.html>`__.
+Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_a/port_profile/configuration/guide/n1000v_port_profile.html>`_.
 
 Assigning Physical NIC Adapters
 '''''''''''''''''''''''''''''''
@@ -2832,8 +2819,7 @@ during the zone configuration on CloudStack. These Ethernet port profile
 names are later specified as VMware Traffic Labels for different traffic
 types when configuring physical networks during the zone configuration.
 For more information on configuring physical networks, see
-`Section 8.4.6, “Configuring a vSphere Cluster with Nexus 1000v Virtual
-Switch” <#vmware-vsphere-cluster-config-nexus-vswitch>`__.
+`"Configuring a vSphere Cluster with Nexus 1000v Virtual Switch" <#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_.
 
 Adding VLAN Ranges
 ''''''''''''''''''
@@ -2905,7 +2891,7 @@ the zone is being created.
 After the zone is created, if you want to create an additional cluster
 along with Nexus 1000v virtual switch in the existing zone, use the Add
 Cluster option. For information on creating a cluster, see
-`Section 6.5.2, “Add Cluster: vSphere” <#add-clusters-vsphere>`__.
+`"Add Cluster: vSphere" <configuration.html#add-cluster-vsphere>`_.
 
 In both these cases, you must specify the following parameters to
 configure Nexus virtual switch:
@@ -3033,7 +3019,7 @@ Use this VDS name in the following:
    Distributed Virtual Switch when you configure guest and public
    traffic type.
 
-   |traffic-type.png: virtual switch type|
+   |traffic-type.png|
 
 -  
 
@@ -3045,8 +3031,7 @@ Use this VDS name in the following:
    The switch name in the traffic label while updating the switch type
    in a zone.
 
-Traffic label format in the last case is [["Name of
-vSwitch/dvSwitch/EthernetPortProfile"][,"VLAN ID"[,"vSwitch Type"]]]
+Traffic label format in the last case is [["Name of vSwitch/dvSwitch/EthernetPortProfile"][,"VLAN ID"[,"vSwitch Type"]]]
 
 The possible values for traffic labels are:
 
@@ -3144,8 +3129,7 @@ created.
 
 Alternatively, at the cluster level, you can create an additional
 cluster with VDS enabled in the existing zone. Use the Add Cluster
-option. For information as given in `Section 6.5.2, “Add Cluster:
-vSphere” <#add-clusters-vsphere>`__.
+option. For information as given in `“Add Cluster: vSphere” <configuration.html#add-cluster-vsphere>`_.
 
 In both these cases, you must specify the following parameters to
 configure VDS:
@@ -3253,7 +3237,7 @@ Add Hosts or Configure Clusters (vSphere)
 
 Use vCenter to create a vCenter cluster and add your desired hosts to
 the cluster. You will later add the entire cluster to CloudStack. (see
-`Section 6.5.2, “Add Cluster: vSphere” <#add-clusters-vsphere>`__).
+`“Add Cluster: vSphere” <configuration.html#add-cluster-vsphere>`_).
 
 Applying Hotfixes to a VMware vSphere Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3267,7 +3251,7 @@ Applying Hotfixes to a VMware vSphere Host
 
       Log in to the CloudStack UI as root.
 
-      See `Section 5.1, “Log In to the UI” <#log-in>`__.
+      See `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_.
 
    #. 
 
@@ -3469,8 +3453,9 @@ KVM instances.
 
    Turn on NTP for time synchronization.
 
-   .. note:: NTP is required to synchronize the clocks of the servers in your
-   cloud. Unsynchronized clocks can cause unexpected problems.
+   .. note:: 
+      NTP is required to synchronize the clocks of the servers in your
+      cloud. Unsynchronized clocks can cause unexpected problems.
 
    #. 
 
@@ -3538,7 +3523,7 @@ are in ``/etc/cloudstack/agent/agent.properties``
        network.direct.device=eth0
 
 The host is now ready to be added to a cluster. This is covered in a
-later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
+later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
 
@@ -3729,7 +3714,8 @@ Configure the network bridges
 
 .. warning:: This is a very important section, please make sure you read this thoroughly.
 
-.. note:: This section details how to configure bridges using the native implementation in Linux. Please refer to the next section if you intend to use OpenVswitch
+.. note:: 
+    This section details how to configure bridges using the native implementation in Linux. Please refer to the next section if you intend to use OpenVswitch
 
 In order to forward traffic to your instances you will need at least two
 bridges: *public* and *private*.
@@ -4029,17 +4015,21 @@ To open the required ports, execute the following commands:
 
     $ ufw allow proto tcp from any to any port 49152:49216
 
-.. note:: By default UFW is not enabled on Ubuntu. Executing these commands with
-the firewall disabled does not enable the firewall.
+.. note:: 
+    By default UFW is not enabled on Ubuntu. Executing these commands with the firewall disabled does not enable the firewall.
 
 Add the host to CloudStack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The host is now ready to be added to a cluster. This is covered in a
-later section, see `Section 6.6, “Adding a Host” <#host-add>`__. It is
+later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
 
+.. |DeleteButton.png: button to delete dvSwitch| image:: ./_static/images/delete-button.png
+.. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ./_static/images/vds-name.png
+.. |traffic-type.png| image:: ./_static/images/traffic-type.png
+.. |dvSwitchConfig.png: Configuring dvSwitch| image:: ./_static/images/dvswitchconfig.png
 .. |vsphereclient.png: vSphere client| image:: ./_static/images/vsphere-client.png
 .. |vspherephysicalnetwork.png: vSphere client| image:: ./_static/images/vmware-physical-network.png
 .. |vsphereincreaseports.png: vSphere client| image:: ./_static/images/vmware-increase-ports.png
