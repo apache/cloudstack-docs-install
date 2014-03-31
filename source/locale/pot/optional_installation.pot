@@ -1,0 +1,1252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014, Apache Software Foundation
+# This file is distributed under the same license as the Apache CloudStack Installation Documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Apache CloudStack Installation Documentation 4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../optional_installation.rst:17
+# 62835cebd46447fc8a75e16ba7eba401
+msgid "Additional Installation Options"
+msgstr ""
+
+#: ../../optional_installation.rst:19
+# db3fdcfe721d4988b9e54bc7222b20ae
+msgid "The next few sections describe CloudStack features above and beyond the basic deployment options."
+msgstr ""
+
+#: ../../optional_installation.rst:23
+# 2ca513276af64c04a0ea19f1709100ec
+msgid "Installing the Usage Server (Optional)"
+msgstr ""
+
+#: ../../optional_installation.rst:25
+# 08d682ff68c44985bfe7220e1de58937
+msgid "You can optionally install the Usage Server once the Management Server is configured properly. The Usage Server takes data from the events in the system and enables usage-based billing for accounts."
+msgstr ""
+
+#: ../../optional_installation.rst:29
+# a8a635bc3d18492cbdd96c1be333feda
+msgid "When multiple Management Servers are present, the Usage Server may be installed on any number of them. The Usage Servers will coordinate usage processing. A site that is concerned about availability should install Usage Servers on at least two Management Servers."
+msgstr ""
+
+#: ../../optional_installation.rst:35
+# 04a298cf529c44d198b58ff422208441
+msgid "Requirements for Installing the Usage Server"
+msgstr ""
+
+#: ../../optional_installation.rst:39
+# 509d6aa6c0e04ec18e5805a0ce8323fe
+msgid "The Management Server must be running when the Usage Server is installed."
+msgstr ""
+
+#: ../../optional_installation.rst:44
+# 2e23f212128f457ba9abf05c854d807b
+msgid "The Usage Server must be installed on the same server as a Management Server."
+msgstr ""
+
+#: ../../optional_installation.rst:48
+# bda1ce86593d4a38a4644a56e6218ce1
+msgid "Steps to Install the Usage Server"
+msgstr ""
+
+#: ../../optional_installation.rst:52
+# 1c636a3ac72345eda8528a6443e7bb7d
+msgid "Run ./install.sh (NOT VALID, NEED CORRECTION)"
+msgstr ""
+
+#: ../../optional_installation.rst:58
+# 9fb3b577d8154be39e47dcb155e8e615
+msgid "You should see a few messages as the installer prepares, followed by a list of choices."
+msgstr ""
+
+#: ../../optional_installation.rst:63
+# 6af250d789ec47509d34ac3978a4d6fc
+msgid "Choose \"S\" to install the Usage Server."
+msgstr ""
+
+#: ../../optional_installation.rst:71
+# ff0a5c4f21a54bdaacd08a49ef778b62
+msgid "Once installed, start the Usage Server with the following command."
+msgstr ""
+
+#: ../../optional_installation.rst:77
+# aceedf97a46343e89608668dcd949ddd
+msgid "The Administration Guide discusses further configuration of the Usage Server."
+msgstr ""
+
+#: ../../optional_installation.rst:81
+# 816936d415214ab983de8f3bb64a8e6a
+msgid "SSL (Optional)"
+msgstr ""
+
+#: ../../optional_installation.rst:83
+# ab49fd64e3474b68ac3f29143b8c5759
+msgid "CloudStack provides HTTP access in its default installation. There are a number of technologies and sites which choose to implement SSL. As a result, we have left CloudStack to expose HTTP under the assumption that a site will implement its typical practice."
+msgstr ""
+
+#: ../../optional_installation.rst:88
+# fd380c7c8d0649569079e5667153039a
+msgid "CloudStack uses Tomcat as its servlet container. For sites that would like CloudStack to terminate the SSL session, Tomcat’s SSL access may be enabled. Tomcat SSL configuration is described at http://tomcat.apache.org/tomcat-6.0-doc/ssl-howto.html."
+msgstr ""
+
+#: ../../optional_installation.rst:94
+# 2062d2fe64dc4e1bb85bc00d5c08727b
+msgid "Database Replication (Optional)"
+msgstr ""
+
+#: ../../optional_installation.rst:96
+# ab5f2c1a690c419e8d7ea82b4da28b12
+msgid "CloudStack supports database replication from one MySQL node to another. This is achieved using standard MySQL replication. You may want to do this as insurance against MySQL server or storage loss. MySQL replication is implemented using a master/slave model. The master is the node that the Management Servers are configured to use. The slave is a standby node that receives all write operations from the master and applies them to a local, redundant copy of the database. The following steps are a guide to implementing MySQL replication."
+msgstr ""
+
+#: ../../optional_installation.rst:107
+# b3a643bd88d244cd86fdeb8b1823325d
+msgid "Creating a replica is not a backup solution. You should develop a backup procedure for the MySQL data that is distinct from replication."
+msgstr ""
+
+#: ../../optional_installation.rst:111
+# 416f84b83a514c66bcdb90045773f0e0
+msgid "Ensure that this is a fresh install with no data in the master."
+msgstr ""
+
+#: ../../optional_installation.rst:115
+# fc938cd71e774b3b94e05d3e1968f03d
+msgid "Edit my.cnf on the master and add the following in the [mysqld] section below datadir."
+msgstr ""
+
+#: ../../optional_installation.rst:123
+# 105293596d6943a0ae0420f073d771f2
+msgid "The server\\_id must be unique with respect to other servers. The recommended way to achieve this is to give the master an ID of 1 and each slave a sequential number greater than 1, so that the servers are numbered 1, 2, 3, etc."
+msgstr ""
+
+#: ../../optional_installation.rst:130
+# 8a4b5dbe67c447ad9a8e9de760b638d3
+msgid "Restart the MySQL service. On RHEL/CentOS systems, use:"
+msgstr ""
+
+#: ../../optional_installation.rst:136
+# 5c3b7820d00c459ca57265787ec2fd5b
+msgid "On Debian/Ubuntu systems, use:"
+msgstr ""
+
+#: ../../optional_installation.rst:144
+# 4a230f88482a4a95931f2b58a0180585
+msgid "Create a replication account on the master and give it privileges. We will use the \"cloud-repl\" user with the password \"password\". This assumes that master and slave run on the 172.16.1.0/24 network."
+msgstr ""
+
+#: ../../optional_installation.rst:158
+# 8ff34461bbc9443da5c98650a97b141c
+msgid "Leave the current MySQL session running."
+msgstr ""
+
+#: ../../optional_installation.rst:162
+# 3e479f5ab88240a09303449bc895d6a1
+msgid "In a new shell start a second MySQL session."
+msgstr ""
+
+#: ../../optional_installation.rst:166
+# f4fa3623e02e497ca52b062716eb0a22
+msgid "Retrieve the current position of the database."
+msgstr ""
+
+#: ../../optional_installation.rst:180
+# 5521bd2939434fe19ad5ab048c4a917a
+msgid "Note the file and the position that are returned by your instance."
+msgstr ""
+
+#: ../../optional_installation.rst:184
+# 946b0ff096104aad8bbf3e535f59104a
+msgid "Exit from this session."
+msgstr ""
+
+#: ../../optional_installation.rst:188
+# bb7311f9bd634aec8c894b2b2d30d925
+msgid "Complete the master setup. Returning to your first session on the master, release the locks and exit MySQL."
+msgstr ""
+
+#: ../../optional_installation.rst:197
+# 4e9f4473e0b54f0e908fc082912971c5
+msgid "Install and configure the slave. On the slave server, run the following commands."
+msgstr ""
+
+#: ../../optional_installation.rst:207
+# 279f25d33b8147b0915b1b46b3aaa763
+msgid "Edit my.cnf and add the following lines in the [mysqld] section below datadir."
+msgstr ""
+
+#: ../../optional_installation.rst:218
+# ea002a738bb6421397288c9348d5afd7
+msgid "Restart MySQL. Use \"mysqld\" on RHEL/CentOS systems:"
+msgstr ""
+
+#: ../../optional_installation.rst:224
+# a1dd560330d34f029b9ae00431c7c33d
+msgid "On Ubuntu/Debian systems use \"mysql.\""
+msgstr ""
+
+#: ../../optional_installation.rst:232
+# f7f34afbe306462bb75bb4aae77bd393
+msgid "Instruct the slave to connect to and replicate from the master. Replace the IP address, password, log file, and position with the values you have used in the previous steps."
+msgstr ""
+
+#: ../../optional_installation.rst:247
+# a16d103e5fb048caa90dae277c78f150
+msgid "Then start replication on the slave."
+msgstr ""
+
+#: ../../optional_installation.rst:255
+# 77cfc7cfb6a64956b576027056206990
+msgid "Optionally, open port 3306 on the slave as was done on the master earlier."
+msgstr ""
+
+#: ../../optional_installation.rst:258
+# fd7930028c5444219c5f87c752883256
+msgid "This is not required for replication to work. But if you choose not to do this, you will need to do it when failover to the replica occurs."
+msgstr ""
+
+#: ../../optional_installation.rst:263
+# 5e6ad86df98c473db76a1d12f33dd6af
+msgid "Failover"
+msgstr ""
+
+#: ../../optional_installation.rst:265
+# 433eaa9a6ad942e3a9ebf55eda27dddf
+msgid "This will provide for a replicated database that can be used to implement manual failover for the Management Servers. CloudStack failover from one MySQL instance to another is performed by the administrator. In the event of a database failure you should:"
+msgstr ""
+
+#: ../../optional_installation.rst:272
+# d8a77566fc0a4911ab6349269da1bc66
+msgid "Stop the Management Servers (via service cloudstack-management stop)."
+msgstr ""
+
+#: ../../optional_installation.rst:276
+# ff1d228817b54a23b7e2197d5e7cd9b5
+msgid "Change the replica's configuration to be a master and restart it."
+msgstr ""
+
+#: ../../optional_installation.rst:280
+# a36b6275f2354327b0e21394b9a883e0
+msgid "Ensure that the replica's port 3306 is open to the Management Servers."
+msgstr ""
+
+#: ../../optional_installation.rst:285
+# 28145773ff534f1196dfcdc009a27d8d
+msgid "Make a change so that the Management Server uses the new database. The simplest process here is to put the IP address of the new database server into each Management Server's /etc/cloudstack/management/db.properties."
+msgstr ""
+
+#: ../../optional_installation.rst:292
+# 04d5359687c546b193f7694e48690c88
+msgid "Restart the Management Servers:"
+msgstr ""
+
+#: ../../optional_installation.rst:300
+# 908b240989be4e57a7a44645c1f1c200
+msgid "Amazon Web Services Interface"
+msgstr ""
+
+#: ../../optional_installation.rst:303
+# 13fa92afff834f76acf1807913a4ddd9
+msgid "Amazon Web Services Compatible Interface"
+msgstr ""
+
+#: ../../optional_installation.rst:305
+# 0e21bb994755441ba351a442ded0d861
+msgid "CloudStack can translate Amazon Web Services (AWS) API calls to native CloudStack API calls so that users can continue using existing AWS-compatible tools. This translation service runs as a separate web application in the same tomcat server as the management server of CloudStack, listening on a different port. The Amazon Web Services (AWS) compatible interface provides the EC2 SOAP and Query APIs as well as the S3 REST API."
+msgstr ""
+
+#: ../../optional_installation.rst:315
+# fd3570aa6bce4003bd691ddab7131659
+msgid "This service was previously enabled by separate software called CloudBridge. It is now fully integrated with the CloudStack management server."
+msgstr ""
+
+#: ../../optional_installation.rst:319
+# 2584c2fa19ea41e0bc7ecf98656e1baf
+msgid "The compatible interface for the EC2 Query API and the S3 API are Work In Progress. The S3 compatible API offers a way to store data on the management         server file system, it is not an implementation of the S3 backend."
+msgstr ""
+
+#: ../../optional_installation.rst:321
+# 4ecbe620a7054b75b388d7d946f8fcbf
+msgid "Limitations"
+msgstr ""
+
+#: ../../optional_installation.rst:325
+# d9b4eceaa5e14986b233f56dab81f2fe
+msgid "Supported only in zones that use basic networking."
+msgstr ""
+
+#: ../../optional_installation.rst:329
+# 7c00f154c2b84f3dacdfa1142686bb4b
+msgid "Available in fresh installations of CloudStack. Not available through upgrade of previous versions."
+msgstr ""
+
+#: ../../optional_installation.rst:334
+# 2c768e3715c347d4b658fd66b9cccabe
+msgid "Features such as Elastic IP (EIP) and Elastic Load Balancing (ELB) are only available in an infrastructure with a Citrix NetScaler device. Users accessing a Zone with a NetScaler device will need to use a NetScaler-enabled network offering (DefaultSharedNetscalerEIP and ELBNetworkOffering)."
+msgstr ""
+
+#: ../../optional_installation.rst:341
+# c79b074d0cd143bfbad1ccbe38da3870
+msgid "Supported API Version"
+msgstr ""
+
+#: ../../optional_installation.rst:345
+# 5d4ee9f9359e4edea1f3f26f95787aae
+msgid "The EC2 interface complies with Amazon's WDSL version dated November 15, 2010, available at `http://ec2.amazonaws.com/doc/2010-11-15/ <http://ec2.amazonaws.com/doc/2010-11-15/>`_."
+msgstr ""
+
+#: ../../optional_installation.rst:351
+# 275a7a85c52446bbba7fa468a12b13e8
+msgid "The interface is compatible with the EC2 command-line tools *EC2 tools v. 1.3.6230*, which can be downloaded at `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`_."
+msgstr ""
+
+#: ../../optional_installation.rst:357
+# ee2fb0ee43ce44dfbc17dbc415357f4b
+msgid "Work is underway to support a more recent version of the EC2 API"
+msgstr ""
+
+#: ../../optional_installation.rst:360
+# a5066ccca5d947dab401b48fa1c827ac
+msgid "Enabling the EC2 and S3 Compatible Interface"
+msgstr ""
+
+#: ../../optional_installation.rst:362
+# 0a40a8c0aeae4d28847aaffebd2e0b77
+msgid "The software that provides AWS API compatibility is installed along with CloudStack. You must enable the services and perform some setup steps prior to using it."
+msgstr ""
+
+#: ../../optional_installation.rst:368
+# 2d1dfb320f094662a2abab3ee3ed7564
+msgid "Set the global configuration parameters for each service to true. See `*Setting Global Configuration Parameters* <configuration.html#setting-global-configuration-parameters>`_."
+msgstr ""
+
+#: ../../optional_installation.rst:373
+# 3c573004daaf447a9ea3781fd1a8dc67
+msgid "Create a set of CloudStack service offerings with names that match the Amazon service offerings. You can do this through the CloudStack UI as described in the Administration Guide."
+msgstr ""
+
+#: ../../optional_installation.rst:379
+# 94091fd248aa4742b4ade27bbfdc651c
+msgid "Be sure you have included the Amazon default service offering, m1.small. As well as any EC2 instance types that you will use."
+msgstr ""
+
+#: ../../optional_installation.rst:383
+# 042b0e1d5a114ee0b6f9a853b4d4ae39
+msgid "If you did not already do so when you set the configuration parameter in step 1, restart the Management Server."
+msgstr ""
+
+#: ../../optional_installation.rst:390
+# 7b9489e9131b43df850dfeb6d2503cb6
+msgid "The following sections provides details to perform these steps"
+msgstr ""
+
+#: ../../optional_installation.rst:393
+# 108cd093069f4ed98bc18c79149d6156
+msgid "Enabling the Services"
+msgstr ""
+
+#: ../../optional_installation.rst:395
+# 39010121ec2f4c72b2903b5672336aaa
+msgid "To enable the EC2 and S3 compatible services you need to set the configuration variables *enable.ec2.api* and *enable.s3.api* to true. You do not have to enable both at the same time. Enable the ones you need. This can be done via the CloudStack GUI by going in *Global Settings* or via the API."
+msgstr ""
+
+#: ../../optional_installation.rst:401
+# da34d29b15bb4336a4fce15fe496fabd
+msgid "The snapshot below shows you how to use the GUI to enable these services"
+msgstr ""
+
+#: ../../optional_installation.rst:403
+# ca106e08170a43b0955d6377943ecb95
+msgid "|Use the GUI to set the configuration variable to true|"
+msgstr ""
+
+#: ../../optional_installation.rst:405
+# aeb3f192704a4d2a8e37954b1965aa54
+msgid "Using the CloudStack API, the easiest is to use the so-called integration port on which you can make unauthenticated calls. In Global Settings set the port to 8096 and subsequently call the *updateConfiguration* method. The following urls shows you how:"
+msgstr ""
+
+#: ../../optional_installation.rst:415
+# b3b35c42560d4bd38c04fbb26767e459
+msgid "Once you have enabled the services, restart the server."
+msgstr ""
+
+#: ../../optional_installation.rst:418
+# 03be0ef180d04f31ae30950f0955519f
+msgid "Creating EC2 Compatible Service Offerings"
+msgstr ""
+
+#: ../../optional_installation.rst:420
+# 2e71b04ddca44f11b8df8d0516c2a461
+msgid "You will also need to define compute service offerings with names compatible with the `Amazon EC2 instance types <http://aws.amazon.com/ec2/instance-types/>`_ API names (e.g m1.small,m1.large). This can be done via the CloudStack GUI. Go under *Service Offerings* select *Compute offering* and either create a new compute offering or modify an existing one, ensuring that the name matches an EC2 instance type API name. The snapshot below shows you how:"
+msgstr ""
+
+#: ../../optional_installation.rst:428
+# 51951028996a46f18420abe8eb5e467a
+msgid "|Use the GUI to set the name of a compute service offering to an EC2 instance type API name.|"
+msgstr ""
+
+#: ../../optional_installation.rst:432
+# 4598bfc20670422d956c715404a0dfaf
+msgid "Modifying the AWS API Port"
+msgstr ""
+
+#: ../../optional_installation.rst:436
+# c994c76df7fe428aa36240f1299b6572
+msgid "(Optional) The AWS API listens for requests on port 7080. If you prefer AWS API to listen on another port, you can change it as follows:"
+msgstr ""
+
+#: ../../optional_installation.rst:440
+# 0dcbe38e7a8f4d399bfa1e949aea147c
+msgid "Edit the files ``/etc/cloudstack/management/server.xml``, ``/etc/cloudstack/management/server-nonssl.xml``, and ``/etc/cloudstack/management/server-ssl.xml``."
+msgstr ""
+
+#: ../../optional_installation.rst:446
+# 45096710b3864e3dba393626022c56cd
+msgid "In each file, find the tag <Service name=\"Catalina7080\">. Under this tag, locate <Connector executor=\"tomcatThreadPool-internal\" port=   ....<."
+msgstr ""
+
+#: ../../optional_installation.rst:450
+# 09955dd23725489ca5b44829047f83a6
+msgid "Change the port to whatever port you want to use, then save the files."
+msgstr ""
+
+#: ../../optional_installation.rst:454
+# 7850ae5c003647e3800993f09d3515e4
+msgid "Restart the Management Server."
+msgstr ""
+
+#: ../../optional_installation.rst:456
+# afa95ed12f774196a3900c58bec43a55
+msgid "If you re-install CloudStack, you will have to re-enable the services and if need be update the port."
+msgstr ""
+
+#: ../../optional_installation.rst:460
+# 90d8f2c211154a228b46bc50294a88f9
+msgid "AWS API User Setup"
+msgstr ""
+
+#: ../../optional_installation.rst:462
+# 6e5a5893f4e74d09b595f97252a0204b
+msgid "In general, users need not be aware that they are using a translation service provided by CloudStack. They only need to send AWS API calls to CloudStack's endpoint, and it will translate the calls to the native CloudStack API. Users of the Amazon EC2 compatible interface will be able to keep their existing EC2 tools and scripts and use them with their CloudStack deployment, by specifying the endpoint of the management server and using the proper user credentials. In order to do this, each user must perform the following configuration steps:"
+msgstr ""
+
+#: ../../optional_installation.rst:473
+# f7141ce2f88f4e81af3fb3225b181f35
+msgid "Generate user credentials."
+msgstr ""
+
+#: ../../optional_installation.rst:477
+# 78c96ff5025e4e1d919e7d09cbd791ae
+msgid "Register with the service."
+msgstr ""
+
+#: ../../optional_installation.rst:481
+# 65dfa81b512744bb8a2441e263329a52
+msgid "For convenience, set up environment variables for the EC2 SOAP command-line tools."
+msgstr ""
+
+#: ../../optional_installation.rst:486
+# 3b4d14b5a5f14ab08a7688e8833a9ec9
+msgid "AWS API Command-Line Tools Setup"
+msgstr ""
+
+#: ../../optional_installation.rst:488
+# dfde155c78ce4200baca48fa3a5f037b
+msgid "To use the EC2 command-line tools, the user must perform these steps:"
+msgstr ""
+
+#: ../../optional_installation.rst:492
+# 800693fcd6894e6aaa4745be9254bee6
+msgid "Be sure you have the right version of EC2 Tools. The supported version is available at `http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip <http://s3.amazonaws.com/ec2-downloads/ec2-api-tools-1.3-62308.zip>`_."
+msgstr ""
+
+#: ../../optional_installation.rst:498
+# df0880de8a5b4705b8dbb43fa76f2a98
+msgid "Set up the EC2 environment variables. This can be done every time you use the service or you can set them up in the proper shell profile. Replace the endpoint (i.e EC2\\_URL) with the proper address of your CloudStack management server and port. In a bash shell do the following."
+msgstr ""
+
+#: ../../optional_installation.rst:512
+# 1a4c91090a9d49718753e24f4e7e15dc
+msgid "Using Timeouts to Ensure AWS API Command Completion"
+msgstr ""
+
+#: ../../optional_installation.rst:514
+# 64619241fff543b9b001ef888c668c66
+msgid "The Amazon EC2 command-line tools have a default connection timeout. When used with CloudStack, a longer timeout might be needed for some commands. If you find that commands are not completing due to timeouts, you can specify a custom timeouts. You can add the following optional command-line parameters to any CloudStack-supported EC2 command:"
+msgstr ""
+
+#: ../../optional_installation.rst:520
+# e3ad2ffe38a3410bab7772a043223629
+msgid "Specifies a connection timeout (in seconds)"
+msgstr ""
+
+#: ../../optional_installation.rst:526
+# e756e801ae374a35bd58b0658429e502
+msgid "Specifies a request timeout (in seconds)"
+msgstr ""
+
+#: ../../optional_installation.rst:532
+# 69ff406095bb492a86be6ba348e2c4f4
+msgid "Example:"
+msgstr ""
+
+#: ../../optional_installation.rst:540
+# e145a9770bf849aaa75f7903c47fcb78
+msgid "The timeouts optional arguments are not specific to CloudStack."
+msgstr ""
+
+#: ../../optional_installation.rst:543
+# 895bcef30e684d5d8c9faa6e9c951af5
+msgid "Supported AWS API Calls"
+msgstr ""
+
+#: ../../optional_installation.rst:545
+# ad0a5e3e13ca4fe7b3df211e2caa7134
+msgid "The following Amazon EC2 commands are supported by CloudStack when the AWS API compatible interface is enabled. For a few commands, there are differences between the CloudStack and Amazon EC2 versions, and these differences are noted. The underlying SOAP call for each command is also given, for those who have built tools using those calls."
+msgstr ""
+
+#: ../../optional_installation.rst:551
+# 7b3c005fe35946dc84a3ea2fc0b6d0d1
+msgid "Table 1. Elastic IP API mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:555
+#: ../../optional_installation.rst:574
+#: ../../optional_installation.rst:585
+#: ../../optional_installation.rst:602
+#: ../../optional_installation.rst:617
+#: ../../optional_installation.rst:638
+#: ../../optional_installation.rst:649
+#: ../../optional_installation.rst:666
+#: ../../optional_installation.rst:677
+#: ../../optional_installation.rst:696
+#: ../../optional_installation.rst:711
+# ab0814b37bab4bebba50ddcf37b3679d
+# 2759704657024f75868e25e8e9fcee4c
+# cbb8c8a42d3d4176bc116f22282dfcd8
+# 460991b7ba4745a0a6389c709ef34405
+# 43eacabecf4340c5978f9bef44afe3e9
+# 6e66ea93f49e4a8088b1240a3c9a5c0d
+# 7eafa5a23d4440129b24fe9c4ccfb831
+# ccac39d7bf1f44209f2df8f4017c1161
+# 71e1a212c3ef4513825770b509b37a15
+# 0f50d90449a448e3aa024777cf190d28
+# a6dafae1ffe245b384f3038eaff5e807
+msgid "EC2 command"
+msgstr ""
+
+#: ../../optional_installation.rst:555
+#: ../../optional_installation.rst:574
+#: ../../optional_installation.rst:585
+#: ../../optional_installation.rst:602
+#: ../../optional_installation.rst:617
+#: ../../optional_installation.rst:638
+#: ../../optional_installation.rst:649
+#: ../../optional_installation.rst:666
+#: ../../optional_installation.rst:677
+#: ../../optional_installation.rst:696
+#: ../../optional_installation.rst:711
+# 78a200ef3d484cf6b7a4c41ad9a8a7ca
+# adc512dff0ae4a40b5a46f0d5b9e39db
+# 2123f81311254f4388c7b7c2551a8078
+# 69d4baa8db464d6fa661b97796f03189
+# f3c078dd4101426694075f0ade30e05d
+# b3163c01285841ea9f888da3cb4239d1
+# d9518541d8044d4e8d6407f71745d28a
+# 5cb191d5b71d46298e4dfd4280bd64b8
+# 495c2421bf98440f8ee0d86344a4fce9
+# 82d977b2cb7943c99d25eb372572fe14
+# b58f0b7b468c47e28ae59c65bd9fa6e7
+msgid "SOAP call"
+msgstr ""
+
+#: ../../optional_installation.rst:555
+#: ../../optional_installation.rst:574
+#: ../../optional_installation.rst:585
+#: ../../optional_installation.rst:602
+#: ../../optional_installation.rst:617
+#: ../../optional_installation.rst:638
+#: ../../optional_installation.rst:649
+#: ../../optional_installation.rst:666
+#: ../../optional_installation.rst:677
+#: ../../optional_installation.rst:696
+#: ../../optional_installation.rst:711
+# ac59537fd8224b4e90196b1d78f23fbc
+# 2ca349b7c7fa446bb5581e7bb8614046
+# ff08a9523404400d83f3c843f0dff971
+# aa37961561ff47aeb4f11b98844c8232
+# df204989b28c46e088905c6861b0be06
+# ae89cb9f31e844d1993649cd64d8254b
+# f53a17d0817a4b558c29eb20c6edc6f9
+# 0c490fff40804f7c8106dad8d03330ce
+# 751e2e6c2d4444b8834f479f1fa43e48
+# dc275e4e74604d87a7bf1d181432f189
+# c917215672fb480ab9377a5aa7ad8f60
+msgid "CloudStack API call"
+msgstr ""
+
+#: ../../optional_installation.rst:557
+# 99e6554c2d594a2d82e50de0499caecd
+msgid "ec2-allocate-address"
+msgstr ""
+
+#: ../../optional_installation.rst:557
+# 0c7211c2d6fa4a3d9d97bda018a2c29b
+msgid "AllocateAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:557
+# b56058adc8e2482bb99b566f5001a655
+msgid "associateIpAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:559
+# 5eb619cc847c4222beea83e790f94c39
+msgid "ec2-associate-address"
+msgstr ""
+
+#: ../../optional_installation.rst:559
+# 8266e0a21a91482588230dd452ec8e70
+msgid "AssociateAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:559
+# bb53eb62239140e1b5e624d08e000b88
+msgid "enableStaticNat"
+msgstr ""
+
+#: ../../optional_installation.rst:561
+# 658fda2a155145a7af43e8b6e0148816
+msgid "ec2-describe-addresses"
+msgstr ""
+
+#: ../../optional_installation.rst:561
+# 5d052cbb95104736ad915a3ca985c666
+msgid "DescribeAddresses"
+msgstr ""
+
+#: ../../optional_installation.rst:561
+# e345bfbcdd094eb8aa8e36a0fbd5d89b
+msgid "listPublicIpAddresses"
+msgstr ""
+
+#: ../../optional_installation.rst:563
+# 87ccbc154760470fa812d074fc093dce
+msgid "ec2-diassociate-address"
+msgstr ""
+
+#: ../../optional_installation.rst:563
+# 0480b2af2f824f7ebd3b345eb5ae6a4f
+msgid "DisassociateAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:563
+# f49b439a4a67450b89eb7fdffb3e1c84
+msgid "disableStaticNat"
+msgstr ""
+
+#: ../../optional_installation.rst:565
+# 9c2f4489a860437282a0c188eeebe3ff
+msgid "ec2-release-address"
+msgstr ""
+
+#: ../../optional_installation.rst:565
+# 35f1e9817f1d4e3a805ca8aaee8fb229
+msgid "ReleaseAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:565
+# a67d0ab0f1a64ec2b8c21b006e1a2f90
+msgid "disassociateIpAddress"
+msgstr ""
+
+#: ../../optional_installation.rst:570
+# 4a72020f31b34940841e0e3c1b4ef643
+msgid "Table 2. Availability Zone API mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:576
+# 0d1a534afa9f4184bb6d7e6ba6d13a79
+msgid "ec2-describe-availability-zones"
+msgstr ""
+
+#: ../../optional_installation.rst:576
+# e2cb2767a40c473a8e6fb813769f7301
+msgid "DescribeAvailabilityZones"
+msgstr ""
+
+#: ../../optional_installation.rst:576
+# 9a382a47bfb74bb593a10a5ff6e25ffd
+msgid "listZones"
+msgstr ""
+
+#: ../../optional_installation.rst:581
+# f62baa92321346e39d05147ba7d3b6d3
+msgid "Table 3. Images API mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:587
+# b6442db2335c4be787e2c6ab6f9993bc
+msgid "ec2-create-image"
+msgstr ""
+
+#: ../../optional_installation.rst:587
+# 384e6c0b65cd4ab7b8012368b424aad0
+msgid "CreateImage"
+msgstr ""
+
+#: ../../optional_installation.rst:587
+# e0c1789e1bc240c486b275ef6bd04ae7
+msgid "createTemplate"
+msgstr ""
+
+#: ../../optional_installation.rst:589
+# 7ea01be830ec4dd9bda90926a00fe600
+msgid "ec2-deregister"
+msgstr ""
+
+#: ../../optional_installation.rst:589
+# bd63ca4e7dc74205bdbd3ad62f01bfe7
+msgid "DeregisterImage"
+msgstr ""
+
+#: ../../optional_installation.rst:589
+# 34ac4b0eb9614903a3619e099a4ccc72
+msgid "DeleteTemplate"
+msgstr ""
+
+#: ../../optional_installation.rst:591
+# f53fef47b43b48ff8f863c654d9b4cdb
+msgid "ec2-describe-images"
+msgstr ""
+
+#: ../../optional_installation.rst:591
+# 47a1032852c24ad4853006959197af20
+msgid "DescribeImages"
+msgstr ""
+
+#: ../../optional_installation.rst:591
+# 0c6b2e8dfa4a462387c76e9832df6e65
+msgid "listTemplates"
+msgstr ""
+
+#: ../../optional_installation.rst:593
+# e09a7882cbc7406194f428d913c31b1a
+msgid "ec2-register"
+msgstr ""
+
+#: ../../optional_installation.rst:593
+# 186fd0feef5d42e39b45127aca5b509d
+msgid "RegisterImage"
+msgstr ""
+
+#: ../../optional_installation.rst:593
+# fcbeab7a8003431e960bee86a6417310
+msgid "registerTemplate"
+msgstr ""
+
+#: ../../optional_installation.rst:598
+# 5bcd512bca8a4e869de4bce42769dc47
+msgid "Table 4. Image Attributes API mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:604
+# 6ef54cf16ba9473fae7f6913ae97b4c9
+msgid "ec2-describe-image-attribute"
+msgstr ""
+
+#: ../../optional_installation.rst:604
+# 4edda821f05c40998556bd1d673fd236
+msgid "DescribeImageAttribute"
+msgstr ""
+
+#: ../../optional_installation.rst:604
+# 4d02a782bb21400a98b3abf5389bfe7d
+msgid "listTemplatePermissions"
+msgstr ""
+
+#: ../../optional_installation.rst:606
+# 6e0940c541194f02a717cd834a129c1a
+msgid "ec2-modify-image-attribute"
+msgstr ""
+
+#: ../../optional_installation.rst:606
+# b0f1f5a1969c4d7489507d856af91c76
+msgid "ModifyImageAttribute"
+msgstr ""
+
+#: ../../optional_installation.rst:606
+#: ../../optional_installation.rst:608
+# 7ddb77996c354b60aa2fe4c82bdd54a0
+# c4da2db179494b67990b93b1ab06aff8
+msgid "updateTemplatePermissions"
+msgstr ""
+
+#: ../../optional_installation.rst:608
+# 9d783054b68d44279cb0809bbb1dab15
+msgid "ec2-reset-image-attribute"
+msgstr ""
+
+#: ../../optional_installation.rst:608
+# f6295dd7096d4ef39d13097670a6e669
+msgid "ResetImageAttribute"
+msgstr ""
+
+#: ../../optional_installation.rst:613
+# da0cf1a9af8b48b59ee0ba6dc31c8d76
+msgid "Table 5. Instances API mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:619
+# 79355e5383ef4aa1a1e89ed488612fda
+msgid "ec2-describe-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:619
+# 27d17d486d5e4743985ce9a4379de40a
+msgid "DescribeInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:619
+#: ../../optional_installation.rst:640
+# 24ca1c436bb345dba12764523b51ec63
+# f5001ce1fafd42fa84dd1de9d24d5b83
+msgid "listVirtualMachines"
+msgstr ""
+
+#: ../../optional_installation.rst:621
+# 00c378633eab48a18c0ec9d21435cdf5
+msgid "ec2-run-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:621
+# d09a59362a054bbfa236be1bd6d20def
+msgid "RunInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:621
+# 087a670aa9874c86b8a3f60817b1f89a
+msgid "deployVirtualMachine"
+msgstr ""
+
+#: ../../optional_installation.rst:623
+# ecd305073eee4cf8a1dc6b574d81df30
+msgid "ec2-reboot-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:623
+# aae4dc0cebdc49efae8d600783b9f12e
+msgid "RebootInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:623
+# 1e8fb9e0ece345dca69feed52349021d
+msgid "rebootVirtualMachine"
+msgstr ""
+
+#: ../../optional_installation.rst:625
+# b0022e5bbdf44ec0a6341d106ec7d94c
+msgid "ec2-start-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:625
+# 46031a76499b4c0e9c5a39e77782c4d9
+msgid "StartInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:625
+# bf1504e3a0674d0b85095e836bd6962a
+msgid "startVirtualMachine"
+msgstr ""
+
+#: ../../optional_installation.rst:627
+# 5f2f3ec553f54c659f3c357b003a8d28
+msgid "ec2-stop-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:627
+# 193cfd3fb58e4dbfa8bd1c233e11a8bf
+msgid "StopInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:627
+# 41ba2031043045a5b0e664038a836a53
+msgid "stopVirtualMachine"
+msgstr ""
+
+#: ../../optional_installation.rst:629
+# 47f5f9f8ea2d494bbd858e7f046cb88b
+msgid "ec2-terminate-instances"
+msgstr ""
+
+#: ../../optional_installation.rst:629
+# 03fa4cc038b54af2b2b0b30a424154b3
+msgid "TerminateInstances"
+msgstr ""
+
+#: ../../optional_installation.rst:629
+# 8f834a4620474486b8d069bc80d4fa97
+msgid "destroyVirtualMachine"
+msgstr ""
+
+#: ../../optional_installation.rst:634
+# ce25e10dee3e4d588935eebac1f5f695
+msgid "Table 6. Instance Attributes Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:640
+# 7e9fa7a259f843448321f098e781d68d
+msgid "ec2-describe-instance-attribute"
+msgstr ""
+
+#: ../../optional_installation.rst:640
+# b354b9c4037c4be8b16792f11e0a685b
+msgid "DescribeInstanceAttribute"
+msgstr ""
+
+#: ../../optional_installation.rst:645
+# 8b396a202c604bfaa257d8bdc83d963e
+msgid "Table 7. Keys Pairs Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:651
+# c218341b87854777b1f69ed42f06c6cb
+msgid "ec2-add-keypair"
+msgstr ""
+
+#: ../../optional_installation.rst:651
+# f399f5b2e56f4c22979b33af8110b7b3
+msgid "CreateKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:651
+# 7900c842debc41f7b23c4103bfac2fb1
+msgid "createSSHKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:653
+# 9cfc2a2925b9456582e8c466e50e36c1
+msgid "ec2-delete-keypair"
+msgstr ""
+
+#: ../../optional_installation.rst:653
+# 8070f7e64f5e490088c7baea20ddc8f4
+msgid "DeleteKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:653
+# 25a3f734f8ea47bdacfce912212f0f83
+msgid "deleteSSHKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:655
+# 3069cec0128844058911d7ce8909dadf
+msgid "ec2-describe-keypairs"
+msgstr ""
+
+#: ../../optional_installation.rst:655
+# d393c055180b403f892e58e0af9c439c
+msgid "DescribeKeyPairs"
+msgstr ""
+
+#: ../../optional_installation.rst:655
+# b42372e5e42d49988975b69725725faa
+msgid "listSSHKeyPairs"
+msgstr ""
+
+#: ../../optional_installation.rst:657
+# 81bb596e06264af9a48db273ebf0ea8f
+msgid "ec2-import-keypair"
+msgstr ""
+
+#: ../../optional_installation.rst:657
+# fd199e97ef4b40ffbb5f65766607a3c9
+msgid "ImportKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:657
+# d6c18bf7d0a64a23a9cd2c725b68bb38
+msgid "registerSSHKeyPair"
+msgstr ""
+
+#: ../../optional_installation.rst:662
+# 5e2d7ff2ad7f414483eaa4f5ed93c53f
+msgid "Table 8. Passwords API Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:668
+# b051d0105d244d179fc17a308cc1ffeb
+msgid "ec2-get-password"
+msgstr ""
+
+#: ../../optional_installation.rst:668
+# 71a1a1ebb372455099a50f4c1d5e654f
+msgid "GetPasswordData"
+msgstr ""
+
+#: ../../optional_installation.rst:668
+# 5ce16abd4d06403db13d08926e1158e4
+msgid "getVMPassword"
+msgstr ""
+
+#: ../../optional_installation.rst:673
+# 219acf23be7641ddad72e7121ee69796
+msgid "Table 9. Security Groups API Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:679
+# d59f5068cbbd4ec6896e917c8845cc41
+msgid "ec2-authorize"
+msgstr ""
+
+#: ../../optional_installation.rst:679
+# 1d770748c025465e988a75755f8bd10c
+msgid "AuthorizeSecurityGroupIngress"
+msgstr ""
+
+#: ../../optional_installation.rst:679
+# c9d82294d3bf469aaf5baf38b5ec4d6a
+msgid "authorizeSecurityGroupIngress"
+msgstr ""
+
+#: ../../optional_installation.rst:681
+# e375163e62cc49a19dcece0639d74d1e
+msgid "ec2-add-group"
+msgstr ""
+
+#: ../../optional_installation.rst:681
+# 2b7e0861da1b4181a9397d09cc3670bc
+msgid "CreateSecurityGroup"
+msgstr ""
+
+#: ../../optional_installation.rst:681
+# a6ea159ac67c4adfb718cf441a57703e
+msgid "createSecurityGroup"
+msgstr ""
+
+#: ../../optional_installation.rst:683
+# f5d06234f2704480935e3d6308552b5f
+msgid "ec2-delete-group"
+msgstr ""
+
+#: ../../optional_installation.rst:683
+# 2ba2b0c32f4d4656983301a3b4dbb33f
+msgid "DeleteSecurityGroup"
+msgstr ""
+
+#: ../../optional_installation.rst:683
+# 096876dd93ee45e59918615970873f00
+msgid "deleteSecurityGroup"
+msgstr ""
+
+#: ../../optional_installation.rst:685
+# 7e5a122e72fd494aa65d7b81ba68e23e
+msgid "ec2-describe-group"
+msgstr ""
+
+#: ../../optional_installation.rst:685
+# a5f4bca8d13045869578b21ac13cf577
+msgid "DescribeSecurityGroups"
+msgstr ""
+
+#: ../../optional_installation.rst:685
+# 83310e0ff6f947cf912c59c4825bc6e1
+msgid "listSecurityGroups"
+msgstr ""
+
+#: ../../optional_installation.rst:687
+# 10a505985f0a488d957a3c94952437fd
+msgid "ec2-revoke"
+msgstr ""
+
+#: ../../optional_installation.rst:687
+# 20a97fcd061d495b9fd9530c1b731484
+msgid "RevokeSecurityGroupIngress"
+msgstr ""
+
+#: ../../optional_installation.rst:687
+# a4b72631334b41ad9970ec13fb407ff2
+msgid "revokeSecurityGroupIngress"
+msgstr ""
+
+#: ../../optional_installation.rst:692
+# 6bc48720611a4083b4d7edf62a707dad
+msgid "Table 10. Snapshots API Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:698
+# d546aaa137334207a7a38816408b9a97
+msgid "ec2-create-snapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:698
+# 2a15c0cc74a24cce8f6a47c5ebe88b30
+msgid "CreateSnapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:698
+# 5156b81572154dc08aabd2c7eff470cc
+msgid "createSnapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:700
+# df85667beada434ea7c65b1e9aba6527
+msgid "ec2-delete-snapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:700
+# 6d5662797d8049dbb372300b509eadf1
+msgid "DeleteSnapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:700
+# 2e00aedaa9474c12b4478f36c38522a7
+msgid "deleteSnapshot"
+msgstr ""
+
+#: ../../optional_installation.rst:702
+# 133870454b7a46a4975b338e8707e99a
+msgid "ec2-describe-snapshots"
+msgstr ""
+
+#: ../../optional_installation.rst:702
+# 91e9a8133a5145eabf6c7b20249daef4
+msgid "DescribeSnapshots"
+msgstr ""
+
+#: ../../optional_installation.rst:702
+# 774d14bab36946ef9a461f31cc3ca2c5
+msgid "listSnapshots"
+msgstr ""
+
+#: ../../optional_installation.rst:707
+# 1488a3ce4b014e2f8463c68d71e51a3f
+msgid "Table 11. Volumes API Mapping"
+msgstr ""
+
+#: ../../optional_installation.rst:713
+# 574127e918dc493bbaf9f00fe59b51e1
+msgid "ec2-attach-volume"
+msgstr ""
+
+#: ../../optional_installation.rst:713
+# 6d12ce27f3a3464f9e39618bcb2d6b17
+msgid "AttachVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:713
+# eca0d38a1e85441c9bd95d3ae220c995
+msgid "attachVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:715
+# 46017b1d538746a590d57482750f6869
+msgid "ec2-create-volume"
+msgstr ""
+
+#: ../../optional_installation.rst:715
+# 275a90cc400a467799bfc076ad4e91d9
+msgid "CreateVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:715
+# 3a9965009180409e8c94474d984b7fca
+msgid "createVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:717
+# d87fd97018ce47c1befddf53071bca74
+msgid "ec2-delete-volume"
+msgstr ""
+
+#: ../../optional_installation.rst:717
+# e00e5d79af884664aae162eb23d97daa
+msgid "DeleteVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:717
+# 0ea441d0a5a444c8a822f70933d79fad
+msgid "deleteVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:719
+# 9eec17b895294c358e0e6d068e3c67f7
+msgid "ec2-describe-volume"
+msgstr ""
+
+#: ../../optional_installation.rst:719
+# a21c198723b14699801f195d9c447f13
+msgid "DescribeVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:719
+# 3ac919eb5ebc40cc8d69ec270a2d98b9
+msgid "listVolumes"
+msgstr ""
+
+#: ../../optional_installation.rst:721
+# b11e784574f64ed09d472fb0a1b8f878
+msgid "ec2-detach-volume"
+msgstr ""
+
+#: ../../optional_installation.rst:721
+# fd89621510db420cabe46f1e087869f6
+msgid "DetachVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:721
+# ce97fae64f4544e98b34790f6c802962
+msgid "detachVolume"
+msgstr ""
+
+#: ../../optional_installation.rst:727
+# 43b90aa15e304481be19f8f11994e7e5
+msgid "Examples"
+msgstr ""
+
+#: ../../optional_installation.rst:729
+# 1c5767a4fecb43c5b54f99f5be3a1d87
+msgid "There are many tools available to interface with a AWS compatible API. In this section we provide a few examples that users of CloudStack can build upon."
+msgstr ""
+
+#: ../../optional_installation.rst:734
+# ad24d991529b4e8889c9179531422ed2
+msgid "Boto Examples"
+msgstr ""
+
+#: ../../optional_installation.rst:736
+# 22da38cb9aa64efe84e9b9696a02fa9d
+msgid "Boto is one of them. It is a Python package available at https://github.com/boto/boto. In this section we provide two examples of Python scripts that use Boto and have been tested with the CloudStack AWS API Interface."
+msgstr ""
+
+#: ../../optional_installation.rst:741
+# e405217390dc4f6fadf3a611a3682e82
+msgid "First is an EC2 example. Replace the Access and Secret Keys with your own and update the endpoint."
+msgstr ""
+
+#: ../../optional_installation.rst:744
+# 8ae07fcf316a4ff7b85e8cd2f69099a1
+msgid "Example 1. An EC2 Boto example"
+msgstr ""
+
+#: ../../optional_installation.rst:783
+# 280894a2c7214f7385efe46698611dbb
+msgid "Second is an S3 example. The S3 interface in CloudStack is obsolete. If you need an S3 interface you should look at systems like RiakCS, Ceph or GlusterFS. This example is here for completeness and can be adapted to other S3 endpoint."
+msgstr ""
+
+#: ../../optional_installation.rst:785
+# e2b2412c5c9546e489607ec6759b33dd
+msgid "Example 2. An S3 Boto Example"
+msgstr ""
+

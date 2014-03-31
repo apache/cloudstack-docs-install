@@ -24,6 +24,40 @@ Website
 
 This installation guide is on-line at <http://cloudstack-installation.readthedocs.org/en/latest/>
 
+Translation
+===========
+
+Clean the build
+
+::
+   make clean
+
+Generate the .pot files
+
+::
+   make gettext
+
+Generate the .tx/config files with:
+
+::
+   sphinx-intl update-txconfig-resources --pot-dir source/locale/pot --transifex-project-name apache-cloudstack-installation-rtd --locale-dir source/locale
+
+Push the .pot files to transifex with:
+
+::
+   tx push -s
+
+Download the translated strings, for example Japanese (ja):
+
+::
+   tx pull -l ja
+
+Build the translated docs:
+
+::
+   sphinx-intl build --locale-dir source/locale
+   make -e SPHINXOPTS="-D language='ja'" html
+
 Feedback
 ========
 

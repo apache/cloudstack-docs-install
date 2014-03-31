@@ -1,0 +1,433 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014, Apache Software Foundation
+# This file is distributed under the same license as the Apache CloudStack Installation Documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Apache CloudStack Installation Documentation 4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../building_from_source.rst:17
+# 5396f27a8ff74a7d8817526ff37ec438
+msgid "Building from Source"
+msgstr ""
+
+#: ../../building_from_source.rst:19
+# 60bf699c76df434992e36d41c5f00bcf
+msgid "The official CloudStack release is always in source code form. You will likely be able to find \"convenience binaries,\" the source is the canonical release. In this section, we'll cover acquiring the source release and building that so that you can deploy it using Maven or create Debian packages or RPMs."
+msgstr ""
+
+#: ../../building_from_source.rst:25
+# 32892fc6365642cd81e9910e84bb80c0
+msgid "Note that building and deploying directly from source is typically not the most efficient way to deploy an IaaS. However, we will cover that method as well as building RPMs or Debian packages for deploying CloudStack."
+msgstr ""
+
+#: ../../building_from_source.rst:30
+# 7e67792d5ec241af80724aa269cc8f40
+msgid "The instructions here are likely version-specific. That is, the method for building from source for the 4.0.x series is different from the 4.1.x series."
+msgstr ""
+
+#: ../../building_from_source.rst:34
+# 59bd739639154797bb627d316198b3d2
+msgid "If you are working with a unreleased version of CloudStack, see the INSTALL.md file in the top-level directory of the release."
+msgstr ""
+
+#: ../../building_from_source.rst:38
+# 54b5d37f192048519bd2ed85a3ddc5b3
+msgid "Getting the release"
+msgstr ""
+
+#: ../../building_from_source.rst:40
+# d3311764aeed4cc0b185062d99f5c4e9
+msgid "You can download the latest CloudStack release from the `Apache CloudStack project download page <http://cloudstack.apache.org/downloads.html>`_."
+msgstr ""
+
+#: ../../building_from_source.rst:43
+# c0f0cbed8f7942dd8cdf0ec15232e760
+msgid "Prior releases are available via archive.apache.org as well. See the downloads page for more information on archived releases."
+msgstr ""
+
+#: ../../building_from_source.rst:46
+# efebd9e2df61457482c9cb8efbadd736
+msgid "You'll notice several links under the 'Latest release' section. A link to a file ending in ``tar.bz2``, as well as a PGP/GPG signature, MD5, and SHA512 file."
+msgstr ""
+
+#: ../../building_from_source.rst:52
+# c8757326ca1c47f989906e77b64c17db
+msgid "The ``tar.bz2`` file contains the Bzip2-compressed tarball with the source code."
+msgstr ""
+
+#: ../../building_from_source.rst:57
+# d1f48a19cc14413e90a8164ef6e496ed
+msgid "The ``.asc`` file is a detached cryptographic signature that can be used to help verify the authenticity of the release."
+msgstr ""
+
+#: ../../building_from_source.rst:62
+# b45289cb4cba4686b60ab976bf75eea1
+msgid "The ``.md5`` file is an MD5 hash of the release to aid in verify the validity of the release download."
+msgstr ""
+
+#: ../../building_from_source.rst:67
+# 637044e3649f406b8e5b6a441ba355c7
+msgid "The ``.sha`` file is a SHA512 hash of the release to aid in verify the validity of the release download."
+msgstr ""
+
+#: ../../building_from_source.rst:71
+# 4da67860f4454b7aa0c0fc6f76b59317
+msgid "Verifying the downloaded release"
+msgstr ""
+
+#: ../../building_from_source.rst:73
+# 184cd04b405b4136b74c0644e4720e2a
+msgid "There are a number of mechanisms to check the authenticity and validity of a downloaded release."
+msgstr ""
+
+#: ../../building_from_source.rst:77
+# 787318aa8f2049098a34030e7bb9220d
+msgid "Getting the KEYS"
+msgstr ""
+
+#: ../../building_from_source.rst:79
+# af2e7aafde3c45d79c93d848f16df84f
+msgid "To enable you to verify the GPG signature, you will need to download the `KEYS <http://www.apache.org/dist/cloudstack/KEYS>`_ file."
+msgstr ""
+
+#: ../../building_from_source.rst:82
+# b7351a3de11b4d5783f051a524e6d6d9
+msgid "You next need to import those keys, which you can do by running:"
+msgstr ""
+
+#: ../../building_from_source.rst:89
+# 6a67d67c239c4450b6b0454f78e1e976
+msgid "GPG"
+msgstr ""
+
+#: ../../building_from_source.rst:91
+# c41516ba45df4b8c8c82f0437fd1cf0f
+msgid "The CloudStack project provides a detached GPG signature of the release. To check the signature, run the following command:"
+msgstr ""
+
+#: ../../building_from_source.rst:98
+# 06a586af894b41a191ca74d565fd5646
+msgid "If the signature is valid you will see a line of output that contains 'Good signature'."
+msgstr ""
+
+#: ../../building_from_source.rst:102
+# 7c1c3790e01440f88dc8e8f108c69180
+msgid "MD5"
+msgstr ""
+
+#: ../../building_from_source.rst:104
+# e47ab7059cdf4276968ef9219d824967
+msgid "In addition to the cryptographic signature, CloudStack has an MD5 checksum that you can use to verify the download matches the release. You can verify this hash by executing the following command:"
+msgstr ""
+
+#: ../../building_from_source.rst:112
+# 471b0fafe73b4bebb48f271b2be0323b
+msgid "If this successfully completes you should see no output. If there is any output from them, then there is a difference between the hash you generated locally and the hash that has been pulled from the server."
+msgstr ""
+
+#: ../../building_from_source.rst:117
+# a42234cf484d448ea3a079cc44d505c4
+msgid "SHA512"
+msgstr ""
+
+#: ../../building_from_source.rst:119
+# f6904f51119c4bd7a0e6d9d42868d7cd
+msgid "In addition to the MD5 hash, the CloudStack project provides a SHA512 cryptographic hash to aid in assurance of the validity of the downloaded release. You can verify this hash by executing the following command:"
+msgstr ""
+
+#: ../../building_from_source.rst:127
+# 2b02e428976242d5a9513dc999f80d9a
+msgid "If this command successfully completes you should see no output. If there is any output from them, then there is a difference between the hash you generated locally and the hash that has been pulled from the server."
+msgstr ""
+
+#: ../../building_from_source.rst:133
+# 20ae79e8693540af926f68f5b8a08da3
+msgid "Prerequisites for building Apache CloudStack"
+msgstr ""
+
+#: ../../building_from_source.rst:135
+# 8de67a9fdaea48faa67ab89f641adc4b
+msgid "There are a number of prerequisites needed to build CloudStack. This document assumes compilation on a Linux system that uses RPMs or DEBs for package management."
+msgstr ""
+
+#: ../../building_from_source.rst:139
+# 9c13e54d32b5455aaab36099aa2535a4
+msgid "You will need, at a minimum, the following to compile CloudStack:"
+msgstr ""
+
+#: ../../building_from_source.rst:143
+# 0146a3cb86884d318cf934c639b76449
+msgid "Maven (version 3)"
+msgstr ""
+
+#: ../../building_from_source.rst:147
+# 005189dfa25b4c66b039e0267fdbea5e
+msgid "Java (OpenJDK 1.6 or Java 7/OpenJDK 1.7)"
+msgstr ""
+
+#: ../../building_from_source.rst:151
+# 2c58fc00271e445e861705983b16a5f3
+msgid "Apache Web Services Common Utilities (ws-commons-util)"
+msgstr ""
+
+#: ../../building_from_source.rst:155
+# 989f684d1b8a456bac9a81d3f924d16f
+msgid "MySQL"
+msgstr ""
+
+#: ../../building_from_source.rst:159
+# 44ef1202eb3e4c61b84f22fbc433a538
+msgid "MySQLdb (provides Python database API)"
+msgstr ""
+
+#: ../../building_from_source.rst:163
+# e84e7644c89a4669991bc0a1013171c1
+msgid "Tomcat 6 (not 6.0.35)"
+msgstr ""
+
+#: ../../building_from_source.rst:167
+# fe2b1db48eb9421d937189144b944911
+msgid "genisoimage"
+msgstr ""
+
+#: ../../building_from_source.rst:171
+# bc55f42faeef4adbb28f3b39cfe334ef
+msgid "rpmbuild or dpkg-dev"
+msgstr ""
+
+#: ../../building_from_source.rst:174
+# 7b45a167b6874f9a8ba73a17d7f1a6c5
+msgid "Extracting source"
+msgstr ""
+
+#: ../../building_from_source.rst:176
+# 3b2090380fcf4c12ad2638d91cb45d43
+msgid "Extracting the CloudStack release is relatively simple and can be done with a single command as follows:"
+msgstr ""
+
+#: ../../building_from_source.rst:183
+# 0f5f07d38bd54fb2a0e69c6fb28e1967
+msgid "You can now move into the directory:"
+msgstr ""
+
+#: ../../building_from_source.rst:190
+# aa9e9e76ff6441498d8531802e1afa7e
+msgid "Building DEB packages"
+msgstr ""
+
+#: ../../building_from_source.rst:192
+# 0eca44ba0f1c4b3ba1e65ab3a0268db9
+msgid "In addition to the bootstrap dependencies, you'll also need to install several other dependencies. Note that we recommend using Maven 3, which is not currently available in 12.04.1 LTS. So, you'll also need to add a PPA repository that includes Maven 3. After running the command ``add-apt-repository``, you will be prompted to continue and a GPG key will be added."
+msgstr ""
+
+#: ../../building_from_source.rst:207
+# 8014eb3c824248f28bfaff9deeabaced
+msgid "While we have defined, and you have presumably already installed the bootstrap prerequisites, there are a number of build time prerequisites that need to be resolved. CloudStack uses maven for dependency resolution. You can resolve the buildtime depdencies for CloudStack by running:"
+msgstr ""
+
+#: ../../building_from_source.rst:217
+# f6f09e0f7e3c49129fe0c281cc144489
+msgid "Now that we have resolved the dependencies we can move on to building CloudStack and packaging them into DEBs by issuing the following command."
+msgstr ""
+
+#: ../../building_from_source.rst:225
+# f345823b71dc4836a97a160bfbb40a9e
+msgid "This command will build the following debian packages. You should have all of the following:"
+msgstr ""
+
+#: ../../building_from_source.rst:239
+# 88e77857a4fa4e9b80e912d82a405591
+msgid "Setting up an APT repo"
+msgstr ""
+
+#: ../../building_from_source.rst:241
+# 7db71198e1aa4db08ce8f174f11546aa
+msgid "After you've created the packages, you'll want to copy them to a system where you can serve the packages over HTTP. You'll create a directory for the packages and then use ``dpkg-scanpackages`` to create ``Packages.gz``, which holds information about the archive structure. Finally, you'll add the repository to your system(s) so you can install the packages using APT."
+msgstr ""
+
+#: ../../building_from_source.rst:248
+# 882df6f5a6a542e08af5d64a8c440f9b
+msgid "The first step is to make sure that you have the **dpkg-dev** package installed. This should have been installed when you pulled in the **debhelper** application previously, but if you're generating ``Packages.gz`` on a different system, be sure that it's installed there as well."
+msgstr ""
+
+#: ../../building_from_source.rst:258
+# 6b45808c7afe48eab8f0e54e28996c78
+msgid "The next step is to copy the DEBs to the directory where they can be served over HTTP. We'll use ``/var/www/cloudstack/repo`` in the examples, but change the directory to whatever works for you."
+msgstr ""
+
+#: ../../building_from_source.rst:271
+# 9f7bfa37a80641409e1400b8548efb29
+msgid "You can safely ignore the warning about a missing override file."
+msgstr ""
+
+#: ../../building_from_source.rst:273
+# d8e564f896ea416898d007e9d49d6718
+msgid "Now you should have all of the DEB packages and ``Packages.gz`` in the ``binary`` directory and available over HTTP. (You may want to use ``wget`` or ``curl`` to test this before moving on to the next step.)"
+msgstr ""
+
+#: ../../building_from_source.rst:278
+# c7c808299766447184af66ba621c649f
+msgid "Configuring your machines to use the APT repository"
+msgstr ""
+
+#: ../../building_from_source.rst:280
+# dfdd1c5b583743d0b5156002e9f3ffb9
+msgid "Now that we have created the repository, you need to configure your machine to make use of the APT repository. You can do this by adding a repository file under ``/etc/apt/sources.list.d``. Use your preferred editor to create ``/etc/apt/sources.list.d/cloudstack.list`` with this line:"
+msgstr ""
+
+#: ../../building_from_source.rst:290
+# 8cad604cc3474e2bb424225f2d519465
+msgid "Now that you have the repository info in place, you'll want to run another update so that APT knows where to find the CloudStack packages."
+msgstr ""
+
+#: ../../building_from_source.rst:297
+# ae0dd676f4ec4158b5f3bd6fd9c6c414
+msgid "You can now move on to the instructions under Install on Ubuntu."
+msgstr ""
+
+#: ../../building_from_source.rst:300
+# 99e76b064e8447a78d810b22c43f6f41
+msgid "Building RPMs from Source"
+msgstr ""
+
+#: ../../building_from_source.rst:302
+# f2be124577f84dd497fb762733f58ef8
+msgid "As mentioned previously in `“Prerequisites for building Apache CloudStack” <#prerequisites-for-building-apache-cloudstack>`_, you will need to install several prerequisites before you can build packages for CloudStack. Here we'll assume you're working with a 64-bit build of CentOS or Red Hat Enterprise Linux."
+msgstr ""
+
+#: ../../building_from_source.rst:316
+# 147d967fe07344fda8b630d94ecbf22e
+msgid "Next, you'll need to install build-time dependencies for CloudStack with Maven. We're using Maven 3, so you'll want to `grab a Maven 3 tarball <http://maven.apache.org/download.cgi>`_ and uncompress it in your home directory (or whatever location you prefer):"
+msgstr ""
+
+#: ../../building_from_source.rst:329
+# 1a9e316005174aeaa91a7dcfbaade092
+msgid "Maven also needs to know where Java is, and expects the JAVA\\_HOME environment variable to be set:"
+msgstr ""
+
+#: ../../building_from_source.rst:336
+# 4ab8a6164f45425aa7186cdf64e8d55e
+msgid "Verify that Maven is installed correctly:"
+msgstr ""
+
+#: ../../building_from_source.rst:342
+# 3843f8810db04c80a8eee7f3cae3f4bf
+msgid "You probably want to ensure that your environment variables will survive a logout/reboot. Be sure to update ``~/.bashrc`` with the PATH and JAVA\\_HOME variables."
+msgstr ""
+
+#: ../../building_from_source.rst:346
+# 490ba6dd066441edb4adc61fb071e8a7
+msgid "Building RPMs for CloudStack is fairly simple. Assuming you already have the source downloaded and have uncompressed the tarball into a local directory, you're going to be able to generate packages in just a few minutes."
+msgstr ""
+
+#: ../../building_from_source.rst:353
+# e0cc268134ba44c9a96d06b97e687c39
+msgid "Packaging has Changed. If you've created packages for CloudStack previously, you should be aware that the process has changed considerably since the project has moved to using Apache Maven. Please be sure to follow the steps in this section closely."
+msgstr ""
+
+#: ../../building_from_source.rst:356
+# b79c6f303f0544719c940cfc32027819
+msgid "Generating RPMS"
+msgstr ""
+
+#: ../../building_from_source.rst:358
+# 03b60158092748f6aa6b7d5994c892d2
+msgid "Now that we have the prerequisites and source, you will cd to the `packaging/centos63/` directory."
+msgstr ""
+
+#: ../../building_from_source.rst:364
+# 3154e33699074662a1395386b9c3a4a8
+msgid "Generating RPMs is done using the ``package.sh`` script:"
+msgstr ""
+
+#: ../../building_from_source.rst:370
+# 68d539d69bc54749a69f503b004525b0
+msgid "That will run for a bit and then place the finished packages in ``dist/rpmbuild/RPMS/x86_64/``."
+msgstr ""
+
+#: ../../building_from_source.rst:373
+# 6ba124f893f243f7af26aefe9811bc73
+msgid "You should see the following RPMs in that directory:"
+msgstr ""
+
+#: ../../building_from_source.rst:386
+# 370fc4f0661540ca95e53491f26361ea
+msgid "Creating a yum repo"
+msgstr ""
+
+#: ../../building_from_source.rst:388
+# bbc6c3630b1a44dd92fe24fb24a32c43
+msgid "While RPMs is a useful packaging format - it's most easily consumed from Yum repositories over a network. The next step is to create a Yum Repo with the finished packages:"
+msgstr ""
+
+#: ../../building_from_source.rst:404
+# 7ca5148dbc3f47a195336d3ea4dc066d
+msgid "The files and directories within ``~/tmp/repo`` can now be uploaded to a web server and serve as a yum repository."
+msgstr ""
+
+#: ../../building_from_source.rst:408
+# 3c1f1920404c4b4b9aed29b8216a8ca1
+msgid "Configuring your systems to use your new yum repository"
+msgstr ""
+
+#: ../../building_from_source.rst:410
+# bbc87560e0c642ecbfa67f722b3b9693
+msgid "Now that your yum repository is populated with RPMs and metadata we need to configure the machines that need to install CloudStack. Create a file named ``/etc/yum.repos.d/cloudstack.repo`` with this information:"
+msgstr ""
+
+#: ../../building_from_source.rst:422
+# b398f895b7ff4282b6613bad45a98c08
+msgid "Completing this step will allow you to easily install CloudStack on a number of machines across the network."
+msgstr ""
+
+#: ../../building_from_source.rst:426
+# 478d4e8b829044e8949f587dd0f09b52
+msgid "Building Non-OSS"
+msgstr ""
+
+#: ../../building_from_source.rst:428
+# 2fe549e0cdc44e51ba030c3fa3499914
+msgid "If you need support for the VMware, NetApp, F5, NetScaler, SRX, or any other non-Open Source Software (nonoss) plugins, you'll need to download a few components on your own and follow a slightly different procedure to build from source."
+msgstr ""
+
+#: ../../building_from_source.rst:435
+# 46d5a64c225c401c8e2b16f77095e6f3
+msgid "Some of the plugins supported by CloudStack cannot be distributed with CloudStack for licensing reasons. In some cases, some of the required libraries/JARs are under a proprietary license. In other cases, the required libraries may be under a license that's not compatible with `Apache's licensing guidelines for third-party products <http://www.apache.org/legal/resolved.html#category-x>`_."
+msgstr ""
+
+#: ../../building_from_source.rst:439
+# b30c64ffa9bb46819fc70c71f7606020
+msgid "To build the Non-OSS plugins, you'll need to have the requisite JARs installed under the ``deps`` directory."
+msgstr ""
+
+#: ../../building_from_source.rst:442
+# 965deab2226a46d98c7e5962c98f344e
+msgid "Because these modules require dependencies that can't be distributed with CloudStack you'll need to download them yourself. Links to the most recent dependencies are listed on the `*How to build CloudStack* <https://cwiki.apache.org/confluence/display/CLOUDSTACK/How+to+build+CloudStack>`_ page on the wiki."
+msgstr ""
+
+#: ../../building_from_source.rst:449
+# 78a1f8deba41498f80a2f83003d44bc3
+msgid "You may also need to download `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`_, which was removed due to licensing issues. You'll copy vhd-util to the ``scripts/vm/hypervisor/xenserver/`` directory."
+msgstr ""
+
+#: ../../building_from_source.rst:456
+# b4c294257936418c9d6c6889ce615a13
+msgid "Once you have all the dependencies copied over, you'll be able to build CloudStack with the ``noredist`` option:"
+msgstr ""
+
+#: ../../building_from_source.rst:466
+# c135a16bcffe490da30abf3c3425ccdb
+msgid "Once you've built CloudStack with the ``noredist`` profile, you can package it using the `“Building RPMs from Source” <#building-rpms-from-source>`_ or `“Building DEB packages” <#building-deb-packages>`_ instructions."
+msgstr ""
+

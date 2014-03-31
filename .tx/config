@@ -1,0 +1,59 @@
+[main]
+host = https://www.transifex.com
+type = PO
+
+[apache-cloudstack-installation-rtd.building_from_source]
+file_filter = source/locale/<lang>/LC_MESSAGES/building_from_source.po
+source_file = source/locale/pot/building_from_source.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.choosing_deployment_architecture]
+file_filter = source/locale/<lang>/LC_MESSAGES/choosing_deployment_architecture.po
+source_file = source/locale/pot/choosing_deployment_architecture.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.configuration]
+file_filter = source/locale/<lang>/LC_MESSAGES/configuration.po
+source_file = source/locale/pot/configuration.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.hypervisor_installation]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor_installation.po
+source_file = source/locale/pot/hypervisor_installation.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.index]
+file_filter = source/locale/<lang>/LC_MESSAGES/index.po
+source_file = source/locale/pot/index.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.installation]
+file_filter = source/locale/<lang>/LC_MESSAGES/installation.po
+source_file = source/locale/pot/installation.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.managing_networks]
+file_filter = source/locale/<lang>/LC_MESSAGES/managing_networks.po
+source_file = source/locale/pot/managing_networks.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.network_setup]
+file_filter = source/locale/<lang>/LC_MESSAGES/network_setup.po
+source_file = source/locale/pot/network_setup.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.optional_installation]
+file_filter = source/locale/<lang>/LC_MESSAGES/optional_installation.po
+source_file = source/locale/pot/optional_installation.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.qig]
+file_filter = source/locale/<lang>/LC_MESSAGES/qig.po
+source_file = source/locale/pot/qig.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.storage_setup]
+file_filter = source/locale/<lang>/LC_MESSAGES/storage_setup.po
+source_file = source/locale/pot/storage_setup.pot
+source_lang = en
+
