@@ -1952,119 +1952,92 @@ Preparation Checklist for Hyper-V
 For a smoother installation, gather the following information before you
 start:
 
-Hyper-V Requirements              
++------------+----------+------------------------------------------------------+
+| Hyper-V    | Value    | Description                                          |
+| Requiremen |          |                                                      |
+| ts         |          |                                                      |
++============+==========+======================================================+
+| Server     | Hyper-V  | After the Windows Server 2012 R2 installation,       |
+| Roles      |          | ensure that Hyper-V is selected from Server Roles.   |
+|            |          | For more information, see `Installing                |
+|            |          | Hyper-V <http://technet.microsoft.com/en-us/library/ |
+|            |          | jj134187.aspx#BKMK_Step2>`__.                        |
++------------+----------+------------------------------------------------------+
+| Share      | New      | Ensure that folders are created for Primary and      |
+| Location   | folders  | Secondary storage. The SMB share and the hosts       |
+|            | in the   | should be part of the same domain.                   |
+|            | /Share   |                                                      |
+|            | director | If you are using Windows SMB share, the location of  |
+|            | y        | the file share for the Hyper-V deployment will be    |
+|            |          | the new folder created in the \\Shares on the        |
+|            |          | selected volume. You can create sub-folders for both |
+|            |          | PRODUCT Primary and Secondary storage within the     |
+|            |          | share location. When you select the profile for the  |
+|            |          | file shares, ensure that you select SMB Share        |
+|            |          | -Applications. This creates the file shares with     |
+|            |          | settings appropriate for Hyper-V.                    |
++------------+----------+------------------------------------------------------+
+| Domain and |          | Hosts should be part of the same Active Directory    |
+| Hosts      |          | domain.                                              |
++------------+----------+------------------------------------------------------+
+| Hyper-V    | Full     | Full control on the SMB file share.                  |
+| Users      | control  |                                                      |
++------------+----------+------------------------------------------------------+
+| Virtual    |          | If you are using Hyper-V 2012 R2, manually create an |
+| Switch     |          | external virtual switch before adding the host to    |
+|            |          | PRODUCT. If the Hyper-V host is added to the Hyper-V |
+|            |          | manager, select the host, then click Virtual Switch  |
+|            |          | Manager, then New Virtual Switch. In the External    |
+|            |          | Network, select the desired NIC adapter and click    |
+|            |          | Apply.                                               |
+|            |          |                                                      |
+|            |          | If you are using Windows 2012 R2, virtual switch is  |
+|            |          | created automatically.                               |
++------------+----------+------------------------------------------------------+
+| Virtual    |          | Take a note of the name of the virtual switch. You   |
+| Switch     |          | need to specify that when configuring PRODUCT        |
+| Name       |          | physical network labels.                             |
++------------+----------+------------------------------------------------------+
+| Hyper-V    |          | -  Add the Hyper-V domain users to the Hyper-V       |
+| Domain     |          |    Administrators group.                             |
+| Users      |          |                                                      |
+|            |          | -  A domain user should have full control on the SMB |
+|            |          |    share that is exported for primary and secondary  |
+|            |          |    storage.                                          |
+|            |          |                                                      |
+|            |          | -  This domain user should be part of the Hyper-V    |
+|            |          |    Administrators and Local Administrators group on  |
+|            |          |    the Hyper-V hosts that are to be managed by       |
+|            |          |    PRODUCT.                                          |
+|            |          |                                                      |
+|            |          | -  The Hyper-V Agent service runs with the           |
+|            |          |    credentials of this domain user account.          |
+|            |          |                                                      |
+|            |          | -  Specify the credential of the domain user while   |
+|            |          |    adding a host to PRODUCT so that it can manage    |
+|            |          |    it.                                               |
+|            |          |                                                      |
+|            |          | -  Specify the credential of the domain user while   |
+|            |          |    adding a shared SMB primary or secondary storage. |
+|            |          |                                                      |
++------------+----------+------------------------------------------------------+
+| Migration  | Migratio | Enable Migration.                                    |
+|            | n        |                                                      |
++------------+----------+------------------------------------------------------+
+| Migration  | Delegati | If you want to use Live Migration, enable            |
+|            | on       | Delegation. Enable the following services of other   |
+|            |          | hosts participating in Live Migration: CIFS and      |
+|            |          | Microsoft Virtual System Migration Service.          |
++------------+----------+------------------------------------------------------+
+| Migration  | Kerberos | Enable Kerberos for Live Migration.                  |
++------------+----------+------------------------------------------------------+
+| Network    | Allow    | Allow access for Dial-in connections.                |
+| Access     | access   |                                                      |
+| Permission |          |                                                      |
+| for        |          |                                                      |
+| Dial-in    |          |                                                      |
++------------+----------+------------------------------------------------------+
 
-Value             
-
-Description
-
-Server Roles
-
-Hyper-V
-
-After the Windows Server 2012 R2 installation, ensure that Hyper-V is
-selected from Server Roles. For more information, see `Installing Hyper-V <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step2>`_.
-
-Share Location
-
-New folders in the /Share directory
-
-Ensure that folders are created for Primary and Secondary storage. The
-SMB share and the hosts should be part of the same domain.
-
-If you are using Windows SMB share, the location of the file share for
-the Hyper-V deployment will be the new folder created in the \\Shares on
-the selected volume. You can create sub-folders for both CloudStack
-Primary and Secondary storage within the share location. When you select
-the profile for the file shares, ensure that you select SMB Share
--Applications. This creates the file shares with settings appropriate
-for Hyper-V.
-
-Domain and Hosts
-
-Hosts should be part of the same Active Directory domain.
-
-Hyper-V Users
-
-Full control
-
-Full control on the SMB file share.
-
-Virtual Switch
-
-If you are using Hyper-V 2012 R2, manually create an external virtual
-switch before adding the host to CloudStack. If the Hyper-V host is
-added to the Hyper-V manager, select the host, then click Virtual Switch
-Manager, then New Virtual Switch. In the External Network, select the
-desired NIC adapter and click Apply.
-
-If you are using Windows 2012 R2, virtual switch is created
-automatically.
-
-Virtual Switch Name
-
-Take a note of the name of the virtual switch. You need to specify that
-when configuring CloudStack physical network labels.
-
-Hyper-V Domain Users
-
--  
-
-   Add the Hyper-V domain users to the Hyper-V Administrators group.
-
--  
-
-   A domain user should have full control on the SMB share that is
-   exported for primary and secondary storage.
-
--  
-
-   This domain user should be part of the Hyper-V Administrators and
-   Local Administrators group on the Hyper-V hosts that are to be
-   managed by CloudStack.
-
--  
-
-   The Hyper-V Agent service runs with the credentials of this domain
-   user account.
-
--  
-
-   Specify the credential of the domain user while adding a host to
-   CloudStack so that it can manage it.
-
--  
-
-   Specify the credential of the domain user while adding a shared SMB
-   primary or secondary storage.
-
-Migration
-
-Migration
-
-Enable Migration.
-
-For more information, see `Configuring Live Migration <http://technet.microsoft.com/en-us/library/jj134199.aspx>`_.
-
-Migration
-
-Delegation
-
-If you want to use Live Migration, enable Delegation. Enable the
-following services of other hosts participating in Live Migration: CIFS
-and Microsoft Virtual System Migration Service.
-
-Migration
-
-Kerberos
-
-Enable Kerberos for Live Migration.
-
-Network Access Permission for Dial-in
-
-Allow access
-
-Allow access for Dial-in connections.
 
 Hyper-V Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
