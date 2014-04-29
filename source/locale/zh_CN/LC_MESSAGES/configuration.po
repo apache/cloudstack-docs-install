@@ -1,0 +1,3272 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014, Apache Software Foundation
+# This file is distributed under the same license as the Apache CloudStack Installation Documentation package.
+# 
+# Translators:
+# aguncn <aguncn@163.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Apache CloudStack Installation RTD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"PO-Revision-Date: 2014-04-29 15:32+0000\n"
+"Last-Translator: parkermeng <jamemeng@126.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/apache-cloudstack-installation-rtd/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# 45acea9adb2548209aa256f577b8e60c
+#: ../../configuration.rst:17
+msgid "Configuring your CloudStack Installation"
+msgstr "配置你的CloudStack安装选项"
+
+# 631065640ed942cfb4b792688f02005e
+#: ../../configuration.rst:19
+msgid ""
+"This section tells how to add regions, zones, pods, clusters, hosts, "
+"storage, and networks to your cloud. If you are unfamiliar with these "
+"entities, please begin by looking through `*Cloud Infrastructure Concepts* "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-"
+"infrastructure-concepts>`_."
+msgstr "这一章节的内容将会告诉你如何增加地域(regions)，区域(zones)，机柜提供点(pods)，集群(clusters)，宿主机(hosts)，存储和网络。如果你对这些概念不熟悉，可以先参看此URL：`*Cloud Infrastructure Concepts* <http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-infrastructure-concepts>`_."
+
+# f5a36204546f4898aca0e49774b4268d
+#: ../../configuration.rst:24
+msgid "Overview of Provisioning Steps"
+msgstr "概览相关步骤"
+
+# 784e7c8091dd47c4825f7cca2dcbd408
+#: ../../configuration.rst:26
+msgid ""
+"After the Management Server is installed and running, you can add the "
+"compute resources for it to manage. For an overview of how a CloudStack "
+"cloud infrastructure is organized, see `“Cloud Infrastructure Overview” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-"
+"infrastructure-overview>`_."
+msgstr "当管理节点服务器安装结束并正常运行之后，你可以开始将计算资源池纳入其管理范围。关于CLOUDSTACK云计算系统是如何组织构架的，请参看此URL：`“Cloud Infrastructure Overview” <http://docs.cloudstack.apache.org/en/latest/concepts.html#cloud-infrastructure-overview>`_."
+
+# 2ca32f075974491ebc5686e00d342541
+#: ../../configuration.rst:30
+msgid ""
+"To provision the cloud infrastructure, or to scale it up at any time, follow"
+" these procedures:"
+msgstr "准备CLOUDSTACK云构架，或是扩展构架，遵从如下过程："
+
+# 0e10bef9b4fd4b6c9c3da54aa0943ede
+#: ../../configuration.rst:35
+msgid "Define regions (optional). See :ref:`adding-regions`."
+msgstr "定义地域(可选)，参看：ref:`adding-regions`。"
+
+# 47309dba0b4541a9963e04bb93181dfb
+#: ../../configuration.rst:39
+msgid "Add a zone to the region. See :ref:`adding-a-zone`."
+msgstr "在地域内增加一个区域，参看：ref:`adding-a-zone`。"
+
+# cd172d8cc0d143658c4f14bc7248e2ab
+#: ../../configuration.rst:43
+msgid "Add more pods to the zone (optional). See :ref:`adding-a-pod`."
+msgstr "在区域内增一个机柜提供点（可选）。参看：ref:`adding-a-pod`。"
+
+# 05b04a62577748b7a7ba6d8745678d1d
+#: ../../configuration.rst:47
+msgid "Add more clusters to the pod (optional). See :ref:`adding-a-cluster`."
+msgstr "在机柜提供点内增群集（可选）。参看：ref:`adding-a-cluster`。"
+
+# 0bbab9fa3f3945c2bbc869d685ff6eba
+#: ../../configuration.rst:51
+msgid "Add more hosts to the cluster (optional). See :ref:`adding-a-host`."
+msgstr "在群集内增加主机（可选）。参看：ref:`adding-a-host`。"
+
+# 89166fce4a6d408db25b86b799dddba5
+#: ../../configuration.rst:55
+msgid "Add primary storage to the cluster. See :ref:`add-primary-storage`."
+msgstr "为群集增加主存储。参看：ref:`add-primary-storage`。"
+
+# 8c4300d906564b79ae61166148a5ad29
+#: ../../configuration.rst:59
+msgid "Add secondary storage to the zone. See :ref:`add-secondary-storage`."
+msgstr "为区域增加二级存储。参看：ref:`add-secondary-storage`。"
+
+# 759bf0e850b54c3897a518046e8db0fb
+#: ../../configuration.rst:63
+msgid "Initialize and test the new cloud. See :ref:`initialize-and-test`."
+msgstr "初始化并测试这个云计算环境。参看：ref:`initialize-and-test`。"
+
+# 38485358da2742b4bcd44e36cebc0ffa
+#: ../../configuration.rst:65
+msgid ""
+"When you have finished these steps, you will have a deployment with the "
+"following basic structure:"
+msgstr "当你完成这些步骤以后，你就已经具体了如下基本云结构："
+
+# 005c638aefab408fa6f004cf75f9dca7
+#: ../../configuration.rst:68
+msgid "|provisioning-overview.png: Conceptual overview of a basic deployment|"
+msgstr "|provisioning-overview.png: 基本部署的概览|"
+
+# 692f3a9b339245ffaf0b3e9f4972016f
+#: ../../configuration.rst:73
+msgid "Adding Regions (optional)"
+msgstr "增加一个地域（可选）"
+
+# 9ea2b3060e264c53b3da64ecde63cd15
+#: ../../configuration.rst:75
+msgid ""
+"Grouping your cloud resources into geographic regions is an optional step "
+"when provisioning the cloud. For an overview of regions, see `“About "
+"Regions” <http://docs.cloudstack.apache.org/en/latest/concepts.html#about-"
+"regions>`_."
+msgstr "在部署一个CLOUDSTACK云的过程中，将云资源按地域组织起来并不是一个必选项。关于CLOUDSTACK地域的知识，可以参看此URL：`“About Regions” <http://docs.cloudstack.apache.org/en/latest/concepts.html#about-regions>`_."
+
+# 507d56ace2bb449c82f620df66d09baa
+#: ../../configuration.rst:80
+msgid "The First Region: The Default Region"
+msgstr "第一个地域：默认地域"
+
+# 4402e8d88d7040f5b1c2ff1c8fd91d59
+#: ../../configuration.rst:82
+msgid ""
+"If you do not take action to define regions, then all the zones in your "
+"cloud will be automatically grouped into a single default region. This "
+"region is assigned the region ID of 1. You can change the name or URL of the"
+" default region by displaying the region in the CloudStack UI and clicking "
+"the Edit button."
+msgstr "如果你没有自定义地域，则你CLOUDSTACK云里所有的区域都位于默认的地域（Region 1）中。当然，你可以通过CLOUDSTACK的WEB UI来编辑此默认地域的名称和URL网址。"
+
+# d574a459a37e48ffbd3137b9f9036a6c
+#: ../../configuration.rst:89
+msgid "Adding a Region"
+msgstr "增加一个地域"
+
+# cffff93b262e4e46a634d7078a1da247
+#: ../../configuration.rst:91
+msgid ""
+"Use these steps to add a second region in addition to the default region."
+msgstr "使用这些步骤在默认地域外增一个新的地域。"
+
+# 4ee1e8d33fa34a77b44056566a630a21
+#: ../../configuration.rst:96
+msgid ""
+"Each region has its own CloudStack instance. Therefore, the first step of "
+"creating a new region is to install the Management Server software, on one "
+"or more nodes, in the geographic area where you want to set up the new "
+"region. Use the steps in the Installation guide. When you come to the step "
+"where you set up the database, use the additional command-line flag ``-r "
+"<region_id>`` to set a region ID for the new region. The default region is "
+"automatically assigned a region ID of 1, so your first additional region "
+"might be region 2."
+msgstr "每一个地域都有专属的CLOUDSTACK实例。因为，当你要部署一个新的地域时，首先要作的就是要在一个或多个节点上安装管理节点服务器。在按照安装指南安装此节点的数据库时，需要在命令行上加上参数``-r <region_id>``。默认的地域的region ID为1，故而第一个新增地域的region ID应该为2."
+
+# 8027a30d1fc94344bf2e9277e1626db6
+#: ../../configuration.rst:111
+msgid ""
+"By the end of the installation procedure, the Management Server should have "
+"been started. Be sure that the Management Server installation was successful"
+" and complete."
+msgstr "在安装结束后，管理节点服务器的相关服务应该会自动启动起来。所以，你需要地安装完成之后，确认相关服务在运行。"
+
+# 52664a015f7349fa84dee05151f3bcca
+#: ../../configuration.rst:117
+msgid "Now add the new region to region 1 in CloudStack."
+msgstr "现在，开始在 CloudStack内加入一个新的地域。"
+
+# f483b7a4cf1340278641e35267782e82
+#: ../../configuration.rst:121
+msgid ""
+"Log in to CloudStack in the first region as root administrator (that is, log"
+" in to <region.1.IP.address>:8080/client)."
+msgstr "以系统管理员身份登陆CLOUDSTACK的第一个地域（登陆网址为<region.1.IP.address>:8080/client）"
+
+# f2df274d77514d689b134744275e21f3
+# c71cb10cc3fd4d4781b43fdb5c16fd1c
+#: ../../configuration.rst:126 ../../configuration.rst:314
+msgid "In the left navigation bar, click Regions."
+msgstr "在左边的导航栏里，点击区域（为文档翻译中地域的概念，英文为region，下同）"
+
+# b5fea4463f2045d88b232bf196043bcd
+#: ../../configuration.rst:130
+msgid "Click Add Region. In the dialog, fill in the following fields:"
+msgstr "点击增加地域，在弹出的对话框里，输入以下字段："
+
+# 8ee8fd20450248259811540024c990a0
+#: ../../configuration.rst:134
+msgid ""
+"ID. A unique identifying number. Use the same number you set in the database"
+" during Management Server installation in the new region; for example, 2."
+msgstr "ID--唯一标识号，这个标识号需要和你在安装此地域中的管理节点数据库时的region ID一致。在上面的示例中，ID为2。"
+
+# 95fd6770715c4b55aeca9115d9fb46fd
+#: ../../configuration.rst:140
+msgid "Name. Give the new region a descriptive name."
+msgstr "名称--需要给这个新的地域一个描述性名称。"
+
+# 2f2298c6957a405bb8744dd91b54f94d
+#: ../../configuration.rst:144
+msgid ""
+"Endpoint. The URL where you can log in to the Management Server in the new "
+"region. This has the format <region.2.IP.address>:8080/client."
+msgstr "端点--端点的格式为<region.2.IP.address>:8080/client。"
+
+# 3ab82c31b3a74fe5b3312e66dc28a461
+#: ../../configuration.rst:150
+msgid ""
+"Now perform the same procedure in reverse. Log in to region 2, and add "
+"region 1."
+msgstr "现在，作一次相同的操作，在地域2里面加入默认地域1."
+
+# 98c8573417e84c86aeee08435cb2abd2
+#: ../../configuration.rst:155
+msgid ""
+"Copy the account, user, and domain tables from the region 1 database to the "
+"region 2 database."
+msgstr "将帐号，用户，域信息数据表从地域1的数据库拷贝到地域2里。"
+
+# 1dbd41b2c5e14057a5c2659826e93bb6
+# 53605a0d90e6469e9642a71cc7078b2e
+#: ../../configuration.rst:158 ../../configuration.rst:260
+msgid ""
+"In the following commands, it is assumed that you have set the root password"
+" on the database, which is a CloudStack recommended best practice. "
+"Substitute your own MySQL root password."
+msgstr "接下来的操作，你需要确保你已设置好MYSQL数据库的root用户密码，这也是CLOUDSTACK推荐的操作。"
+
+# ff61de1baec540c4aedec3415f0eae7f
+# 28e79cf3fb634580b620deca1d4a37d3
+#: ../../configuration.rst:164 ../../configuration.rst:266
+msgid "First, run this command to copy the contents of the database:"
+msgstr "首先，运行这个命令来拷贝数据库的内容："
+
+# 48bb53cad97c4c82b727531405fb923b
+#: ../../configuration.rst:172
+msgid "Then run this command to put the data onto the region 2 database:"
+msgstr "然后，运行这条命令来将数据放入地域2的MYSQL数据库："
+
+# 27deb6616ae84350b4544824caa09d4d
+#: ../../configuration.rst:180
+msgid "Remove project accounts. Run these commands on the region 2 database:"
+msgstr "删除项目管理员帐号，在地域2的数据库运行这些命令："
+
+# 06f8398e0d354c36a48ea497d8ce6d1f
+# 74f47c70888f4094ab9d33fe47be802a
+#: ../../configuration.rst:188 ../../configuration.rst:291
+msgid "Set the default zone as null:"
+msgstr "设置默认区域为空白（NULL）："
+
+# cbdfcba49db84702973a6e70c7018344
+#: ../../configuration.rst:196
+msgid "Restart the Management Servers in region 2."
+msgstr "在地域2里重新启动管理节点上的相关服务(cloudstack-management)。"
+
+# 0bd858a2349e4056b19dbfdd8015f237
+#: ../../configuration.rst:199
+msgid "Adding Third and Subsequent Regions"
+msgstr "增加第三个或是更多的地域"
+
+# 8f49c3a268244caca74c2078e46b3e4b
+#: ../../configuration.rst:201
+msgid ""
+"To add the third region, and subsequent additional regions, the steps are "
+"similar to those for adding the second region. However, you must repeat "
+"certain steps additional times for each additional region:"
+msgstr "增加第三个或是更多地域的操作与增加第二个地域的操作类似，但是，你必须重复这几个特定的操作步骤："
+
+# 257d1cb614934e569e3809fc806b8297
+#: ../../configuration.rst:207
+msgid ""
+"Install CloudStack in each additional region. Set the region ID for each "
+"region during the database setup step."
+msgstr "在每一个新的地域里安装CLOUDSTACK管理节点，并在安装数据库时为其设置不同的地域ID（region ID）。"
+
+# 395959f794334f5b96786f5f32dcbe21
+#: ../../configuration.rst:216
+msgid ""
+"Once the Management Server is running, add your new region to all existing "
+"regions by repeatedly using the Add Region button in the UI. For example, if"
+" you were adding region 3:"
+msgstr "一旦新地域的CLOUDSTACK的管理节点服务正常启动，接着要作的就是在CLOUDSTACK WEB UI里增加新的地域。以下以新增地域3作为示例："
+
+# ca1bcb7c888c4368a294db9991dc3a8a
+#: ../../configuration.rst:222
+msgid ""
+"Log in to CloudStack in the first region as root administrator (that is, log"
+" in to <region.1.IP.address>:8080/client), and add a region with ID 3, the "
+"name of region 3, and the endpoint <region.3.IP.address>:8080/client."
+msgstr "以系统管理员身份登陆CLOUDSTACK（登陆URL：<region.1.IP.address>:8080/client），在增加地域的选择里，输入地域3的ID,名称，端口（3,region 3,<region.3.IP.address>:8080/client）。"
+
+# 60d1d4c4c4fa429a887611478e7b2157
+#: ../../configuration.rst:229
+msgid ""
+"Log in to CloudStack in the second region as root administrator (that is, "
+"log in to <region.2.IP.address>:8080/client), and add a region with ID 3, "
+"the name of region 3, and the endpoint <region.3.IP.address>:8080/client."
+msgstr "以系统管理员身份登陆CLOUDSTACK（登陆URL：<region.2.IP.address>:8080/client），在增加地域的选择里，输入地域3的ID,名称，端口（3,region 3,<region.3.IP.address>:8080/client）。"
+
+# 918da36c27d6472591edffa778d35170
+#: ../../configuration.rst:236
+msgid ""
+"Repeat the procedure in reverse to add all existing regions to the new "
+"region. For example, for the third region, add the other two existing "
+"regions:"
+msgstr "在新的地域里，也同样增加所有的已存在的域域，例如，如果新地域是第三个CLOUDSTACK地域，刚需要其WEB UI里增加前两个地域信息："
+
+# ff9578a7f14b4498943bb3c8876e73f8
+#: ../../configuration.rst:242
+msgid ""
+"Log in to CloudStack in the third region as root administrator (that is, log"
+" in to <region.3.IP.address>:8080/client)."
+msgstr "以系统管理员身份登陆CLOUDSTACK（登陆URL：<region.3.IP.address>:8080/client）。"
+
+# 3f00a1fbcce84212898cfb9fbbd59ba3
+#: ../../configuration.rst:247
+msgid ""
+"Add a region with ID 1, the name of region 1, and the endpoint "
+"<region.1.IP.address>:8080/client."
+msgstr "在增加地域的选择里，输入地域1的ID,名称，端口（1,region 1,<region.1.IP.address>:8080/client）"
+
+# 6c19cbd03e3c403eb315c04ca47af953
+#: ../../configuration.rst:252
+msgid ""
+"Add a region with ID 2, the name of region 2, and the endpoint "
+"<region.2.IP.address>:8080/client."
+msgstr "在增加地域的选择里，输入地域2的ID,名称，端口（2,region 2,<region.2.IP.address>:8080/client）"
+
+# 3882cd53f34e40869460406733a82068
+#: ../../configuration.rst:257
+msgid ""
+"Copy the account, user, and domain tables from any existing region's "
+"database to the new region's database."
+msgstr "将帐号，用户，域信息数据表从已存在的地域的数据库拷贝到新的地域里。"
+
+# 4ccc5a29922a4a2280a9be0da19aeec1
+#: ../../configuration.rst:274
+msgid ""
+"Then run this command to put the data onto the new region's database. For "
+"example, for region 3:"
+msgstr "然后，运行这个命令将数据库的内容放到新的地域数据库当中去（如地域3）："
+
+# 37071a5319a24d50849081d6b81e6d24
+#: ../../configuration.rst:283
+msgid "Remove project accounts. Run these commands on the region 3 database:"
+msgstr "在地域3上运行这些命令，以便删除项目管理帐号："
+
+# 3ac9f60758bf400ebd02bd08b1ca86e9
+#: ../../configuration.rst:299
+msgid "Restart the Management Servers in the new region."
+msgstr "在新地域里重启CLOUDSTACK管理节点的服务。"
+
+# 9836f86191b842b4831d6d6a2db3b8f8
+#: ../../configuration.rst:302
+msgid "Deleting a Region"
+msgstr "删除一个地域"
+
+# e98211bd8aac47418ea332b0550b5230
+#: ../../configuration.rst:304
+msgid ""
+"Log in to each of the other regions, navigate to the one you want to delete,"
+" and click Remove Region. For example, to remove the third region in a "
+"3-region cloud:"
+msgstr "登陆到CLOUDSTACK的WEB UI，点击区域导航栏，选择你想删除的地域，然后，删除。例如，如果你想删除地域3："
+
+# e9fc61e242db40fba505f4d97358ce02
+#: ../../configuration.rst:310
+msgid "Log in to <region.1.IP.address>:8080/client."
+msgstr "登陆到此URL：<region.1.IP.address>:8080/client。"
+
+# e3e5a9698c904e81807964de50f09c7c
+#: ../../configuration.rst:318
+msgid "Click the name of the region you want to delete."
+msgstr "选择你想删除的区域。"
+
+# cbca5543d446453d9e3dd1ee58244f5b
+#: ../../configuration.rst:322
+msgid "Click the Remove Region button."
+msgstr "点击删除区域按钮。"
+
+# 05a479643ed54875829839f2cde49ffb
+#: ../../configuration.rst:326
+msgid "Repeat these steps for <region.2.IP.address>:8080/client."
+msgstr "在地域2里重复这些步骤：<region.2.IP.address>:8080/client。"
+
+# 2dca47eb286a4b60b61bd7f4753ab2ea
+#: ../../configuration.rst:331
+msgid "Adding a Zone"
+msgstr "增加一个区域"
+
+# bcbc148e115c4f6d9b30698f387f88e8
+#: ../../configuration.rst:333
+msgid ""
+"When you add a new zone, you will be prompted to configure the zone’s "
+"physical network and add the first pod, cluster, host, primary storage, and "
+"secondary storage."
+msgstr "当你要增加一个新的区域时，你会被提示需要同时配置物理网络以前第一个机柜提供点，集群，宿主机，主存储，二级存储。"
+
+# c070a051b21c476fa3712937eb02be3b
+#: ../../configuration.rst:339
+msgid ""
+"Log in to the CloudStack UI as the root administrator. See `“Log In to the "
+"UI” <http://docs.cloudstack.apache.org/projects/cloudstack-"
+"administration/en/latest/ui.html#log-in-to-the-ui>`_."
+msgstr "以系统管理员身份登陆CLOUDSTACK WEB UI，参看此URL：`“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_."
+
+# e24fa381bf6b400ab2126637937e5727
+#: ../../configuration.rst:343
+msgid "In the left navigation, choose Infrastructure."
+msgstr "在左右的导航栏时，选择基础架构"
+
+# 60f4ee940b6144aea7120c389338c83d
+#: ../../configuration.rst:347
+msgid "On Zones, click View More."
+msgstr "在区域栏里，点击查看全部"
+
+# debfb280cfda44518188ca815970b071
+#: ../../configuration.rst:351
+msgid "Click Add Zone. The zone creation wizard will appear."
+msgstr "点击添加区域，向导界面就会出现。"
+
+# 7fb77368a32c4567a960fbcdff60f2c6
+#: ../../configuration.rst:355
+msgid "Choose one of the following network types:"
+msgstr "选择一种网络类型："
+
+# b68848a5a5b4469f806345e6da6a0e92
+#: ../../configuration.rst:359
+msgid ""
+"**Basic.** For AWS-style networking. Provides a single network where each VM"
+" instance is assigned an IP directly from the network. Guest isolation can "
+"be provided through layer-3 means such as security groups (IP address source"
+" filtering)."
+msgstr "**基本.** 类似AWS风格的网络。单一网段，每个VM都得到此网段的一个IP。客户虚拟机之间主要以安全组形式在网络第三层之间实现隔离。（IP地址源过滤）"
+
+# 296ce061b7ce48eba140de7cd89a5ad7
+#: ../../configuration.rst:366
+msgid ""
+"**Advanced.** For more sophisticated network topologies. This network model "
+"provides the most flexibility in defining guest networks and providing "
+"custom network offerings such as firewall, VPN, or load balancer support."
+msgstr "**高级** 为更复杂的网络拓扑而设计。这种网络模型可以实现更灵活的客户虚拟机网络配置，并且可以提供防火墙，VPN，负载均衡这些高级功能。"
+
+# ef1cbdd846734108a6daeac0750b06ff
+#: ../../configuration.rst:373
+msgid ""
+"The rest of the steps differ depending on whether you chose Basic or "
+"Advanced. Continue with the steps that apply to you:"
+msgstr "如果你选择的区域类型（基本或高级）不一样，那接下来的配置操作也完全不：同"
+
+# 4fa886d3f2bb49e2b2f240f943c40235
+#: ../../configuration.rst:378
+msgid "`“Basic Zone Configuration” <#basic-zone-configuration>`_"
+msgstr "基本区域配置<#basic-zone-configuration>`_"
+
+# 0fb43e57483546739b620ef66f4f3f34
+#: ../../configuration.rst:382
+msgid "`“Advanced Zone Configuration” <#advanced-zone-configuration>`_"
+msgstr "高级区域配置<#advanced-zone-configuration>`_"
+
+# 46a30f1db35844d093cd12cfc7fdd58b
+#: ../../configuration.rst:385
+msgid "Basic Zone Configuration"
+msgstr "基本区域配置"
+
+# 4063108d69a94b3e86b9af1ea4dc53b6
+#: ../../configuration.rst:389
+msgid ""
+"After you select Basic in the Add Zone wizard and click Next, you will be "
+"asked to enter the following details. Then click Next."
+msgstr "当你选择了基本区域之后，你需要输入以下细节信息，才能进入下一步。"
+
+# 3b236f0b8d7d43a882923b1bdf98d615
+# 80564cf16b304756967f0cfeaba74fc2
+#: ../../configuration.rst:394 ../../configuration.rst:713
+msgid "**Name.** A name for the zone."
+msgstr "**名称.** 为这个区域命名"
+
+# 22b0107bfa474078bed0bfd824dc7f29
+# b8f82643eeb64bda851fde32741343f1
+#: ../../configuration.rst:398 ../../configuration.rst:717
+msgid ""
+"**DNS 1 and 2.** These are DNS servers for use by guest VMs in the zone. "
+"These DNS servers will be accessed via the public network you will add "
+"later. The public IP addresses for the zone must have a route to the DNS "
+"server named here."
+msgstr "**DNS 1 and 2.** 这些DNS是提供给区域里的客户虚拟机使用的。这些DNS服务器IP访问是通过随后添加的公网进行的。此区域的公网IP地址必须能够路由到这些DNS服务器。"
+
+# cd406beeec6940b2bd49faa359f8da6d
+#: ../../configuration.rst:405
+msgid ""
+"**Internal DNS 1 and Internal DNS 2.** These are DNS servers for use by "
+"system VMs in the zone (these are VMs used by CloudStack itself, such as "
+"virtual routers, console proxies, and Secondary Storage VMs.) These DNS "
+"servers will be accessed via the management traffic network interface of the"
+" System VMs. The private IP address you provide for the pods must have a "
+"route to the internal DNS server named here."
+msgstr "内网 DNS 1 和内网 DNS 2.** 区域内的系统虚拟机会用到这些DNS服务器（系统虚拟机是CLOUDSTACK本身会用到的虚拟机如虚拟路由器-VR，控制台代理虚拟机-CPVM，二级存储虚拟机-SSVM），这些系统虚拟机通过管理网络访问这个DNS服务器。为机柜提供点配置的私有IP地址必须能路由到这些内部DNS服务器。"
+
+# 2bc3215a0329468e82fc555a22b63eda
+# 4c71ecf694cb4834a7b1b7482ba9012e
+#: ../../configuration.rst:415 ../../configuration.rst:747
+msgid ""
+"**Hypervisor.** (Introduced in version 3.0.1) Choose the hypervisor for the "
+"first cluster in the zone. You can add clusters with different hypervisors "
+"later, after you finish adding the zone."
+msgstr "**Hypervisor.**(在version 3.0.1介绍过) 需要为区域内的第一个集群选择一种hypervisor。当你完成添加区域的配置之后，也可以为另外的集群配置不同的hypervisor。"
+
+# d17a3bfc42934cd5a219e633ed63bb0a
+#: ../../configuration.rst:422
+msgid ""
+"**Network Offering.** Your choice here determines what network services will"
+" be available on the network for guest VMs."
+msgstr "**网络方案。** 你需要客户虚拟机可用的网络方案及服务"
+
+# ef31becdb3d740bc93ca18d045ea2c22
+#: ../../configuration.rst:426
+msgid "Network Offering"
+msgstr "网络方案"
+
+# 517d3e8d90324125ae08ca05a72f6b50
+#: ../../configuration.rst:426
+msgid "Description"
+msgstr "描述"
+
+# d5860408ab474addacbac1cad4802d1c
+#: ../../configuration.rst:428
+msgid "DefaultSharedNetworkOfferingWithSGService"
+msgstr "DefaultSharedNetworkOfferingWithSGService"
+
+# 125d81fc283f4bd19b3fc8daf3e15af2
+#: ../../configuration.rst:428
+msgid ""
+"If you want to enable security groups for guest traffic isolation, choose "
+"this. (See Using Security Groups to"
+"                                                              Control "
+"Traffic to VMs.)"
+msgstr "如果你希望通过安全组来隔离客户虚拟机流量，选择这个选项。(参看通过安全组隔离虚拟机这一章节。)"
+
+# d2fc219630c64850a2abaaab29c550c3
+#: ../../configuration.rst:429
+msgid "DefaultSharedNetworkOffering"
+msgstr "DefaultSharedNetworkOffering"
+
+# 5ed8d77948404fb295f04d5f40fab149
+#: ../../configuration.rst:429
+msgid "If you do not need security groups, choose this."
+msgstr "如果你需要安全组，选择这个选项。"
+
+# 07b07e49e385490e8ecb558ab588fcf7
+#: ../../configuration.rst:430
+msgid "DefaultSharedNetscalerEIPandELBNetworkOffering"
+msgstr "DefaultSharedNetscalerEIPandELBNetworkOffering"
+
+# 090ff14fbc52449e9297d82abe938d1d
+#: ../../configuration.rst:430
+msgid ""
+"If you have installed a Citrix NetScaler appliance as part of your zone "
+"network, and you will be using its Elastic"
+"                                                         IP and Elastic Load"
+" Balancing features, choose this. With the EIP and ELB features, a basic "
+"zone with security"
+"                                                             groups enabled "
+"can offer 1:1 static NAT and load balancing."
+msgstr "如果，你在CLOUDSTACK内安装了Citrix NetScaler应用，并且你需要Elastic  IP和Elastic Load Balancing这些功能的话，选择这个选项。EIP 和ELB技术在安全组启用的情况下，可以提供1：1的NAT映射和负载均衡功能。 "
+
+# e5664a9c31354bfcbf38c1d08f4ebf95
+# 89170104a5ca4af4a33a362bb6e0975d
+#: ../../configuration.rst:436 ../../configuration.rst:734
+msgid ""
+"**Network Domain.** (Optional) If you want to assign a special domain name "
+"to the guest VM network, specify the DNS suffix."
+msgstr "**网络域** （可选） 如果你想为客户虚机网络定义一个域名，在此处输入后缀名。"
+
+# 64883a8d982347c48817967242eb1008
+# b1f435546f354b9c9a9f4b997fd96080
+#: ../../configuration.rst:441 ../../configuration.rst:754
+msgid ""
+"**Public.** A public zone is available to all users. A zone that is not "
+"public will be assigned to a particular domain. Only users in that domain "
+"will be allowed to create guest VMs in this zone."
+msgstr "**公有区域.** 一个公有区域可以被所有用户使用。而非公有区域会有一个指定的域名，只有指定域名中的用户才可以在那个区域里创建客户虚拟机。"
+
+# 65ef78186d6e4017b077ad2dff55e988
+# 86b0790603144cba93ba056401884952
+#: ../../configuration.rst:447 ../../configuration.rst:760
+msgid "Choose which traffic types will be carried by the physical network."
+msgstr "选择在物理网络里需要承载的流量类型。"
+
+# 29cc0f17f86c44f7a7b79f6336bcdf1a
+#: ../../configuration.rst:449
+msgid ""
+"The traffic types are management, public, guest, and storage traffic. For "
+"more information about the types, roll over the icons to display their tool "
+"tips, or see Basic Zone Network Traffic Types. This screen starts out with "
+"some traffic types already assigned. To add more, drag and drop traffic "
+"types onto the network. You can also change the network name if desired."
+msgstr "流量类型分为管理流量，公网流量，来宾客户流量，和存储流量。关于这些流量的更多信息，可以点击相关图标得到一些帮助。这个屏幕显示的是已分配好的流量类型。如果要继续增加，可以拖动相关流量类型到网络里，当然，也可以将网络更改成你认为合适的名字。"
+
+# b4e1f8437bde4ff0ac9027cc02c6f071
+#: ../../configuration.rst:458
+msgid ""
+"Assign a network traffic label to each traffic type on the physical network."
+" These labels must match the labels you have already defined on the "
+"hypervisor host. To assign each label, click the Edit button under the "
+"traffic type icon. A popup dialog appears where you can type the label, then"
+" click OK."
+msgstr "为物理网络上承载的每一种CLOUDSTACK网络流量类型赋予一个标签。这些标签必须与你已在宿主机上设置的（网桥）标签名一致。如果要编辑标签，点击流量类型上的编辑按钮，在弹出的对话框中输入相应名称，然后再点击OK即可。"
+
+# 51dc8782b20041bf87398e8eba15fc64
+# 154322fa724d4e5782d03ac2ffdc629f
+#: ../../configuration.rst:464 ../../configuration.rst:782
+msgid ""
+"These traffic labels will be defined only for the hypervisor selected for "
+"the first cluster. For all other hypervisors, the labels can be configured "
+"after the zone is created."
+msgstr "这些流量类型标签只是定义了区域内的第一个集群的hypervisor。对于其它hypervisor，则这个标签可以在区域创建完成之后配置。"
+
+# ddce4ae13734445fa06e4dc9b5c31214
+# fb9118c520f04f58a34b8a18eae05df1
+#: ../../configuration.rst:470 ../../configuration.rst:799
+msgid "Click Next."
+msgstr "点击下一步"
+
+# 6efb7b69d5a441d08cb6f36802ca4f31
+#: ../../configuration.rst:474
+msgid ""
+"(NetScaler only) If you chose the network offering for NetScaler, you have "
+"an additional screen to fill out. Provide the requested details to set up "
+"the NetScaler, then click Next."
+msgstr "(只针对NetScaler) 如果你选择的网络方案是针对NetScaler的，则还要一个额外的选项需要填写。在填写了关于NetScaler的细节信息之后，点击下一步继续。"
+
+# 9baa9068037c4d619fd05fdbde42b5ac
+#: ../../configuration.rst:480
+msgid ""
+"**IP address.** The NSIP (NetScaler IP) address of the NetScaler device."
+msgstr "**IP地址.** 针对NetScaler的NSIP（NetScaler的IP地址）。"
+
+# e14c8c80706143819d4c5f4617b7007a
+#: ../../configuration.rst:485
+msgid ""
+"**Username/Password.** The authentication credentials to access the device. "
+"CloudStack uses these credentials to access the device."
+msgstr "**用户名/密码.** 访问此设备的认证许可。CLOUDSTACK使用这些认证信息访问此设备。"
+
+# fcb69d66d64848da9bb79f41e227f037
+#: ../../configuration.rst:491
+msgid ""
+"**Type.** NetScaler device type that is being added. It could be NetScaler "
+"VPX, NetScaler MPX, or NetScaler SDX. For a comparison of the types, see "
+"About Using a NetScaler Load Balancer."
+msgstr "**类型.** 需要添加的NetScaler设备的类型。它必须是NetScaler VPX, NetScaler MPX, or NetScaler SDX当中的一种。至于这三种类型的比较，可以参看NetScaler负载均衡这一章节内容。"
+
+# e4cfd62ce8e247cc890173228c356b5d
+#: ../../configuration.rst:497
+msgid ""
+"**Public interface.** Interface of NetScaler that is configured to be part "
+"of the public network."
+msgstr "**公网接口.**NetScaler接口配置为公网的一部分。"
+
+# 3ce93cfa784f476a863dd0a019f569d6
+#: ../../configuration.rst:502
+msgid ""
+"**Private interface.** Interface of NetScaler that is configured to be part "
+"of the private network."
+msgstr "**内网接口** NetScaler接口配置为内网的一部分。"
+
+# 4b2f689747864e6d8bf8e37da5d55539
+#: ../../configuration.rst:507
+msgid ""
+"**Number of retries.** Number of times to attempt a command on the device "
+"before considering the operation failed. Default is 2."
+msgstr "**重试次数** 认为操作失败前的最大重试次数，默认为2次。"
+
+# a36fcf6641e048df98be9001fe4ac14a
+#: ../../configuration.rst:512
+msgid ""
+"**Capacity.** Number of guest networks/accounts that will share this "
+"NetScaler device."
+msgstr "**容量**，共享NetScaler设备的最大客户网络或帐号的数量。"
+
+# 4b06adfa22054cbd8484bdeeaa66341b
+#: ../../configuration.rst:517
+msgid ""
+"**Dedicated.** When marked as dedicated, this device will be dedicated to a "
+"single account. When Dedicated is checked, the value in the Capacity field "
+"has no significance – implicitly, its value is 1."
+msgstr "**专用** 当标示为专用之后，则这个设备只为一个帐号使用。当选择专用之后，容量的数值不再可任意设置---明显的，它的数量只能为1."
+
+# 77ed28ed24f34c2fb5c2a2c927e9c78f
+#: ../../configuration.rst:524
+msgid ""
+"(NetScaler only) Configure the IP range for public traffic. The IPs in this "
+"range will be used for the static NAT capability which you enabled by "
+"selecting the network offering for NetScaler with EIP and ELB. Enter the "
+"following details, then click Add. If desired, you can repeat this step to "
+"add more IP ranges. When done, click Next."
+msgstr "(只针对NetScaler) 设置公网的IP范围。此IP范围用作启用了EIP和ELB技术的网络方案的NAT映射。输入这些细节信息，点击增加。如果有必要，你可以重复输入多个公网IP范围。当这一切完成之后，点击下一步继续。"
+
+# fbe8cc3d3943406c8ebc7dff8a601441
+# 48d9ff0dff8b46e7b21814384a191425
+#: ../../configuration.rst:532 ../../configuration.rst:809
+msgid "**Gateway.** The gateway in use for these IP addresses."
+msgstr "**网关** 为这些IP地址定义网关。"
+
+# 78f22c4e6109478480c3a2c3a354bd04
+# c521fe80e088471cb2737bcf7668f650
+#: ../../configuration.rst:536 ../../configuration.rst:813
+msgid "**Netmask.** The netmask associated with this IP range."
+msgstr "**子网掩码** 定义这些IP地址的子网掩码。"
+
+# 23bf2ce061e0493d81fcd9f0f0916845
+# c18179e1c6f44f269bcf9823c1cb0ce8
+#: ../../configuration.rst:540 ../../configuration.rst:817
+msgid "**VLAN.** The VLAN that will be used for public traffic."
+msgstr "**VLAN** 公网流量的VLAN号。"
+
+# 65e21821323840f98638cafb62113317
+#: ../../configuration.rst:544
+msgid ""
+"**Start IP/End IP.** A range of IP addresses that are assumed to be "
+"accessible from the Internet and will be allocated for access to guest VMs."
+msgstr "**开始IP/结束IP.** 定义公网IP范围，这些IP用来访问公网或是从公网访问客户虚拟机。"
+
+# a295f9e2c422411783702b29b72824e9
+# 7ef179832e1448af85ce7d5bb289cc9a
+#: ../../configuration.rst:550 ../../configuration.rst:827
+msgid ""
+"In a new zone, CloudStack adds the first pod for you. You can always add "
+"more pods later. For an overview of what a pod is, see `“About Pods” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#about-pods>`_."
+msgstr "在一个新的区域，CLOUSTACK总是会为你添加第一个机柜提供点。当然，在区域设置完成之后，你可以添加理多的机柜提供点。关于机柜提供点的详细，参看此URL：`“About Pods” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-pods>`_."
+
+# 872951234cad4be787e1ffd7a0fa69c5
+# 73680bf45ad84c6c8283efa909462fcb
+#: ../../configuration.rst:554 ../../configuration.rst:831
+msgid "To configure the first pod, enter the following, then click Next:"
+msgstr "开始配置第一个机柜提供点，输入以下这些信息，然后点击下一步继续。"
+
+# cda299d9e07b4148bd737d8aa4a58f81
+# 5859811ef2ba438a81a3c1b5dcfb8d2b
+#: ../../configuration.rst:558 ../../configuration.rst:835
+msgid "**Pod Name.** A name for the pod."
+msgstr "**机柜提供点名称** 为此机柜提供点命名。"
+
+# 531f0303b073461b89623ec4b415887d
+# 3fd8f47d38c54df485e5ff8d6bdd3377
+#: ../../configuration.rst:562 ../../configuration.rst:839
+msgid "**Reserved system gateway.** The gateway for the hosts in that pod."
+msgstr "**保留系统的网关** 这个机柜提供点内宿主机的网关。"
+
+# 541610014dc547b9bd5262bccac65d64
+# b9bdc3ff1fdf4b29b9cb5be6c87bb172
+#: ../../configuration.rst:567 ../../configuration.rst:844
+msgid ""
+"**Reserved system netmask.** The network prefix that defines the pod's "
+"subnet. Use CIDR notation."
+msgstr "**保留系统的子网掩码.** 定义此机柜提供点的子网前缀，用CIDR标示。 "
+
+# ec9a0dd4b7634ed69af654a935555ee4
+# 03028cdc0da8495b9e5bc8e1973210c6
+#: ../../configuration.rst:572 ../../configuration.rst:1107
+msgid ""
+"**Start/End Reserved System IP.** The IP range in the management network "
+"that CloudStack uses to manage various system VMs, such as Secondary Storage"
+" VMs, Console Proxy VMs, and DHCP. For more information, see System Reserved"
+" IP Addresses."
+msgstr "**开始/结束系统保留的IP.** 这些IP地址是CLOUDSTACK给各种管理用的系统虚拟机使用的。如SSVM，CPVM,DHCP（VR）等。如需更多详情，请参看系统保留IP这一章节"
+
+# 7bfc5880d8644d23bcf1bc641c90eceb
+#: ../../configuration.rst:579
+msgid ""
+"Configure the network for guest traffic. Provide the following, then click "
+"Next:"
+msgstr "为客户来宾配置网络，提供好如下信息，然后点击下一步。"
+
+# 5a614d7bcd81432f80fccbfcba8b1131
+#: ../../configuration.rst:584
+msgid "**Guest gateway.** The gateway that the guests should use."
+msgstr "**客户来宾网关.** 客户来宾虚拟机使用的网关。"
+
+# 936792d3ec034c7187678210e4212154
+#: ../../configuration.rst:588
+msgid ""
+"**Guest netmask.** The netmask in use on the subnet the guests will use."
+msgstr "**客户来宾子网掩码.**客户来宾虚拟机使用的子网掩码。"
+
+# 4e4534967671437dabfed4d6388c1054
+#: ../../configuration.rst:593
+msgid ""
+"**Guest start IP/End IP.** Enter the first and last IP addresses that define"
+" a range that CloudStack can assign to guests."
+msgstr "**客户来宾开始/结束IP.** 输入CLOUDSTACK用来分配给客户来宾使用的起止IP地址。"
+
+# 8b441ec54a0a43ef9e4015a52ef67b82
+#: ../../configuration.rst:598
+msgid ""
+"We strongly recommend the use of multiple NICs. If multiple NICs are used, "
+"they may be in a different subnet."
+msgstr "我们强烈推荐使用多网卡，因为多网卡就可以配置不同的子网。"
+
+# 9b102b8cc83641898482283b66567f5f
+#: ../../configuration.rst:603
+msgid ""
+"If one NIC is used, these IPs should be in the same CIDR as the pod CIDR."
+msgstr "如果一个网卡已在使用，则这些IP地址的CIDR必须和机柜提供点的CIDR一致。"
+
+# cc2bc4092258474fb449f386f8d9e5b7
+#: ../../configuration.rst:608
+msgid ""
+"In a new pod, CloudStack adds the first cluster for you. You can always add "
+"more clusters later. For an overview of what a cluster is, see About "
+"Clusters."
+msgstr "在一个新的机柜提供点里，CLOUDSTACK会为你加第一个群集。当然，你也可以以后再添加其它的群集。如果想多了解群集，你可以参看群集的相关章节。"
+
+# 9dfc5d96e4f246f5bf67701580b42c96
+# 55747277384844dc9df19ca416e9fe67
+#: ../../configuration.rst:612 ../../configuration.rst:865
+msgid "To configure the first cluster, enter the following, then click Next:"
+msgstr "配置第一个群集，输入以下这些信息，然后点击下一步。"
+
+# a84cacfa2b9d4b2bbf353e4ae8458ede
+#: ../../configuration.rst:616
+msgid ""
+"**Hypervisor.** (Version 3.0.0 only; in 3.0.1, this field is read only) "
+"Choose the type of hypervisor software that all hosts in this cluster will "
+"run. If you choose VMware, additional fields appear so you can give "
+"information about a vSphere cluster. For vSphere servers, we recommend "
+"creating the cluster of hosts in vCenter and then adding the entire cluster "
+"to CloudStack. See Add Cluster: vSphere."
+msgstr "**Hypervisor.** (只针对Version 3.0.0;在3.0.1中，这一栏是只读的)选择一种在这个群集中运行的hypervisor。如果你选择宾是VMWARE，则需要提供关于VSPHERE群集的信息。对于VSHPERE服务器，我们建议先在VCENTER里将群集设备好，然后作为群集整体加入CLOUDSTACK。参看Add Cluster: vSphere。"
+
+# 951aa047b6be4dac81da77ada5c1abbd
+# 978071a8c4ca49e69596a00092a94cc0
+#: ../../configuration.rst:626 ../../configuration.rst:879
+msgid ""
+"**Cluster name.** Enter a name for the cluster. This can be text of your "
+"choosing and is not used by CloudStack."
+msgstr "**群集名称.**你要为此群集提供一个CLOUDSTACK之前没有使用的名称。"
+
+# ed928322a0a44bc181d7446a673a2e65
+#: ../../configuration.rst:631
+msgid ""
+"In a new cluster, CloudStack adds the first host for you. You can always add"
+" more hosts later. For an overview of what a host is, see About Hosts."
+msgstr "在一个新的群集里，CLOUDSTACK会添加第一个宿主机。当然，之后你可以添加更多的宿主机。关于宿主机的概念，可以参看About Hosts的章节。"
+
+# c0eef46db65a474b9e07288ad00f722b
+#: ../../configuration.rst:637
+msgid ""
+"When you add a hypervisor host to CloudStack, the host must not have any VMs"
+" already running."
+msgstr "当你往CLOUDSTACK里新增一个hypervisor宿主机时，此宿主机上一定不能有虚拟机在运行（全新的宿主机）。"
+
+# 33a79b5face34cdd94df6594ea3f66d0
+# 99d62a9d7bac4f52b261ae6cfb2fbe6a
+#: ../../configuration.rst:640 ../../configuration.rst:893
+msgid ""
+"Before you can configure the host, you need to install the hypervisor "
+"software on the host. You will need to know which version of the hypervisor "
+"software version is supported by CloudStack and what additional "
+"configuration is required to ensure the host will work with CloudStack. To "
+"find these installation details, see:"
+msgstr "当你在配置宿主机之后，你需要在宿主机上安装hypervisor软件。你也需要事先了解CLOUDSTACK所能支持的hypervisor种类及版本，以及是否需要额外的配置信息。关于这些配置的详细信息，参看："
+
+# 02233aa6e2de42b3a2b7c8e9136f8d9b
+#: ../../configuration.rst:648
+msgid "Citrix XenServer Installation and Configuration"
+msgstr "Citrix XenServer安装及配置"
+
+# 8c9b2c7100d14b24a50d0f85b79684db
+# ffc02a27f1b64b7a86dae709431f60b1
+#: ../../configuration.rst:652 ../../configuration.rst:905
+msgid "VMware vSphere Installation and Configuration"
+msgstr "VMware vSphere安装及配置"
+
+# 1a252b54968f466a8cbcb7f06a5dd905
+#: ../../configuration.rst:656
+msgid "KVM vSphere Installation and Configuration"
+msgstr "KVM vSphere安装及配置"
+
+# 774c568eb07a4a2b91208caa80ef09de
+# 5bae2591b30e41e89ebf6c05d5142147
+#: ../../configuration.rst:658 ../../configuration.rst:911
+msgid "To configure the first host, enter the following, then click Next:"
+msgstr "配置第一个宿主机，输入以下信息，然后点击下一步："
+
+# a03e74384aa34baebe355da2e5c8eec4
+# b59ceb3125694b608633c452995c33a0
+#: ../../configuration.rst:662 ../../configuration.rst:915
+msgid "**Host Name.** The DNS name or IP address of the host."
+msgstr "**宿主机名称.** 宿主机的IP地址或DNS解析名称。"
+
+# 2a03556389f64c8a94e2e6a2c05eab3a
+#: ../../configuration.rst:666
+msgid "**Username.** The username is root."
+msgstr "**用户名.** 用户名为root。"
+
+# 0b80f7877aee4a83bfd151baa2616321
+# 7543731f101b4abda8e663dacbf732ba
+#: ../../configuration.rst:670 ../../configuration.rst:923
+msgid ""
+"**Password.** This is the password for the user named above (from your "
+"XenServer or KVM install)."
+msgstr "**密码。** 上面用户名的密码（主要针对XenServer 和 KVM的安装）"
+
+# eba07a12b5e64ed89e284a579ff72a44
+#: ../../configuration.rst:675
+msgid ""
+"**Host Tags.** (Optional) Any labels that you use to categorize hosts for "
+"ease of maintenance. For example, you can set this to the cloud's HA tag "
+"(set in the ha.tag global configuration parameter) if you want this host to "
+"be used only for VMs with the \"high availability\" feature enabled. For "
+"more information, see HA-Enabled Virtual Machines as well as HA for Hosts."
+msgstr "主机标签(可选)。此标签用于将主机分类，以便更好的后期维护。比如，如果你只想此宿主机用于具有HA（high availability）高可用性能的虚拟机，那么，你可以将此宿主机设置为云里相关的HA标签。(参看全局设置参数里的ha.tag)，关于HA的更多信息，请参看HA虚拟机和HA宿主机的相关章节。"
+
+# 2482d12c56954e76ae62762c6c6eb1d9
+#: ../../configuration.rst:684
+msgid ""
+"In a new cluster, CloudStack adds the first primary storage server for you. "
+"You can always add more servers later. For an overview of what primary "
+"storage is, see About Primary Storage."
+msgstr "在一个新的群集里，CLOUDSTACK会添加第一个主存储。当然，你也可以在随后添加更多的主存储。关于主存储的细节，可以参看相关章节：Primary Storage"
+
+# 1d48f3ca3f554345a5616755e055799d
+# 164c7c68103749aa9d95db15b6080a6a
+#: ../../configuration.rst:688 ../../configuration.rst:942
+msgid ""
+"To configure the first primary storage server, enter the following, then "
+"click Next:"
+msgstr "配置第一个主存储，输入以下信息，然后点击下一步："
+
+# d41592ad92964faba6e773967f138853
+# f8da12c75d984391840b5b07d2ab449c
+# 269c18e534db44feac83ee3a0e794f8e
+#: ../../configuration.rst:693 ../../configuration.rst:947
+#: ../../configuration.rst:1643
+msgid "**Name.** The name of the storage device."
+msgstr "**名称** 存储设备的名称"
+
+# 79b86cfd84924ff5b7a94f0375688f8f
+#: ../../configuration.rst:697
+msgid ""
+"**Protocol.** For XenServer, choose either NFS, iSCSI, or PreSetup. For KVM,"
+" choose NFS, SharedMountPoint,CLVM, or RBD. For vSphere choose either VMFS "
+"(iSCSI or FiberChannel) or NFS. The remaining fields in the screen vary "
+"depending on what you choose here."
+msgstr "**协议** 对于XenServer，选择NFS, iSCSI, 或 PreSetup.对于KVM，选择NFS, SharedMountPoint,CLVM, 或RBD.对于VSPHERE，选择VMFS（iSCSI 或FiberChannel）或NFS。本栏的其它选择依你选项不同而不同。"
+
+# ecf97107ce3d4e7c9b440b10f0948215
+#: ../../configuration.rst:704
+msgid "Advanced Zone Configuration"
+msgstr "添加高级区域"
+
+# baa22a12fe374bc08acbc56464b36551
+#: ../../configuration.rst:708
+msgid ""
+"After you select Advanced in the Add Zone wizard and click Next, you will be"
+" asked to enter the following details. Then click Next."
+msgstr "当你选择高级区域以后，你需要提供以下信息，然后点击下一步。"
+
+# 1af40c72b46646df88a2cb1de055446c
+#: ../../configuration.rst:724
+msgid ""
+"**Internal DNS 1 and Internal DNS 2.** These are DNS servers for use by "
+"system VMs in the zone(these are VMs used by CloudStack itself, such as "
+"virtual routers, console proxies,and Secondary Storage VMs.) These DNS "
+"servers will be accessed via the management traffic network interface of the"
+" System VMs. The private IP address you provide for the pods must have a "
+"route to the internal DNS server named here."
+msgstr "内网 DNS 1 和内网 DNS 2.** 区域内的系统虚拟机会用到这些DNS服务器（系统虚拟机是CLOUDSTACK本身会用到的虚拟机如虚拟路由器-VR，控制台代理虚拟机-CPVM，二级存储虚拟机-SSVM），这些系统虚拟机通过管理网络访问这个DNS服务器。为机柜提供点配置的私有IP地址必须能路由到这些内部DNS服务器。"
+
+# 415ff8607e2d487eb5812482d3be631d
+#: ../../configuration.rst:739
+msgid ""
+"**Guest CIDR.** This is the CIDR that describes the IP addresses in use in "
+"the guest virtual networks in this zone. For example, 10.1.1.0/24. As a "
+"matter of good practice you should set different CIDRs for different zones. "
+"This will make it easier to set up VPNs between networks in different zones."
+msgstr "**客户虚拟机CIDR.** 这个CIDR指的是在这个区域内的虚拟客户机的网络，比如10.1.1.0/24。最好能为不同的区域配置不同的CIDR，因为这样可以更方便的在不同的区域中建立相关的VPN。"
+
+# 977338d53746471aa3fc54436bc40384
+#: ../../configuration.rst:762
+msgid ""
+"The traffic types are management, public, guest, and storage traffic. For "
+"more information about the types, roll over the icons to display their tool "
+"tips, or see `“Advanced Zone Network Traffic Types” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#advanced-zone-network-traffic-types>`_. This screen starts out with one "
+"network already configured. If you have multiple physical networks, you need"
+" to add more. Drag and drop traffic types onto a greyed-out network and it "
+"will become active. You can move the traffic icons from one network to "
+"another; for example, if the default traffic types shown for Network 1 do "
+"not match your actual setup, you can move them down. You can also change the"
+" network names if desired."
+msgstr "流量类型分为管理流量，公网流量，来宾客户流量，和存储流量。关于这些流量的更多信息，可以点击相关图标得到一些帮助,或是参看以下帮助`“Advanced Zone Network Traffic Types” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#advanced-zone-network-traffic-types>`_。这个屏幕显示的是已分配好的流量类型。如果你有好几个物理网络，你需要增加更多的配置。拖动不同的网络流量类型到灰色的网络中，此网络将变成活跃可用的。你可以将流量图标在不同的网络中移动。比如，如果默认的网络1中的流量不是你实际的配置部署的话，我可以移动和更改。当然，也可以将网络更改成你认为合适的名字。"
+
+# bf77e79090334dbdaf7817f868b62d9b
+#: ../../configuration.rst:775
+msgid ""
+"(Introduced in version 3.0.1) Assign a network traffic label to each traffic"
+" type on each physical network. These labels must match the labels you have "
+"already defined on the hypervisor host. To assign each label, click the Edit"
+" button under the traffic type icon within each physical network. A popup "
+"dialog appears where you can type the label, then click OK."
+msgstr "(在3.0.1版本中介绍过)为每一种不同的物理网络分配不同的网络流量标签。这些标签必须和你在hypervisor主机中定义的标签一致。更改标签名，可以在每一个物理网络里点击相应的流量标签的编辑按钮，一个对话框会跳出来，输入合适的标签之后，点击下一步。"
+
+# 3e95b5f1880d49e0ac9f081f589d54ed
+#: ../../configuration.rst:786
+msgid ""
+"(VMware only) If you have enabled Nexus dvSwitch in the environment, you "
+"must specify the corresponding Ethernet port profile names as network "
+"traffic label for each traffic type on the physical network. For more "
+"information on Nexus dvSwitch, see Configuring a vSphere Cluster with Nexus "
+"1000v Virtual Switch in the Installation Guide. If you have enabled VMware "
+"dvSwitch in the environment, you must specify the corresponding Switch name "
+"as network traffic label for each traffic type on the physical network. For "
+"more information, see Configuring a VMware Datacenter with VMware "
+"Distributed Virtual Switch in the Installation Guide."
+msgstr "(只针对VMWARE)如果你的环境中有Nexus分布式虚拟交换机(dvSwitch),则必须为每一种物理网络上的流量类型的标签指定为相应的局域网端口配置名称(Ethernet port profile names).关于Nexus dvSwitch更多信息，可以查看安装指南的相关章节。如果你的环境中有VMware的分布式虚拟交换机（dvSwitch），,则必须为每一种物理网络上的流量类型的标签指定为相应的虚拟交换机名称(Switch name)。关于这方面的更多信息，参看安装指南当中的关于VMware Datacenter的相关章节。"
+
+# 2e09ad96d7ea431b93504f2b462eb18d
+#: ../../configuration.rst:803
+msgid ""
+"Configure the IP range for public Internet traffic. Enter the following "
+"details, then click Add. If desired, you can repeat this step to add more "
+"public Internet IP ranges. When done, click Next."
+msgstr "配置公网IP地址范围，输入以下细节，然后点击添加。如果需要，你可以重复此过程以便添加更多的公网IP地址。当这一切完成之后，点击下一步。"
+
+# c040713c23f6478b9faa405acbccd403
+#: ../../configuration.rst:821
+msgid ""
+"**Start IP/End IP.** A range of IP addresses that are assumed to be "
+"accessible from the Internet and will be allocated for access to guest "
+"networks."
+msgstr "**开始IP/结束IP.为客户机的网络配置一个可供互联网访问进出的IP地址范围。"
+
+# 028dd10cccfd4b988a432569b413c67e
+#: ../../configuration.rst:849
+msgid ""
+"**Start/End Reserved System IP.** The IP range in the management network "
+"that CloudStack uses to manage various system VMs, such as Secondary Storage"
+" VMs, Console Proxy VMs, and DHCP. For more information, see `“System "
+"Reserved IP Addresses” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#id4>`_."
+msgstr "**开始/结束系统保留的IP.** 这些IP地址是CLOUDSTACK给各种管理用的系统虚拟机使用的。如SSVM，CPVM,DHCP（VR）等。如需更多详情，请参看：`“System Reserved IP Addresses” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#id4>`_."
+
+# aef499486dda461e81ca424e5e5b1481
+#: ../../configuration.rst:856
+msgid ""
+"Specify a range of VLAN IDs to carry guest traffic for each physical network"
+" (see VLAN Allocation Example ), then click Next."
+msgstr "定义每个物理网络上的客户流量的VLAN ID范围(参看 VLAN 分配示例 )，然后点击下一步。"
+
+# dc8bd3cae1b641ecb806034ed9b636a1
+#: ../../configuration.rst:861
+msgid ""
+"In a new pod, CloudStack adds the first cluster for you. You can always add "
+"more clusters later. For an overview of what a cluster is, see `“About "
+"Clusters” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#about-clusters>`_."
+msgstr "在一个新的机柜提供点，CLOUDSTACK会添加第一个群集。当然，随后你可以添加更多的群集。关于什么是群集，参看URL：`“About Clusters” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-clusters>`_."
+
+# 92202c4f1faa47bfbbc7324abd75c882
+#: ../../configuration.rst:869
+msgid ""
+"**Hypervisor.** (Version 3.0.0 only; in 3.0.1, this field is read only) "
+"Choose the type of hypervisor software that all hosts in this cluster will "
+"run. If you choose VMware, additional fields appear so you can give "
+"information about a vSphere cluster. For vSphere servers, we recommend "
+"creating the cluster of hosts in vCenter and then adding the entire cluster "
+"to CloudStack. See Add Cluster: vSphere ."
+msgstr "**Hypervisor.** (只针对Version 3.0.0;在3.0.1中，这一栏是只读的)选择一种在这个群集中运行的hypervisor。如果你选择宾是VMWARE，则需要提供关于VSPHERE群集的信息。对于VSHPERE服务器，我们建议先在VCENTER里将群集设备好，然后作为群集整体加入CLOUDSTACK。参看Add Cluster: vSphere。"
+
+# 4cda6da8084044bb92061b3e2e0957a2
+#: ../../configuration.rst:884
+msgid ""
+"In a new cluster, CloudStack adds the first host for you. You can always add"
+" more hosts later. For an overview of what a host is, see `“About Hosts” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#about-hosts>`_."
+msgstr "在一个新的群集，CLOUDSTACK会添加好第一个宿主机，随后，你也可以自行添加更多的宿主机。关于什么是宿主机，参看此URL：`“About Hosts” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-hosts>`_."
+
+# da82f7ef5c5140ada9ab09e56830a673
+#: ../../configuration.rst:890
+msgid ""
+"When you deploy CloudStack, the hypervisor host must not have any VMs "
+"already running."
+msgstr "当你开始部署CLOUDSTACK时，hypervisor宿主机必须不能有已在运行的虚拟机。"
+
+# 5feeceb5018240cda528adddb321bc47
+#: ../../configuration.rst:901
+msgid "Citrix XenServer Installation for CloudStack"
+msgstr "Citrix XenServer安装指南"
+
+# d7a322b42ef049738f5b4652dfb5b4a5
+#: ../../configuration.rst:909
+msgid "KVM Installation and Configuration"
+msgstr "KVM安装指南"
+
+# 8f8c9491a2ee48a6be489f2a7756790c
+#: ../../configuration.rst:919
+msgid "**Username.** Usually root."
+msgstr "**用户名.**通常为root"
+
+# a06fccfe3a1246ac85ece2bb4b394e2e
+#: ../../configuration.rst:928
+msgid ""
+"**Host Tags.** (Optional) Any labels that you use to categorize hosts for "
+"ease of maintenance. For example, you can set to the cloud's HA tag (set in "
+"the ha.tag global configuration parameter) if you want this host to be used "
+"only for VMs with the \"high availability\" feature enabled. For more "
+"information, see HA-Enabled Virtual Machines as well as HA for Hosts, both "
+"in the Administration Guide."
+msgstr "主机标签(可选)。此标签用于将主机分类，以便更好的后期维护。比如，如果你只想此宿主机用于具有HA（high availability）高可用性能的虚拟机，那么，你可以将此宿主机设置为云里相关的HA标签。(参看全局设置参数里的ha.tag)，关于HA的更多信息，请参看HA虚拟机和HA宿主机的相关章节。"
+
+# 5805c3e9682a4275bf5df6d2864ba607
+#: ../../configuration.rst:938
+msgid ""
+"In a new cluster, CloudStack adds the first primary storage server for you. "
+"You can always add more servers later. For an overview of what primary "
+"storage is, see `“About Primary Storage” "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#about-primary-storage>`_."
+msgstr "在一个新的群集，CLOUDSTACK会添加好第一个宿主机，随后，你也可以自行添加更多的宿主机。关于什么是宿主机，参看此URL：`“About Hosts” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-hosts>`_."
+
+# 495b8c4c1fa8426bab3a4b45a4b9cd99
+#: ../../configuration.rst:951
+msgid ""
+"**Protocol.** For XenServer, choose either NFS, iSCSI, or PreSetup. For KVM,"
+" choose NFS, SharedMountPoint, CLVM, and RBD. For vSphere choose either VMFS"
+" (iSCSI or FiberChannel) or NFS. The remaining fields in the screen vary "
+"depending on what you choose here."
+msgstr "**协议** 对于XenServer，选择NFS, iSCSI, 或 PreSetup.对于KVM，选择NFS, SharedMountPoint,CLVM, 或RBD.对于VSPHERE，选择VMFS（iSCSI 或FiberChannel）或NFS。本栏的其它选择依你选项不同而不同。"
+
+# c13c7ab68805492f81644e5ffb68f3ae
+#: ../../configuration.rst:958
+msgid "NFS"
+msgstr "NFS"
+
+# 2578e443ed4149aea95aa6a1c1c249ed
+# 8eff8ab7756342c59d6d437dcc623949
+# b14ee384c5414666bc4dcbff1364f91a
+#: ../../configuration.rst:960 ../../configuration.rst:974
+#: ../../configuration.rst:993
+msgid "**Server.** The IP address or DNS name of the storage device."
+msgstr "**服务器** 存储设备的IP地址或DNS解析名称。"
+
+# 62379870706c40b39e84a46323cff070
+# f11dd111d0fa4459b077c31828df6297
+#: ../../configuration.rst:964 ../../configuration.rst:1056
+msgid "**Path.** The exported path from the server."
+msgstr "**路径.** 服务器输出的存储路径。"
+
+# 1bc7998a3ae34257ac8ea084b490e3dc
+# 95d89435789d49f58868b82dd77f2364
+# 688fec245b724ee58f46dac116c85768
+# a94b01dd1a9d47a6b0ca747204f38e31
+# 708979b025a2495bb0f1e298cb699e7c
+#: ../../configuration.rst:968 ../../configuration.rst:987
+#: ../../configuration.rst:1002 ../../configuration.rst:1013
+#: ../../configuration.rst:1029
+msgid ""
+"**Tags (optional).** The comma-separated list of tags for this storage "
+"device. It should be an equivalent set or superset of the tags on your disk "
+"offerings."
+msgstr "**标签 (可选项).**以逗号分隔的一系列此存储设备的标签。这个标签应该是你的存储磁盘的易于辩识的称呼。"
+
+# 1bb64b1d14cb4e398ca842b1c0fbbb63
+#: ../../configuration.rst:972
+msgid "iSCSI"
+msgstr "iSCSI"
+
+# 01d98c2c029f439085b511af99be85f2
+#: ../../configuration.rst:978
+msgid ""
+"**Target IQN.** The IQN of the target. For example, "
+"iqn.1986-03.com.sun:02:01ec9bb549-1271378984."
+msgstr "**Target IQN.** ISCSI target的IQN编号，格式如：iqn.1986-03.com.sun:02:01ec9bb549-1271378984。"
+
+# e205a1228c5d40dfa197fbfaba78a098
+#: ../../configuration.rst:983
+msgid "**Lun.** The LUN number. For example, 3."
+msgstr "**Lun.** LUN编号。比如：3。"
+
+# fac43a474d054620bb8855699c505256
+#: ../../configuration.rst:991
+msgid "preSetup"
+msgstr "preSetup"
+
+# d2113879ec38438a85b780a116ae5c65
+#: ../../configuration.rst:997
+msgid ""
+"**SR Name-Label.** Enter the name-label of the SR that has been set up "
+"outside CloudStack."
+msgstr "**SR 名称标签** 输入在CLOUDSTACK外部设置好的SR的名称标签。"
+
+# cf5d1b3006a142f8a763f03668105b49
+#: ../../configuration.rst:1006
+msgid "SharedMountPoint"
+msgstr "共享挂载点"
+
+# a09c62d550c445b09625c3c9ac5a79ef
+#: ../../configuration.rst:1008
+msgid ""
+"**Path.** The path on each host that is where this primary storage is "
+"mounted. For example, \"/mnt/primary\"."
+msgstr "**路径.**每一个主机的主存储的挂载路径。格式如 \"/mnt/primary\"。"
+
+# 4e50581b026c4c648544298a1733b7ea
+#: ../../configuration.rst:1017
+msgid "VMFS"
+msgstr "VMFS"
+
+# 80e1d3bc39d448e9b8ed33e8619baf1b
+#: ../../configuration.rst:1019
+msgid "**Server.** The IP address or DNS name of the vCenter server."
+msgstr "**服务器**vCenter服务器的IP地址或DNS名称。"
+
+# 7c7e585d505640adb10fc3f6b3641320
+#: ../../configuration.rst:1023
+msgid ""
+"**Path.** A combination of the datacenter name and the datastore name. The "
+"format is \"/\" datacenter name \"/\" datastore name. For example, "
+"\"/cloud.dc.VM/cluster1datastore\"."
+msgstr "**路径** 这是一个datacenter name 和 datastore name集成在一起的名字。格式如\"/\" datacenter name \"/\" datastore name. 示例： \"/cloud.dc.VM/cluster1datastore\"."
+
+# 0171ce820c2c4a7696118d1c25614ff0
+# 39eb891fbcd74644a92e4135608b74d5
+#: ../../configuration.rst:1035 ../../configuration.rst:1719
+msgid ""
+"The tag sets on primary storage across clusters in a Zone must be identical."
+" For example, if cluster A provides primary storage that has tags T1 and T2,"
+" all other clusters in the Zone must also provide primary storage that has "
+"tags T1 and T2."
+msgstr "在区域的群集中当，主存储的标签都必须是唯一的。比如，如果你在A群集当中提供的主存储的标签为T1和T2，那么，你在同一个区域的另一个群集提供的主存储标签也必须为T1和T2。"
+
+# 545dbc66d5a745cf8d40c2e8d3e47fa0
+#: ../../configuration.rst:1042
+msgid ""
+"In a new zone, CloudStack adds the first secondary storage server for you. "
+"For an overview of what secondary storage is, see `“About Secondary Storage”"
+" "
+"<http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods"
+"#about-secondary-storage>`_."
+msgstr "在一个新的区域里，CLOUDSTACK会添加第一个二级存储。关于什么是二级存储，请参看此URL：`“About Secondary Storage” <http://docs.cloudstack.apache.org/en/latest/concepts.html?highlight=about%20pods#about-secondary-storage>`_。"
+
+# 823b1d4a44e3422a9edc9639cf1eede3
+#: ../../configuration.rst:1045
+msgid ""
+"Before you can fill out this screen, you need to prepare the secondary "
+"storage by setting up NFS shares and installing the latest CloudStack System"
+" VM template. See Adding Secondary Storage :"
+msgstr "当你在填写这些信息时，你需要准备好二级存储的NFS共享，并且安装好CLOUDSTACK最新的系统虚拟机模板。更多信息，可以查看Adding Secondary Storage :"
+
+# d5ddaf659d0b4a2f9410a5c11c11e461
+#: ../../configuration.rst:1051
+msgid ""
+"**NFS Server.** The IP address of the server or fully qualified domain name "
+"of the server."
+msgstr "**NFS服务器** NFS服务器的IP地址或相应域名。"
+
+# 5cc7167a227445f5832190b7bb063edd
+#: ../../configuration.rst:1060
+msgid "Click Launch."
+msgstr "点击启动"
+
+# 8cc40a05112742019e78cdf6894c0d6a
+#: ../../configuration.rst:1065
+msgid "Adding a Pod"
+msgstr "添加一个机柜提供点"
+
+# 6aa3cd5eeb4845e2bca43d255c154880
+#: ../../configuration.rst:1067
+msgid ""
+"When you created a new zone, CloudStack adds the first pod for you. You can "
+"add more pods at any time using the procedure in this section."
+msgstr "当你添加一个区域时，CLOUDSTACK会添加第一个机柜提供点。用本章节的办法，你可以随时添加更多的机柜提供点。"
+
+# 021a4945a1ff4e58bbb34499921172e6
+#: ../../configuration.rst:1072
+msgid ""
+"Log in to the CloudStack UI. See `“Log In to the UI” "
+"<http://docs.cloudstack.apache.org/projects/cloudstack-"
+"administration/en/latest/ui.html#log-in-to-the-ui>`_."
+msgstr "登陆到CLOUDSTACK的WEB UI界面。参看此URL：`“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_."
+
+# 85d50e8b49d74c3993bc9b5ab25e5fc8
+#: ../../configuration.rst:1076
+msgid ""
+"In the left navigation, choose Infrastructure. In Zones, click View More, "
+"then click the zone to which you want to add a pod."
+msgstr "在左侧的导航栏里，选择基础架构。在区域栏目里，选择查看全部。然后，点击相应的区域以添加新的机柜提供点。"
+
+# 4fc2ea5eed7140159d0cb5082dbad76f
+#: ../../configuration.rst:1081
+msgid ""
+"Click the Compute and Storage tab. In the Pods node of the diagram, click "
+"View All."
+msgstr "点击计算和存储标签。在图中的机柜提供点里，点击查看全部。"
+
+# ff9686a2bc574bd184ca92ef5167bcf9
+#: ../../configuration.rst:1086
+msgid "Click Add Pod."
+msgstr "点击增加提供点。（此处提供点对应于翻译此翻译文档的机柜提供点）"
+
+# 7ee82f9cc1e1471baf438efd4b23a8fb
+#: ../../configuration.rst:1090
+msgid "Enter the following details in the dialog."
+msgstr "在随后的对话栏里，输入以下细节信息。"
+
+# 95c458cb36aa49eab82504d1418f26a9
+#: ../../configuration.rst:1094
+msgid "**Name.** The name of the pod."
+msgstr "**名称** 机柜提供点名称"
+
+# 6e8c40c9ee9c4c2f8c156976b6d3543b
+#: ../../configuration.rst:1098
+msgid "**Gateway.** The gateway for the hosts in that pod."
+msgstr "**网关.** 机柜提供点的网关。"
+
+# 27a9f5939df04e5f94a11c291941e81c
+#: ../../configuration.rst:1102
+msgid ""
+"**Netmask.** The network prefix that defines the pod's subnet. Use CIDR "
+"notation."
+msgstr "**网络** 定义这个提供点的子网络前缀。用CIDR格式。"
+
+# 662b2d56034649b093b45febe21ca216
+# b127e13dd2f0460784ecb2ab7611be91
+# a758abffa675494ab4ece1328d1aacc7
+#: ../../configuration.rst:1114 ../../configuration.rst:1163
+#: ../../configuration.rst:1726
+msgid "Click OK."
+msgstr "点击确定。"
+
+# 5bd1d350804f433da261b7a4add24572
+#: ../../configuration.rst:1119
+msgid "Adding a Cluster"
+msgstr "添加群集"
+
+# 3577ece05aeb45ecb8111541525be47e
+#: ../../configuration.rst:1121
+msgid ""
+"You need to tell CloudStack about the hosts that it will manage. Hosts exist"
+" inside clusters, so before you begin adding hosts to the cloud, you must "
+"add at least one cluster."
+msgstr "你需要告诉CLOUDSTACK它所能管理的宿主机。宿主机存在于群集内，所以，在为云里添加主机之后，必须先至少存在一个群集。"
+
+# c48b9a0598014690b0cdef9ca56ecee3
+#: ../../configuration.rst:1126
+msgid "Add Cluster: KVM or XenServer"
+msgstr "添加群集：KVM 或者 XenServer"
+
+# 055652e4701b4e77ae209a3d051da0a2
+#: ../../configuration.rst:1128
+msgid ""
+"These steps assume you have already installed the hypervisor on the hosts "
+"and logged in to the CloudStack UI."
+msgstr "这些步骤确保你已在宿主机上安装好hypervisor，并且已登陆CLOUDSTACK的WEB UI。"
+
+# 3eeb9c34a0954b7c8110e08a1b67f793
+# 9195ed5d3bf74deeb07aeb3d923107aa
+#: ../../configuration.rst:1133 ../../configuration.rst:1205
+msgid ""
+"In the left navigation, choose Infrastructure. In Zones, click View More, "
+"then click the zone in which you want to add the cluster."
+msgstr "在左右的导航栏里，点击基础架构。在区域里，点击查看全部。然后点击你想增加群集所在的区域。"
+
+# 6ce7dcfa7ba9471680bbb2d479610298
+# d76a87db16a14e2d81cfaaf4ae1ff37d
+#: ../../configuration.rst:1138 ../../configuration.rst:1611
+msgid "Click the Compute tab."
+msgstr "点击计算这个标签。"
+
+# 6781697240844815b4e33a65740b3568
+#: ../../configuration.rst:1142
+msgid "In the Clusters node of the diagram, click View All."
+msgstr "在对话栏的群集里，点击查看全部。"
+
+# 86684fe2765e42cbbf0518ca95fde164
+# fceb91152e4946e4ae3ca08780f8ddb5
+#: ../../configuration.rst:1146 ../../configuration.rst:1219
+msgid "Click Add Cluster."
+msgstr "点击增加群集。"
+
+# df2e4414d83d49f7a69254062073c25d
+#: ../../configuration.rst:1150
+msgid "Choose the hypervisor type for this cluster."
+msgstr "选择这个群集的hypervisor类型。"
+
+# 4b1d42320c944742a0c9da0c6aad03ab
+#: ../../configuration.rst:1154
+msgid "Choose the pod in which you want to create the cluster."
+msgstr "选择你想在哪个机柜提供点增加群集。"
+
+# ddcd8e67c1e14f708d5f640dda1ace24
+#: ../../configuration.rst:1158
+msgid ""
+"Enter a name for the cluster. This can be text of your choosing and is not "
+"used by CloudStack."
+msgstr "为群集输入一个名称。这个名称必须为CLOUDSTACK里没有使用的名字。"
+
+# 52e22dae198644b5b21619fdb5427bff
+#: ../../configuration.rst:1166
+msgid "Add Cluster: vSphere"
+msgstr "添加群集：vSphere"
+
+# f1d8499b4f3a4527b31f6bbc13020c92
+#: ../../configuration.rst:1168
+msgid ""
+"Host management for vSphere is done through a combination of vCenter and the"
+" CloudStack admin UI. CloudStack requires that all hosts be in a CloudStack "
+"cluster, but the cluster may consist of a single host. As an administrator "
+"you must decide if you would like to use clusters of one host or of multiple"
+" hosts. Clusters of multiple hosts allow for features like live migration. "
+"Clusters also require shared storage such as NFS or iSCSI."
+msgstr "对于VSPHERE的主机管理是结合VCENTER和CLOUDSTACK WEB UUI管理界面一起完成的。CLOUDSTACK需要所有的主机都在同一个群集里，但群集可能只是由一个主机构成。作为一个管理员，你必须决定到底是使用一个主机一个群集还是多个主机一个群集。多个主机一个群集，可以实现CLOUDSTACK的一些高级功能，如热迁移等。当然，此群集需要有NFS或ISCSI等这个共享存储支持。"
+
+# 639cc06638a24634b344409d5fc0f29b
+#: ../../configuration.rst:1176
+msgid ""
+"For vSphere servers, we recommend creating the cluster of hosts in vCenter "
+"and then adding the entire cluster to CloudStack. Follow these requirements:"
+msgstr "对于VSPHERRE服务器，我们推荐的方案是先在VCENTER里建好群集，然后将整个群集加入到CLOUDSTACK群集中。这个群集需要以下条件："
+
+# a552a9750ece4715bbd09d94674c0204
+#: ../../configuration.rst:1182
+msgid "Do not put more than 8 hosts in a vSphere cluster"
+msgstr "在一个VSPHOERE群集里不要超过8个主机。"
+
+# 07fedb4ed78e43309d2c117377a2665f
+#: ../../configuration.rst:1186
+msgid ""
+"Make sure the hypervisor hosts do not have any VMs already running before "
+"you add them to CloudStack."
+msgstr "确保在你想加入CLOUDSTACK群集前，VSPHERE没有任何虚拟机。"
+
+# 024f0bed3a7e461fb5cb771703a34735
+#: ../../configuration.rst:1189
+msgid "To add a vSphere cluster to CloudStack:"
+msgstr "在CLOUDSTACK中添加一个VSHPERE群集："
+
+# 99e3af8fb94a47b6af9b96993aa3ddf9
+#: ../../configuration.rst:1193
+msgid ""
+"Create the cluster of hosts in vCenter. Follow the vCenter instructions to "
+"do this. You will create a cluster that looks something like this in "
+"vCenter."
+msgstr "在VCENTER里新建一个群集。请参看VCENTER的相关操作指地完成这一。在VCENTER里建立群集的大致过程如下："
+
+# af7d7917635a47e99d44b5ef15f45be1
+#: ../../configuration.rst:1197
+msgid "|vsphereclient.png: vSphere client|"
+msgstr "|vsphereclient.png: vSphere client|"
+
+# a6f802a9b02f479a84bcaf1fdf55f411
+#: ../../configuration.rst:1201
+msgid "Log in to the UI."
+msgstr "登陆到UI界面。"
+
+# c23593701771448492c69e88eeb2fdc7
+#: ../../configuration.rst:1210
+msgid ""
+"Click the Compute tab, and click View All on Pods. Choose the pod to which "
+"you want to add the cluster."
+msgstr "点击计算标签。在机柜提供点栏里点击查看全部。选择你想添加群集的机柜提供点。"
+
+# 0eb489140e8347b58fd4f55e90ecdb3d
+#: ../../configuration.rst:1215
+msgid "Click View Clusters."
+msgstr "点击查看群集。"
+
+# eaa31efa90f943a28e73234e4948e3b3
+#: ../../configuration.rst:1223
+msgid "In Hypervisor, choose VMware."
+msgstr "在Hypervisor里，选择VMware。"
+
+# 484d49c764c44bf1a22f92192128c36f
+#: ../../configuration.rst:1227
+msgid ""
+"Provide the following information in the dialog. The fields below make "
+"reference to the values from vCenter."
+msgstr "提供界面要求的如下信息。这些信息的值可以参考VCENTER中对应的值。"
+
+# 487fe93679ba4e0da222421e9e4c4fef
+#: ../../configuration.rst:1230
+msgid "|addcluster.png: add a cluster|"
+msgstr "|addcluster.png: add a cluster|"
+
+# a2588a5230c44e0ab6631f37191c9f05
+#: ../../configuration.rst:1234
+msgid ""
+"**Cluster Name**: Enter the name of the cluster you created in vCenter. For "
+"example, \"cloud.cluster.2.2.1\""
+msgstr "**群集名称**:输入你在VCENTER中创建的群集名称。比如：\"cloud.cluster.2.2.1\""
+
+# 139c5b5ced7c44a3b1106cbfebd485ef
+#: ../../configuration.rst:1239
+msgid ""
+"**vCenter Username**: Enter the username that CloudStack should use to "
+"connect to vCenter. This user must have all the administrative privileges."
+msgstr "**vCenter用户名**:输入CLOUDSTACK连接到VCENTER所用的用户名。这个用户名必须要有所有的管理权限。"
+
+# 0f46da6afc5f4dac9ccf803cc4601b66
+#: ../../configuration.rst:1245
+msgid ""
+"**CPU overcommit ratio**: Enter the CPU overcommit ratio for the cluster. "
+"The value you enter determines the CPU consumption of each VM in the "
+"selected cluster. By increasing the over-provisioning ratio, more resource "
+"capacity will be used. If no value is specified, the value is defaulted to "
+"1, which implies no over-provisioning is done."
+msgstr "**CPU超配比率**: 输入此群集的CPU超配比率。这个比率值决定了群集内每台虚拟机的CPU耗用比率。增加这个数据，则能使用更多的资源。如果不设置此值的话，默认值为1，这就表示没有使用超配。"
+
+# c80fd12b0e2645fdb4f5da92f9a48c30
+#: ../../configuration.rst:1254
+msgid ""
+"**RAM overcommit ratio**: Enter the RAM overcommit ratio for the cluster. "
+"The value you enter determines the memory consumption of each VM in the "
+"selected cluster. By increasing the over-provisioning ratio, more resource "
+"capacity will be used. If no value is specified, the value is defaulted to "
+"1, which implies no over-provisioning is done."
+msgstr "**RAM超配比率**:输入RAM的超配比率。这个比率值决定了群集内每台虚拟机的MEM耗用比率。增加这个数据，则能使用更多的资源。如果不设置此值的话，默认值为1，这就表示没有使用超配。"
+
+# ed8c978a33c642e1b4c42009224566d8
+#: ../../configuration.rst:1263
+msgid ""
+"**vCenter Host**: Enter the hostname or IP address of the vCenter server."
+msgstr "**vCenter主机**: VCENTER的主机的IP地址或主机名。"
+
+# 9f497668e61c49d29335e24237d60c1f
+#: ../../configuration.rst:1268
+msgid "**vCenter Password**: Enter the password for the user named above."
+msgstr "**vCenter密码**: 输入上面用户的密码。"
+
+# 71e07ec1b69543a0bfd82523b8b2e186
+#: ../../configuration.rst:1272
+msgid ""
+"**vCenter Datacenter**: Enter the vCenter datacenter that the cluster is in."
+" For example, \"cloud.dc.VM\"."
+msgstr "**vCenter Datacenter**:输入此群集拥有的vCenter Datacenter名称，比如：\"cloud.dc.VM\"."
+
+# d4bbd28c84c841f18df067f9ebd23e01
+#: ../../configuration.rst:1277
+msgid ""
+"**Override Public Traffic**: Enable this option to override the zone-wide "
+"public traffic for the cluster you are creating."
+msgstr "**重用公共网络流量**:启用这个选项，则可以在区域的范围内重用公共网络流量。"
+
+# 226d9fcde0fe480dbfc4bdb58e61101a
+#: ../../configuration.rst:1282
+msgid ""
+"**Public Traffic vSwitch Type**: This option is displayed only if you enable"
+" the Override Public Traffic option. Select a desirable switch. If the "
+"vmware.use.dvswitch global parameter is true, the default option will be "
+"VMware vNetwork Distributed Virtual Switch."
+msgstr "**公共流量vSwitch类型**: 这个选项只有在你启用了Override Public Traffic之后才会显示出来，你可以选择一种合适的虚拟交换机。如果vmware.use.dvswitch这个全局参数设置为true，则默认选项为VMware vNetwork Distributed Virtual Switch."
+
+# ef5ed1b406c04875b05b7f99083e9798
+# d0128340659843899d633b61f40d6f7d
+#: ../../configuration.rst:1287 ../../configuration.rst:1319
+msgid ""
+"If you have enabled Nexus dvSwitch in the environment, the following "
+"parameters for dvSwitch configuration are displayed:"
+msgstr "如果你启用了Nexus dvSwitch，下面关于dvSwitch的数据也需要设置："
+
+# 1a28e958e5c142e9b87e1fb54997fc70
+# f629408d44214fe88b1d7ae5bc5ff009
+#: ../../configuration.rst:1292 ../../configuration.rst:1324
+msgid "Nexus dvSwitch IP Address: The IP address of the Nexus VSM appliance."
+msgstr "Nexus dvSwitch IP地址: Nexus VSM的IP地址"
+
+# 6fc84ac396d34298bc9d963e5af5a56c
+# 1ed7b8810e7943a1aa4c787324501a85
+#: ../../configuration.rst:1297 ../../configuration.rst:1329
+msgid ""
+"Nexus dvSwitch Username: The username required to access the Nexus VSM "
+"appliance."
+msgstr "Nexus dvSwitch 用户名：具体有 Nexus VSM 权限的用户名。"
+
+# 30de309ba01c451c9fa7b7401055d1df
+# 23e30b096bb54eb0a89fd8e31298e87d
+#: ../../configuration.rst:1302 ../../configuration.rst:1334
+msgid ""
+"Nexus dvSwitch Password: The password associated with the username specified"
+" above."
+msgstr "Nexus dvSwitch 密码:上面用户名的密码。"
+
+# d1b265609f2141fd90ed9172448bbca4
+#: ../../configuration.rst:1307
+msgid ""
+"**Override Guest Traffic**: Enable this option to override the zone-wide "
+"guest traffic for the cluster you are creating."
+msgstr "**重用客户机流量**:如果选中此项，则会在全区域范围内重用客户机流量。"
+
+# 6cc7a2072e8041fe99c4417e58e169c5
+#: ../../configuration.rst:1312
+msgid ""
+"**Guest Traffic vSwitch Type**: This option is displayed only if you enable "
+"the Override Guest Traffic option. Select a desirable switch."
+msgstr "**Guest Traffic vSwitch Type**:只有当the Override Guest Traffic选项启用后才会出现。为此选择一种合适的虚拟交换机类型。"
+
+# 2e4dbe764fd24fce83909adbaa5d459a
+#: ../../configuration.rst:1316
+msgid ""
+"If the vmware.use.dvswitch global parameter is true, the default option will"
+" be VMware vNetwork Distributed Virtual Switch."
+msgstr "如果全局参数vmware.use.dvswitch为true，则默认的选项为VMware vNetwork Distributed Virtual Switch。"
+
+# 6c5ead7c78fb4c3893e3e5755324deb3
+#: ../../configuration.rst:1339
+msgid ""
+"There might be a slight delay while the cluster is provisioned. It will "
+"automatically display in the UI."
+msgstr "当群集建好之后，会有稍稍的迟延之后，才会有UI里显示出来。"
+
+# f18a40a45b3b4c61b08b258f179355ef
+#: ../../configuration.rst:1345
+msgid "Adding a Host"
+msgstr "添加一个宿主机"
+
+# 6b7c9eb46e0e4f11a6576586dfc74b90
+#: ../../configuration.rst:1349
+msgid ""
+"Before adding a host to the CloudStack configuration, you must first install"
+" your chosen hypervisor on the host. CloudStack can manage hosts running VMs"
+" under a variety of hypervisors."
+msgstr "当你在添加一个新的宿主机之后，你必须先在宿主机上安装一种hypervisor。CLOUDSTACK是可以管理多种hypervisor的。"
+
+# 522d5b3c849c4f7e9f60227d6cd73806
+#: ../../configuration.rst:1353
+msgid ""
+"The CloudStack Installation Guide provides instructions on how to install "
+"each supported hypervisor and configure it for use with CloudStack. See the "
+"appropriate section in the Installation Guide for information about which "
+"version of your chosen hypervisor is supported, as well as crucial "
+"additional steps to configure the hypervisor hosts for use with CloudStack."
+msgstr "CLOUDSTACK安装指南提供了如何安装配置各种hypervisor的步骤。你可以参考相关章节找到你所使用的hypervisor的安装指南，以及为了加入CLOUDSTACK而需要的额外的配置步骤。"
+
+# bc711d58a2c34afd8f452fe3e9de12b4
+#: ../../configuration.rst:1362
+msgid ""
+"Be sure you have performed the additional CloudStack-specific configuration "
+"steps described in the hypervisor installation section for your particular "
+"hypervisor."
+msgstr "确保你已按CLOUDSTACK的要求，安装并设置好了hypervisor。"
+
+# f214d5f50d644ebb9e0348cf22f7584a
+#: ../../configuration.rst:1366
+msgid ""
+"Now add the hypervisor host to CloudStack. The technique to use varies "
+"depending on the hypervisor."
+msgstr "现在，可以添加hypervisor主机到CLOUDSTACK了。具体的添加技巧和过程取决于使选用的hypervisor类型。"
+
+# f19ae647c1194e09b4fa86351f6e66bf
+#: ../../configuration.rst:1371
+msgid ":ref:`adding-a-host-xenserver-kvm`"
+msgstr "：参考：`adding-a-host-xenserver-kvm`"
+
+# 74db7e53daa6430db9890cf5d4b68937
+#: ../../configuration.rst:1375
+msgid ":ref:`adding-a-host-vsphere`"
+msgstr "：参考：`adding-a-host-vsphere`"
+
+# 86203e473ded428a87d9ddc7387b8945
+#: ../../configuration.rst:1380
+msgid "Adding a Host (XenServer or KVM)"
+msgstr "添加一个宿主机(XenServer 或KVM)"
+
+# e9d60303c58a447b98a846b68c542923
+#: ../../configuration.rst:1382
+msgid "XenServer and KVM hosts can be added to a cluster at any time."
+msgstr "XenServer和KVM可以在任何时间被加入CLOUDSTACK群集。"
+
+# e8574c2491f84847b1fc81dd87b07300
+#: ../../configuration.rst:1385
+msgid "Requirements for XenServer and KVM Hosts"
+msgstr " XenServer和KVM宿主机的相关要求"
+
+# 0800caa0d34946708f32a040b507e3a5
+#: ../../configuration.rst:1389
+msgid ""
+"Make sure the hypervisor host does not have any VMs already running before "
+"you add it to CloudStack."
+msgstr "确保 hypervisor在加入CLOUDSTACK前没有运行任何虚拟机。"
+
+# 6830a4647d3740fea37e17845ef42474
+#: ../../configuration.rst:1391
+msgid "Configuration requirements:"
+msgstr "配置需求："
+
+# 9b03954d5f1c42be949de1519d901e77
+#: ../../configuration.rst:1395
+msgid "Each cluster must contain only hosts with the identical hypervisor."
+msgstr "每一个群集必须包含相同的 hypervisor。"
+
+# 2aa84dcaa1ef4b64864afbf376809f28
+#: ../../configuration.rst:1399
+msgid "For XenServer, do not put more than 8 hosts in a cluster."
+msgstr "对于 XenServer，群集内不要超过8个主机。"
+
+# ab9e4541b2f749c7ac049e975cc25029
+#: ../../configuration.rst:1403
+msgid "For KVM, do not put more than 16 hosts in a cluster."
+msgstr "对于KVM，每一个群集不要超过16个主机。"
+
+# 43f791e8a196457488a703279725b9c8
+#: ../../configuration.rst:1405
+msgid ""
+"For hardware requirements, see the installation section for your hypervisor "
+"in the CloudStack Installation Guide."
+msgstr "硬件方面的需求，请参看CLOUDSTACK安装指南中关于你具体安装的hypervisor的要求。"
+
+# bf113c0fb16d42a2b85f91ae907901c0
+#: ../../configuration.rst:1409
+msgid "XenServer Host Additional Requirements"
+msgstr "XenServe宿主机的额外要求"
+
+# ef5a7bd952eb4406a4876f09caac96fc
+#: ../../configuration.rst:1411
+msgid ""
+"If network bonding is in use, the administrator must cable the new host "
+"identically to other hosts in the cluster."
+msgstr "如果使用了网卡绑定，管理员必须和群集中其它主机一样连接网线到这个新的主机"
+
+# 5ce3c90d78664585b286502de164418b
+#: ../../configuration.rst:1414
+msgid ""
+"For all additional hosts to be added to the cluster, run the following "
+"command. This will cause the host to join the master in a XenServer pool."
+msgstr "对于要加入群集的其它主机，运行下面的命令就会将主机加入XenServer计算池内。"
+
+# b0f910819c24499290ea1517cb3894a1
+#: ../../configuration.rst:1424
+msgid ""
+"When copying and pasting a command, be sure the command has pasted as a "
+"single line before executing. Some document viewers may introduce unwanted "
+"line breaks in copied text."
+msgstr "当你在拷贝和粘贴这个命令时，请确保所有的命令都在同一行里。有的文档拷贝工具会将这个命令分割为多行。"
+
+# ad1d348fa25e4e3d8fb6486fc087844e
+#: ../../configuration.rst:1426
+msgid ""
+"With all hosts added to the XenServer pool, run the cloud-setup-bond script."
+" This script will complete the configuration and setup of the bonds on the "
+"new hosts in the cluster."
+msgstr "当所有主机都加入XenServer计算池后，运行cloud-setup-bond脚本。这个脚本将会完成配置工作，并且在群集的新主机里设置相关的绑定。"
+
+# c00ff2f9f8294ceb822894783fb6a964
+#: ../../configuration.rst:1432
+msgid ""
+"Copy the script from the Management Server in /usr/share/cloudstack-"
+"common/scripts/vm/hypervisor/xenserver/cloud-setup-bonding.sh to the master "
+"host and ensure it is executable."
+msgstr "将脚本从管理节点的/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver/cloud-setup-bonding.sh拷贝到主机，确保此脚本可以有执行权限。"
+
+# 32ecd087d8b8425596b9193e24069aea
+#: ../../configuration.rst:1438
+msgid "Run the script:"
+msgstr "运行脚本："
+
+# 58b5e274046649d7a945955ae04af421
+#: ../../configuration.rst:1445
+msgid "KVM Host Additional Requirements"
+msgstr "KVM主机的额外要求。"
+
+# 60b344634f504d1ca30de484e7f04333
+#: ../../configuration.rst:1449
+msgid ""
+"If shared mountpoint storage is in use, the administrator should ensure that"
+" the new host has all the same mountpoints (with storage mounted) as the "
+"other hosts in the cluster."
+msgstr "如果使用了共享挂载存储，则管理员要确保群集里所有新机方和其它主机一样有相同的存储挂载点。"
+
+# 634564b4d8dc44879b842a564a6a8f9f
+#: ../../configuration.rst:1455
+msgid ""
+"Make sure the new host has the same network configuration (guest, private, "
+"and public network) as other hosts in the cluster."
+msgstr "确保新主机和群集内其它主机有一个的网络设置（客户机，内网，外网网络）。"
+
+# 43f6bcb4e87b4a699d9ba84ab8e5d99c
+#: ../../configuration.rst:1460
+msgid ""
+"If you are using OpenVswitch bridges edit the file agent.properties on the "
+"KVM host and set the parameter network.bridge.type to openvswitch before "
+"adding the host to CloudStack"
+msgstr "如果在CLOUDSTACK中使用了OpenVswitch网桥，则在操作前，需要将KVM计算主机上的agent.properties文件的network.bridge.type参数设置为openvswitch。"
+
+# 825c62bc20d74cf2a9c087190e0ebd0e
+#: ../../configuration.rst:1465
+msgid "Adding a XenServer or KVM Host"
+msgstr "添加一个新的XenServer或KVM主机"
+
+# 60390845f5ce4c47b1a35cb34c2907ef
+#: ../../configuration.rst:1469
+msgid ""
+"If you have not already done so, install the hypervisor software on the "
+"host. You will need to know which version of the hypervisor software version"
+" is supported by CloudStack and what additional configuration is required to"
+" ensure the host will work with CloudStack. To find these installation "
+"details, see the appropriate section for your hypervisor in the CloudStack "
+"Installation Guide."
+msgstr "如果你还没有这么作，就需要在主机上安装hypervisor软件。你需要知道CLOUDSTACK支持哪些hypervisor，以及主机上还需要哪个特别的配置。可以参看CLOUDSTACK安装指南的相关章节，找到具体的安装信息。"
+
+# 6cf7001771ee4f22aaeb0b265bf73856
+#: ../../configuration.rst:1478
+msgid "Log in to the CloudStack UI as administrator."
+msgstr "作为管理员登录到CloudStack用户界面。"
+
+# 758173927d4045c2bd035ce5cef81f81
+#: ../../configuration.rst:1482
+msgid ""
+"In the left navigation, choose Infrastructure. In Zones, click View More, "
+"then click the zone in which you want to add the host."
+msgstr "在左边的导航栏里，点击区域基础架构。在区域里，点击查看全部。然后在相应的区域里添加主机。"
+
+# 647c6eff585d4f0f842f38362662e622
+#: ../../configuration.rst:1487
+msgid "Click the Compute tab. In the Clusters node, click View All."
+msgstr "点击计算标签。在群集节点里，点击查看全部。"
+
+# 40cfa2a9cd29488790252784ab7a98af
+#: ../../configuration.rst:1491
+msgid "Click the cluster where you want to add the host."
+msgstr "在相应的群集里添加主机。"
+
+# 057eca2c4f2e44e1a5b53804376e0bc5
+#: ../../configuration.rst:1495
+msgid "Click View Hosts."
+msgstr "点击查看主机。（此处主机即可此翻译文档中宿主机的同一概念。）"
+
+# 7a8c33348f2d44e4b2d70a58810caaaa
+#: ../../configuration.rst:1499
+msgid "Click Add Host."
+msgstr "点击添加主机"
+
+# ec6e0c7aaf9c4174a554f0e0723f5afc
+#: ../../configuration.rst:1503
+msgid "Provide the following information."
+msgstr "提供主机的如下信息。"
+
+# 65ca0cee75de4f4994bda31d47ca525b
+#: ../../configuration.rst:1507
+msgid "Host Name. The DNS name or IP address of the host."
+msgstr "主机名---此主机的IP地址或DNS名称。"
+
+# 07cf33fc7b434b4192dafb636a11c8db
+#: ../../configuration.rst:1511
+msgid "Username. Usually root."
+msgstr "用户名--通常为root用户。"
+
+# 11dcc36792dc4e4c935b94c172bba23b
+#: ../../configuration.rst:1515
+msgid ""
+"Password. This is the password for the user from your XenServer or KVM "
+"install)."
+msgstr "密码---这通常是指XenServer或KVM安装时设置好的密码。"
+
+# 3e82fd166c174e339f57de8eaeeed24a
+#: ../../configuration.rst:1520
+msgid ""
+"Host Tags (Optional). Any labels that you use to categorize hosts for ease "
+"of maintenance. For example, you can set to the cloud's HA tag (set in the "
+"ha.tag global configuration parameter) if you want this host to be used only"
+" for VMs with the \"high availability\" feature enabled. For more "
+"information, see HA-Enabled Virtual Machines as well as HA for Hosts."
+msgstr "主机标签(可选)。此标签用于将主机分类，以便更好的后期维护。比如，如果你只想此宿主机用于具有HA（high availability）高可用性能的虚拟机，那么，你可以将此宿主机设置为云里相关的HA标签。(参看全局设置参数里的ha.tag)，关于HA的更多信息，请参看HA虚拟机和HA宿主机的相关章节。"
+
+# 00e27ee9496447deabd80ae86c90aea6
+#: ../../configuration.rst:1527
+msgid ""
+"There may be a slight delay while the host is provisioned. It should "
+"automatically display in the UI."
+msgstr "在主机添加好之后，可能会有稍稍的延迟才会有WEB UI界面中显示出来。"
+
+# 02dcab0b7281423cbe53bcdc66598c06
+#: ../../configuration.rst:1532
+msgid "Repeat for additional hosts."
+msgstr "在其它宿主机上复杂此操作过程。"
+
+# 1170b1085c8a49929806adaeba4984f4
+#: ../../configuration.rst:1537
+msgid "Adding a Host (vSphere)"
+msgstr "添加一个宿主机(vSphere)"
+
+# 516b13b6eed94ded89662174643e96f8
+#: ../../configuration.rst:1539
+msgid ""
+"For vSphere servers, we recommend creating the cluster of hosts in vCenter "
+"and then adding the entire cluster to CloudStack. See Add Cluster: vSphere."
+msgstr "对于vSphere主机，我们推荐先在VCENTER里建好群集，然后将整个群集加入CLOUDSTACK。关于如何在VCENTER里添加群集，可以参看VSPHERE的相关内容章节。"
+
+# 8b04ddb51a7b4c9885fc62104fc4b42a
+#: ../../configuration.rst:1546
+msgid "Add Primary Storage"
+msgstr "添加主存储"
+
+# 9c723d34835c4f49a1d9030ad5ec33ab
+#: ../../configuration.rst:1549
+msgid "System Requirements for Primary Storage"
+msgstr "主存储的系统需求。"
+
+# 277507fb2ddb4df9add4906b2decd2f1
+#: ../../configuration.rst:1551
+msgid "Hardware requirements:"
+msgstr "硬件需求"
+
+# bbb48644cf8845ed8b32fecfbb85505f
+#: ../../configuration.rst:1555
+msgid ""
+"Any standards-compliant iSCSI, SMB, or NFS server that is supported by the "
+"underlying hypervisor."
+msgstr "以下的hypervisor都支持标准化的iSCSI, SMB, 或 NFS服务器。"
+
+# ef23cd94da734d9fbf26c214e18108aa
+#: ../../configuration.rst:1560
+msgid ""
+"The storage server should be a machine with a large number of disks. The "
+"disks should ideally be managed by a hardware RAID controller."
+msgstr "存储服务器应该配置大容量硬盘，且硬盘配置硬件RAID控制器。"
+
+# ff3dd31bccff4213a9bdb209155f64f9
+#: ../../configuration.rst:1565
+msgid "Minimum required capacity depends on your needs."
+msgstr "最小容量取决于你的需求。"
+
+# 56b2085ed3724dcfa4c100c74ba57226
+#: ../../configuration.rst:1567
+msgid "When setting up primary storage, follow these restrictions:"
+msgstr "当添加主存储时，存在以下这些限制："
+
+# 176285b9f428472889a6cef403854e17
+#: ../../configuration.rst:1571
+msgid ""
+"Primary storage cannot be added until a host has been added to the cluster."
+msgstr "在主机成功加入群集之后才能添加主存储。"
+
+# a2938854f0cf49b5bffc1a09ab4af83b
+#: ../../configuration.rst:1576
+msgid ""
+"If you do not provision shared primary storage, you must set the global "
+"configuration parameter system.vm.local.storage.required to true, or else "
+"you will not be able to start VMs."
+msgstr "当你没有共享的主存储时，则必须将全局参数的system.vm.local.storage.required设置为true,否则，将不能启动虚拟机。"
+
+# 253962ae02ef41b9a0e2f8fd5a42f944
+#: ../../configuration.rst:1581
+msgid "Adding Primary Storage"
+msgstr "添加主存储"
+
+# c07bcd7f4940487cb57bb5ce760ffbc6
+#: ../../configuration.rst:1583
+msgid ""
+"When you create a new zone, the first primary storage is added as part of "
+"that procedure. You can add primary storage servers at any time, such as "
+"when adding a new cluster or adding more servers to an existing cluster."
+msgstr "当你添加一个新的区域时，主存储作为操作过程的一个步骤已建好。以后，你也可以随时添加主存储。当在添加新的群集或是添加新的主机时都可以添加主存储。"
+
+# a85b38c43ef141f08b9cad6f28867d41
+#: ../../configuration.rst:1590
+msgid ""
+"When using preallocated storage for primary storage, be sure there is "
+"nothing on the storage (ex. you have an empty SAN volume or an empty NFS "
+"share). Adding the storage to CloudStack will destroy any existing data."
+msgstr "如果提前准备好了主存储，请确认主存储目录里没有任何数据（比如空的SAN卷或NFS共享目录）。将主存储加入CLOUDSTACK时，会清除主存储里的一切数据。"
+
+# 8a90764a4357462a876fb062262ee307
+#: ../../configuration.rst:1594
+msgid ""
+"Primary storage can also be added at the zone level through the CloudStack "
+"API (adding zone-level primary storage is not yet supported through the "
+"CloudStack UI)."
+msgstr "区域级主存储也可以通过CLOUDSTACK的API来添加。（CLOUDSTACK暂不支持通过UI增加区域级主存储）"
+
+# a137ab069d1b4fa7b0134fa599d960df
+#: ../../configuration.rst:1596
+msgid ""
+"Once primary storage has been added at the zone level, it can be managed "
+"through the CloudStack UI."
+msgstr "一旦在区域里添加好主存储，它就能通过CLOUDSTACK的UI界面管理。"
+
+# 6e323f281d44448fb0a6e448744fb964
+#: ../../configuration.rst:1601
+msgid ""
+"Log in to the CloudStack UI (see `“Log In to the UI” "
+"<http://docs.cloudstack.apache.org/projects/cloudstack-"
+"administration/en/latest/ui.html#log-in-to-the-ui>`_)."
+msgstr "登陆CLOUDSTACK WEB UI界面。(参看`“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_)。"
+
+# ba87f30e4c144e338aefc2e75a45a6ae
+#: ../../configuration.rst:1605
+msgid ""
+"In the left navigation, choose Infrastructure. In Zones, click View More, "
+"then click the zone in which you want to add the primary storage."
+msgstr "在左侧导航栏中，点击基础架构，在区域中，点击 查看更多，然后点击你所需要添加主存储的区域名称。"
+
+# 7a949d3810ac4b4db5981d0739b118fa
+#: ../../configuration.rst:1615
+msgid "In the Primary Storage node of the diagram, click View All."
+msgstr "在结构图的主存储节点上，点击 查看全部。"
+
+# e5f9d2b146a24dbfb81357cd4b563f53
+#: ../../configuration.rst:1619
+msgid "Click Add Primary Storage."
+msgstr "点击 添加主存储"
+
+# 344c6f879a52497cba705fb55a6b9dca
+#: ../../configuration.rst:1623
+msgid ""
+"Provide the following information in the dialog. The information required "
+"varies depending on your choice in Protocol."
+msgstr "提供弹出对话框中所需要的信息。依据你所选协议的不同，所需的信息会有所不同。"
+
+# 164b87010cbd4d3c8f7120a0dcc97650
+#: ../../configuration.rst:1628
+msgid ""
+"**Scope.** Indicate whether the storage is available to all hosts in the "
+"zone or only to hosts in a single cluster."
+msgstr "**范围.** 表明存储是对区域中的所有主机可用或者是仅对单一集群中的主机可用。"
+
+# 75eba167538b4751b4d289eb1d35f615
+#: ../../configuration.rst:1633
+msgid ""
+"**Pod.** (Visible only if you choose Cluster in the Scope field.) The pod "
+"for the storage device."
+msgstr "**资源池.**（只有在范围域内选择集群时可见）针对存储设备的资源池。"
+
+# f7353d4ec1ea43d6b28c7f283a60e066
+#: ../../configuration.rst:1638
+msgid ""
+"**Cluster.** (Visible only if you choose Cluster in the Scope field.) The "
+"cluster for the storage device."
+msgstr "**集群.**（只有在范围域内选择集群时可见）针对存储设备的集群"
+
+# f54c8190592a41d0869c9635b388c97b
+#: ../../configuration.rst:1647
+msgid ""
+"**Protocol.** For XenServer, choose either NFS, iSCSI, or PreSetup. For KVM,"
+" choose NFS or SharedMountPoint. For vSphere choose either VMFS (iSCSI or "
+"FiberChannel) or NFS. For Hyper-V, choose SMB."
+msgstr "**协议.** 对XenServer主机而言，可以选择NFS，iSCSI或者PreSetup。对KVM而言，可以选择NFS或者ShareMountPoint。对vSphere而言，可以选择NFS或VMFS（iSCSI或FiberChannel，对Hyper-V而言，选择SMB。"
+
+# 7c801be5e02349e8b8c110463571f66a
+#: ../../configuration.rst:1654
+msgid ""
+"**Server (for NFS, iSCSI, or PreSetup).** The IP address or DNS name of the "
+"storage device."
+msgstr "**服务器（针对NFS，iSCSI或PreSetup）** 存储设备的IP地址和DNS"
+
+# c2e946eb16df4cc083b70045e6a72548
+#: ../../configuration.rst:1659
+msgid ""
+"**Server (for VMFS).** The IP address or DNS name of the vCenter server."
+msgstr "**服务器（针对VMFS）.** vCenter 服务器的IP地址和DNS"
+
+# 83059961bf0d4bfebd3e4790065df7e5
+#: ../../configuration.rst:1664
+msgid "**Path (for NFS).** In NFS this is the exported path from the server."
+msgstr "**路径（对NFS）.** 对NFS协议，这是从服务器上导出的路径"
+
+# fc3c902db29646d894b6073409800676
+#: ../../configuration.rst:1669
+msgid ""
+"**Path (for VMFS).** In vSphere this is a combination of the datacenter name"
+" and the datastore name. The format is \"/\" datacenter name \"/\" datastore"
+" name. For example, \"/cloud.dc.VM/cluster1datastore\"."
+msgstr "**路径（对VMFS）.** 在vSphere中，这是数据中心名称以及数据存储名称的结合。格式如下：\"/\" 数据中心名称 \"/\" 数据存储名称\"。例如：\"/cloud.dc.VM/cluster1datastore\"."
+
+# 3162d539e68c48bb85baa580cf9799dc
+#: ../../configuration.rst:1676
+msgid ""
+"**Path (for SharedMountPoint).** With KVM this is the path on each host that"
+" is where this primary storage is mounted. For example, \"/mnt/primary\"."
+msgstr "**路径（对SharedMountPoint）.**对KVM而言，这是每一个主机上挂载的主存储的路径。例如：\"/mnt/primary\"."
+
+# 35dcd43e792449a2897fb8ecadaa07d1
+#: ../../configuration.rst:1682
+msgid ""
+"**SMB Username** (for SMB/CIFS): Applicable only if you select SMB/CIFS "
+"provider. The username of the account which has the necessary permissions to"
+" the SMB shares. The user must be part of the Hyper-V administrator group."
+msgstr "**SMB 用户名** (for SMB/CIFS)，仅在选择了 SMB/CIFS时可用。此账户针对SMB拥有必要的权限。用户必须是Hyper-V管理组的成员。"
+
+# e7fcc0edb3204a6089af8415f2a4ed14
+#: ../../configuration.rst:1689
+msgid ""
+"**SMB Password** (for SMB/CIFS): Applicable only if you select SMB/CIFS "
+"provider. The password associated with the account."
+msgstr "**SMB 密码** (for SMB/CIFS)，仅在选择了 SMB/CIFS时可用。此密码与账户关联。"
+
+# 5f46e30f1f384e70be55aaafcb9a88a2
+#: ../../configuration.rst:1694
+msgid ""
+"**SMB Domain**\\ (for SMB/CIFS): Applicable only if you select SMB/CIFS "
+"provider. The Active Directory domain that the SMB share is a part of."
+msgstr "**SMB Domain**\\ (for SMB/CIFS)，仅在选择了 SMB/CIFS时可用。SMB共享的活动目录域"
+
+# 86153de53fb44cd0a185befbbc5bccd6
+#: ../../configuration.rst:1700
+msgid ""
+"**SR Name-Label (for PreSetup).** Enter the name-label of the SR that has "
+"been set up outside CloudStack."
+msgstr "SR标签名，输入被设为外部CloudStack SR的标签名"
+
+# 06e1d069cd564b698d301dbf45b20ca9
+#: ../../configuration.rst:1705
+msgid ""
+"**Target IQN (for iSCSI).** In iSCSI this is the IQN of the target. For "
+"example, iqn.1986-03.com.sun:02:01ec9bb549-1271378984."
+msgstr "目标IQN(for iSCSI)，在iSCSI中，这是目标的IQN。例如，iqn.1986-03.com.sun:02:01ec9bb549-1271378984."
+
+# 05c29f124cee49a7a18ee6ba850852b9
+#: ../../configuration.rst:1710
+msgid ""
+"**Lun # (for iSCSI).** In iSCSI this is the LUN number. For example, 3."
+msgstr "**Lun # (for iSCSI).** 在iSCSI中，这是LUN的号码，例如： 3."
+
+# e62e1da0f5934ff2a0f013ec3ec3058b
+#: ../../configuration.rst:1715
+msgid ""
+"**Tags (optional).** The comma-separated list of tags for this storage "
+"device. It should be an equivalent set or superset of the tags on your disk "
+"offerings.."
+msgstr "标签（可选）。对此类存储设备以逗号分隔的标签列表。相当于在你磁盘提供者的标签集合或超集。"
+
+# 151b19392c7741898b3a10ea36ecf671
+#: ../../configuration.rst:1729
+msgid "Configuring a Storage Plug-in"
+msgstr "配置存储插件"
+
+# eab75074aa7844c99ffd23fa7e1a1070
+#: ../../configuration.rst:1733
+msgid ""
+"Primary storage that is based on a custom plug-in (ex. SolidFire) must be "
+"added through the CloudStack API (described later in this section). There is"
+" no      support at this time through the CloudStack UI to add this type of "
+"primary storage (although most of its features are available through the "
+"CloudStack UI)."
+msgstr "基于特定插件的存储（如SolidFire）必须通过CloudStack API（以下会有说明）进行添加。暂时不支持通过UI添加此类型的主存储（尽管大多数的配置通过UI设置）"
+
+# 90c8c28d7c834c57aa7a38031a1f2bdc
+#: ../../configuration.rst:1737
+msgid ""
+"At this time, a custom storage plug-in, such as the SolidFire storage plug-"
+"in, can only be leveraged for data disks (through Disk Offerings)."
+msgstr "同时，特定的存储插件，如SolidFire存储插件，只能应用于数据盘（通过硬盘方案）"
+
+# 6885249ac1654e7d981da00285c1fcb7
+#: ../../configuration.rst:1741
+msgid ""
+"The SolidFire storage plug-in for CloudStack is part of the standard "
+"CloudStack install. There is no additional work required to add this "
+"component."
+msgstr "SolidFire存储插件是CloudStack标准安装的一部分，不需要另做其他准备工作。"
+
+# 3ccb3e59e46c41b6a4debd621cbb6d36
+#: ../../configuration.rst:1743
+msgid ""
+"Adding primary storage that is based on the SolidFire plug-in enables "
+"CloudStack to provide hard quality-of-service (QoS) guarantees."
+msgstr "基于SolidFire插件添加的主存储能够使CloudStack提供较好的QoS保证。"
+
+# 4f6abd169ec947368df1728cc97f109b
+#: ../../configuration.rst:1746
+msgid ""
+"When used with Disk Offerings, an administrator is able to build an "
+"environment in which a data disk that a user creates leads to the dynamic "
+"creation of a SolidFire volume, which has guaranteed performance. Such a "
+"SolidFire volume is associated with one (and only ever one) CloudStack "
+"volume, so performance of the CloudStack volume does not vary depending on "
+"how heavily other tenants are using the system."
+msgstr "使用硬盘方案时，管理员可以建立一个当用户创建数据盘时可动态创建SolidFire卷的使用环境，从而保证了性能。SolidFire卷关联至一个（只有一个）CloudStack卷，因此CloudStack卷的性能不会因其他用户过度使用系统而变化。"
+
+# c4d95dce04ba439592412554601d3611
+#: ../../configuration.rst:1754
+msgid ""
+"The createStoragePool API has been augmented to support plugable storage "
+"providers. The following is a list of parameters to use when adding storage "
+"to CloudStack that is based on the SolidFire plug-in:"
+msgstr "创建存储池的API已经被扩展到支持插件式存储供应商。下面给出了当向基于SolidFire插件的CloudStack添加存储时可使用的参数列表。"
+
+# f049ceffa0374c2bbb8a8ac7a702279a
+#: ../../configuration.rst:1760
+msgid "command=createStoragePool"
+msgstr "command=创建存储池"
+
+# 01738c180e4a4dc6b9e8e683b2dd79c8
+#: ../../configuration.rst:1764
+msgid "scope=zone"
+msgstr "scope=区域"
+
+# 5fc8f15b325d42898576fbbd6af29528
+#: ../../configuration.rst:1768
+msgid "zoneId=[your zone id]"
+msgstr "zoneId=【你的区域ID】"
+
+# 683b46e47f834303a2e5a78e676ae880
+#: ../../configuration.rst:1772
+msgid "name=[name for primary storage]"
+msgstr "name=【主存储的名称】"
+
+# 18c42d58c8f9436993bd1200dfcbbfc7
+#: ../../configuration.rst:1776
+msgid "hypervisor=Any"
+msgstr "hypervisor=任意"
+
+# 532b8915aa504f19bbf774602615a492
+#: ../../configuration.rst:1780
+msgid "provider=SolidFire"
+msgstr "provider=SolidFire"
+
+# 45df5cb6ceae470f9204c0840912a7d3
+#: ../../configuration.rst:1784
+msgid "capacityIops=[whole number of IOPS from the SAN to give to CloudStack]"
+msgstr "capacityIops=【来自SAN的全部IOPS号】"
+
+# 50ca458f2225420889935fb44a7810c9
+#: ../../configuration.rst:1789
+msgid ""
+"capacityBytes=[whole number of bytes from the SAN to give to CloudStack]"
+msgstr "capacityBytes=【来自SAN的全部字节数】"
+
+# 674644bd92384aff956b3309f086a608
+#: ../../configuration.rst:1792
+msgid ""
+"The url parameter is somewhat unique in that its value can contain "
+"additional key/value pairs."
+msgstr "url参数有时是唯一的，他的值可以包含额外的键值对。"
+
+# 4a1fcb6340ef4385b1f0d9aaec733be1
+#: ../../configuration.rst:1795
+msgid ""
+"url=[key/value pairs detailed below (values are URL encoded; for example, "
+"'=' is represented as '%3D')]"
+msgstr "url=【键值对下面有详细说明（值由url编码，例如，'='编码后为‘%3D’】"
+
+# 44fd4a0614654ff3b9ba5a5eb8ee416a
+#: ../../configuration.rst:1800
+msgid ""
+"MVIP%3D[Management Virtual IP Address] (can be suffixed with :[port number])"
+msgstr "MVIP%3D【管理虚拟IP地址】，后面可以使用端口号"
+
+# 1a864bdb824c4997b4309c71a070a06d
+#: ../../configuration.rst:1805
+msgid ""
+"SVIP%3D[Storage Virtual IP Address] (can be suffixed with :[port number])"
+msgstr "SVIP%3D【管理虚拟IP地址】，后面可以使用端口号"
+
+# 3384851f75af48caae7f08585f651d6e
+#: ../../configuration.rst:1810
+msgid "clusterAdminUsername%3D[cluster admin's username]"
+msgstr "clusterAdminUsername%3D[集群管理员用户名]"
+
+# 0c099d96bff44a8cac7cb4391c627fda
+#: ../../configuration.rst:1814
+msgid "clusterAdminPassword%3D[cluster admin's password]"
+msgstr "clusterAdminPassword%3D[集群管理员密码]"
+
+# b68979dd06b9494ba5e828cc9a918b7d
+#: ../../configuration.rst:1818
+msgid ""
+"clusterDefaultMinIops%3D[Min IOPS (whole number) to set for a volume; used "
+"if Min IOPS is not specified by administrator or user]"
+msgstr "clusterDefaultMinIops%3D[卷的最小IOPS号，在管理员或用户没有给出此号时使用]"
+
+# 9223ad75e60949b5a27d943713e163e6
+#: ../../configuration.rst:1823
+msgid ""
+"clusterDefaultMaxIops%3D[Max IOPS (whole number) to set for a volume; used "
+"if Max IOPS is not specified by administrator or user]"
+msgstr "clusterDefaultMaxIops%3D【卷的最大IOPS号，在管理员或用户没有给出此号时使用】"
+
+# cce939eaa5a841b7857fa7757475f40a
+#: ../../configuration.rst:1828
+msgid ""
+"clusterDefaultBurstIopsPercentOfMaxIops%3D[Burst IOPS is determined by (Min "
+"IOPS \\* clusterDefaultBurstIopsPercentOfMaxIops parameter) (can be a "
+"decimal value)]"
+msgstr "clusterDefaultBurstIopsPercentOfMaxIops%3D【最小的IOPS \\* clusterDefaultBurstIopsPercentOfMaxIops 参数，可以是十进值】"
+
+# a104528004744c538bcd7c33c8d690d0
+#: ../../configuration.rst:1835
+msgid "Add Secondary Storage"
+msgstr "添加二级存储"
+
+# 404da4bceefa4d30aa205ed12b6aeb96
+#: ../../configuration.rst:1838
+msgid "System Requirements for Secondary Storage"
+msgstr "二级存储的系统需求"
+
+# 48f4a123d83e421790cd8cf0d4bacbe6
+#: ../../configuration.rst:1842
+msgid "NFS storage appliance or Linux NFS server"
+msgstr "二级存储器或Linux NFS服务器"
+
+# 36a7b6d973474e8a982f0774da4b314f
+#: ../../configuration.rst:1846
+msgid "SMB/CIFS (Hyper-V)"
+msgstr "SMB/CIFS (Hyper-V)"
+
+# 7489f77496564a7783a2d8996e1842b6
+#: ../../configuration.rst:1850
+msgid ""
+"(Optional) OpenStack Object Storage (Swift) (see http://swift.openstack.org)"
+msgstr "（可选）OpenStack Object Storage (Swift) (参见 http://swift.openstack.org)"
+
+# 686515fe92bb465a8076822151b26e00
+#: ../../configuration.rst:1855
+msgid "100GB minimum capacity"
+msgstr "最少100GB容量"
+
+# 9c33f02b5336493f8b9039a890d83e7f
+#: ../../configuration.rst:1859
+msgid ""
+"A secondary storage device must be located in the same zone as the guest VMs"
+" it serves."
+msgstr "二级存储必须与他服务的客户虚拟机在同一个区域。"
+
+# 949f4c4932f242258575c82418095bac
+#: ../../configuration.rst:1864
+msgid ""
+"Each Secondary Storage server must be available to all hosts in the zone."
+msgstr "每一个二级存储服务器必须对区域的所有主机可用。"
+
+# b29b1459d23144d884bd9042a15e9fe1
+#: ../../configuration.rst:1868
+msgid "Adding Secondary Storage"
+msgstr "添加二级存储"
+
+# c971345996a14eef81e6440a9e6bc831
+#: ../../configuration.rst:1870
+msgid ""
+"When you create a new zone, the first secondary storage is added as part of "
+"that procedure. You can add secondary storage servers at any time to add "
+"more servers to an existing zone."
+msgstr "当你创建一个新的区域时，第一个二级存储作为创建的一部分 。为了添加更多的服务器，你可以随时添加二级存储服务器到已创建的区域中。"
+
+# edf2a4517e6349f9a652899aa9a7ff7c
+#: ../../configuration.rst:1876
+msgid ""
+"Ensure that nothing is stored on the server. Adding the server to CloudStack"
+" will destroy any existing data."
+msgstr "确保二级存储服务器上没有存储任何数据。添加服务器到CloudStack时，会损坏服务器上原有已存的数据"
+
+# 73d635cb09e74b47a17145a490c05037
+#: ../../configuration.rst:1880
+msgid ""
+"To prepare for the zone-based Secondary Staging Store, you should have "
+"created and mounted an NFS share during Management Server installation. See "
+"`“Prepare NFS Shares” <installation.html#prepare-nfs-shares>`_."
+msgstr "为了准备区域的二级存储，你应当在管理节点安装时创建并挂载了NFS共享目录。参见准备NFS共享目录"
+
+# 1cdcb9eaeaad411c9b63e83ba3508970
+#: ../../configuration.rst:1884
+msgid ""
+"If you are using an Hyper-V host, ensure that you have created a SMB share."
+msgstr "如果你正在使用Hyper-V主机，确保你已经创建了一个SMB共享目录。"
+
+# 924792c2c045473cbabfc9465070db17
+#: ../../configuration.rst:1889
+msgid ""
+"Make sure you prepared the system VM template during Management Server "
+"installation. See `“Prepare the System VM Template” <installation.html"
+"#prepare-the-system-vm-template>`_."
+msgstr "确保你在安装管理节点时，准备了系统虚拟机模板，参见准备系统虚拟机模板"
+
+# 93e67281095a41d3b2fef2ca72b47e7e
+# a8bc19731c9341c78f19aeee52ce1a9b
+#: ../../configuration.rst:1894 ../../configuration.rst:1977
+msgid "Log in to the CloudStack UI as root administrator."
+msgstr "以根管理员身份登录CloudStack界面。"
+
+# eb50a154a546438ab86b4a1841bdaa8e
+# 545adbfec16b4cc09be027e2a6cbc5dd
+#: ../../configuration.rst:1898 ../../configuration.rst:1981
+msgid "In the left navigation bar, click Infrastructure."
+msgstr "在左侧导航栏中，点击基础架构"
+
+# a3463a0d5bb4468fa70f57020c0bc3ac
+# bb1a22311ce24a04b95cb1a6b3b9f558
+#: ../../configuration.rst:1902 ../../configuration.rst:1985
+msgid "In Secondary Storage, click View All."
+msgstr "在二级存储中，点击 查看全部。"
+
+# 55ab9fd390db45c6b917dde88a2b1c65
+#: ../../configuration.rst:1906
+msgid "Click Add Secondary Storage."
+msgstr "点击添加二级存储。"
+
+# 45efef2dbd704e9486e092051028383d
+#: ../../configuration.rst:1910
+msgid "Fill in the following fields:"
+msgstr "填写以下内容："
+
+# 4b8af38835af4840b3bfb425f40a828e
+#: ../../configuration.rst:1914
+msgid "Name. Give the storage a descriptive name."
+msgstr "名称--需要给二级存储一个描述性名称。"
+
+# f21b11c130704f20a7ceeb2c57f4c4ef
+#: ../../configuration.rst:1918
+msgid ""
+"Provider. Choose S3, Swift, NFS, or CIFS then fill in the related fields "
+"which appear. The fields will vary depending on the storage provider; for "
+"more information, consult the provider's documentation (such as the S3 or "
+"Swift website). NFS can be used for zone-based storage, and the others for "
+"region-wide storage. For Hyper-V, select SMB/CIFS."
+msgstr "提供者。选择S3，Swift，NFS或者CIFS。此时会出现需要填写的相关内容。根据提供者的不同，需要的内容会有所不同。要了解更多，可参考提供者文档（如S3或Swift网站）。NFS可用于区域存储，其他的可用于地域存储。对 Hyper-V，选择 SMB/CIFS。"
+
+# 4ceb04cb16e947c989eb7ee4f427bcf3
+#: ../../configuration.rst:1927
+msgid ""
+"Heterogeneous Secondary Storage is not supported in Regions. You can use "
+"only a single NFS, S3, or Swift account per region."
+msgstr "地域中不支持多类二级存储共存。每一个地域只能使用NFS，S3或Swift其中的一种。"
+
+# 6015cb77d4304ed893fc2bbdf0b9cf03
+#: ../../configuration.rst:1931
+msgid "Create NFS Secondary Staging Store. This box must always be checked."
+msgstr "创建NFS二级暂存区，必须要勾选此项。"
+
+# 95671b95fafa4be082785f5f9b6f856f
+#: ../../configuration.rst:1936
+msgid ""
+"Even if the UI allows you to uncheck this box, do not do so. This checkbox "
+"and the three fields below it must be filled in. Even when Swift or S3 is "
+"used as the secondary storage provider, an NFS staging storage in each zone "
+"is still required."
+msgstr "即使UI允许你不勾选此项，也不要这样做。此项以及下面的三项内容是必须要填写的。即使二级存储提供商使用了Swift或S3，在每个区域中NFS暂存区仍是需要的。"
+
+# d3629e4c228546a78d94d4831195a86c
+# 34252d33d0c74325a99b37eda5505e39
+#: ../../configuration.rst:1940 ../../configuration.rst:2001
+msgid "Zone. The zone where the NFS Secondary Staging Store is to be located."
+msgstr "区域，即二级暂存区所在的区域。"
+
+# 966a59ac33cc4268a8b09b70d5f635fc
+#: ../../configuration.rst:1945
+msgid ""
+"**SMB Username**: Applicable only if you select SMB/CIFS provider. The "
+"username of the account which has the necessary permissions to the SMB "
+"shares. The user must be part of the Hyper-V administrator group."
+msgstr "**SMB Username**:仅当选择了SMB/CIFS时可用。此账户针对SMB拥有必要的权限。用户必须是Hyper-V管理组的成员。"
+
+# bb60190d3f834ab28a5f632797e18023
+#: ../../configuration.rst:1952
+msgid ""
+"**SMB Password**: Applicable only if you select SMB/CIFS provider. The "
+"password associated with the account."
+msgstr "**SMB Password**:仅当选择了SMB/CIFS时可用。此密码与账户关联。"
+
+# cfc78758112d4a6ebe136409d75ceed5
+#: ../../configuration.rst:1957
+msgid ""
+"**SMB Domain**: Applicable only if you select SMB/CIFS provider. The Active "
+"Directory domain that the SMB share is a part of."
+msgstr "**SMB Domain**:仅当选择了SMB/CIFS时可用。是SMB共享目录活动哉的一部分。"
+
+# d355f66bc51d48f98f5f9a68d774d4bf
+# 5e043f6b7198448b922748ddfcc7cac4
+#: ../../configuration.rst:1962 ../../configuration.rst:2006
+msgid "NFS server. The name of the zone's Secondary Staging Store."
+msgstr "NFS服务器。二级暂存区的区域名称。"
+
+# 1dfad4e6554b4f7e8521b3dd405b2d6c
+# 0662ed9dab95436ca39419cb4edbe572
+#: ../../configuration.rst:1966 ../../configuration.rst:2010
+msgid "Path. The path to the zone's Secondary Staging Store."
+msgstr "路径。二级暂存区所在区域的路径"
+
+# 1def4186b5594549b9429969eee13669
+#: ../../configuration.rst:1969
+msgid "Adding an NFS Secondary Staging Store for Each Zone"
+msgstr "为每一个区域添加二级暂存区"
+
+# 033e4435c65642298d1b90c80f9fab24
+#: ../../configuration.rst:1971
+msgid ""
+"Every zone must have at least one NFS store provisioned; multiple NFS "
+"servers are allowed per zone. To provision an NFS Staging Store for a zone:"
+msgstr "每一个区域至少有一个NFS存储区。每个区域允许存在多个NFS服务器。按以下步骤为区域添加一个二级暂存区"
+
+# a79291836b5d4b219e4a7ab07029e285
+#: ../../configuration.rst:1989
+msgid "In Select View, choose Secondary Staging Store."
+msgstr "在选择视图中，选择二级暂存区"
+
+# 68d2a29c405f467592311bd93b61945a
+#: ../../configuration.rst:1993
+msgid "Click the Add NFS Secondary Staging Store button."
+msgstr "点击添加二级暂存区按钮"
+
+# 5272e9febd594c98b3c3ecc990299212
+#: ../../configuration.rst:1997
+msgid "Fill out the dialog box fields, then click OK:"
+msgstr "填写对话框中的内容，然后点击确定"
+
+# c258f5d1bfb4457c85bea1b5fb1ed946
+#: ../../configuration.rst:2015
+msgid "Initialize and Test"
+msgstr "初始化及测试"
+
+# ccbe1af814cb4c55b32e07f6f822982c
+#: ../../configuration.rst:2017
+msgid ""
+"After everything is configured, CloudStack will perform its initialization. "
+"This can take 30 minutes or more, depending on the speed of your network. "
+"When the initialization has completed successfully, the administrator's "
+"Dashboard should be displayed in the CloudStack UI."
+msgstr "在所有配置完成后，CloudStack会执行初始化。根据网络速度的不同，可能会需要30分钟或更多的时间。当初始化完成后，管理员控制面板会出现在CloudStack的界面中。"
+
+# 3d71a6b46a8d488faf274c75afe3da64
+#: ../../configuration.rst:2024
+msgid ""
+"Verify that the system is ready. In the left navigation bar, select "
+"Templates. Click on the CentOS 5.5 (64bit) no Gui (KVM) template. Check to "
+"be sure that the status is \"Download Complete.\" Do not proceed to the next"
+" step until this status is displayed."
+msgstr "确保系统已经准备完成。在左侧导航栏中，选择 模板 ，点击CentOS 5.5 (64bit) no Gui (KVM) template，查看其状态是否为 下载完成。在状态没有变成下载完成前，不要继续操作。"
+
+# 46922512af904edaa8ef1b310d5c1c8a
+#: ../../configuration.rst:2031
+msgid "Go to the Instances tab, and filter by My Instances."
+msgstr "点击实例标签，筛选我的实例。"
+
+# b581dcfaecc94be9911c21caf25d598b
+#: ../../configuration.rst:2035
+msgid "Click Add Instance and follow the steps in the wizard."
+msgstr "点击添加实例，并完成向导指示的步骤。"
+
+# af3b39e4ad7a4bce989e3c7133ec4d1d
+#: ../../configuration.rst:2039
+msgid "Choose the zone you just added."
+msgstr "选择你刚才添加的区域。"
+
+# 80993ede56aa4dd5bcddbc7ce9020b10
+#: ../../configuration.rst:2043
+msgid ""
+"In the template selection, choose the template to use in the VM. If this is "
+"a fresh installation, likely only the provided CentOS template is available."
+msgstr "在模板选择中，选择在虚拟机中使用的模板。如果是初次安装，可能仅提供了CentOS的模板。"
+
+# c3568ecd59d04de592bd86c3fe1192fe
+#: ../../configuration.rst:2049
+msgid ""
+"Select a service offering. Be sure that the hardware you have allows "
+"starting the selected service offering."
+msgstr "选择服务方案。确保已有的硬件允许你开始选择服务方案。"
+
+# e1e651260fcf467499f277366c5e9d1c
+#: ../../configuration.rst:2054
+msgid ""
+"In data disk offering, if desired, add another data disk. This is a second "
+"volume that will be available to but not mounted in the guest. For example, "
+"in Linux on XenServer you will see /dev/xvdb in the guest after rebooting "
+"the VM. A reboot is not required if you have a PV-enabled OS kernel in use."
+msgstr "在数据盘方案中，如果可以，添加另一块数据盘。此盘可用，但并未在客户机中挂。例如，基于XenServer的Linux，重启虚拟机后会在/dev/xvdb中看见客户机。如果操作系统内核中使能了PV，重启并不是必要的一步。"
+
+# 8dedfeddf1484e2c859e4d17ef668a09
+#: ../../configuration.rst:2062
+msgid ""
+"In default network, choose the primary network for the guest. In a trial "
+"installation, you would have only one option here."
+msgstr "在默认网络中，为客户机选择主网络。在试用安装中，这里可能只有一个选项。"
+
+# 995446b9aadf4338a6efaae7dd17a811
+#: ../../configuration.rst:2067
+msgid ""
+"Optionally give your VM a name and a group. Use any descriptive text you "
+"would like."
+msgstr "可以给你的虚拟机一个名字或组名，允许使用你喜欢的描述性文字。"
+
+# c81ae436339e40318bd93663e7fae90b
+#: ../../configuration.rst:2072
+msgid ""
+"Click Launch VM. Your VM will be created and started. It might take some "
+"time to download the template and complete the VM startup. You can watch the"
+" VMâ€™s progress in the Instances screen."
+msgstr "点击启动虚拟机，你的虚拟机将会被创建并被启动。可能会需要一点时间来下载模板并完成启动。你可以在实例页观察虚拟的过程。"
+
+# b528cfe88af44850968d44c478e9fbeb
+#: ../../configuration.rst:2079
+msgid ""
+"To use the VM, click the View Console button. |ConsoleButton.png: button to "
+"launch a console|"
+msgstr "为了使用虚拟机，点击通讯视图按钮以启动一个通讯窗口。"
+
+# 47de4c6df3b84eb1bd27cca1dac36e83
+#: ../../configuration.rst:2082
+msgid ""
+"For more information about using VMs, including instructions for how to "
+"allow incoming network traffic to the VM, start, stop, and delete VMs, and "
+"move a VM from one host to another, see Working With Virtual Machines in the"
+" Administratorâ€™s Guide."
+msgstr "关于使用虚拟机的更多信息，包括如何允许进入虚拟机的网络流量，开始，停止，删除虚拟机以及从一个主机上迁移虚拟，参看管理员手册中的使用虚拟部分。"
+
+# 7920bce7a20a4430930d72c88deee7c5
+#: ../../configuration.rst:2087
+msgid ""
+"Congratulations! You have successfully completed a CloudStack Installation."
+msgstr "恭喜！你已经完了CloudStack的安装。"
+
+# ad525ef720224f54817a2a670f3ee8c7
+#: ../../configuration.rst:2090
+msgid ""
+"If you decide to grow your deployment, you can add more hosts, primary "
+"storage, zones, pods, and clusters."
+msgstr "如果决定扩展你的部署，可以增加更多的主机，主存储，区域，资源池以及集群。"
+
+# 414a612c39484fa7bf5a64f347423408
+#: ../../configuration.rst:2095
+msgid "Configuration Parameters"
+msgstr "配置参数"
+
+# dbf02580c5f64d1faf5386697392782e
+#: ../../configuration.rst:2098
+msgid "About Configuration Parameters"
+msgstr "关于配置参数"
+
+# eee108e2aa63411eb512e49eabaaaf86
+#: ../../configuration.rst:2100
+msgid ""
+"CloudStack provides a variety of settings you can use to set limits, "
+"configure features, and enable or disable features in the cloud. Once your "
+"Management Server is running, you might need to set some of these "
+"configuration parameters, depending on what optional features you are "
+"setting up. You can set default values at the global level, which will be in"
+" effect throughout the cloud unless you override them at a lower level. You "
+"can make local settings, which will override the global configuration "
+"parameter values, at the level of an account, zone, cluster, or primary "
+"storage."
+msgstr "CloudStack提供了各类设置，可以用来限制某性配置功能，打开或关闭云中的某些功能。一旦你的管理服务器运行后，你可能需要设置一些参数，依赖于你打开了哪些参数。也可以在全局设置中使用默认值，他们都会在云中全部起作用，除非在低级别配置时配置有错误。你也可以设置局部参数，在账户，区域，集群，主存储级别时，允许覆盖全局配置参数"
+
+# 273a0d9534c84cacad7e5213fe048c92
+#: ../../configuration.rst:2110
+msgid ""
+"The documentation for each CloudStack feature should direct you to the names"
+" of the applicable parameters. The following table shows a few of the more "
+"useful parameters."
+msgstr "每一个CloudStack的功能文档，都会引导你到应用参数名，下表给出了一些更有用的参数。"
+
+# 5a0769ed1728410ba2e8099c2116ff69
+# 5273cff9b8ce4272b1165cc74e2e1365
+# 0efb2fd328b44e4b93099509c05b0687
+#: ../../configuration.rst:2115 ../../configuration.rst:2214
+#: ../../configuration.rst:2214
+msgid "Field"
+msgstr "值域"
+
+# 1c7fe5d589fc4fbc999ed4bb0e6b2de4
+# f67b280acbc4403d9526d3c26ce84f03
+#: ../../configuration.rst:2115 ../../configuration.rst:2214
+msgid "Value"
+msgstr "值"
+
+# a41db4113cf24adcbaf69ed7d07cc855
+#: ../../configuration.rst:2117
+msgid "management.network.cidr"
+msgstr "管理网络cidr"
+
+# 6bba269b44fa47f7a69633b1557bc313
+#: ../../configuration.rst:2117
+msgid ""
+"A CIDR that describes the network that the management CIDRs reside on. This"
+"                                        variable must be set for deployments"
+" that use vSphere. It is recommended to be"
+"                                     set for other deployments as well. "
+"Example: 192.168.3.0/24."
+msgstr "CIDR描述了管理存在的CIDR。在使用vSphere部署时，此项必须设置。推荐其他部署时也同样设置。例如：192.168.3.0/24"
+
+# 1af97848abac4e4eb333ded4e965fcda
+#: ../../configuration.rst:2118
+msgid "xen.setup.multipath"
+msgstr "xen的安装多路径"
+
+# 2da9406129df4abbbefe9edd230bef71
+#: ../../configuration.rst:2118
+msgid ""
+"For XenServer nodes, this is a true/false variable that instructs CloudStack"
+" to                                    enable iSCSI multipath on the "
+"XenServer Hosts when they are added. This"
+"                                            defaults to false. Set it to "
+"true if you would like CloudStack to enable"
+"                                           multipath.If this is true for a "
+"NFS-based deployment multipath will still be"
+"                                       enabled on the XenServer host. "
+"However, this does not impact NFS operation and"
+"                                     is harmless."
+msgstr "对于XenServer节点，此 是/否 变量指示CloudStack允许XenServer主机的iSCSI的多路径。默认值为否。如果希望CloudStack允许多路径，请置为是。如果值为是，基于NFS部署的XenServer主机允许多路径。当然这不会影响NFS的操作并且没有任何危害。"
+
+# 84763a41d49f4e74930be28c6d859cda
+#: ../../configuration.rst:2119
+msgid "secstorage.allowed.internal.sites"
+msgstr "二级存储允许的内部网络"
+
+# c10112ecb1c4451c995e9bfdc339c1d2
+#: ../../configuration.rst:2119
+msgid ""
+"This is used to protect your internal network from rogue attempts to "
+"download                                      arbitrary files using the "
+"template download feature. This is a comma-separated"
+"                                     list of CIDRs. If a requested URL "
+"matches any of these CIDRs the Secondary"
+"                                         Storage VM will use the private "
+"network interface to fetch the URL. Other URLs"
+"                                     will go through the public interface. "
+"We suggest you set this to 1 or 2"
+"                                            hardened internal machines where"
+" you keep your templates. For example, set it"
+"                                      to 192.168.1.66/32."
+msgstr "这用来保护内部网络避免通过使用模板下载功能暴力尝试下载文件。可以用逗号分隔多个CIDR。如果需要网址来匹配CIDR，二级存储虚拟机会使用私有网络来获取网址。其他网址则会通过公共接口。建议将其设成1或2个内部用来保存模板的地址，如：192.168.1.66/32"
+
+# 586893028ae24cdbb929d0f3604c434c
+#: ../../configuration.rst:2120
+msgid "use.local.storage"
+msgstr "使用本地存储"
+
+# cbb8ac006c0f4403ae2891ec0152641d
+#: ../../configuration.rst:2120
+msgid ""
+"Determines whether CloudStack will use storage that is local to the Host for"
+"                                       data disks, templates, and snapshots."
+" By default CloudStack will not use this"
+"                                      storage. You should change this to "
+"true if you want to use local storage and"
+"                                       you understand the reliability and "
+"feature drawbacks to choosing local storage."
+msgstr "用来决定CloudStack是否使用主机本地的存储存放数据盘，模板，快照。CloudStack默认不使用本地存储。如果你想使用本地存储时可设置为是，并且你也知道选择本地存储的可信赖以及随时读取的功能。"
+
+# 652726f6d65c47b9b88065cb7ea6285b
+#: ../../configuration.rst:2121
+msgid "host"
+msgstr "主机"
+
+# 5f8a36af88c4499cbdf760395a9e3d91
+#: ../../configuration.rst:2121
+msgid ""
+"This is the IP address of the Management Server. If you are using multiple"
+"                                         Management Servers you should enter"
+" a load balanced IP address that is"
+"                                             reachable via the private "
+"network."
+msgstr "这是管理服务器的IP地址。如果使用了多个管理服务器，应当输入负载均衡的IP地址，此地址应能从内网可达。"
+
+# ba59cea1b15445aab942c2d6585a3e15
+#: ../../configuration.rst:2122
+msgid "default.page.size"
+msgstr "默认页面大小"
+
+# 08dc1472a88e49128fee9b6a98864a84
+#: ../../configuration.rst:2122
+msgid ""
+"Maximum number of items per page that can be returned by a CloudStack API"
+"                                          command. The limit applies at the "
+"cloud level and can vary from cloud to cloud."
+"                                    You can override this with a lower value"
+" on a particular API call by using the                                     "
+"page and pagesize API command parameters. For more information, see the"
+"                                            Developer's Guide. Default: 500."
+msgstr "每页的最大数，可通过CloudStack API命令返回此值。限制在了云水平并且云与云之间值也不同。在特殊的API调用中可通过使用API的页及页大小的命令参数可以将其设为一个较低的值。要了解更多，请参看开发手册中的默认值：500"
+
+# 0aeab6ea51d74b6383b753d8c7062230
+#: ../../configuration.rst:2123
+msgid "ha.tag"
+msgstr "高可用性标签"
+
+# 7284fcb87b6249c6a4bb6f0b77f1bcd1
+#: ../../configuration.rst:2123
+msgid ""
+"The label you want to use throughout the cloud to designate certain hosts as"
+"                                       dedicated HA hosts. These hosts will "
+"be used only for HA-enabled VMs that are"
+"                                      restarting due to the failure of "
+"another host. For example, you could set this"
+"                                     to ha\\_host. Specify the ha.tag value "
+"asa host tag when you add a new host to"
+"                                      the cloud."
+msgstr "这个标签标示一个在全云中使用的特定主机，作为专用高可用性主机。被标示的主机仅用作使能的高可用性虚拟机，他们在其他主机失败时启动。例如，在向云中添加一个新主机时可以标明主机的标签为ha.tag，将其设为高可用性主机。"
+
+# 128f2ce96567440886fa91ef636dbf83
+#: ../../configuration.rst:2124
+msgid "vmware.vcenter.session.timeout"
+msgstr "vmware虚拟中心连接失效时间"
+
+# 65d7d2e3020d4656a203c3cba6a9bf66
+#: ../../configuration.rst:2124
+msgid ""
+"Determines the vCenter session timeout value by using this parameter. The"
+"                                          default value is 20 minutes. "
+"Increase the timeout value to avoid timeout errors"
+"                                    in VMware deployments because certain "
+"VMware operations take more than 20"
+"                                          minutes."
+msgstr "通过使用这个参数来决定虚拟中心连接的失效时间。默认值是20分钟。增大此值，以避免在VMware部署中的错误，因为VMware的操作可能会需要超过20分钟的时间。"
+
+# 7b19ddf5af7f4348b2f2a3154144a77f
+#: ../../configuration.rst:2128
+msgid "Setting Global Configuration Parameters"
+msgstr "设定全局配置参数"
+
+# 6674f42991fe47f9ad4d735f383b2eca
+#: ../../configuration.rst:2130
+msgid ""
+"Use the following steps to set global configuration parameters. These values"
+" will be the defaults in effect throughout your CloudStack deployment."
+msgstr "通过以下几步来设定全局配置参数。在整个CloudStack的部署过程，默认值会起作用。"
+
+# 68081b588e514018bf65d5281bb8af4d
+# fd2883d2c9e04796a6faa137f106b604
+#: ../../configuration.rst:2136 ../../configuration.rst:2176
+msgid "Log in to the UI as administrator."
+msgstr "以管理员登录界面。"
+
+# 0dfa62c64e6a42e2a3e9873e4b81f2ba
+#: ../../configuration.rst:2140
+msgid "In the left navigation bar, click Global Settings."
+msgstr "在左侧导航栏中，点击全局设置"
+
+# 625c0cab60ac4b1582d05403d8139329
+#: ../../configuration.rst:2144
+msgid "In Select View, choose one of the following:"
+msgstr "在选择视图中，选择以下一个："
+
+# 9159d679940740c89e7282bb889ad31b
+#: ../../configuration.rst:2148
+msgid ""
+"Global Settings. This displays a list of the parameters with brief "
+"descriptions and current values."
+msgstr "全局设置。这会显示参数值，并附有简单的说明。"
+
+# 57d5f2f85d7b43988bc809a6239af540
+#: ../../configuration.rst:2153
+msgid ""
+"Hypervisor Capabilities. This displays a list of hypervisor versions with "
+"the maximum number of guests supported for each."
+msgstr "虚拟化能力。这会显示虚拟化版本以及所支持的最大用户数。"
+
+# 25eacceb4bea4930b6e224c359e46a7f
+# e115c1508b99464e8c35af3f4151dceb
+#: ../../configuration.rst:2158 ../../configuration.rst:2199
+msgid ""
+"Use the search box to narrow down the list to those you are interested in."
+msgstr "使用搜索框来缩小你所赶兴趣的内容。"
+
+# 053bb62290714d7ba65ec4379b7fe2f9
+#: ../../configuration.rst:2163
+msgid ""
+"In the Actions column, click the Edit icon to modify a value. If you are "
+"viewing Hypervisor Capabilities, you must click the name of the hypervisor "
+"first to display the editing screen."
+msgstr "在动作栏，点击编辑按钮可修改一个值。如果查看虚拟化能力，必须先点击虚拟化名称以显示编辑页。"
+
+# 6b586aa947cf4a29aca53f604cb258cd
+#: ../../configuration.rst:2168
+msgid "Setting Local Configuration Parameters"
+msgstr "设定全局参数"
+
+# 316c1684a26f45ad96b1098bb3e3f371
+#: ../../configuration.rst:2170
+msgid ""
+"Use the following steps to set local configuration parameters for an "
+"account, zone, cluster, or primary storage. These values will override the "
+"global configuration settings."
+msgstr "使用以下几步来设置本地配置参数，包括账号，区域，集群或主存储。这些值会覆盖全局配置值。"
+
+# 9848920841c84ad79bcf521a4883569a
+#: ../../configuration.rst:2180
+msgid ""
+"In the left navigation bar, click Infrastructure or Accounts, depending on "
+"where you want to set a value."
+msgstr "在左侧导航栏中，点击基础架构或账户，取决于你想设定的内容。"
+
+# fd974abf69de44adb574a76f379ed931
+#: ../../configuration.rst:2185
+msgid ""
+"Find the name of the particular resource that you want to work with. For "
+"example, if you are in Infrastructure, click View All on the Zones, "
+"Clusters, or Primary Storage area."
+msgstr "找到你想使用的特定资源的名称。例如，如果你在基础架构中，在区域，集群，主存储上点击查看全部，"
+
+# ce8e220bd80042bba3f10b68c913f5fa
+#: ../../configuration.rst:2191
+msgid "Click the name of the resource where you want to set a limit."
+msgstr "点击你想限定的资源名称。"
+
+# 202eaf9964c140bca17eb1e60af3115f
+#: ../../configuration.rst:2195
+msgid "Click the Settings tab."
+msgstr "点击设定标签"
+
+# dcee63912e7b4613813927982942fe80
+#: ../../configuration.rst:2204
+msgid "In the Actions column, click the Edit icon to modify a value."
+msgstr "在动作栏，点击编辑按钮可修改一个值。"
+
+# 5c61246adbf84bc697ad114109772905
+#: ../../configuration.rst:2207
+msgid "Granular Global Configuration Parameters"
+msgstr "全局配置参数的精细设置"
+
+# 4b16584384e840d7b079ec6e8509464a
+#: ../../configuration.rst:2209
+msgid ""
+"The following global configuration parameters have been made more granular. "
+"The parameters are listed under three different scopes: account, cluster, "
+"and zone."
+msgstr "以下全局配置参数更加精细。以下列出的参数有三个不同的范围，账户，集群和区域。"
+
+# 7f93ac987dbe4b05868b27ea670d947c
+# 4b7c20450ccf42e88d0d55f25a555a77
+# 9d5c35aeeacd4f68931e9986f6113108
+# 0856e60e68ac49d69001ab074b33498c
+#: ../../configuration.rst:2216 ../../configuration.rst:2217
+#: ../../configuration.rst:2218 ../../configuration.rst:2219
+msgid "account"
+msgstr "账号"
+
+# 3b7a17ddf41e4e01b90a2120bc2806d7
+#: ../../configuration.rst:2216
+msgid "remote.access.vpn.client.iprange"
+msgstr "远程访问的vpn客户ip范围"
+
+# 92e430f73708403fa7e5862165429715
+#: ../../configuration.rst:2216
+msgid ""
+"The range of IPs to be allocated to remotely access the VPN clients. The "
+"first IP in the range is"
+"                                                                                                          "
+"used by the VPN server."
+msgstr "应当给远程访问vpn的客户分配一个ip范围。范围中的第一个ip被vpn 服务器所使用。"
+
+# 775a2d18577542a8a4018946508c9a4a
+#: ../../configuration.rst:2217
+msgid "allow.public.user.templates"
+msgstr "允许公共用户模板"
+
+# 2c9b0749a7954d4da59bcff861146e3f
+#: ../../configuration.rst:2217
+msgid "If false, users will not be able to create public templates."
+msgstr "如果值为否，用户将不能创建公共模板。"
+
+# fe26e313264741788221a8b80034c1c7
+#: ../../configuration.rst:2218
+msgid "use.system.public.ips"
+msgstr "使用系统公共ip"
+
+# 0e76d4e9f697487a8eee748c898b6b10
+#: ../../configuration.rst:2218
+msgid ""
+"If true and if an account has one or more dedicated public IP ranges, IPs "
+"are"
+"                                                                                                                              "
+"acquired from the system pool after all the IPs dedicated to the account "
+"have been consumed."
+msgstr "如果值为是，并且如果账户有一个或多个专用的公用ip范围，在账户专用的IP用完以后，可以从系统池中获取ip."
+
+# 67cfd38a65704431a8b8325d0db2a98c
+#: ../../configuration.rst:2219
+msgid "use.system.guest.vlans"
+msgstr "使用系统客户vlan"
+
+# 5efb3658b4b14696905bed1f5a04329b
+#: ../../configuration.rst:2219
+msgid ""
+"If true and if an account has one or more dedicated guest VLAN ranges, VLANs"
+" are allocated from the"
+"                                                                                                        "
+"system pool after all the VLANs dedicated to the account have been consumed."
+msgstr "如果值为是，并且如果账户有一个或多个专用的客户VLAN范围，在账户专用的VLAN用完后，可从系统池中获取VLAN。"
+
+# c619534fda904ab2975e1d8ab93f7c93
+# 208c0810649c4330adda8aaad6f0cc24
+# d5609ab346ce4b61a346229472e08965
+# 043395750b2943fe8cb6f2c9f49e8248
+# f1664a531c494f58b17d210f281775de
+# 13a702a386b4448a8b465f5cbc3c1398
+# d0b0bb7074654848bd21220b0e70788d
+# 8430455732e24ebe90511e01d919f764
+# 1bd2cab839fd4d90bfcb63730f9a6cc5
+# c76c0d074c8d408382e83e5e742f763e
+#: ../../configuration.rst:2220 ../../configuration.rst:2221
+#: ../../configuration.rst:2222 ../../configuration.rst:2223
+#: ../../configuration.rst:2224 ../../configuration.rst:2225
+#: ../../configuration.rst:2226 ../../configuration.rst:2228
+#: ../../configuration.rst:2229 ../../configuration.rst:2230
+msgid "cluster"
+msgstr "集群"
+
+# 1e67a8c0b3e14454acd802c04f5cce09
+#: ../../configuration.rst:2220
+msgid "cluster.storage.allocated.capacity.notificationthreshold"
+msgstr "集群存储分配容量通知限值"
+
+# 6551f5d04c7e4238ae88f40cbd4afd48
+#: ../../configuration.rst:2220
+msgid ""
+"The percentage, as a value between 0 and 1, of allocated storage utilization"
+"                                                                                                                               "
+"above which alerts are sent that the storage is below the threshold."
+msgstr "百分比，其值从0到1，分配存储的利用率超过设定值，系统将会发送警告"
+
+# 62650480aee14b6481ef30080d381b8c
+#: ../../configuration.rst:2221
+msgid "cluster.storage.capacity.notificationthreshold"
+msgstr "集群存储容量通知限值"
+
+# c12f4e655fcd4c73b0491ff4d9bd5a70
+#: ../../configuration.rst:2221
+msgid ""
+"The percentage, as a value between 0 and 1, of storage utilization above "
+"which alerts are sent that the available storage is below"
+"                                                                         the"
+" threshold."
+msgstr "百分比，其值从0到1，可用存储的比率超过设定值，系统将会发送警告"
+
+# b418540f19ef4f6b970a0c7b1d852950
+#: ../../configuration.rst:2222
+msgid "cluster.cpu.allocated.capacity.notificationthreshold"
+msgstr "集群cpu分配容量通知限值"
+
+# e08a3cf2030640b6abefaef4326bdbcd
+#: ../../configuration.rst:2222
+msgid ""
+"The percentage, as a value between 0 and 1, of cpu utilization above which "
+"alerts are sent that the available CPU is below the"
+"                                                                             "
+"threshold."
+msgstr "百分比，其值从0到1，cpu的使用率超过设定值，系统将会发送警告"
+
+# d29e93219a3c46a2a835bbe98a555fb9
+#: ../../configuration.rst:2223
+msgid "cluster.memory.allocated.capacity.notificationthreshold"
+msgstr "集群内存分配容量通知限值"
+
+# a77b2d6e198b4f21b80db8b408977de0
+#: ../../configuration.rst:2223
+msgid ""
+"The percentage, as a value between 0 and 1, of memory utilization above "
+"which alerts are sent that the available memory is below the"
+"                                                                       "
+"threshold."
+msgstr "百分比，其值从0到1，内存的使用率超过设定值，系统将会发送警告"
+
+# e39366cec77d45498efdd08dc88d9ca4
+#: ../../configuration.rst:2224
+msgid "cluster.cpu.allocated.capacity.disablethreshold"
+msgstr "集群cpu分配容量关闭限值"
+
+# 9f1c27474ec94b77aedd054a0a341bc4
+#: ../../configuration.rst:2224
+msgid ""
+"The percentage, as a value between 0 and 1, of CPU utilization above which "
+"allocators will disable that cluster from further usage."
+"                                                                        Keep"
+" the corresponding notification threshold lower than this value to be "
+"notified beforehand."
+msgstr "百分比，其值从0到1，cpu的使用率超过设定值后，分配器将关闭进一步的使用。设定相应通知限值要低于此值，以便能够被提前通知到。"
+
+# 496d415ac0a34708b74fb7dc79252f43
+#: ../../configuration.rst:2225
+msgid "cluster.memory.allocated.capacity.disablethreshold"
+msgstr "集群内存分配容量关闭限值"
+
+# a98beab9429549db8d396f63187722a1
+#: ../../configuration.rst:2225
+msgid ""
+"The percentage, as a value between 0 and 1, of memory utilization above "
+"which allocators will disable that cluster from further"
+"                                                                            "
+"usage. Keep the corresponding notification threshold lower than this value "
+"to be notified beforehand."
+msgstr "百分比，其值从0到1，内存的使用率超过设定值后，分配器将关闭进一步的使用。设定相应通知限值要低于此值，以便能够被提前通知到。"
+
+# 73fab1edb006400c814caeeacc8ca103
+#: ../../configuration.rst:2226
+msgid "cpu.overprovisioning.factor"
+msgstr "cpu过度提供因子"
+
+# 6446971309314d81a8844e6c11b2bbb1
+#: ../../configuration.rst:2226
+msgid ""
+"Used for CPU over-provisioning calculation; the available CPU will be the "
+"mathematical product of actualCpuCapacity and cpu.overprovisioning.factor."
+msgstr "用来进行cpu过度提供计算。可利用的cpu是实际cpu容量与cpu过度提供因子的乘积。"
+
+# bb49c9e56b594f96a9e7289859fc0908
+#: ../../configuration.rst:2228
+msgid "mem.overprovisioning.factor"
+msgstr "内存过度提供因子"
+
+# 98fdd7a8cef5442d82a938e7dfd8963a
+#: ../../configuration.rst:2228
+msgid "Used for memory over-provisioning calculation."
+msgstr "用来进行内存过度提供计算。"
+
+# a9b114ba79e04f039c8e11855fbe1f00
+#: ../../configuration.rst:2229
+msgid "vmware.reserve.cpu"
+msgstr "vmware预留cpu"
+
+# c33658a8d9274b4696580fdc0c646fcf
+#: ../../configuration.rst:2229
+msgid ""
+"Specify whether or not to reserve CPU when not over-provisioning; In case of"
+" CPU over-provisioning, CPU is always reserved."
+msgstr "当未过载使用时说明是否预留cpu。防止cpu过载，cpu总是有预留的。"
+
+# 7892dcaa068340b9a4a4d1cc87f89e59
+#: ../../configuration.rst:2230
+msgid "vmware.reserve.mem"
+msgstr "vmware预留内存"
+
+# 6fb0101d1b164a1689a3b41be4574570
+#: ../../configuration.rst:2230
+msgid ""
+"Specify whether or not to reserve memory when not over-provisioning; In case"
+" of memory over-provisioning memory is always reserved."
+msgstr "当未过载使用时说明是否预留内存。防止内存过载，内存总是有预留的。"
+
+# bc76da621cc546e5a10db59e3c5e3752
+# 0245cd8aa2a4445780c168fff42b7f83
+# 2e54da8a9e064b3187817ed97efff659
+# c0b6df24385a4de3afc7a81a35bda717
+# f6fc761940da4b1db7f30269c9c18217
+# a029344489af4671ac0396976fe8f4d2
+# 637df074feb5402f959b3b75aba847fd
+# 3c40a56a5d2448c6adaaf8fe3932b5c9
+# ed557e005c82469189f20294d4fcf8d6
+# 5de330af583141f2884cc8f23f9f47ea
+# 7d180cfedea4427a8712bdd1893586ad
+#: ../../configuration.rst:2231 ../../configuration.rst:2233
+#: ../../configuration.rst:2234 ../../configuration.rst:2235
+#: ../../configuration.rst:2236 ../../configuration.rst:2237
+#: ../../configuration.rst:2238 ../../configuration.rst:2239
+#: ../../configuration.rst:2240 ../../configuration.rst:2241
+#: ../../configuration.rst:2242
+msgid "zone"
+msgstr "区域"
+
+# 1ab168734327454888fdc1b567f33d58
+#: ../../configuration.rst:2231
+msgid "pool.storage.allocated.capacity.disablethreshold"
+msgstr "存储池分配容量关闭限值"
+
+# 2cc9c1f4565745f7b744460d99754637
+#: ../../configuration.rst:2231
+msgid ""
+"The percentage, as a value between 0 and 1, of allocated storage utilization"
+" above which allocators will disable that pool because the available "
+"allocated storage is below the threshold."
+msgstr "百分比，其值从0到1，已分配存储的使用率超过设定值后，分配器将关闭存储池，因为可用于分配的存储要小于限值。"
+
+# 3d8d069d54024de88642f184e91a74eb
+#: ../../configuration.rst:2233
+msgid "pool.storage.capacity.disablethreshold"
+msgstr "存储池容量关闭限值"
+
+# b76b6ee86ba64c36973e8fc7aa560a2d
+#: ../../configuration.rst:2233
+msgid ""
+"The percentage, as a value between 0 and 1, of storage utilization above "
+"which allocators will disable the pool because the available"
+"                                                                      "
+"storage capacity is below the threshold."
+msgstr "百分比，其值从0到1，已分配存储的使用率超过设定值后，分配器将关闭存储池，因为可用于分配的存储要小于限值。"
+
+# 8c74058900294bb79fc60943186bb9fd
+#: ../../configuration.rst:2234
+msgid "storage.overprovisioning.factor"
+msgstr "存储过载因子"
+
+# a44cae3640ae43148416c874f7fcea54
+#: ../../configuration.rst:2234
+msgid ""
+"Used for storage over-provisioning calculation; available storage will be "
+"the mathematical product of actualStorageSize and"
+"                                                                                "
+"storage.overprovisioning.factor."
+msgstr "用来进行存储过载计算，可利用的存储是实际存储容量与存储过载因子的乘积。"
+
+# 97657941bc18464c9d25925f1c905322
+#: ../../configuration.rst:2235
+msgid "network.throttling.rate"
+msgstr "网络调节比率"
+
+# a01922f13e79491f8e01abdbaea71138
+#: ../../configuration.rst:2235
+msgid ""
+"Default data transfer rate in megabits per second allowed in a network."
+msgstr "在网络中允许的默认每秒传输数据容量，单位MB"
+
+# a2d7b590ea9f4afebaa9f61993455d1e
+#: ../../configuration.rst:2236
+msgid "guest.domain.suffix"
+msgstr "客户域名后缀"
+
+# 0f1df46bb0ea4311b7c622d0f6f68546
+#: ../../configuration.rst:2236
+msgid "Default domain name for VMs inside a virtual networks with a router."
+msgstr "在具有路由的虚拟网络中的虚拟机的默认域名"
+
+# 7d5a5c23747146b39d0305cab5cbeea1
+#: ../../configuration.rst:2237
+msgid "router.template.xen"
+msgstr "xen的路由模板"
+
+# 3763002b60244216b5f7a4fcadc9fac6
+#: ../../configuration.rst:2237
+msgid "Name of the default router template on Xenserver."
+msgstr "XenServer的默认路由模板名称"
+
+# 38d5de202cce42b7b9a7a495de26f920
+#: ../../configuration.rst:2238
+msgid "router.template.kvm"
+msgstr "kvm的路由模板"
+
+# e2c0fac8ae6d48468ea63c1aa1213157
+#: ../../configuration.rst:2238
+msgid "Name of the default router template on KVM."
+msgstr "kvm的默认路由模板名称"
+
+# 59ae36c1a41e49f7829583b05d8b0064
+#: ../../configuration.rst:2239
+msgid "router.template.vmware"
+msgstr "vmware的路由模板"
+
+# 9b7bc507a4914a51804069718074f56d
+#: ../../configuration.rst:2239
+msgid "Name of the default router template on VMware."
+msgstr "VMware的默认路由模板名称"
+
+# e64bd6e705bb4043bca9b8bd5d948711
+#: ../../configuration.rst:2240
+msgid "enable.dynamic.scale.vm"
+msgstr "使能动态规模虚拟机"
+
+# dbb2ce4738784486963e22a682f48304
+#: ../../configuration.rst:2240
+msgid "Enable or diable dynamically scaling of a VM."
+msgstr "打开或关闭动态规模虚拟机"
+
+# a3947a1544384a92b4b68b0bf7060dd7
+#: ../../configuration.rst:2241
+msgid "use.external.dns"
+msgstr "使用外部dns"
+
+# 62d95634141e413b8a67f6d269fec461
+#: ../../configuration.rst:2241
+msgid "Bypass internal DNS, and use the external DNS1 and DNS2"
+msgstr "忽略内部DNS，使用外部DNS1和DNS2"
+
+# ebb32eeb9c2746c4998e9fc25f374b54
+#: ../../configuration.rst:2242
+msgid "blacklisted.routes"
+msgstr "路由黑名单"
+
+# e4f40980ae744950a166e2cd9460d79d
+#: ../../configuration.rst:2242
+msgid ""
+"Routes that are blacklisted cannot be used for creating static routes for a "
+"VPC Private Gateway."
+msgstr "黑名单中的路由不能用于虚拟机的私有网关来创建静态路由"

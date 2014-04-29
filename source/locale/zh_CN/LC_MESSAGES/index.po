@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014, Apache Software Foundation
+# This file is distributed under the same license as the Apache CloudStack Installation Documentation package.
+# 
+# Translators:
+# darrentang <darrentang.dt@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Apache CloudStack Installation RTD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"PO-Revision-Date: 2014-04-23 02:52+0000\n"
+"Last-Translator: leno <allen.fan@aliyun.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/apache-cloudstack-installation-rtd/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# 3444a9bac8c1480fb6aeeddde33317aa
+#: ../../index.rst:24
+msgid "Quicklinks to CloudStack documentations:"
+msgstr "CloudStack 文档 快速链接"
+
+# de15a84dcd6c4d7f95e3cd6812e961e5
+#: ../../index.rst:26
+msgid "`Documentation home <http://docs.cloudstack.apache.org>`_"
+msgstr "`文档 主页 <http://docs.cloudstack.apache.org>`_"
+
+# 8cfba20e17424f6eb7c1c27701a7623b
+#: ../../index.rst:27
+msgid ""
+"`Administration Guide <http://docs.cloudstack.apache.org/projects"
+"/cloudstack-administration>`_"
+msgstr "`管理指南 <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_"
+
+# ceab02648e894c459ace09840dbe7dec
+#: ../../index.rst:28
+msgid ""
+"`Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-"
+"release-notes>`_"
+msgstr "`发行说明 <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_"
+
+# 4d03b7ecaf134a00a2c8b3dc4f2d9287
+#: ../../index.rst:33
+msgid "Welcome to CloudStack Installation Documentation"
+msgstr "欢迎阅读CloudStack安装文档"
+
+# ab60384766f143609f9d6ce0c7715ad8
+#: ../../index.rst:39
+msgid "Choosing a Deployment Architecture"
+msgstr "选择部署架构"
+
+# 2498e69aef534512a9469d39529cdd57
+#: ../../index.rst:46
+msgid "Quick Installation Guide"
+msgstr "快速安装指南"
+
+# 75622cd0baf949e3b27a45c2700219d7
+#: ../../index.rst:53
+msgid "General Installation"
+msgstr "常规安装"
+
+# 7edc5f456b0644da8742337ed23c3e8f
+#: ../../index.rst:60
+msgid "Source Installation"
+msgstr "源码安装"
+
+# c87f9d4590b9444bbfb91a1865d694c8
+#: ../../index.rst:67
+msgid "Configuration"
+msgstr "配置"
+
+# 6841529c30524f33b73ff72b37ba92f1
+#: ../../index.rst:74
+msgid "Hypervisor Installation"
+msgstr "Hypervisor安装"
+
+# 6898869cb0974aa5abd32cdbea12ae53
+#: ../../index.rst:81
+msgid "Network Setup"
+msgstr "网络设置"
+
+# 6ef45fb9e25c422d946bc4f2c85bc631
+#: ../../index.rst:88
+msgid "Storage Setup"
+msgstr "存储设置"
+
+# 91d8d3664ff2474788edd798968a650d
+#: ../../index.rst:95
+msgid "Optional Installation"
+msgstr "可选安装"

@@ -1,0 +1,874 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014, Apache Software Foundation
+# This file is distributed under the same license as the Apache CloudStack Installation Documentation package.
+# 
+# Translators:
+# darrentang <darrentang.dt@gmail.com>, 2014
+# renoshen <shenkuan-ghq@sinosig.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Apache CloudStack Installation RTD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"PO-Revision-Date: 2014-04-24 04:17+0000\n"
+"Last-Translator: renoshen <shenkuan-ghq@sinosig.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/apache-cloudstack-installation-rtd/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# 35e1fe047cc845ec9cb1bf425e7fc7e3
+#: ../../qig.rst:2
+msgid "Quick Installation Guide for CentOS"
+msgstr "基于CentOS的快速安装指南"
+
+# 13fd6d1d11de41d6832a347676bea1a1
+#: ../../qig.rst:6
+msgid "Overview"
+msgstr "概述"
+
+# 3e45fb1727574a908f313db6c4e826c2
+#: ../../qig.rst:9
+msgid "What exactly are we building?"
+msgstr "我们要构建什么？"
+
+# 97084d2754134b85ba4376391b983895
+#: ../../qig.rst:11
+msgid ""
+"Infrastructure-as-a-Service (IaaS) clouds can be a complex thing to build, "
+"and by definition they have a plethora of options, which often lead to "
+"confusion for even experienced admins who are newcomers to building cloud "
+"platforms. The goal for this runbook is to provide a straightforward set of "
+"instructions to get you up and running with CloudStack with a minimum amount"
+" of trouble."
+msgstr "构建基础架构即服务(IaaS)云是一个很复杂的工作，它提供了过于多的选项，甚至新接触云平台的管理员都很容易混乱。此篇运行手册的目的就是为减少安装CloudStack问题的发生提供最直接的帮助。"
+
+# e910a84892ff4ab18b24d9f012210b54
+#: ../../qig.rst:18
+msgid "High level overview of the process"
+msgstr "整体过程概述"
+
+# 51759713fe8a463a931bb68bfe5988f4
+#: ../../qig.rst:20
+msgid ""
+"This runbook will focus on building a CloudStack cloud using KVM with CentOS"
+" 6.4 with NFS storage on a flat layer-2 network utilizing layer-3 network "
+"isolation (aka Security Groups), and doing it all on a single piece of "
+"hardware."
+msgstr "在此篇运行手册中的CloudStack使用的虚拟化底层是基于CentOS 6.4中的KVM，并且使用NFS存储，并基于三层隔离（使用安全组）的二层网络结构，所有的系统都在一台硬件服务器上。"
+
+# 3f504f52a12f45a69e00649499ee1c48
+#: ../../qig.rst:23
+msgid ""
+"KVM, or Kernel-based Virtual Machine is a virtualization technology for the "
+"Linux kernel. KVM supports native virtualization atop processors with "
+"hardware virtualization extensions."
+msgstr "KVM或基于内核的虚拟机是基于Linux内核的虚拟化技术。KVM在带有硬件虚拟化扩展技术的处理器上支持硬件辅助虚拟化。"
+
+# 52a1da07ea634d99a588b52b490fe029
+#: ../../qig.rst:26
+msgid ""
+"Security Groups act as distributed firewalls that control access to a group "
+"of virtual machines."
+msgstr "安全组作为分布式防火墙用于对虚拟机组提供控制访问。"
+
+# 933834c0d8504b24b0847d8b20a8b773
+# 5fe6ffbe83414152bc5371356ba85caa
+#: ../../qig.rst:30 ../../qig.rst:367
+msgid "Prerequisites"
+msgstr "先决条件"
+
+# aaeb5e052cc5479b9715063a0c52cbd7
+#: ../../qig.rst:32
+msgid "To complete this runbook you'll need the following items:"
+msgstr "要完成此运行手册你需要如下条件："
+
+# 111e363cb216467580fb2e67adffab12
+#: ../../qig.rst:34
+msgid "At least one computer which supports hardware virtualization."
+msgstr "至少一个支持硬件虚拟化的计算机。"
+
+# 940dcf9f700447b2911787c759e0fda9
+#: ../../qig.rst:35
+msgid ""
+"The `CentOS 6.4 x86_64 minimal install CD "
+"<http://mirrors.kernel.org/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso>`_"
+msgstr "CentOS 6.4 x86_64 的 minimal install CD <http://mirrors.kernel.org/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso>"
+
+# ab275f0fbbf84fd287e0d151ebe2ad0f
+#: ../../qig.rst:36
+msgid ""
+"A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on "
+"this network and none of the computers running CloudStack will have a "
+"dynamic address. Again this is done for the sake of simplicity."
+msgstr "一个以xxx.xxx.xxx.1/24作为网关的C类地址并且该网络中不能存在DHCP服务器；运行Cloudstack 的机器不能使用动态地址。这样做只是为了简单起见。"
+
+# 285d826bba724e4798020e2e5b5e14b4
+#: ../../qig.rst:39
+msgid "Environment"
+msgstr "环境"
+
+# 912ea3a31cdf4633a553f917ac36564b
+#: ../../qig.rst:41
+msgid ""
+"Before you begin , you need to prepare the environment before you install "
+"CloudStack. We will go over the steps to prepare now."
+msgstr "首先，我们先准备要Cloudstack的安装环境。其中包括以下步骤。"
+
+# fbcdb706775c41f6b8cb192ceaf7efdd
+#: ../../qig.rst:45
+msgid "Operating System"
+msgstr "操作系统"
+
+# 19cc8786321b4ff586be0f93ddde1d43
+#: ../../qig.rst:47
+msgid ""
+"Using the CentOS 6.4 x86_64 minimal install ISO, you'll need to install "
+"CentOS on your hardware. The defaults will generally be acceptable for this "
+"installation."
+msgstr "使用CentOS 6.4 x86_64 最小化安装镜像在你的设备上安装CentOS系统，下面的安装操作使用默认选项完成。"
+
+# ec66f0260d7f441582177488f136dc5a
+#: ../../qig.rst:50
+msgid ""
+"Once this installation is complete, you'll want to connect to your freshly "
+"installed machine via SSH as the root user. Note that you should not allow "
+"root logins in a production environment, so be sure to turn off remote "
+"logins once you have finished the installation and configuration."
+msgstr "在安装完成之后，可以使用root用户通过SSH连接到该系统。注意，在生产环境中你应该禁止root登录，所以在你完成安装和配置之后要关闭远程登录。"
+
+# 2cf9d6390b3b4d1b89f4c5995fe8a67e
+#: ../../qig.rst:57
+msgid "Configuring the network"
+msgstr "网络配置"
+
+# 150faa9055944d9bbd123036744f185f
+#: ../../qig.rst:59
+msgid ""
+"By default the network will not come up on your hardware and you will need "
+"to configure it to work in your environment. Since we specified that there "
+"will be no DHCP server in this environment we will be manually configuring "
+"your network interface. We will assume, for the purposes of this exercise, "
+"that eth0 is the only network interface that will be connected and used."
+msgstr "默认情况下,网络需要配置才能在我们的环境中正常使用。由于没有使用DHCP服务器所以我们需要手动配置网络接口。对于本次练习我们假设,仅使用eth0这一个网络接口。"
+
+# 70d1a82edc1b4576aa842e59835c7b4a
+#: ../../qig.rst:64
+msgid ""
+"Connecting via the console you should login as root. Check the file "
+"/etc/sysconfig/network-scripts/ifcfg-eth0, it will look like this by "
+"default:"
+msgstr "使用root用户在登录本地控制台。检查/etc/sysconfig/network-scripts/ifcfg-eth0，默认它应如下所示："
+
+# a8f443d9c12f46beae544e5fc64b926c
+#: ../../qig.rst:74
+msgid ""
+"Unfortunately, this configuration will not permit you to connect to the "
+"network, and is also unsuitable for our purposes with CloudStack. We want to"
+" configure that file so that it specifies the IP address, netmask, etc., as "
+"shown in the following example:"
+msgstr "很不幸，当前配置不允许连接到网络，当然也不符合我们安装Cloudstack的条件。我们按照以下示例来配置IP地址，子网掩码等等："
+
+# b949efbf268a4a40a50392d4b10aa99b
+#: ../../qig.rst:78
+msgid ""
+"You should not use the Hardware Address (aka the MAC address) from our "
+"example for your configuration. It is network interface specific, so you "
+"should keep the address already provided in the HWADDR directive."
+msgstr "注意，不要在你的配置中使用示例提供的Hardware地址（也叫MAC地址）。它是网络接口所特有的，你应该保留配置文件中已经提供的HWADDR字段。"
+
+# 6f10b42e84f44c048eea36f0f5929cf8
+#: ../../qig.rst:94
+msgid ""
+"IP Addressing Throughout this document we are assuming that you will have a "
+"/24 network for your CloudStack implementation. This can be any RFC 1918 "
+"network. However, we are assuming that you will match the machine address "
+"that we are using. Thus we may use 172.16.10.2 and because you might be "
+"using the 192.168.55.0/24 network you would use 192.168.55.2"
+msgstr "此文档自始至终都假设你为CLoudstack的部署准备了一个C类IP地址段。它可以是任意的RFC 1918 网络。但是，我们假设你会匹配我们所使用的IP。如果我们使用172.16.10.2，而您使用192.168.55.0/24的网络，那么你应该将地址改为192.168.55.2。"
+
+# bd025ea01c354438985e1b7354460eca
+#: ../../qig.rst:97
+msgid ""
+"Now that we have the configuration files properly set up, we need to run a "
+"few commands to start up the network:"
+msgstr "在配置好网络之后，我们需要运行一些命令来启动网络："
+
+# ece8bcbdd26a499888b015e0c398a5f8
+#: ../../qig.rst:108
+msgid "Hostname"
+msgstr "主机名"
+
+# e9a0e2949a9a4ba18a6b3b9b82343e70
+#: ../../qig.rst:110
+msgid ""
+"CloudStack requires that the hostname be properly set. If you used the "
+"default options in the installation, then your hostname is currently set to "
+"localhost.localdomain. To test this we will run:"
+msgstr "CloudStack要求正确配置主机名。在默认情况下，安装完操作系统后，主机名是localhost.localdomain。运行下面的命令来测试："
+
+# a222d511c5534fdbadc2d0cc3eb11659
+#: ../../qig.rst:117
+msgid "At this point it will likely return:"
+msgstr "在此处将返回这样的结果："
+
+# d1f4e65c31ba496ebb5debe5420b4654
+#: ../../qig.rst:123
+msgid ""
+"To rectify this situation - we'll set the hostname by editing the /etc/hosts"
+" file so that it follows a similar format to this example:"
+msgstr "为了纠正这种情况，我们需要编辑/etc/hosts文件来设置主机名，类似如下格式："
+
+# 50dd670f31394db08fffc5c81cd9eebe
+#: ../../qig.rst:132
+msgid ""
+"After you've modified that file, go ahead and restart the network using:"
+msgstr "在你编辑完hosts文件之后，使用下面的命令重启网络："
+
+# b761577409834fab96e4ab9cec66d1f3
+#: ../../qig.rst:138
+msgid ""
+"Now recheck with the hostname --fqdn command and ensure that it returns a "
+"FQDN response"
+msgstr "现在使用hostname --fqdn命令重新检查主机名并确认返回了正确的FQDN"
+
+# b8ef5abf6cda4d47827398dfe9e7b078
+#: ../../qig.rst:143
+msgid "SELinux"
+msgstr "SELinux"
+
+# 222d16fa0fe040bc848ee97bdefdf32a
+#: ../../qig.rst:145
+msgid ""
+"At the moment, for CloudStack to work properly SELinux must be set to "
+"permissive. We want to both configure this for future boots and modify it in"
+" the current running system."
+msgstr "为了让CloudStack正常工作，我们必须将SELinux设置为permissive。需要在当前系统运行状态下和启动后都能够生效，进行以下配置。"
+
+# accdcff2faf84f67a75afdf3f7803df0
+#: ../../qig.rst:148
+msgid ""
+"To configure SELinux to be permissive in the running system we need to run "
+"the following command:"
+msgstr "在系统运行状态下的将SELinux设置为permissive，请执行下面命令："
+
+# 705fd51d1b2d4dc7b66823bbb89721a7
+#: ../../qig.rst:154
+msgid ""
+"To ensure that it remains in that state we need to configure the file "
+"/etc/selinux/config to reflect the permissive state, as shown in this "
+"example:"
+msgstr "按照下面的列子来配置/etc/selinux/config文件以确保当前SELinux状态为permissive。如这个例子所示:"
+
+# 2499a5b702c84346869908b6401a7fe9
+#: ../../qig.rst:173
+msgid "NTP"
+msgstr "NTP"
+
+# 5b46c1b4ccb1446ebad10da4a83212ad
+#: ../../qig.rst:175
+msgid ""
+"NTP configuration is a necessity for keeping all of the clocks in your cloud"
+" servers in sync. However, NTP is not installed by default. So we'll install"
+" and and configure NTP at this stage. Installation is accomplished as "
+"follows:"
+msgstr "需要为CloudStack环境中的所有服务器指定NTP服务器以便保证时钟同步。然而，默认安装情况下NTP是没有安装的。要安装NTP，请按下面方法操作："
+
+# 781db9fed4274636a5f465d65ae96cdd
+#: ../../qig.rst:182
+msgid ""
+"The actual default configuration is fine for our purposes, so we merely need"
+" to enable it and set it to start on boot as follows:"
+msgstr "实际上默认配置已经满足我们的要求了，所以我们要做的就是启用NTP\t并配置其在启动后自动运行："
+
+# a294af76e3c44e9ebd2175352f4df7fe
+#: ../../qig.rst:193
+msgid "Configuring the CloudStack Package Repository"
+msgstr "配置ClouStack软件库"
+
+# f31fe230f7e5445aa4c82ee3de4437a4
+#: ../../qig.rst:195
+msgid ""
+"We need to configure the machine to use a CloudStack package repository."
+msgstr "我们需要配置这台机器使用CloudStack软件库。"
+
+# cd8c29304b6e4a52bbc897c9b67179ae
+#: ../../qig.rst:197
+msgid ""
+"The Apache CloudStack official releases are source code. As such there are "
+"no 'official' binaries available. The full installation guide describes how "
+"to take the source release and generate RPMs and and yum repository. This "
+"guide attempts to keep things as simple as possible, and thus we are using "
+"one of the community-provided yum repositories."
+msgstr "Apache CloudStack官方发布的为源代码。因此没有可用的“官方”安装程序。完整的安装向导介绍了怎么获取源代码和以及制作RPM包和yum库。本指南尽可能简化这些操作，所以我们使用一个社区提供的yum库。"
+
+# e2256262d9354b479703bcb76f59ce3d
+#: ../../qig.rst:199
+msgid ""
+"To add the CloudStack repository, create /etc/yum.repos.d/cloudstack.repo "
+"and insert the following information."
+msgstr "要添加CloudStack库，创建/etc/yum.repos.d/cloudstack.repo文件，并添加如下信息。"
+
+# 66953d7bf28b44b5bd9b9b0d6f8842b5
+#: ../../qig.rst:210
+msgid "NFS"
+msgstr "NFS"
+
+# a1a2e7eb7b184e1f93370ed838c28bb7
+#: ../../qig.rst:212
+msgid ""
+"Our configuration is going to use NFS for both primary and secondary "
+"storage. We are going to go ahead and setup two NFS shares for those "
+"purposes. We'll start out by installing nfs-utils."
+msgstr "主存储和辅助存储我们都使用NFS存储。接下来我们要设置两个NFS共享。首先安装nfs-utils。"
+
+# 7ec076aa37eb4c08ba78355e113e34ec
+#: ../../qig.rst:219
+msgid ""
+"We now need to configure NFS to serve up two different shares. This is "
+"handled comparatively easily in the /etc/exports file. You should ensure "
+"that it has the following content:"
+msgstr "现在我们在NFS服务器上配置两个不同的共享目录。我们需要在/etc/exports文件中分别配置一下。确保这个文件中包含下面内容："
+
+# 5162dcde2db840b88e95999c228067f3
+#: ../../qig.rst:227
+msgid ""
+"You will note that we specified two directories that don't exist (yet) on "
+"the system. We'll go ahead and create those directories and set permissions "
+"appropriately on them with the following commands:"
+msgstr "你可能注意到系统中根本不存在这两个目录。我们可以用下面的命令来创建并且赋予相应的权限："
+
+# 03d619dc4fc14523b11009f6ae99c210
+#: ../../qig.rst:235
+msgid ""
+"CentOS 6.x releases use NFSv4 by default. NFSv4 requires that domain setting"
+" matches on all clients. In our case, the domain is cloud.priv, so ensure "
+"that the domain setting in /etc/idmapd.conf is uncommented and set as "
+"follows: Domain = cloud.priv"
+msgstr "CentOS 6.x默认使用NFSv4。NFSv4需要所有客户端设置域。在我们的环境中域名为cloud.priv，要达到这个目的，请在/etc/idmapd.conf文件中去掉如下注释并修改：Domain = cloud.priv"
+
+# 79823f78fc3449d2bdb08b29fdbc0c4e
+#: ../../qig.rst:239
+msgid ""
+"Now you'll need uncomment the configuration values in the file "
+"/etc/sysconfig/nfs"
+msgstr "接下来请在/etc/sysconfig/nfs文件中去掉如下选项的注释："
+
+# 93af69ba8271458f998954d475299208
+#: ../../qig.rst:250
+msgid ""
+"Now we need to configure the firewall to permit incoming NFS connections. "
+"Edit the file /etc/sysconfig/iptables"
+msgstr "接下来需要配置防火墙策略允许NFS客户端访问。编辑/etc/sysconfig/iptables"
+
+# a74fdf52538345818c2f91d9c3a91c4f
+#: ../../qig.rst:266
+msgid "Now you can restart the iptables service with the following command:"
+msgstr "配置完成后用下面的命令行重启iptables服务："
+
+# b9b53885032a4cdd91bdf793191c64bc
+#: ../../qig.rst:272
+msgid ""
+"We now need to configure the nfs service to start on boot and actually start"
+" it on the host by executing the following commands:"
+msgstr "执行以下命令，将nfs服务加入开机启动："
+
+# 9d9957f9b1494c8a879c3ed7060f2a56
+#: ../../qig.rst:283
+msgid "Management Server Installation"
+msgstr "管理服务器安装"
+
+# ccddb1a218184fe1804636347c2e1ea4
+#: ../../qig.rst:285
+msgid ""
+"We're going to install the CloudStack management server and surrounding "
+"tools."
+msgstr "我们将要进行CloudStack管理节点和相关工具的安装。"
+
+# 6b8c70ea2ce24b1e877242cd4a3c0c5b
+#: ../../qig.rst:288
+msgid "Database Installation and Configuration"
+msgstr "安装配置数据库"
+
+# 89e46187899144059e8c6d9885e80523
+#: ../../qig.rst:290
+msgid ""
+"We'll start with installing MySQL and configuring some options to ensure it "
+"runs well with CloudStack."
+msgstr "接下来安装MySQL数据库并配置一些选项以确保和CloudStack能正常工作。"
+
+# 31d2de49a29f461b849def0a134a9376
+#: ../../qig.rst:292
+msgid "Install by running the following command:"
+msgstr "执行下面的命令来安装："
+
+# ed69068b6d824d11bbbfb621bcfede98
+#: ../../qig.rst:298
+msgid ""
+"With MySQL now installed we need to make a few configuration changes to "
+"/etc/my.cnf. Specifically we need to add the following options to the "
+"[mysqld] section:"
+msgstr "安装MySQL之后我们需要改动/etc/my.cnf文件中的一些配置。我们需要在[mysqld]下面添加下列参数："
+
+# 1dc8c451832547a6b1e244186cc5f44d
+#: ../../qig.rst:309
+msgid ""
+"Now that MySQL is properly configured we can start it and configure it to "
+"start on boot as follows:"
+msgstr "正确配置完成之后使用以下命令来使MySQL启动并将其添加到开机自动启动项："
+
+# 2828c68eb95b488ab76e26c9f13daac3
+# ffd327842b864f27ba9d3a470b64741c
+#: ../../qig.rst:317 ../../qig.rst:383
+msgid "Installation"
+msgstr "安装"
+
+# c72e0c93973d4148b55d981606867b18
+#: ../../qig.rst:319
+msgid ""
+"We are now going to install the management server. We do that by executing "
+"the following command:"
+msgstr "现在我们开始安装管理服务器。执行以下命令："
+
+# 614e39ce470c41d8b0608e86e95cf9b3
+#: ../../qig.rst:325
+msgid ""
+"With the application itself installed we can now setup the database, we'll "
+"do that with the following command and options:"
+msgstr "等待程序执行完毕后，我们初始化数据库，执行下面的命令行和选项："
+
+# 53ea489ea49644bf92ec9aaa9700708f
+#: ../../qig.rst:331
+msgid ""
+"When this process is finished, you should see a message like \"CloudStack "
+"has successfully initialized the database.\""
+msgstr "当操作完成后，你应该会看到\"CloudStack has successfully initialized the database.\"这个消息。"
+
+# 95f99a12e8bd4aa493624e57d12571ad
+#: ../../qig.rst:333
+msgid ""
+"Now that the database has been created, we can take the final step in "
+"setting up the management server by issuing the following command:"
+msgstr "创建好数据库之后，我们执行最后的步骤来安装和启动管理服务器："
+
+# ea6b184f33a94091b0bed2ab097f8104
+#: ../../qig.rst:341
+msgid "System Template Setup"
+msgstr "上传系统模板"
+
+# 9acb4839221b4d7d8ccd58902f606742
+#: ../../qig.rst:343
+msgid ""
+"CloudStack uses a number of system VMs to provide functionality for "
+"accessing the console of virtual machines, providing various networking "
+"services, and managing various aspects of storage. This step will acquire "
+"those system images ready for deployment when we bootstrap your cloud."
+msgstr "CloudStack使用一组系统虚机来提供访问虚机控台，各种网络服务和管理存储的功能。当你引导云的时候，该步骤会获取这些准备用于部署的系统镜像。"
+
+# 23d5ace61a844520b9920490c9839ef1
+#: ../../qig.rst:347
+msgid ""
+"Now we need to download the system VM template and deploy that to the share "
+"we just mounted. The management server includes a script to properly "
+"manipulate the system VMs images."
+msgstr "现在我们要从刚刚挂载的共享存储上面下载虚机模板并部署它们。管理服务器上有一个脚本来操作这些系统虚机镜像。"
+
+# 7a0469d4fa064b36b21e822e809c0417
+#: ../../qig.rst:356
+msgid ""
+"That concludes our setup of the management server. We still need to "
+"configure CloudStack, but we will do that after we get our hypervisor set "
+"up."
+msgstr "总结我们管理服务器的设置。在配置完hypervisor之后我们仍需对CloudStack进行配置。"
+
+# 6cb86fea04e340f1a3c317bd06393ffe
+#: ../../qig.rst:360
+msgid "KVM Setup and Installation"
+msgstr "KVM安装和配置"
+
+# 694238d19b1d47dc8dbb9f9d716e5a03
+#: ../../qig.rst:362
+msgid ""
+"KVM is the hypervisor we'll be using - we will recover the initial setup "
+"which has already been done on the hypervisor host and cover installation of"
+" the agent software, you can use the same steps to add additional KVM nodes "
+"to your CloudStack environment."
+msgstr "我们使用KVM作为 hypervisor-我们在hypervisor主机上恢复已经做过的初始化操作并且覆盖安装代理软件，你可以重复同样的步骤来添加其他的KVM节点到CloudStack环境中。"
+
+# 7f7906b3ab8f4e90b0a96c5e08fb16b3
+#: ../../qig.rst:369
+msgid ""
+"We explicitly are using the management server as a compute node as well, "
+"which means that we have already performed many of the prerequisite steps "
+"when setting up the management server, but we will list them here for "
+"clarity. Those steps are:"
+msgstr "我们同样使用管理服务器作为计算节点，这样我们可以利用在安装管理服务器时执行完成的那些准备工作，这里我仅仅列出这些步骤："
+
+# 88d4443c0c6e4d5cb94fb08f4407f561
+#: ../../qig.rst:373
+msgid ":ref:`conf-network`"
+msgstr ":ref:`conf-network`"
+
+# 1565cc75629d45f8aef81bdd8927ea71
+#: ../../qig.rst:374
+msgid ":ref:`conf-hostname`"
+msgstr ":ref:`conf-hostname`"
+
+# 5a9d474e2f2840f2b04c16d476f57ab1
+#: ../../qig.rst:375
+msgid ":ref:`conf-selinux`"
+msgstr ":ref:`conf-selinux`"
+
+# 9571423a403c43b9b01e9227094bb987
+#: ../../qig.rst:376
+msgid ":ref:`conf-ntp`"
+msgstr ":ref:`conf-ntp`"
+
+# 514286365b1d431e847609fac32ccb25
+#: ../../qig.rst:377
+msgid ":ref:`qigconf-pkg-repo`"
+msgstr ":ref:`qigconf-pkg-repo`"
+
+# 6bc0f6aca97a46fba40883c02ea151e5
+#: ../../qig.rst:379
+msgid ""
+"You shouldn't need to do that for the management server, of course, but any "
+"additional hosts will need for you to complete the above steps."
+msgstr "你不需要在管理节点上做操作，但是在任何后添加的节点上你都需要完成以上那些操作。"
+
+# b17d04cfdc30493f8d8aa1fe31853929
+#: ../../qig.rst:385
+msgid ""
+"Installation of the KVM agent is trivial with just a single command, but "
+"afterwards we'll need to configure a few things."
+msgstr "安装KVM代理仅仅需要一个简单的命令，但是接下来我们需要进行很多配置。"
+
+# e1e1376460914ea5b03cc1ad8d9b6f4d
+#: ../../qig.rst:392
+msgid "KVM Configuration"
+msgstr "配置KVM"
+
+# 84ac88e7a6334a08a5b1ec8acc5362fb
+#: ../../qig.rst:394
+msgid "We have two different parts of KVM to configure, libvirt, and QEMU."
+msgstr "我们需要分两部分配置KVM:libvirt和QEMU。"
+
+# b3b7762be0a64f4fb7be24536565be97
+#: ../../qig.rst:397
+msgid "QEMU Configuration"
+msgstr "配置QEMU"
+
+# 96fb088976d44b8dad0fbda31afa54a3
+#: ../../qig.rst:399
+msgid ""
+"KVM configuration is relatively simple at only a single item. We need to "
+"edit the QEMU VNC configuration. This is done by editing "
+"/etc/libvirt/qemu.conf and ensuring the following line is present and "
+"uncommented."
+msgstr "KVM只有一个相对简单的配置项。我们需要编辑QEMU VNC配置。确保/etc/libvirt/qemu.conf文件有如下所示的行，并将其注释去掉。"
+
+# 071986cd18744d5286dffaeeeb829fcf
+#: ../../qig.rst:404
+msgid "vnc_listen=0.0.0.0"
+msgstr "vnc_listen=0.0.0.0"
+
+# f799c4c8e1f24eb4828ab3df46c76927
+#: ../../qig.rst:407
+msgid "Libvirt Configuration"
+msgstr "配置Libvirt"
+
+# f82cda8366244ba0ab6f46ef74fa3af4
+#: ../../qig.rst:409
+msgid ""
+"CloudStack uses libvirt for managing virtual machines. Therefore it is vital"
+" that libvirt is configured correctly. Libvirt is a dependency of cloud-"
+"agent and should already be installed."
+msgstr "CloudStack使用libvirt管理虚拟机。因此正确的配置libvirt是非常重要的。Libvirt是cloud-agent的一个依赖组件，它应该已经安装好了。"
+
+# d97f5408e0f44e9890a0378c9bd7dc84
+#: ../../qig.rst:411
+msgid ""
+"In order to have live migration working libvirt has to listen for unsecured "
+"TCP connections. We also need to turn off libvirts attempt to use Multicast "
+"DNS advertising. Both of these settings are in /etc/libvirt/libvirtd.conf"
+msgstr "为了实现动态迁移libvirt需要监听不可靠的TCP连接。还需要关闭libvirts尝试使用组播DNS进行广播。这些都是在 /etc/libvirt/libvirtd.conf文件中进行配置。"
+
+# 8ef93482e0f2443fa83292f7dd2951e5
+#: ../../qig.rst:413
+msgid "Set the following paramaters:"
+msgstr "设置下列参数："
+
+# a0f3e475e15446b98a6715892a799c5d
+#: ../../qig.rst:423
+msgid ""
+"Turning on \"listen_tcp\" in libvirtd.conf is not enough, we have to change "
+"the parameters as well we also need to modify /etc/sysconfig/libvirtd:"
+msgstr "仅仅在libvirtd.conf中启用\"listen_tcp\"是不够的，我们还必须修改/etc/sysconfig/libvirtd中的参数:"
+
+# bcfbfa1f04c4406aada6924aa6027411
+#: ../../qig.rst:425
+msgid "Uncomment the following line:"
+msgstr "取消下行的注释："
+
+# 4180d2037c424f7dac00eaecc738bf36
+#: ../../qig.rst:431
+msgid "Restart libvirt"
+msgstr "重启libvirt"
+
+# 64aec4c2321145bc8cb43d87e13ea603
+#: ../../qig.rst:438
+msgid "KVM configuration complete"
+msgstr "KVM配置完成"
+
+# 50fd1bf888a64c828d91e6653c0399b1
+#: ../../qig.rst:439
+msgid ""
+"That concludes our installation and configuration of KVM, and we'll now move"
+" to using the CloudStack UI for the actual configuration of our cloud."
+msgstr "结束对KVM的安装和配置之后，接下来需要在CloudStack管理界面中实际配置我们的云。"
+
+# fdf690af3a3f4d94827e349e8c9f227d
+#: ../../qig.rst:443
+msgid "Configuration"
+msgstr "配置"
+
+# f9efc4e5ffb747c2b2438ae4e5a12c06
+#: ../../qig.rst:445
+msgid ""
+"As we noted before we will be using security groups to provide isolation and"
+" by default that implies that we'll be using a flat layer-2 network. It also"
+" means that the simplicity of our setup means that we can use the quick "
+"installer."
+msgstr "正如之前提到的默认情况下我们将使用安全组提供网络隔离，也就是说我们仅需要一个扁平的二层网络。这也意味着我们可以通过快速安装程序完成简单的设置。"
+
+# 141607a559884ba897e6b3bda8c66d13
+#: ../../qig.rst:449
+msgid "UI Access"
+msgstr "访问用户界面"
+
+# 7c194cdde2f24cf9b0d5b89ac0fa69cf
+#: ../../qig.rst:451
+msgid ""
+"To get access to CloudStack's web interface, merely point your browser to "
+"http://172.16.10.2:8080/client The default username is 'admin', and the "
+"default password is 'password'. You should see a splash screen that allows "
+"you to choose several options for setting up CloudStack. You should choose "
+"the Continue with Basic Setup option."
+msgstr "要访问CloudStack的WEB界面，你需要在浏览器中输入http://172.16.10.2:8080/client，使用用户'admin'和默认密码'password'来登录。第一次登录后，有两个选项可以设置CloudStack。这里我们选择继续执行基本配置安装。"
+
+# f787e14ca1274bf9a979657d7827ed83
+#: ../../qig.rst:455
+msgid ""
+"You should now see a prompt requiring you to change the password for the "
+"admin user. Please do so."
+msgstr "现在你应该看到需要为管理员账户更改密码的提示，请照做。"
+
+# 0f367054953d45df94b9dc282fcbdec8
+#: ../../qig.rst:458
+msgid "Setting up a Zone"
+msgstr "建立一个区域"
+
+# 5a392849a21f4426865c8b8d121baf52
+#: ../../qig.rst:460
+msgid ""
+"A zone is the largest organization entity in CloudStack - and we'll be "
+"creating one, this should be the screen that you see in front of you now. "
+"And for us there are 5 pieces of information that we need."
+msgstr "区域是CloudStack中最大的组织实体。现在我们需要创建一个，就像你现在看到的一样。我们需要如下五处信息。"
+
+# 0b2efdf3d1d349638f8fad1d2ce871bb
+#: ../../qig.rst:463
+msgid "Name - we will set this to the ever-descriptive 'Zone1' for our cloud."
+msgstr "名称 - 我们将该Zone命名为'Zone1'。"
+
+# e7665d93b6fa417990104bc3921ae545
+#: ../../qig.rst:464
+msgid "Public DNS 1 - we will set this to '8.8.8.8' for our cloud."
+msgstr "公共DNS1 - 我们输入8.8.8.8。"
+
+# 6330777b8a6349789efb90092a35d85d
+#: ../../qig.rst:465
+msgid "Public DNS 2 - we will set this to '8.8.4.4' for our cloud."
+msgstr "公共DNS 2 - 我们输入8.8.4.4。"
+
+# 798c3b9e0efa451e9346164b921e3c49
+#: ../../qig.rst:466
+msgid "Internal DNS1 - we will also set this to '8.8.8.8' for our cloud."
+msgstr "内部DNS 1 - 我们同样输入8.8.8.8。"
+
+# 6b22a1c2ada74878a302ab60aee56f69
+#: ../../qig.rst:467
+msgid "Internal DNS2 - we will also set this to '8.8.4.4' for our cloud."
+msgstr "内部DNS 2 - 我们同样输入8.8.4.4。"
+
+# 9b18506e853543ad8b7ec950a00256b3
+#: ../../qig.rst:470
+msgid ""
+"CloudStack distinguishes between internal and public DNS. Internal DNS is "
+"assumed to be capable of resolving internal-only hostnames, such as your NFS"
+" server’s DNS name. Public DNS is provided to the guest VMs to resolve "
+"public IP addresses. You can enter the same DNS server for both types, but "
+"if you do so, you must make sure that both internal and public IP addresses "
+"can route to the DNS server. In our specific case we will not use any names "
+"for resources internally, and we have indeed them set to look to the same "
+"external resource so as to not add a namerserver setup to our list of "
+"requirements."
+msgstr "CloudStack区分内部和公共DNS。内部DNS只负责解析内部主机名，比如NFS服务器的DNS名称。公共DNS为虚拟机提供公共IP地址解析。你可以指定同一个DNS服务器，但如果这样做，你必须确保内部和公共IP地址都能路由到DNS服务器。在我们的案例中对内部资源不使用DNS名称，因此这里将其设置为与外部DNS一致以简化安装，从而不必为此再安装一台DNS服务器。"
+
+# 6abb7ced848c4d789ccfe5808162738b
+#: ../../qig.rst:478
+msgid "Pod Configuration"
+msgstr "配置提供点"
+
+# a0be2d6be3b24aeca0648c6c67188f86
+#: ../../qig.rst:480
+msgid ""
+"Now that we've added a Zone, the next step that comes up is a prompt for "
+"information regading a pod. Which is looking for several items."
+msgstr "我们已经添加了一个Zone，下一步会出现添加pod的提示信息。"
+
+# 61e16957539b42feafc9a1090cfc8239
+#: ../../qig.rst:483
+msgid "Name - We'll use Pod1 for our cloud."
+msgstr "提供点名称 - 使用Pod1"
+
+# 3516c658373648e6aef3e62fc367bb08
+#: ../../qig.rst:484
+msgid "Gateway - We'll use 172.16.10.1 as our gateway"
+msgstr "网关 - 使用172.16.10.1作为网关"
+
+# 1cc7b2c550c245bebaa39bdbe9aa45dc
+#: ../../qig.rst:485
+msgid "Netmask - We'll use 255.255.255.0"
+msgstr "子网掩码 - 使用255.255.255.0"
+
+# aec0c6dd26da432aa6e09f095bb69f98
+#: ../../qig.rst:486
+msgid "Start/end reserved system IPs - we will use 172.16.10.10-172.16.10.20"
+msgstr "起始/结束 系统预留IP - 使用172.16.10.10-172.16.10.20"
+
+# c0347e177c1840319abe84a3355e5ca6
+#: ../../qig.rst:487
+msgid "Guest gateway - We'll use 172.16.10.1"
+msgstr "来宾网络网关 - 使用172.16.10.1"
+
+# a2c495db56254916b4cc32d1d4473de9
+#: ../../qig.rst:488
+msgid "Guest netmask - We'll use 255.255.255.0"
+msgstr "来宾网络子网掩码 - 使用255.255.255.0"
+
+# dba3ac553808478c8ed12106982fbc26
+#: ../../qig.rst:489
+msgid "Guest start/end IP - We'll use 172.16.10.30-172.16.10.200"
+msgstr "来宾网络 起始/结束IP - 使用172.16.10.30-172.16.10.200"
+
+# 2f7eba54fac04422a40615b154d8a168
+#: ../../qig.rst:492
+msgid "Cluster"
+msgstr "群集"
+
+# 52c8411631024954acd09ee782f3c5bd
+#: ../../qig.rst:494
+msgid ""
+"Now that we've added a Zone, we need only add a few more items for "
+"configuring the cluster."
+msgstr "现在我们已经添加了一个Zone，接下来我们添加一个群集。"
+
+# 5f0719aeef1e4566869cf817f6d44bb1
+#: ../../qig.rst:496
+msgid "Name - We'll use Cluster1"
+msgstr "群集名称 - Cluster1"
+
+# 291858f202db4698a7d5dbfe53aee727
+#: ../../qig.rst:497
+msgid "Hypervisor - Choose KVM"
+msgstr "Hypervisor - 选择KVM"
+
+# 1b28f08904864d2fa2dccd5124fadbfb
+#: ../../qig.rst:499
+msgid ""
+"You should be prompted to add the first host to your cluster at this point. "
+"Only a few bits of information are needed."
+msgstr "在此处系统会提示你添加群集中的第一台主机。只需输入少量信息即可。"
+
+# 4351e5655a0847ac8ad693dcc8a98e4a
+#: ../../qig.rst:501
+msgid ""
+"Hostname - we'll use the IP address 172.16.10.2 since we didn't set up a DNS"
+" server."
+msgstr "主机名 - 由于没有设置DNS服务器，所以这里输入主机IP地址 172.16.10.2。"
+
+# b6d07aca91e6415cb85fe4539395421a
+#: ../../qig.rst:502
+msgid "Username - we'll use 'root'"
+msgstr "用户名 - 我们使用root"
+
+# ac3d973254774190b86239a48d6160c8
+#: ../../qig.rst:503
+msgid "Password - enter the operating system password for the root user"
+msgstr "密码 - 输入root用户的密码"
+
+# 57352ed645a840d196826dd1ec54a9e4
+#: ../../qig.rst:506
+msgid "Primary Storage"
+msgstr "主存储"
+
+# b21d11da55b945e98d24f3d6edcb44a1
+#: ../../qig.rst:508
+msgid ""
+"With your cluster now setup - you should be prompted for primary storage "
+"information. Choose NFS as the storage type and then enter the following "
+"values in the fields:"
+msgstr "在配置群集时，按提示输入主存储的信息。选择NFS作为存储类型，并在如下区域中输入相应的值："
+
+# 3cf4f004da814edb9a1bb060c2a2fab2
+#: ../../qig.rst:511
+msgid "Name - We'll use 'Primary1'"
+msgstr "名称 - 使用 'Primary1'"
+
+# 3d02b6b358d84793ac50c36e649837d8
+#: ../../qig.rst:512
+msgid "Server - We'll be using the IP address 172.16.10.2"
+msgstr "服务器 - 使用的IP地址为 172.16.10.2"
+
+# bc63c7c67c34425b87fc91665bd5ab23
+#: ../../qig.rst:513
+msgid "Path - Well define /primary as the path we are using"
+msgstr "路径 - 使用之前定义的 /primary"
+
+# e93426f6cbeb4da583fbe5412fcdda37
+#: ../../qig.rst:516
+msgid "Secondary Storage"
+msgstr "辅助存储"
+
+# eab19f6315b6418992fdeb8091ecc68e
+#: ../../qig.rst:518
+msgid ""
+"If this is a new zone, you'll be prompted for secondary storage information "
+"- populate it as follows:"
+msgstr "如果这是一个新zone，你需要提供辅助存储信息-如下所示："
+
+# 06a20b9446cc421f8cd379321ed4dd27
+#: ../../qig.rst:520
+msgid "NFS server - We'll use the IP address 172.16.10.2"
+msgstr "NFS服务器 - 使用的IP地址为 172.16.10.2"
+
+# b7cb653afafc44cd8f4b96afe0319397
+#: ../../qig.rst:521
+msgid "Path - We'll use /secondary"
+msgstr "路径：-使用 /secondary"
+
+# 77df86839f944159bc608fdc4cf35b09
+#: ../../qig.rst:523
+msgid ""
+"Now, click Launch and your cloud should begin setup - it may take several "
+"minutes depending on your internet connection speed for setup to finalize."
+msgstr "现在，点击Launch开始配置云-完成安装所需的时间取决于你的网络速度。"
+
+# 0e8144e3139949fcac955092fb0158da
+#: ../../qig.rst:526
+msgid ""
+"That's it, you are done with installation of your Apache CloudStack cloud."
+msgstr "到这里，你的Apache CloudStack云就已经安装完成了。"
