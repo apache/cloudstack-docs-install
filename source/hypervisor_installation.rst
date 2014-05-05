@@ -1171,6 +1171,29 @@ XenServer, download and install the CloudStack XenServer Support Package
 (CSP). After installing XenServer, perform the following additional
 steps on each XenServer host.
 
+**For XenServer 6.1:**
+
+CSP functionality is already present in XenServer 6.1
+
+#. Run the below command
+   
+   .. sourcecode:: bash
+
+      xe-switch-network-backend bridge
+
+#. update sysctl.conf with the following
+
+   .. sourcecode:: bash
+   
+      net.bridge.bridge-nf-call-iptables = 1
+      net.bridge.bridge-nf-call-ip6tables = 0
+      net.bridge.bridge-nf-call-arptables = 1
+      
+      $ sysctl -p /etc/sysctl.conf
+
+
+**For XenServer 6.0.2, 6.0, 5.6 SP2:**
+
 #. 
 
    Download the CSP software onto the XenServer host from one of the
@@ -1187,7 +1210,8 @@ steps on each XenServer host.
    For XenServer 6.0:
 
    `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`_
-
+   
+   
 #. 
 
    Extract the file:
