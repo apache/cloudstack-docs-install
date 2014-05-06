@@ -84,6 +84,13 @@ Network Setup
 
     network_setup
 
+Managing Networks
+-------------
+.. toctree::
+    :maxdepth: 2
+
+    managing_networks
+
 Storage Setup
 -------------
 .. toctree::
