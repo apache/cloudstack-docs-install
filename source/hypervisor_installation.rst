@@ -1194,7 +1194,7 @@ CSP functionality is already present in XenServer 6.1
 
 **For XenServer 6.0.2, 6.0, 5.6 SP2:**
 
-#. 
+#.
 
    Download the CSP software onto the XenServer host from one of the
    following links:
@@ -1210,9 +1210,9 @@ CSP functionality is already present in XenServer 6.1
    For XenServer 6.0:
 
    `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`_
-   
-   
-#. 
+
+ 
+#.
 
    Extract the file:
 
