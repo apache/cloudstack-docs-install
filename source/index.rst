@@ -75,7 +75,11 @@ Hypervisor Installation
 .. toctree::
     :maxdepth: 2
 
-    hypervisor_installation
+    hypervisor/kvm.rst
+    hypervisor/xenserver.rst
+    hypervisor/vsphere.rst
+    hypervisor/lxc.rst
+    hypervisor/hyperv.rst
 
 Network Setup
 -------------
