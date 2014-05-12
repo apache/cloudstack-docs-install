@@ -100,7 +100,7 @@ Now that we have the configuration files properly set up, we need to run a few c
 
      # chkconfig network on
 
-     # chkconfig network start
+     # service network start
 
 .. _conf-hostname:
 
