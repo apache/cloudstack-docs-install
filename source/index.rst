@@ -18,22 +18,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. figure:: /_static/images/acslogo.png
-    :align: center
-
-Quicklinks to CloudStack documentations:
-
-  * `Documentation home <http://docs.cloudstack.apache.org>`_
-  * `Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
-  * `Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
-
-
-
 Welcome to CloudStack Installation Documentation
 ================================================
 
-.. toctree::
-   :maxdepth: 2
+.. figure:: /_static/images/acslogo.png
+    :align: center
+
+This is the Apache CloudStack installation guide, for the Documentation home, the administrator guide or the Release-Notes please see:
+
+- `Documentation home <http://docs.cloudstack.apache.org>`_
+- `Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
+- `Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
+
+.. note:: In this guide we first go through some design and architectural choices_ to build your cloud.
+          Then we dive into a single node quick start guide_ to give you a feel for the installation process. The source installation
+          steps_ are given in the follow-on section for people who want to build their own packages. Otherwise you can use the general installation_
+          which makes use of community maintained package repositories. The rest of the guide goes through the configuration_ of the data-center and
+          the setup of the network_, storage_ and hypervisors_.
+
+.. _choices:
 
 Choosing a Deployment Architecture
 ----------------------------------
@@ -42,6 +45,8 @@ Choosing a Deployment Architecture
 
     choosing_deployment_architecture
 
+.. _guide:
+
 Quick Installation Guide
 ------------------------
 .. toctree::
@@ -49,12 +54,7 @@ Quick Installation Guide
 
     qig
 
-General Installation
---------------------
-.. toctree::
-    :maxdepth: 2
-
-    installation
+.. _steps:
 
 Source Installation
 -------------------
@@ -63,12 +63,25 @@ Source Installation
 
     building_from_source
 
+.. _installation:
+
+General Installation
+--------------------
+.. toctree::
+    :maxdepth: 2
+
+    installation
+
+.. _configuration:
+
 Configuration
 -------------
 .. toctree::
     :maxdepth: 2
 
     configuration
+
+.. _hypervisors:
 
 Hypervisor Installation
 -----------------------
@@ -81,12 +94,16 @@ Hypervisor Installation
     hypervisor/lxc.rst
     hypervisor/hyperv.rst
 
+.. _network:
+
 Network Setup
 -------------
 .. toctree::
     :maxdepth: 2
 
     network_setup
+
+.. _storage:
 
 Storage Setup
 -------------
