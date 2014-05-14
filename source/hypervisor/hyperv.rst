@@ -13,8 +13,8 @@
    specific language governing permissions and limitations
    under the License.
 
-Installing Hyper-V for CloudStack
----------------------------------
+Hyper-V Installation and Configuration
+--------------------------------------
 
 If you want to use Hyper-V hypervisor to run guest virtual machines,
 install Hyper-V on the hosts in your cloud. The instructions in this

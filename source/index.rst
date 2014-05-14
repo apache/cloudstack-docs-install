@@ -39,6 +39,8 @@ This is the Apache CloudStack installation guide, for the Documentation home, th
           which makes use of community maintained package repositories. The rest of the guide goes through the configuration_ of the data-center and
           the setup of the network_, storage_ and hypervisors_.
 
+.. toctree::
+
 .. _choices:
 
 Choosing a Deployment Architecture
@@ -86,16 +88,13 @@ Configuration
 
 .. _hypervisors:
 
-Hypervisor Installation
------------------------
+Hypervisor Setup
+----------------
 .. toctree::
     :maxdepth: 2
+    :glob:
 
-    hypervisor/kvm.rst
-    hypervisor/xenserver.rst
-    hypervisor/vsphere.rst
-    hypervisor/lxc.rst
-    hypervisor/hyperv.rst
+    hypervisor/*
 
 .. _network:
 
