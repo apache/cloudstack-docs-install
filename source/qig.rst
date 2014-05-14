@@ -348,10 +348,8 @@ Now we need to download the system VM template and deploy that to the share we j
 server includes a script to properly manipulate the system VMs images.
 
   .. sourcecode:: bash
-
-     # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m \ 
-     /secondary -u http://download.cloud.com/templates/acton/acton-systemvm-02062012.qcow2.bz2 \
-     -h kvm -F
+	 
+	 # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h kvm -F
 
 That concludes our setup of the management server. We still need to configure CloudStack, but we will do that after we
 get our hypervisor set up.
