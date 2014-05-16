@@ -225,7 +225,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-    deb http://cloudstack.apt-get.eu/ubuntu precise 4.2
+    deb http://cloudstack.apt-get.eu/ubuntu precise 4.3
 
 We now have to add the public key to the trusted keys.
 
@@ -262,7 +262,7 @@ information.
 
     [cloudstack]
     name=cloudstack
-    baseurl=http://cloudstack.apt-get.eu/rhel/4.2/
+    baseurl=http://cloudstack.apt-get.eu/rhel/4.3/
     enabled=1
     gpgcheck=0
 
