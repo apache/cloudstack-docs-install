@@ -1589,13 +1589,6 @@ cluster.
 
    When using preallocated storage for primary storage, be sure there is nothing on the storage (ex. you have an empty SAN volume or an empty NFS share). Adding the storage to CloudStack will destroy any existing data.
 
-.. note:: 
-
-   Primary storage can also be added at the zone level through the CloudStack API (adding zone-level primary storage is not yet supported through the CloudStack UI).
-
-Once primary storage has been added at the zone level, it can be managed
-through the CloudStack UI.
-
 #. 
 
    Log in to the CloudStack UI (see `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_).
@@ -1730,11 +1723,8 @@ Configuring a Storage Plug-in
 
 .. note::
 
-   Primary storage that is based on a custom plug-in (ex. SolidFire) must be added through the CloudStack API (described later in this section). There is no      support at this time through the CloudStack UI to add this type of primary storage (although most of its features are available through the CloudStack UI).
-
-.. note::
-
-   At this time, a custom storage plug-in, such as the SolidFire storage plug-in, can only be leveraged for data disks (through Disk Offerings).
+   Primary storage that is based on a custom plug-in (ex. SolidFire) must be added through the CloudStack API (described later in this section). There is no
+   support at this time through the CloudStack UI to add this type of primary storage (although most of its features are available through the CloudStack UI).
 
 .. note::
 
@@ -1743,9 +1733,9 @@ Configuring a Storage Plug-in
 Adding primary storage that is based on the SolidFire plug-in enables
 CloudStack to provide hard quality-of-service (QoS) guarantees.
 
-When used with Disk Offerings, an administrator is able to build an
-environment in which a data disk that a user creates leads to the
-dynamic creation of a SolidFire volume, which has guaranteed
+When used with Compute or Disk Offerings, an administrator is able to
+build an environment in which a root or data disk that a user creates
+leads to the dynamic creation of a SolidFire volume, which has guaranteed
 performance. Such a SolidFire volume is associated with one (and only
 ever one) CloudStack volume, so performance of the CloudStack volume
 does not vary depending on how heavily other tenants are using the
