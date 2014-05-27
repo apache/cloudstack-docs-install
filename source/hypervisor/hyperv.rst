@@ -13,6 +13,7 @@
    specific language governing permissions and limitations
    under the License.
 
+
 Hyper-V Installation and Configuration
 --------------------------------------
 
@@ -22,53 +23,40 @@ section doesn't duplicate Hyper-V Installation documentation. It
 provides the CloudStack-specific steps that are needed to prepare a
 Hyper-V host to work with CloudStack.
 
+
 System Requirements for Hyper-V Hypervisor Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Supported Operating Systems for Hyper-V Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  
+-  Windows Server 2012 R2 Standard
 
-   Windows Server 2012 R2 Standard
+-  Windows Server 2012 R2 Datacenter
 
--  
+-  Hyper-V 2012 R2
 
-   Windows Server 2012 R2 Datacenter
-
--  
-
-   Hyper-V 2012 R2
 
 Minimum System Requirements for Hyper-V Hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  
+-  1.4 GHz 64-bit processor with hardware-assisted virtualization.
 
-   1.4 GHz 64-bit processor with hardware-assisted virtualization.
+-  800 MB of RAM
 
--  
+-  32 GB of disk space
 
-   800 MB of RAM
+-  Gigabit (10/100/1000baseT) Ethernet adapter
 
--  
-
-   32 GB of disk space
-
--  
-
-   Gigabit (10/100/1000baseT) Ethernet adapter
 
 Supported Storage
 ^^^^^^^^^^^^^^^^^
 
--  
+-  Primary Storage: Server Message Block (SMB) Version 3, Local
 
-   Primary Storage: Server Message Block (SMB) Version 3, Local
+-  Secondary Storage: SMB
 
--  
-
-   Secondary Storage: SMB
 
 Preparation Checklist for Hyper-V
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -166,31 +154,21 @@ start:
 Hyper-V Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. 
+#. Download the operating system from `Windows Server 2012 R2 
+   <http://technet.microsoft.com/en-us/windowsserver/hh534429>`_.
 
-   Download the operating system from `Windows Server 2012 R2 <http://technet.microsoft.com/en-us/windowsserver/hh534429>`_.
+#. Install it on the host as given in `Install and Deploy Windows Server 2012 
+   R2 <http://technet.microsoft.com/library/hh831620>`_.
 
-#. 
+#. Post installation, ensure that you enable Hyper-V role in the server.
 
-   Install it on the host as given in `Install and Deploy Windows Server 2012 R2 <http://technet.microsoft.com/library/hh831620>`_.
-
-#. 
-
-   Post installation, ensure that you enable Hyper-V role in the server.
-
-#. 
-
-   If no Active Directory domain exists in your deployment, create one
+#. If no Active Directory domain exists in your deployment, create one
    and add users to the domain.
 
-#. 
-
-   In the Active Directory domain, ensure that all the Hyper-v hosts are
+#. In the Active Directory domain, ensure that all the Hyper-v hosts are
    added so that all the hosts are part of the domain.
 
-#. 
-
-   Add the domain user to the following groups on the Hyper-V host:
+#. Add the domain user to the following groups on the Hyper-V host:
    Hyper-V Administrators and Local Administrators.
 
 
@@ -209,49 +187,39 @@ HTTPS. For secure communication between the Management Server and the
 host, install a self-signed certificate on port 8250.
 
 .. note:: 
-    The Agent installer automatically perform this operation. You have not selected this option during the Agent installation, it can also be done manually as given in step 1.
+   The Agent installer automatically perform this operation. You have not 
+   selected this option during the Agent installation, it can also be done 
+   manually as given in step 1.
 
-#. 
+#. Create and add a self-signed SSL certificate on port 8250:
 
-   Create and add a self-signed SSL certificate on port 8250:
-
-   #. 
-
-      Create A self-signed SSL certificate:
+   #. Create A self-signed SSL certificate:
 
       .. sourcecode:: bash
 
-          #  New-SelfSignedCertificate -DnsName apachecloudstack -CertStoreLocation Cert:\LocalMachine\My
+         # New-SelfSignedCertificate -DnsName apachecloudstack -CertStoreLocation Cert:\LocalMachine\My
 
       This command creates the self-signed certificate and add that to
       the certificate store ``LocalMachine\My``.
 
-   #. 
-
-      Add the created certificate to port 8250 for https communication:
+   #. Add the created certificate to port 8250 for https communication:
 
       .. sourcecode:: bash
 
-          netsh http add sslcert ipport=0.0.0.0:8250 certhash=<thumbprint> appid="{727beb1c-6e7c-49b2-8fbd-f03dbe481b08}"
+         netsh http add sslcert ipport=0.0.0.0:8250 certhash=<thumbprint> appid="{727beb1c-6e7c-49b2-8fbd-f03dbe481b08}"
 
       Thumbprint is the thumbprint of the certificate you created.
 
-#. 
+#. Build the CloudStack Agent for Hyper-V as given in `Building CloudStack 
+   Hyper-V Agent <https://cwiki.apache.org/confluence/display/CLOUDSTACK/Creating+Hyperv+Agent+Installer>`__.
 
-   Build the CloudStack Agent for Hyper-V as given in `Building
-   CloudStack Hyper-V
-   Agent <https://cwiki.apache.org/confluence/display/CLOUDSTACK/Creating+Hyperv+Agent+Installer>`__.
+#. As an administrator, run the installer.
 
-#. 
-
-   As an administrator, run the installer.
-
-#. 
-
-   Provide the Hyper-V admin credentials when prompted.
+#. Provide the Hyper-V admin credentials when prompted.
 
    When the agent installation is finished, the agent runs as a service
    on the host machine.
+
 
 Physical Network Configuration for Hyper-V
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -269,33 +237,30 @@ desired NIC adapter and click Apply.
 If you are using Windows 2012 R2, virtual switch is created
 automatically.
 
+
 Storage Preparation for Hyper-V (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CloudStack allows administrators to set up shared Primary Storage and
 Secondary Storage that uses SMB.
 
-#. 
+#. Create a SMB storage and expose it over SMB Version 3.
 
-   Create a SMB storage and expose it over SMB Version 3.
-
-   For more information, see `Deploying Hyper-V over SMB <http://technet.microsoft.com/en-us/library/jj134187.aspx>`_.
+   For more information, see `Deploying Hyper-V over SMB 
+   <http://technet.microsoft.com/en-us/library/jj134187.aspx>`_.
 
    You can also create and export SMB share using Windows. After the
    Windows Server 2012 R2 installation, select File and Storage Services
    from Server Roles to create an SMB file share. For more information,
-   see `Creating an SMB File Share Using Server Manager <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step3>`_.
+   see `Creating an SMB File Share Using Server Manager 
+   <http://technet.microsoft.com/en-us/library/jj134187.aspx#BKMK_Step3>`_.
 
-#. 
-
-   Add the SMB share to the Active Directory domain.
+#. Add the SMB share to the Active Directory domain.
 
    The SMB share and the hosts managed by CloudStack need to be in the
    same domain. However, the storage should be accessible from the
    Management Server with the domain user privileges.
 
-#. 
-
-   While adding storage to CloudStack, ensure that the correct domain,
+#. While adding storage to CloudStack, ensure that the correct domain,
    and credentials are supplied. This user should be able to access the
    storage from the Management Server.

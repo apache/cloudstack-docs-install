@@ -13,32 +13,32 @@
    specific language governing permissions and limitations
    under the License.
 
+
 VMware vSphere Installation and Configuration
 ---------------------------------------------
 
 If you want to use the VMware vSphere hypervisor to run guest virtual
 machines, install vSphere on the host(s) in your cloud.
 
+
 System Requirements for vSphere Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Software requirements:
 ^^^^^^^^^^^^^^^^^^^^^^
 
--  
-
-   vSphere and vCenter, both version 4.1 or 5.0.
+-  vSphere and vCenter, both version 4.1 or 5.0.
 
    vSphere Standard is recommended. Note however that customers need to
    consider the CPU constraints in place with vSphere licensing. See
-   `http://www.vmware.com/files/pdf/vsphere\_pricing.pdf <http://www.vmware.com/files/pdf/vsphere_pricing.pdf>`_
+   `http://www.vmware.com/files/pdf/vsphere\_pricing.pdf 
+   <http://www.vmware.com/files/pdf/vsphere_pricing.pdf>`_
    and discuss with your VMware sales representative.
 
    vCenter Server Standard is recommended.
 
--  
-
-   Be sure all the hotfixes provided by the hypervisor vendor are
+-  Be sure all the hotfixes provided by the hypervisor vendor are
    applied. Track the release of hypervisor patches through your
    hypervisor vendor's support channel, and apply patches as soon as
    possible after they are released. CloudStack will not track or notify
@@ -47,150 +47,108 @@ Software requirements:
    hypervisor vendor is likely to refuse to support any system that is
    not up to date with patches.
 
-.. warning:: Apply All Necessary Hotfixes. The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+.. warning:: 
+   Apply All Necessary Hotfixes. The lack of up-do-date hotfixes can lead to 
+   data corruption and lost VMs.
+
 
 Hardware requirements:
 ^^^^^^^^^^^^^^^^^^^^^^
 
--  
-
-   The host must be certified as compatible with vSphere. See the VMware
+-  The host must be certified as compatible with vSphere. See the VMware
    Hardware Compatibility Guide at
-   `http://www.vmware.com/resources/compatibility/search.php <http://www.vmware.com/resources/compatibility/search.php>`_.
+   `http://www.vmware.com/resources/compatibility/search.php 
+   <http://www.vmware.com/resources/compatibility/search.php>`_.
 
--  
-
-   All hosts must be 64-bit and must support HVM (Intel-VT or AMD-V
+-  All hosts must be 64-bit and must support HVM (Intel-VT or AMD-V
    enabled).
 
--  
-
-   All hosts within a cluster must be homogenous. That means the CPUs
+-  All hosts within a cluster must be homogenous. That means the CPUs
    must be of the same type, count, and feature flags.
 
--  
+-  64-bit x86 CPU (more cores results in better performance)
 
-   64-bit x86 CPU (more cores results in better performance)
+-  Hardware virtualization support required
 
--  
+-  4 GB of memory
 
-   Hardware virtualization support required
+-  36 GB of local disk
 
--  
+-  At least 1 NIC
 
-   4 GB of memory
+-  Statically allocated IP Address
 
--  
-
-   36 GB of local disk
-
--  
-
-   At least 1 NIC
-
--  
-
-   Statically allocated IP Address
 
 vCenter Server requirements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  
-
-   Processor - 2 CPUs 2.0GHz or higher Intel or AMD x86 processors.
+-  Processor - 2 CPUs 2.0GHz or higher Intel or AMD x86 processors.
    Processor requirements may be higher if the database runs on the same
    machine.
 
--  
-
-   Memory - 3GB RAM. RAM requirements may be higher if your database
+-  Memory - 3GB RAM. RAM requirements may be higher if your database
    runs on the same machine.
 
--  
-
-   Disk storage - 2GB. Disk requirements may be higher if your database
+-  Disk storage - 2GB. Disk requirements may be higher if your database
    runs on the same machine.
 
--  
-
-   Microsoft SQL Server 2005 Express disk requirements. The bundled
+-  Microsoft SQL Server 2005 Express disk requirements. The bundled
    database requires up to 2GB free disk space to decompress the
    installation archive.
 
--  
+-  Networking - 1Gbit or 10Gbit.
 
-   Networking - 1Gbit or 10Gbit.
+For more information, see `"vCenter Server and the vSphere Client Hardware 
+Requirements" <http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#href=install/c_vc_hw.html>`_.
 
-For more information, see `"vCenter Server and the vSphere Client Hardware Requirements" <http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#href=install/c_vc_hw.html>`_.
 
 Other requirements:
 ^^^^^^^^^^^^^^^^^^^
 
--  
-
-   VMware vCenter Standard Edition 4.1 or 5.0 must be installed and
+-  VMware vCenter Standard Edition 4.1 or 5.0 must be installed and
    available to manage the vSphere hosts.
 
--  
-
-   vCenter must be configured to use the standard port 443 so that it
+-  vCenter must be configured to use the standard port 443 so that it
    can communicate with the CloudStack Management Server.
 
--  
-
-   You must re-install VMware ESXi if you are going to re-use a host
+-  You must re-install VMware ESXi if you are going to re-use a host
    from a previous install.
 
--  
-
-   CloudStack requires VMware vSphere 4.1 or 5.0. VMware vSphere 4.0 is
+-  CloudStack requires VMware vSphere 4.1 or 5.0. VMware vSphere 4.0 is
    not supported.
 
--  
-
-   All hosts must be 64-bit and must support HVM (Intel-VT or AMD-V
+-  All hosts must be 64-bit and must support HVM (Intel-VT or AMD-V
    enabled). All hosts within a cluster must be homogeneous. That means
    the CPUs must be of the same type, count, and feature flags.
 
--  
-
-   The CloudStack management network must not be configured as a
+-  The CloudStack management network must not be configured as a
    separate virtual network. The CloudStack management network is the
    same as the vCenter management network, and will inherit its
    configuration. See :ref:`configure-vcenter-management-network`.
 
--  
+-  CloudStack requires ESXi. ESX is not supported.
 
-   CloudStack requires ESXi. ESX is not supported.
-
--  
-
-   All resources used for CloudStack must be used for CloudStack only.
+-  All resources used for CloudStack must be used for CloudStack only.
    CloudStack cannot share instance of ESXi or storage with other
    management consoles. Do not share the same storage volumes that will
    be used by CloudStack with a different set of ESXi servers that are
    not managed by CloudStack.
 
--  
-
-   Put all target ESXi hypervisors in a cluster in a separate Datacenter
+-  Put all target ESXi hypervisors in a cluster in a separate Datacenter
    in vCenter.
 
--  
-
-   The cluster that will be managed by CloudStack should not contain any
+-  The cluster that will be managed by CloudStack should not contain any
    VMs. Do not run the management server, vCenter or any other VMs on
    the cluster that is designated for CloudStack use. Create a separate
    cluster for use of CloudStack and make sure that they are no VMs in
    this cluster.
 
--  
-
-   All the required VLANS must be trunked into all network switches that
+-  All the required VLANS must be trunked into all network switches that
    are connected to the ESXi hypervisor hosts. These would include the
    VLANS for Management, Storage, vMotion, and guest VLANs. The guest
    VLAN (used in Advanced Networking; see Network Setup) is a contiguous
    range of VLANs that will be managed by CloudStack.
+
 
 Preparation Checklist for VMware
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,13 +156,10 @@ Preparation Checklist for VMware
 For a smoother installation, gather the following information before you
 start:
 
--  
+-  Information listed in :ref:`vcenter-checklist`
 
-   Information listed in :ref:`vcenter-checklist`
+-  Information listed in :ref:`networking-checklist-for-vmware`
 
--  
-
-   Information listed in :ref:`networking-checklist-for-vmware`
 
 .. _vcenter-checklist:
 
@@ -221,6 +176,7 @@ vCenter User Password     Password for the above user.
 vCenter Datacenter Name   Name of the datacenter.
 vCenter Cluster Name      Name of the cluster.
 ========================  =====================================
+
 
 .. _networking-checklist-for-vmware:
 
@@ -251,16 +207,12 @@ VLAN Range for Customer use   A contiguous range of non-routable VLANs. One VLAN
 vSphere Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. 
-
-   If you haven't already, you'll need to download and purchase vSphere
+#. If you haven't already, you'll need to download and purchase vSphere
    from the VMware Website
    (`https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1 <https://www.vmware.com/tryvmware/index.php?p=vmware-vsphere&lp=1>`_)
    and install it by following the VMware vSphere Installation Guide.
 
-#. 
-
-   Following installation, perform the following configuration, which
+#. Following installation, perform the following configuration, which
    are described in the next few sections:
 
    ====================================================================================================== ===================
@@ -272,12 +224,14 @@ vSphere Installation Steps
    Configure clusters in vCenter and add hosts to them, or add hosts without clusters to vCenter
    ====================================================================================================== ===================
 
+
 ESXi Host setup
 ~~~~~~~~~~~~~~~
 
 All ESXi hosts should enable CPU hardware virtualization support in
 BIOS. Please note hardware virtualization support is not enabled by
 default on most servers.
+
 
 Physical Host Networking
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -294,6 +248,7 @@ to the Configuration tab.
 In the host configuration tab, click the "Hardware/Networking" link to
 bring up the networking configuration page as above.
 
+
 Configure Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -301,6 +256,7 @@ A default virtual switch vSwitch0 is created. CloudStack requires all
 ESXi hosts in the cloud to use the same set of virtual switch names. If
 you change the default virtual switch name, you will need to configure
 one or more CloudStack configuration variables as well.
+
 
 Separating Traffic
 ''''''''''''''''''
@@ -317,6 +273,7 @@ If you want to separate traffic in this way you should first create and
 configure vSwitches in vCenter according to the vCenter instructions.
 Take note of the vSwitch names you have used for each traffic type. You
 will configure CloudStack to use these vSwitches.
+
 
 Increasing Ports
 ''''''''''''''''
@@ -337,6 +294,7 @@ In this dialog, you can change the number of switch ports. After you've
 done that, ESXi hosts are required to reboot in order for the setting to
 take effect.
 
+
 .. _configure-vcenter-management-network:
 
 Configure vCenter Management Network
@@ -352,32 +310,23 @@ dialog, then click Edit.
 
 Make sure the following values are set:
 
--  
+-  VLAN ID set to the desired ID
 
-   VLAN ID set to the desired ID
+-  vMotion enabled.
 
--  
-
-   vMotion enabled.
-
--  
-
-   Management traffic enabled.
+-  Management traffic enabled.
 
 If the ESXi hosts have multiple VMKernel ports, and ESXi is not using
 the default value "Management Network" as the management network name,
 you must follow these guidelines to configure the management network
 port group so that CloudStack can find it:
 
--  
+-  Use one label for the management network port across all ESXi hosts.
 
-   Use one label for the management network port across all ESXi hosts.
-
--  
-
-   In the CloudStack UI, go to Configuration - Global Settings and set
+-  In the CloudStack UI, go to Configuration - Global Settings and set
    vmware.management.portgroup to the management network label from the
    ESXi hosts.
+
 
 Extend Port Range for CloudStack Console Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -392,14 +341,16 @@ each host and run the following commands:
 
 .. sourcecode:: bash
 
-    esxcfg-firewall -o 59000-60000,tcp,in,vncextras
-    esxcfg-firewall -o 59000-60000,tcp,out,vncextras
+   esxcfg-firewall -o 59000-60000,tcp,in,vncextras
+   esxcfg-firewall -o 59000-60000,tcp,out,vncextras
+
 
 Configure NIC Bonding for vSphere
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 NIC bonding on vSphere hosts may be done according to the vSphere
 installation guide.
+
 
 Configuring a vSphere Cluster with Nexus 1000v Virtual Switch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -409,7 +360,9 @@ Switch) for virtual network configuration in a VMware vSphere
 environment. This section helps you configure a vSphere cluster with
 Nexus 1000v virtual switch in a VMware vCenter environment. For
 information on creating a vSphere cluster, see 
-`"VMware vSphere Installation and Configuration" <#vmware-vsphere-installation-and-configuration>`_
+`"VMware vSphere Installation and Configuration" 
+<#vmware-vsphere-installation-and-configuration>`_
+
 
 About Cisco Nexus 1000v Distributed Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -439,6 +392,7 @@ define network policies which can be reused for new virtual machines.
 The Ethernet port profiles are created on the VSM and are represented as
 port groups on the vCenter server.
 
+
 Prerequisites and Guidelines
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -446,48 +400,35 @@ This section discusses prerequisites and guidelines for using Nexus
 virtual switch in CloudStack. Before configuring Nexus virtual switch,
 ensure that your system meets the following requirements:
 
--  
-
-   A cluster of servers (ESXi 4.1 or later) is configured in the
+-  A cluster of servers (ESXi 4.1 or later) is configured in the
    vCenter.
 
--  
-
-   Each cluster managed by CloudStack is the only cluster in its vCenter
+-  Each cluster managed by CloudStack is the only cluster in its vCenter
    datacenter.
 
--  
-
-   A Cisco Nexus 1000v virtual switch is installed to serve the
+-  A Cisco Nexus 1000v virtual switch is installed to serve the
    datacenter that contains the vCenter cluster. This ensures that
    CloudStack doesn't have to deal with dynamic migration of virtual
    adapters or networks across other existing virtual switches. See
-   `Cisco Nexus 1000V Installation and Upgrade
-   Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_5_1/install_upgrade/vsm_vem/guide/n1000v_installupgrade.html>`_
+   `Cisco Nexus 1000V Installation and Upgrade Guide 
+   <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_5_1/install_upgrade/vsm_vem/guide/n1000v_installupgrade.html>`_
    for guidelines on how to install the Nexus 1000v VSM and VEM modules.
 
--  
-
-   The Nexus 1000v VSM is not deployed on a vSphere host that is managed
+-  The Nexus 1000v VSM is not deployed on a vSphere host that is managed
    by CloudStack.
 
--  
-
-   When the maximum number of VEM modules per VSM instance is reached,
+-  When the maximum number of VEM modules per VSM instance is reached,
    an additional VSM instance is created before introducing any more
    ESXi hosts. The limit is 64 VEM modules for each VSM instance.
 
--  
-
-   CloudStack expects that the Management Network of the ESXi host is
+-  CloudStack expects that the Management Network of the ESXi host is
    configured on the standard vSwitch and searches for it in the
    standard vSwitch. Therefore, ensure that you do not migrate the
    management network to Nexus 1000v virtual switch during
    configuration.
 
--  
+-  All information given in :ref:`nexus-vswift-preconf`
 
-   All information given in :ref:`nexus-vswift-preconf`
 
 .. _nexus-vswift-preconf:
 
@@ -500,21 +441,14 @@ Preparation Checklist
 For a smoother configuration of Nexus 1000v switch, gather the following
 information before you start:
 
--  
+-  vCenter credentials
 
-   vCenter credentials
+-  Nexus 1000v VSM IP address
 
--  
+-  Nexus 1000v VSM Credentials
 
-   Nexus 1000v VSM IP address
+-  Ethernet port profile names
 
--  
-
-   Nexus 1000v VSM Credentials
-
--  
-
-   Ethernet port profile names
 
 vCenter Credentials Checklist
 '''''''''''''''''''''''''''''                                          
@@ -541,17 +475,25 @@ screen is displayed in the Details tab of the Nexus dvSwitch in the
 CloudStack UI:
 
 **Control Port Group VLAN ID**
-                        The VLAN ID of the Control Port Group. The control VLAN is used for communication between the VSM and the VEMs.
+The VLAN ID of the Control Port Group. The control VLAN is used for 
+communication between the VSM and the VEMs.
 
 **Management Port Group VLAN ID**
-                        The VLAN ID of the Management Port Group. The management VLAN corresponds to the mgmt0 interface that is used to establish and maintain the connection between the VSM and VMware vCenter Server.
+The VLAN ID of the Management Port Group. The management VLAN corresponds to 
+the mgmt0 interface that is used to establish and maintain the connection 
+between the VSM and VMware vCenter Server.
 
 **Packet Port Group VLAN ID**
-                        The VLAN ID of the Packet Port Group. The packet VLAN forwards relevant data packets from the VEMs to the VSM.
+The VLAN ID of the Packet Port Group. The packet VLAN forwards relevant data 
+packets from the VEMs to the VSM.
 
-.. note:: The VLANs used for control, packet, and management port groups can be the same.
+.. note::
+   The VLANs used for control, packet, and management port groups can be the 
+   same.
 
-For more information, see `Cisco Nexus 1000V Getting Started Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_b/getting_started/configuration/guide/n1000v_gsg.pdf>`_.
+For more information, see `Cisco Nexus 1000V Getting Started Guide 
+<http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_b/getting_started/configuration/guide/n1000v_gsg.pdf>`_.
+
 
 VSM Configuration Checklist
 '''''''''''''''''''''''''''                                        
@@ -559,53 +501,47 @@ VSM Configuration Checklist
 You will need the following VSM configuration parameters:
 
 **Admin Name and Password**
-                       The admin name and password to connect to the VSM appliance. You must specify these credentials while configuring Nexus virtual switch.
+The admin name and password to connect to the VSM appliance. You must specify 
+these credentials while configuring Nexus virtual switch.
+
 **Management IP Address**
-                       This is the IP address of the VSM appliance. This is the IP address you specify in the virtual switch IP Address field while configuting Nexus virtual switch.
+This is the IP address of the VSM appliance. This is the IP address you 
+specify in the virtual switch IP Address field while configuting Nexus virtual 
+switch.
+
 **SSL**
-                       Should be set to Enable.Always enable SSL. SSH is usually enabled by default during the VSM
-                       installation. However, check whether the SSH connection to the VSM is
-                       working, without which CloudStack failes to connect to the VSM.
+Should be set to Enable.Always enable SSL. SSH is usually enabled by default 
+during the VSM installation. However, check whether the SSH connection to the 
+VSM is working, without which CloudStack failes to connect to the VSM.
+
 
 Creating a Port Profile
 '''''''''''''''''''''''
 
--  
-
-   Whether you create a Basic or Advanced zone configuration, ensure
+-  Whether you create a Basic or Advanced zone configuration, ensure
    that you always create an Ethernet port profile on the VSM after you
    install it and before you create the zone.
 
-   -  
-
-      The Ethernet port profile created to represent the physical
+   -  The Ethernet port profile created to represent the physical
       network or networks used by an Advanced zone configuration trunk
       all the VLANs including guest VLANs, the VLANs that serve the
       native VLAN, and the packet/control/data/management VLANs of the
       VSM.
 
-   -  
-
-      The Ethernet port profile created for a Basic zone configuration
+   -  The Ethernet port profile created for a Basic zone configuration
       does not trunk the guest VLANs because the guest VMs do not get
       their own VLANs provisioned on their network interfaces in a Basic
       zone.
 
--  
-
-   An Ethernet port profile configured on the Nexus 1000v virtual switch
+-  An Ethernet port profile configured on the Nexus 1000v virtual switch
    should not use in its set of system VLANs, or any of the VLANs
    configured or intended to be configured for use towards VMs or VM
    resources in the CloudStack environment.
 
--  
-
-   You do not have to create any vEthernet port profiles – CloudStack
+-  You do not have to create any vEthernet port profiles – CloudStack
    does that during VM deployment.
 
--  
-
-   Ensure that you create required port profiles to be used by
+-  Ensure that you create required port profiles to be used by
    CloudStack for different traffic types of CloudStack, such as
    Management traffic, Guest traffic, Storage traffic, and Public
    traffic. The physical networks configured during zone creation should
@@ -614,8 +550,9 @@ Creating a Port Profile
 |vmwarenexusportprofile.png: vSphere client|
 
 For information on creating a port profile, see `Cisco Nexus 1000V Port
-Profile Configuration
-Guide <http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_a/port_profile/configuration/guide/n1000v_port_profile.html>`_.
+Profile Configuration Guide 
+<http://www.cisco.com/en/US/docs/switches/datacenter/nexus1000/sw/4_2_1_s_v_1_4_a/port_profile/configuration/guide/n1000v_port_profile.html>`_.
+
 
 Assigning Physical NIC Adapters
 '''''''''''''''''''''''''''''''
@@ -629,7 +566,9 @@ during the zone configuration on CloudStack. These Ethernet port profile
 names are later specified as VMware Traffic Labels for different traffic
 types when configuring physical networks during the zone configuration.
 For more information on configuring physical networks, see
-`"Configuring a vSphere Cluster with Nexus 1000v Virtual Switch" <#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_.
+`"Configuring a vSphere Cluster with Nexus 1000v Virtual Switch" 
+<#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_.
+
 
 Adding VLAN Ranges
 ''''''''''''''''''
@@ -644,14 +583,16 @@ For example:
 
 .. sourcecode:: bash
 
-    switchport trunk allowed vlan 1,140-147,196-203
+   switchport trunk allowed vlan 1,140-147,196-203
 
 In this example, the allowed VLANs added are 1, 140-147, and 196-203
 
 You must also add all the public and private VLANs or VLAN ranges to the
 switch. This range is the VLAN range you specify in your zone.
 
-.. note:: Before you run the vlan command, ensure that the configuration mode is enabled in Nexus 1000v virtual switch.
+.. note::
+   Before you run the vlan command, ensure that the configuration mode is 
+   enabled in Nexus 1000v virtual switch.
 
 For example:
 
@@ -660,17 +601,18 @@ command:
 
 .. sourcecode:: bash
 
-    vlan 200
+   vlan 200
 
 If you want the VLAN range 1350-1750 to be used on the switch, run the
 following command:
 
 .. sourcecode:: bash
 
-    vlan 1350-1750
+   vlan 1350-1750
 
 Refer to Cisco Nexus 1000V Command Reference of specific product
 version.
+
 
 Enabling Nexus Virtual Switch in CloudStack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -689,6 +631,7 @@ virtual network infrastructure. In this release, CloudStack doesn’t
 support configuring virtual networks in a deployment with a mix of
 standard vSwitch and Nexus 1000v virtual switch. The deployment can have
 either standard vSwitch or Nexus 1000v virtual switch.
+
 
 Configuring Nexus 1000v Virtual Switch in CloudStack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -723,37 +666,24 @@ Nexus dvSwitch Password    The corresponding password for the admin user specifi
 Removing Nexus Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. 
-
-   In the vCenter datacenter that is served by the Nexus virtual switch,
+#. In the vCenter datacenter that is served by the Nexus virtual switch,
    ensure that you delete all the hosts in the corresponding cluster.
 
-#. 
+#. Log in with Admin permissions to the CloudStack administrator UI.
 
-   Log in with Admin permissions to the CloudStack administrator UI.
+#. In the left navigation bar, select Infrastructure.
 
-#. 
+#. In the Infrastructure page, click View all under Clusters.
 
-   In the left navigation bar, select Infrastructure.
+#. Select the cluster where you want to remove the virtual switch.
 
-#. 
+#. In the dvSwitch tab, click the name of the virtual switch.
 
-   In the Infrastructure page, click View all under Clusters.
-
-#. 
-
-   Select the cluster where you want to remove the virtual switch.
-
-#. 
-
-   In the dvSwitch tab, click the name of the virtual switch.
-
-#. 
-
-   In the Details page, click Delete Nexus dvSwitch icon.
+#. In the Details page, click Delete Nexus dvSwitch icon.
    |DeleteButton.png: button to delete dvSwitch|
 
    Click Yes in the confirmation dialog box.
+
 
 Configuring a VMware Datacenter with VMware Distributed Virtual Switch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -763,6 +693,7 @@ network configuration in a VMware vSphere environment. This section
 helps you configure VMware VDS in a CloudStack deployment. Each vCenter
 server instance can support up to 128 VDS instances and each VDS
 instance can manage up to 500 VMware hosts.
+
 
 About VMware Distributed Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -779,36 +710,28 @@ across multiple hosts, enabling inline monitoring and centralized
 firewall services. A VDS can be deployed with or without Virtual
 Standard Switch and a Nexus 1000V virtual switch.
 
+
 Prerequisites and Guidelines
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  
-
-   VMware VDS is supported only on Public and Guest traffic in
+-  VMware VDS is supported only on Public and Guest traffic in
    CloudStack.
 
--  
-
-   VMware VDS does not support multiple VDS per traffic type. If a user
+-  VMware VDS does not support multiple VDS per traffic type. If a user
    has many VDS switches, only one can be used for Guest traffic and
    another one for Public traffic.
 
--  
-
-   Additional switches of any type can be added for each cluster in the
+-  Additional switches of any type can be added for each cluster in the
    same zone. While adding the clusters with different switch type,
    traffic labels is overridden at the cluster level.
 
--  
-
-   Management and Storage network does not support VDS. Therefore, use
+-  Management and Storage network does not support VDS. Therefore, use
    Standard Switch for these networks.
 
--  
-
-   When you remove a guest network, the corresponding dvportgroup will
+-  When you remove a guest network, the corresponding dvportgroup will
    not be removed on the vCenter. You must manually delete them on the
    vCenter.
+
 
 Preparation Checklist
 ^^^^^^^^^^^^^^^^^^^^^
@@ -820,9 +743,7 @@ have added in the datacenter before you start:
 
 Use this VDS name in the following:
 
--  
-
-   The switch name in the Edit traffic label dialog while configuring a
+-  The switch name in the Edit traffic label dialog while configuring a
    public and guest traffic during zone creation.
 
    During a zone creation, ensure that you select VMware vNetwork
@@ -831,68 +752,53 @@ Use this VDS name in the following:
 
    |traffic-type.png|
 
--  
-
-   The Public Traffic vSwitch Type field when you add a VMware
+-  The Public Traffic vSwitch Type field when you add a VMware
    VDS-enabled cluster.
 
--  
-
-   The switch name in the traffic label while updating the switch type
+-  The switch name in the traffic label while updating the switch type
    in a zone.
 
-Traffic label format in the last case is [["Name of vSwitch/dvSwitch/EthernetPortProfile"][,"VLAN ID"[,"vSwitch Type"]]]
+Traffic label format in the last case is 
+[["Name of vSwitch/dvSwitch/EthernetPortProfile"][,"VLAN ID"[,"vSwitch Type"]]]
 
 The possible values for traffic labels are:
 
--  
+-  empty string
 
-   empty string
+-  dvSwitch0
 
--  
+-  dvSwitch0,200
 
-   dvSwitch0
+-  dvSwitch1,300,vmwaredvs
 
--  
+-  myEthernetPortProfile,,nexusdvs
 
-   dvSwitch0,200
-
--  
-
-   dvSwitch1,300,vmwaredvs
-
--  
-
-   myEthernetPortProfile,,nexusdvs
-
--  
-
-   dvSwitch0,,vmwaredvs
+-  dvSwitch0,,vmwaredvs
 
 
 The three fields to fill in are:
 
-- 
-
-   Name of the virtual / distributed virtual switch at vCenter.
+-  Name of the virtual / distributed virtual switch at vCenter.
 
    The default value depends on the type of virtual switch:
 
-   **vSwitch0**: If type of virtual switch is VMware vNetwork Standard virtual switch
+   **vSwitch0**: If type of virtual switch is VMware vNetwork Standard virtual 
+   switch
 
-   **dvSwitch0**: If type of virtual switch is VMware vNetwork Distributed virtual switch
+   **dvSwitch0**: If type of virtual switch is VMware vNetwork Distributed 
+   virtual switch
 
-   **epp0**: If type of virtual switch is Cisco Nexus 1000v Distributed virtual switch
+   **epp0**: If type of virtual switch is Cisco Nexus 1000v Distributed 
+   virtual switch
 
--
+-  VLAN ID to be used for this traffic wherever applicable.
 
-   VLAN ID to be used for this traffic wherever applicable.
+   This field would be used for only public traffic as of now. In case of 
+   guest traffic this field would be ignored and could be left empty for guest 
+   traffic. By default empty string would be assumed which translates to 
+   untagged VLAN for that specific traffic type.
 
-   This field would be used for only public traffic as of now. In case of guest traffic this field would be ignored and could be left empty for guest traffic. By default empty string would be assumed which translates to untagged VLAN for that specific traffic type.
-
--
-
-   Type of virtual switch. Specified as string.
+-  Type of virtual switch. Specified as string.
 
    Possible valid values are vmwaredvs, vmwaresvs, nexusdvs.
 
@@ -902,13 +808,20 @@ The three fields to fill in are:
 
    **nexusdvs**: Represents Cisco Nexus 1000v distributed virtual switch.
 
-   If nothing specified (left empty), zone-level default virtual switchwould be defaulted, based on the value of global parameter you specify.
+   If nothing specified (left empty), zone-level default virtual switchwould 
+   be defaulted, based on the value of global parameter you specify.
 
    Following are the global configuration parameters:
 
-   **vmware.use.dvswitch**: Set to true to enable any kind (VMware DVS and Cisco Nexus 1000v) of distributed virtual switch in a CloudStack deployment. If set to false, the virtual switch that can be used in that CloudStack deployment is Standard virtual switch.
+   **vmware.use.dvswitch**: Set to true to enable any kind (VMware DVS and 
+   Cisco Nexus 1000v) of distributed virtual switch in a CloudStack 
+   deployment. If set to false, the virtual switch that can be used in that 
+   CloudStack deployment is Standard virtual switch.
 
-   **vmware.use.nexus.vswitch**: This parameter is ignored if vmware.use.dvswitch is set to false. Set to true to enable Cisco Nexus 1000v distributed virtual switch in a CloudStack deployment.
+   **vmware.use.nexus.vswitch**: This parameter is ignored if 
+   vmware.use.dvswitch is set to false. Set to true to enable Cisco Nexus 
+   1000v distributed virtual switch in a CloudStack deployment.
+
 
 Enabling Virtual Distributed Switch in CloudStack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -931,6 +844,7 @@ CloudStack supports orchestration of virtual networks in a deployment
 with a mix of Virtual Distributed Switch, Standard Virtual Switch and
 Nexus 1000v Virtual Switch.
 
+
 Configuring Distributed Virtual Switch in CloudStack
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -939,7 +853,8 @@ created.
 
 Alternatively, at the cluster level, you can create an additional
 cluster with VDS enabled in the existing zone. Use the Add Cluster
-option. For information as given in `“Add Cluster: vSphere” <configuration.html#add-cluster-vsphere>`_.
+option. For information as given in `“Add Cluster: vSphere” 
+<configuration.html#add-cluster-vsphere>`_.
 
 In both these cases, you must specify the following parameters to
 configure VDS:
@@ -971,35 +886,27 @@ target and create an iSCSI datastore.
 
 If you are using NFS, skip this section.
 
+
 Enable iSCSI initiator for ESXi hosts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. 
-
-   In vCenter, go to hosts and Clusters/Configuration, and click Storage
+#. In vCenter, go to hosts and Clusters/Configuration, and click Storage
    Adapters link. You will see:
 
    |vmwareiscsiinitiator.png: iscsi initiator|
 
-#. 
-
-   Select iSCSI software adapter and click Properties.
+#. Select iSCSI software adapter and click Properties.
 
    |vmwareiscsiinitiatorproperties.png: iscsi initiator properties|
 
-#. 
-
-   Click the Configure... button.
+#. Click the Configure... button.
 
    |vmwareiscsigeneral.png: iscsi general|
 
-#. 
+#. Check Enabled to enable the initiator.
 
-   Check Enabled to enable the initiator.
+#. Click OK to save.
 
-#. 
-
-   Click OK to save.
 
 Add iSCSI target
 ^^^^^^^^^^^^^^^^
@@ -1010,37 +917,32 @@ Under the properties dialog, add the iSCSI target info:
    
 Repeat these steps for all ESXi hosts in the cluster.
 
+
 Create an iSCSI datastore
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You should now create a VMFS datastore. Follow these steps to do so:
 
-#. 
+#. Select Home/Inventory/Datastores.
 
-   Select Home/Inventory/Datastores.
+#. Right click on the datacenter node.
 
-#. 
+#. Choose Add Datastore... command.
 
-   Right click on the datacenter node.
-
-#. 
-
-   Choose Add Datastore... command.
-
-#. 
-
-   Follow the wizard to create a iSCSI datastore.
+#. Follow the wizard to create a iSCSI datastore.
 
 This procedure should be done on one host in the cluster. It is not
 necessary to do this on all hosts.
 
 |vmwareiscsidatastore.png: iscsi datastore|
 
+
 Multipathing for vSphere (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Storage multipathing on vSphere nodes may be done according to the
 vSphere installation guide.
+
 
 Add Hosts or Configure Clusters (vSphere)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1049,78 +951,51 @@ Use vCenter to create a vCenter cluster and add your desired hosts to
 the cluster. You will later add the entire cluster to CloudStack. (see
 `“Add Cluster: vSphere” <configuration.html#add-cluster-vsphere>`_).
 
+
 Applying Hotfixes to a VMware vSphere Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. 
-
-   Disconnect the VMware vSphere cluster from CloudStack. It should
+#. Disconnect the VMware vSphere cluster from CloudStack. It should
    remain disconnected long enough to apply the hotfix on the host.
 
-   #. 
+   #. Log in to the CloudStack UI as root.
 
-      Log in to the CloudStack UI as root.
+      See `“Log In to the UI” 
+      <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_.
 
-      See `“Log In to the UI” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_.
-
-   #. 
-
-      Navigate to the VMware cluster, click Actions, and select
+   #. Navigate to the VMware cluster, click Actions, and select
       Unmanage.
 
-   #. 
+   #. Watch the cluster status until it shows Unmanaged.
 
-      Watch the cluster status until it shows Unmanaged.
+#. Perform the following on each of the ESXi hosts in the cluster:
 
-#. 
+   #. Move each of the ESXi hosts in the cluster to maintenance mode.
 
-   Perform the following on each of the ESXi hosts in the cluster:
-
-   #. 
-
-      Move each of the ESXi hosts in the cluster to maintenance mode.
-
-   #. 
-
-      Ensure that all the VMs are migrated to other hosts in that
+   #. Ensure that all the VMs are migrated to other hosts in that
       cluster.
 
-   #. 
-
-      If there is only one host in that cluster, shutdown all the VMs
+   #. If there is only one host in that cluster, shutdown all the VMs
       and move the host into maintenance mode.
 
-   #. 
+   #. Apply the patch on the ESXi host.
 
-      Apply the patch on the ESXi host.
+   #. Restart the host if prompted.
 
-   #. 
+   #. Cancel the maintenance mode on the host.
 
-      Restart the host if prompted.
+#. Reconnect the cluster to CloudStack:
 
-   #. 
+   #. Log in to the CloudStack UI as root.
 
-      Cancel the maintenance mode on the host.
+   #. Navigate to the VMware cluster, click Actions, and select Manage.
 
-#. 
-
-   Reconnect the cluster to CloudStack:
-
-   #. 
-
-      Log in to the CloudStack UI as root.
-
-   #. 
-
-      Navigate to the VMware cluster, click Actions, and select Manage.
-
-   #. 
-
-      Watch the status to see that all the hosts come up. It might take
+   #. Watch the status to see that all the hosts come up. It might take
       several minutes for the hosts to come up.
 
       Alternatively, verify the host state is properly synchronized and
       updated in the CloudStack database.
+
 
 .. |DeleteButton.png: button to delete dvSwitch| image:: ../_static/images/delete-button.png
 .. |vds-name.png: Name of the dvSwitch as specified in the vCenter.| image:: ../_static/images/vds-name.png
