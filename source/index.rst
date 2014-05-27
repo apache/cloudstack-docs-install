@@ -18,105 +18,126 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Welcome to CloudStack Installation Documentation
 ================================================
 
 .. figure:: /_static/images/acslogo.png
-    :align: center
+   :align: center
 
-.. warning:: We are in the process of changing documentation format as well as hosting mechanism.
-             Please be patient with us as we migrate our entire documentation to this new setup.
+.. warning:: 
+   We are in the process of changing documentation format as well as hosting 
+   mechanism. Please be patient with us as we migrate our entire documentation 
+   to this new setup.
 
-This is the Apache CloudStack installation guide, for the Documentation home, the administrator guide or the Release-Notes please see:
+This is the Apache CloudStack installation guide, for the Documentation home, 
+the administrator guide or the Release-Notes please see:
 
-- `Documentation home <http://docs.cloudstack.apache.org>`_
-- `Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
-- `Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
+-  `Documentation home <http://docs.cloudstack.apache.org>`_
 
-.. note:: In this guide we first go through some design and architectural choices_ to build your cloud.
-          Then we dive into a single node quick start guide_ to give you a feel for the installation process. The source installation
-          steps_ are given in the follow-on section for people who want to build their own packages. Otherwise you can use the general installation_
-          which makes use of community maintained package repositories. The rest of the guide goes through the configuration_ of the data-center and
-          the setup of the network_, storage_ and hypervisors_.
+-  `Administration Guide 
+   <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
+
+-  `Release Notes
+   <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
+
+.. note::
+   In this guide we first go through some design and architectural choices_ to 
+   build your cloud. Then we dive into a single node quick start guide_ to 
+   give you a feel for the installation process. The source installation 
+   steps_ are given in the follow-on section for people who want to build 
+   their own packages. Otherwise you can use the general installation_ which 
+   makes use of community maintained package repositories. The rest of the 
+   guide goes through the configuration_ of the data-center and the setup of 
+   the network_, storage_ and hypervisors_.
 
 .. toctree::
 
 .. _choices:
 
+
 Choosing a Deployment Architecture
 ----------------------------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    choosing_deployment_architecture
+   choosing_deployment_architecture
 
 .. _guide:
+
 
 Quick Installation Guide
 ------------------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    qig
+   qig
 
 .. _steps:
+
 
 Source Installation
 -------------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    building_from_source
+   building_from_source
 
 .. _installation:
+
 
 General Installation
 --------------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    installation
+   installation
 
 .. _configuration:
+
 
 Configuration
 -------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    configuration
+   configuration
 
 .. _hypervisors:
+
 
 Hypervisor Setup
 ----------------
 .. toctree::
-    :maxdepth: 2
-    :glob:
+   :maxdepth: 2
+   :glob:
 
-    hypervisor/*
+   hypervisor/*
 
 .. _network:
+
 
 Network Setup
 -------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    network_setup
+   network_setup
 
 .. _storage:
+
 
 Storage Setup
 -------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    storage_setup
+   storage_setup
+
 
 Optional Installation 
 ---------------------
 .. toctree::
-    :maxdepth: 2
+   :maxdepth: 2
 
-    optional_installation
+   optional_installation

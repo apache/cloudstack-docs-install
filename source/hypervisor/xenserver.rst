@@ -13,6 +13,7 @@
    specific language governing permissions and limitations
    under the License.
 
+
 Citrix XenServer Installation for CloudStack
 --------------------------------------------
 
@@ -22,12 +23,11 @@ your cloud. For an initial installation, follow the steps below. If you
 have previously installed XenServer and want to upgrade to another
 version, see :ref:`upgrading-xenserver-version`.
 
+
 System Requirements for XenServer Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  
-
-   The host must be certified as compatible with one of the following.
+-  The host must be certified as compatible with one of the following.
    See the Citrix Hardware Compatibility Guide:
    `http://hcl.xensource.com <http://hcl.xensource.com>`_
 
@@ -37,18 +37,12 @@ System Requirements for XenServer Hosts
     -  XenServer 6.1.0
     -  XenServer 6.2.0
 
--  
-
-   You must re-install Citrix XenServer if you are going to re-use a
+-  You must re-install Citrix XenServer if you are going to re-use a
    host from a previous install.
 
--  
+-  Must support HVM (Intel-VT or AMD-V enabled)
 
-   Must support HVM (Intel-VT or AMD-V enabled)
-
--  
-
-   Be sure all the hotfixes provided by the hypervisor vendor are
+-  Be sure all the hotfixes provided by the hypervisor vendor are
    applied. Track the release of hypervisor patches through your
    hypervisor vendor’s support channel, and apply patches as soon as
    possible after they are released. CloudStack will not track or notify
@@ -57,55 +51,38 @@ System Requirements for XenServer Hosts
    hypervisor vendor is likely to refuse to support any system that is
    not up to date with patches.
 
--  
-
-   All hosts within a cluster must be homogeneous. The CPUs must be of
+-  All hosts within a cluster must be homogeneous. The CPUs must be of
    the same type, count, and feature flags.
 
--  
+-  Must support HVM (Intel-VT or AMD-V enabled in BIOS)
 
-   Must support HVM (Intel-VT or AMD-V enabled in BIOS)
+-  64-bit x86 CPU (more cores results in better performance)
 
--  
+-  Hardware virtualization support required
 
-   64-bit x86 CPU (more cores results in better performance)
+-  4 GB of memory
 
--  
+-  36 GB of local disk
 
-   Hardware virtualization support required
+-  At least 1 NIC
 
--  
+-  Statically allocated IP Address
 
-   4 GB of memory
-
--  
-
-   36 GB of local disk
-
--  
-
-   At least 1 NIC
-
--  
-
-   Statically allocated IP Address
-
--  
-
-   When you deploy CloudStack, the hypervisor host must not have any VMs
+-  When you deploy CloudStack, the hypervisor host must not have any VMs
    already running
 
-.. warning:: The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+.. warning:: 
+   The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+
 
 XenServer Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. 
-
-   From
-   `https://www.citrix.com/English/ss/downloads/ <https://www.citrix.com/English/ss/downloads/>`_,
+#. From `https://www.citrix.com/English/ss/downloads/ 
+   <https://www.citrix.com/English/ss/downloads/>`_,
    download the appropriate version of XenServer for your CloudStack
-   version (see `"System Requirements for XenServer Hosts" <#system-requirements-for-xenserver-hosts>`_). Install it using
+   version (see `"System Requirements for XenServer Hosts" 
+   <#system-requirements-for-xenserver-hosts>`_). Install it using
    the Citrix XenServer Installation Guide.
 
    Older Versions of XenServer:
@@ -115,16 +92,17 @@ XenServer Installation Steps
    versions, you will need to create an account and look through the
    download archives.
 
+
 Configure XenServer dom0 Memory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configure the XenServer dom0 settings to allocate more memory to dom0.
 This can enable XenServer to handle larger numbers of virtual machines.
 We recommend 2940 MB of RAM for XenServer dom0. For instructions on how
-to do this, see
-`http://support.citrix.com/article/CTX126531 <http://support.citrix.com/article/CTX126531>`_.
-The article refers to XenServer 5.6, but the same information applies to
-XenServer 6.0.
+to do this, see `http://support.citrix.com/article/CTX126531 
+<http://support.citrix.com/article/CTX126531>`_. The article refers to 
+XenServer 5.6, but the same information applies to XenServer 6.0.
+
 
 Username and Password
 ~~~~~~~~~~~~~~~~~~~~~
@@ -132,53 +110,46 @@ Username and Password
 All XenServers in a cluster must have the same username and password as
 configured in CloudStack.
 
+
 Time Synchronization
 ~~~~~~~~~~~~~~~~~~~~
 
 The host must be set to use NTP. All hosts in a pod must have the same
 time.
 
-#. 
-
-   Install NTP.
+#. Install NTP.
 
    .. sourcecode:: bash
 
-       # yum install ntp
+      # yum install ntp
 
-#. 
-
-   Edit the NTP configuration file to point to your NTP server.
+#. Edit the NTP configuration file to point to your NTP server.
 
    .. sourcecode:: bash
 
-       # vi /etc/ntp.conf
+      # vi /etc/ntp.conf
 
    Add one or more server lines in this file with the names of the NTP
    servers you want to use. For example:
 
    .. sourcecode:: bash
 
-       server 0.xenserver.pool.ntp.org
-       server 1.xenserver.pool.ntp.org
-       server 2.xenserver.pool.ntp.org
-       server 3.xenserver.pool.ntp.org
+      server 0.xenserver.pool.ntp.org
+      server 1.xenserver.pool.ntp.org
+      server 2.xenserver.pool.ntp.org
+      server 3.xenserver.pool.ntp.org
 
-#. 
-
-   Restart the NTP client.
+#. Restart the NTP client.
 
    .. sourcecode:: bash
 
-       # service ntpd restart
+      # service ntpd restart
 
-#. 
-
-   Make sure NTP will start again upon reboot.
+#. Make sure NTP will start again upon reboot.
 
    .. sourcecode:: bash
 
-       # chkconfig ntpd on
+      # chkconfig ntpd on
 
 
 Install CloudStack XenServer Support Package (CSP)
@@ -214,52 +185,48 @@ CSP functionality is already present in XenServer 6.1
 
 **For XenServer 6.0.2, 6.0, 5.6 SP2:**
 
-#.
-
-   Download the CSP software onto the XenServer host from one of the
+#. Download the CSP software onto the XenServer host from one of the
    following links:
 
    For XenServer 6.0.2:
 
-   `http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz>`_
+   `http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz 
+   <http://download.cloud.com/releases/3.0.1/XS-6.0.2/xenserver-cloud-supp.tgz>`_
 
    For XenServer 5.6 SP2:
 
-   `http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz>`_
+   `http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz 
+   <http://download.cloud.com/releases/2.2.0/xenserver-cloud-supp.tgz>`_
 
    For XenServer 6.0:
 
-   `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`_
+   `http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz 
+   <http://download.cloud.com/releases/3.0/xenserver-cloud-supp.tgz>`_
 
  
-#.
-
-   Extract the file:
+#. Extract the file:
 
    .. sourcecode:: bash
 
-       # tar xf xenserver-cloud-supp.tgz
+      # tar xf xenserver-cloud-supp.tgz
 
-#. 
-
-   Run the following script:
+#. Run the following script:
 
    .. sourcecode:: bash
 
-       # xe-install-supplemental-pack xenserver-cloud-supp.iso
+      # xe-install-supplemental-pack xenserver-cloud-supp.iso
 
-#. 
-
-   If the XenServer host is part of a zone that uses basic networking,
+#. If the XenServer host is part of a zone that uses basic networking,
    disable Open vSwitch (OVS):
 
    .. sourcecode:: bash
 
-       # xe-switch-network-backend  bridge
+      # xe-switch-network-backend  bridge
 
    Restart the host machine when prompted.
 
 The XenServer host is now ready to be added to CloudStack.
+
 
 Primary Storage Setup for XenServer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -275,98 +242,82 @@ pool, perform the steps on the master node. If you are working with a
 single XenServer which is not part of a cluster, perform the steps on
 that XenServer.
 
-#. 
-
-   Connect FiberChannel cable to all hosts in the cluster and to the
+#. Connect FiberChannel cable to all hosts in the cluster and to the
    FiberChannel storage host.
 
-#. 
-
-   Rescan the SCSI bus. Either use the following command or use
+#. Rescan the SCSI bus. Either use the following command or use
    XenCenter to perform an HBA rescan.
 
    .. sourcecode:: bash
 
-       # scsi-rescan
+      # scsi-rescan
 
-#. 
+#. Repeat step 2 on every host.
 
-   Repeat step 2 on every host.
-
-#. 
-
-   Check to be sure you see the new SCSI disk.
+#. Check to be sure you see the new SCSI disk.
 
    .. sourcecode:: bash
 
-       # ls /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -l
+      # ls /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -l
 
    The output should look like this, although the specific file name
    will be different (scsi-<scsiID>):
 
    .. sourcecode:: bash
 
-       lrwxrwxrwx 1 root root 9 Mar 16 13:47
-       /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -> ../../sdc
+      lrwxrwxrwx 1 root root 9 Mar 16 13:47
+      /dev/disk/by-id/scsi-360a98000503365344e6f6177615a516b -> ../../sdc
 
-#. 
+#. Repeat step 4 on every host.
 
-   Repeat step 4 on every host.
-
-#. 
-
-   On the storage server, run this command to get a unique ID for the
+#. On the storage server, run this command to get a unique ID for the
    new SR.
 
    .. sourcecode:: bash
 
-       # uuidgen
+      # uuidgen
 
    The output should look like this, although the specific ID will be
    different:
 
    .. sourcecode:: bash
 
-       e6849e96-86c3-4f2c-8fcc-350cc711be3d
+      e6849e96-86c3-4f2c-8fcc-350cc711be3d
 
-#. 
-
-   Create the FiberChannel SR. In name-label, use the unique ID you just
+#. Create the FiberChannel SR. In name-label, use the unique ID you just
    generated.
 
    .. sourcecode:: bash
 
-       # xe sr-create type=lvmohba shared=true
-       device-config:SCSIid=360a98000503365344e6f6177615a516b
-       name-label="e6849e96-86c3-4f2c-8fcc-350cc711be3d"
+      # xe sr-create type=lvmohba shared=true
+      device-config:SCSIid=360a98000503365344e6f6177615a516b
+      name-label="e6849e96-86c3-4f2c-8fcc-350cc711be3d"
 
    This command returns a unique ID for the SR, like the following
    example (your ID will be different):
 
    .. sourcecode:: bash
 
-       7a143820-e893-6c6a-236e-472da6ee66bf
+      7a143820-e893-6c6a-236e-472da6ee66bf
 
-#. 
-
-   To create a human-readable description for the SR, use the following
+#. To create a human-readable description for the SR, use the following
    command. In uuid, use the SR ID returned by the previous command. In
    name-description, set whatever friendly text you prefer.
 
    .. sourcecode:: bash
 
-       # xe sr-param-set uuid=7a143820-e893-6c6a-236e-472da6ee66bf name-description="Fiber Channel storage repository"
+      # xe sr-param-set uuid=7a143820-e893-6c6a-236e-472da6ee66bf name-description="Fiber Channel storage repository"
 
    Make note of the values you will need when you add this storage to
-   CloudStack later (see `"Add Primary Storage" <configuration.html#add-primary-storage>`_). In the Add Primary Storage
+   CloudStack later (see `"Add Primary Storage" 
+   <configuration.html#add-primary-storage>`_). In the Add Primary Storage
    dialog, in Protocol, you will choose PreSetup. In SR Name-Label, you
    will enter the name-label you set earlier (in this example,
    e6849e96-86c3-4f2c-8fcc-350cc711be3d).
 
-#. 
-
-   (Optional) If you want to enable multipath I/O on a FiberChannel SAN,
+#. (Optional) If you want to enable multipath I/O on a FiberChannel SAN,
    refer to the documentation provided by the SAN vendor.
+
 
 iSCSI Multipath Setup for XenServer (Optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -378,25 +329,25 @@ SAN. To enable multipathing, use a SAN solution that is supported for
 Citrix servers and follow the procedures in Citrix documentation. The
 following links provide a starting point:
 
--  
+-  `http://support.citrix.com/article/CTX118791 
+   <http://support.citrix.com/article/CTX118791>`_
 
-   `http://support.citrix.com/article/CTX118791 <http://support.citrix.com/article/CTX118791>`_
-
--  
-
-   `http://support.citrix.com/article/CTX125403 <http://support.citrix.com/article/CTX125403>`_
+-  `http://support.citrix.com/article/CTX125403 
+   <http://support.citrix.com/article/CTX125403>`_
 
 You can also ask your SAN vendor for advice about setting up your Citrix
 repository for multipathing.
 
 Make note of the values you will need when you add this storage to the
-CloudStack later (see `"Add Primary Storage" <configuration.html#add-primary-storage>`_). In the Add Primary Storage dialog,
-in Protocol, you will choose PreSetup. In SR Name-Label, you will enter
-the same name used to create the SR.
+CloudStack later (see `"Add Primary Storage" 
+<configuration.html#add-primary-storage>`_). In the Add Primary Storage 
+dialog, in Protocol, you will choose PreSetup. In SR Name-Label, you will 
+enter the same name used to create the SR.
 
 If you encounter difficulty, address the support team for the SAN
 provided by your vendor. If they are not able to solve your issue, see
 Contacting Support.
+
 
 Physical Networking Setup for XenServer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -431,7 +382,8 @@ running the following command:
 
 .. sourcecode:: bash
 
-    xe network-param-set uuid=<network id> name-label=<CloudStack traffic label>
+   xe network-param-set uuid=<network id> name-label=<CloudStack traffic label>
+
 
 Configuring Public Network with a Dedicated NIC for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -445,7 +397,8 @@ XenServer name-label for the public network must be identical across all
 hosts. The following examples set the network label to "cloud-public".
 After the management server is installed and running you must configure
 it with the name of the chosen network label (e.g. "cloud-public"); this
-is discussed in `"Management Server Installation" <installation.html#management-server-installation>`_.
+is discussed in `"Management Server Installation" 
+<installation.html#management-server-installation>`_.
 
 If you are using two NICs bonded together to create a public network,
 see :ref:`nic-bonding-for-xenserver`.
@@ -454,19 +407,16 @@ If you are using a single dedicated NIC to provide public network
 access, follow this procedure on each new host that is added to
 CloudStack before adding the host.
 
-#. 
-
-   Run xe network-list and find the public network. This is usually
+#. Run xe network-list and find the public network. This is usually
    attached to the NIC that is public. Once you find the network make
    note of its UUID. Call this <UUID-Public>.
 
-#. 
-
-   Run the following command.
+#. Run the following command.
 
    .. sourcecode:: bash
 
-       # xe network-param-set name-label=cloud-public uuid=<UUID-Public>
+      # xe network-param-set name-label=cloud-public uuid=<UUID-Public>
+
 
 Configuring Multiple Guest Networks for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -481,24 +431,19 @@ that CloudStack is aware of the networks.
 Follow this procedure on each new host before adding the host to
 CloudStack:
 
-#. 
-
-   Run xe network-list and find one of the guest networks. Once you find
+#. Run xe network-list and find one of the guest networks. Once you find
    the network make note of its UUID. Call this <UUID-Guest>.
 
-#. 
-
-   Run the following command, substituting your own name-label and uuid
+#. Run the following command, substituting your own name-label and uuid
    values.
 
    .. sourcecode:: bash
 
-       # xe network-param-set name-label=<cloud-guestN> uuid=<UUID-Guest>
+      # xe network-param-set name-label=<cloud-guestN> uuid=<UUID-Guest>
 
-#. 
-
-   Repeat these steps for each additional guest network, using a
+#. Repeat these steps for each additional guest network, using a
    different name-label and uuid each time.
+
 
 Separate Storage Network for XenServer (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -533,10 +478,11 @@ Here is an example to set up eth5 to access a storage network on
 
 .. sourcecode:: bash
 
-    # xe pif-list host-name-label='hostname' device=eth5
-    uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
-    device ( RO): eth5
-    #xe pif-reconfigure-ip DNS=172.16.3.3 gateway=172.16.0.1 IP=172.16.0.55 mode=static netmask=255.255.255.0 uuid=ab0d3dd4-5744-8fae-9693-a022c7a3471d
+   # xe pif-list host-name-label='hostname' device=eth5
+   uuid(RO): ab0d3dd4-5744-8fae-9693-a022c7a3471d
+   device ( RO): eth5
+   #xe pif-reconfigure-ip DNS=172.16.3.3 gateway=172.16.0.1 IP=172.16.0.55 mode=static netmask=255.255.255.0 uuid=ab0d3dd4-5744-8fae-9693-a022c7a3471d
+
 
 .. _nic-bonding-for-xenserver:
 
@@ -548,21 +494,13 @@ can be bonded together to carry public, private, and guest traffic, or
 some combination of these. Separate storage networks are also possible.
 Here are some example supported configurations:
 
--  
+-  2 NICs on private, 2 NICs on public, 2 NICs on storage
 
-   2 NICs on private, 2 NICs on public, 2 NICs on storage
+-  2 NICs on private, 1 NIC on public, storage uses management network
 
--  
+-  2 NICs on private, 2 NICs on public, storage uses management network
 
-   2 NICs on private, 1 NIC on public, storage uses management network
-
--  
-
-   2 NICs on private, 2 NICs on public, storage uses management network
-
--  
-
-   1 NIC for private, public, and storage
+-  1 NIC for private, public, and storage
 
 All NIC bonding is optional.
 
@@ -574,23 +512,21 @@ master set the expectation for hosts added to the cluster later. The
 procedure to set up bonds on the master and slaves are different, and
 are described below. There are several important implications of this:
 
--  
-
-   You must set bonds on the first host added to a cluster. Then you
+-  You must set bonds on the first host added to a cluster. Then you
    must use xe commands as below to establish the same bonds in the
    second and subsequent hosts added to a cluster.
 
--  
-
-   Slave hosts in a cluster must be cabled exactly the same as the
+-  Slave hosts in a cluster must be cabled exactly the same as the
    master. For example, if eth0 is in the private bond on the master, it
    must be in the management network for added slave hosts.
+
 
 Management Network Bonding
 ''''''''''''''''''''''''''
 
 The administrator must bond the management network NICs prior to adding
 the host to CloudStack.
+
 
 Creating a Private Bond on the First Host in the Cluster
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -600,22 +536,18 @@ should be run on only the first host in a cluster. This example creates
 the cloud-private network with two physical NICs (eth0 and eth1) bonded
 into it.
 
-#. 
-
-   Find the physical NICs that you want to bond together.
+#. Find the physical NICs that you want to bond together.
 
    .. sourcecode:: bash
 
-       # xe pif-list host-name-label='hostname' device=eth0
-       # xe pif-list host-name-label='hostname' device=eth1
+      # xe pif-list host-name-label='hostname' device=eth0
+      # xe pif-list host-name-label='hostname' device=eth1
 
    These command shows the eth0 and eth1 NICs and their UUIDs.
    Substitute the ethX devices of your choice. Call the UUID's returned
    by the above command slave1-UUID and slave2-UUID.
 
-#. 
-
-   Create a new network for the bond. For example, a new network with
+#. Create a new network for the bond. For example, a new network with
    name "cloud-private".
 
    **This label is important. CloudStack looks for a network by a name
@@ -624,12 +556,13 @@ into it.
 
    .. sourcecode:: bash
 
-       # xe network-create name-label=cloud-private
-       # xe bond-create network-uuid=[uuid of cloud-private created above]
-       pif-uuids=[slave1-uuid],[slave2-uuid]
+      # xe network-create name-label=cloud-private
+      # xe bond-create network-uuid=[uuid of cloud-private created above]
+      pif-uuids=[slave1-uuid],[slave2-uuid]
 
 Now you have a bonded pair that can be recognized by CloudStack as the
 management network.
+
 
 Public Network Bonding
 ''''''''''''''''''''''
@@ -639,6 +572,7 @@ administrator is responsible for creating a bond for the public network
 if that network will be bonded and will be separate from the management
 network.
 
+
 Creating a Public Bond on the First Host in the Cluster
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -646,22 +580,18 @@ These steps should be run on only the first host in a cluster. This
 example creates the cloud-public network with two physical NICs (eth2
 and eth3) bonded into it.
 
-#. 
-
-   Find the physical NICs that you want to bond together.
+#. Find the physical NICs that you want to bond together.
 
    .. sourcecode:: bash
 
-       #xe pif-list host-name-label='hostname' device=eth2
-       # xe pif-list host-name-label='hostname' device=eth3
+      # xe pif-list host-name-label='hostname' device=eth2
+      # xe pif-list host-name-label='hostname' device=eth3
 
    These command shows the eth2 and eth3 NICs and their UUIDs.
    Substitute the ethX devices of your choice. Call the UUID's returned
    by the above command slave1-UUID and slave2-UUID.
 
-#. 
-
-   Create a new network for the bond. For example, a new network with
+#. Create a new network for the bond. For example, a new network with
    name "cloud-public".
 
    **This label is important. CloudStack looks for a network by a name
@@ -670,12 +600,13 @@ and eth3) bonded into it.
 
    .. sourcecode:: bash
 
-       # xe network-create name-label=cloud-public
-       # xe bond-create network-uuid=[uuid of cloud-public created above]
-       pif-uuids=[slave1-uuid],[slave2-uuid]
+      # xe network-create name-label=cloud-public
+      # xe bond-create network-uuid=[uuid of cloud-public created above]
+      pif-uuids=[slave1-uuid],[slave2-uuid]
 
 Now you have a bonded pair that can be recognized by CloudStack as the
 public network.
+
 
 Adding More Hosts to the Cluster
 ''''''''''''''''''''''''''''''''
@@ -687,8 +618,9 @@ master in a single XenServer pool.
 
 .. sourcecode:: bash
 
-    # xe pool-join master-address=[master IP] master-username=root
-    master-password=[your password]
+   # xe pool-join master-address=[master IP] master-username=root
+   master-password=[your password]
+
 
 Complete the Bonding Setup Across the Cluster
 '''''''''''''''''''''''''''''''''''''''''''''
@@ -697,21 +629,18 @@ With all hosts added to the pool, run the cloud-setup-bond script. This
 script will complete the configuration and set up of the bonds across
 all hosts in the cluster.
 
-#. 
-
-   Copy the script from the Management Server in
+#. Copy the script from the Management Server in
    /usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver/cloud-setup-bonding.sh
    to the master host and ensure it is executable.
 
-#. 
-
-   Run the script:
+#. Run the script:
 
    .. sourcecode:: bash
 
-       # ./cloud-setup-bonding.sh
+      # ./cloud-setup-bonding.sh
 
 Now the bonds are set up and configured properly across the cluster.
+
 
 .. _upgrading-xenserver-version:
 
@@ -723,40 +652,32 @@ hosts. The actual upgrade is described in XenServer documentation, but
 there are some additional steps you must perform before and after the
 upgrade.
 
-.. note:: Be sure the hardware is certified compatible with the new version of XenServer.
+.. note:: 
+   Be sure the hardware is certified compatible with the new version of
+   XenServer.
 
 To upgrade XenServer:
 
-#. 
+#. Upgrade the database. On the Management Server node:
 
-   Upgrade the database. On the Management Server node:
-
-   #. 
-
-      Back up the database:
+   #. Back up the database:
 
       .. sourcecode:: bash
 
           # mysqldump --user=root --databases cloud > cloud.backup.sql
           # mysqldump --user=root --databases cloud_usage > cloud_usage.backup.sql
 
-   #. 
-
-      You might need to change the OS type settings for VMs running on
+   #. You might need to change the OS type settings for VMs running on
       the upgraded hosts.
 
-      -  
-
-         If you upgraded from XenServer 5.6 GA to XenServer 5.6 SP2,
+      -  If you upgraded from XenServer 5.6 GA to XenServer 5.6 SP2,
          change any VMs that have the OS type CentOS 5.5 (32-bit),
          Oracle Enterprise Linux 5.5 (32-bit), or Red Hat Enterprise
          Linux 5.5 (32-bit) to Other Linux (32-bit). Change any VMs that
          have the 64-bit versions of these same OS types to Other Linux
          (64-bit).
 
-      -  
-
-         If you upgraded from XenServer 5.6 SP2 to XenServer 6.0.2,
+      -  If you upgraded from XenServer 5.6 SP2 to XenServer 6.0.2,
          change any VMs that have the OS type CentOS 5.6 (32-bit),
          CentOS 5.7 (32-bit), Oracle Enterprise Linux 5.6 (32-bit),
          Oracle Enterprise Linux 5.7 (32-bit), Red Hat Enterprise Linux
@@ -764,65 +685,45 @@ To upgrade XenServer:
          Other Linux (32-bit). Change any VMs that have the 64-bit
          versions of these same OS types to Other Linux (64-bit).
 
-      -  
-
-         If you upgraded from XenServer 5.6 to XenServer 6.0.2, do all
+      -  If you upgraded from XenServer 5.6 to XenServer 6.0.2, do all
          of the above.
 
-   #. 
-
-      Restart the Management Server and Usage Server. You only need to
+   #. Restart the Management Server and Usage Server. You only need to
       do this once for all clusters.
 
       .. sourcecode:: bash
 
-          # service cloudstack-management start
-          # service cloudstack-usage start
+         # service cloudstack-management start
+         # service cloudstack-usage start
 
-#. 
+#. Disconnect the XenServer cluster from CloudStack.
 
-   Disconnect the XenServer cluster from CloudStack.
+   #. Log in to the CloudStack UI as root.
 
-   #. 
+   #. Navigate to the XenServer cluster, and click Actions – Unmanage.
 
-      Log in to the CloudStack UI as root.
+   #. Watch the cluster status until it shows Unmanaged.
 
-   #. 
-
-      Navigate to the XenServer cluster, and click Actions – Unmanage.
-
-   #. 
-
-      Watch the cluster status until it shows Unmanaged.
-
-#. 
-
-   Log in to one of the hosts in the cluster, and run this command to
+#. Log in to one of the hosts in the cluster, and run this command to
    clean up the VLAN:
 
    .. sourcecode:: bash
 
-       # . /opt/xensource/bin/cloud-clean-vlan.sh
+      # . /opt/xensource/bin/cloud-clean-vlan.sh
 
-#. 
-
-   Still logged in to the host, run the upgrade preparation script:
+#. Still logged in to the host, run the upgrade preparation script:
 
    .. sourcecode:: bash
 
-       # /opt/xensource/bin/cloud-prepare-upgrade.sh
+      # /opt/xensource/bin/cloud-prepare-upgrade.sh
 
    Troubleshooting: If you see the error "can't eject CD," log in to the
    VM and umount the CD, then run the script again.
 
-#. 
-
-   Upgrade the XenServer software on all hosts in the cluster. Upgrade
+#. Upgrade the XenServer software on all hosts in the cluster. Upgrade
    the master first.
 
-   #. 
-
-      Live migrate all VMs on this host to other hosts. See the
+   #. Live migrate all VMs on this host to other hosts. See the
       instructions for live migration in the Administrator's Guide.
 
       Troubleshooting: You might see the following error when you
@@ -830,28 +731,22 @@ To upgrade XenServer:
 
       .. sourcecode:: bash
 
-          [root@xenserver-qa-2-49-4 ~]# xe vm-migrate live=true host=xenserver-qa-2-49-5 vm=i-2-8-VM
-          You attempted an operation on a VM which requires PV drivers to be installed but the drivers were not detected.
-          vm: b6cf79c8-02ee-050b-922f-49583d9f1a14 (i-2-8-VM)
+         [root@xenserver-qa-2-49-4 ~]# xe vm-migrate live=true host=xenserver-qa-2-49-5 vm=i-2-8-VM
+         You attempted an operation on a VM which requires PV drivers to be installed but the drivers were not detected.
+         vm: b6cf79c8-02ee-050b-922f-49583d9f1a14 (i-2-8-VM)
 
       To solve this issue, run the following:
 
       .. sourcecode:: bash
 
-          # /opt/xensource/bin/make_migratable.sh  b6cf79c8-02ee-050b-922f-49583d9f1a14
+         # /opt/xensource/bin/make_migratable.sh  b6cf79c8-02ee-050b-922f-49583d9f1a14
 
-   #. 
+   #. Reboot the host.
 
-      Reboot the host.
-
-   #. 
-
-      Upgrade to the newer version of XenServer. Use the steps in
+   #. Upgrade to the newer version of XenServer. Use the steps in
       XenServer documentation.
 
-   #. 
-
-      After the upgrade is complete, copy the following files from the
+   #. After the upgrade is complete, copy the following files from the
       management server to this host, in the directory locations shown
       below:
 
@@ -864,71 +759,55 @@ To upgrade XenServer:
       /usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver/cloud-clean-vlan.sh    /opt/xensource/bin/cloud-clean-vlan.sh
       =================================================================================   =======================================
 
-   #. 
-
-      Run the following script:
+   #. Run the following script:
 
       .. sourcecode:: bash
 
-          # /opt/xensource/bin/setupxenserver.sh
+         # /opt/xensource/bin/setupxenserver.sh
 
       Troubleshooting: If you see the following error message, you can
       safely ignore it.
 
       .. sourcecode:: bash
 
-          mv: cannot stat `/etc/cron.daily/logrotate`: No such file or directory
+         mv: cannot stat `/etc/cron.daily/logrotate`: No such file or directory
 
-   #. 
-
-      Plug in the storage repositories (physical block devices) to the
+   #. Plug in the storage repositories (physical block devices) to the
       XenServer host:
 
       .. sourcecode:: bash
 
-          # for pbd in `xe pbd-list currently-attached=false| grep ^uuid | awk '{print $NF}'`; do xe pbd-plug uuid=$pbd ; done
+         # for pbd in `xe pbd-list currently-attached=false| grep ^uuid | awk '{print $NF}'`; do xe pbd-plug uuid=$pbd ; done
 
-      .. note:: If you add a host to this XenServer pool, you need to migrate all VMs on this host to other hosts, and eject this host from XenServer pool.
+      .. note:: 
+         If you add a host to this XenServer pool, you need to migrate all VMs 
+         on this host to other hosts, and eject this host from XenServer pool.
 
-#. 
-
-   Repeat these steps to upgrade every host in the cluster to the same
+#. Repeat these steps to upgrade every host in the cluster to the same
    version of XenServer.
 
-#. 
-
-   Run the following command on one host in the XenServer cluster to
+#. Run the following command on one host in the XenServer cluster to
    clean up the host tags:
 
    .. sourcecode:: bash
 
-       # for host in $(xe host-list | grep ^uuid | awk '{print $NF}') ; do xe host-param-clear uuid=$host param-name=tags; done;
+      # for host in $(xe host-list | grep ^uuid | awk '{print $NF}') ; do xe host-param-clear uuid=$host param-name=tags; done;
 
    .. note:: 
       When copying and pasting a command, be sure the command has pasted as
       a single line before executing. Some document viewers may introduce
       unwanted line breaks in copied text.
 
-#. 
+#. Reconnect the XenServer cluster to CloudStack.
 
-   Reconnect the XenServer cluster to CloudStack.
+   #. Log in to the CloudStack UI as root.
 
-   #. 
+   #. Navigate to the XenServer cluster, and click Actions – Manage.
 
-      Log in to the CloudStack UI as root.
+   #. Watch the status to see that all the hosts come up.
 
-   #. 
-
-      Navigate to the XenServer cluster, and click Actions – Manage.
-
-   #. 
-
-      Watch the status to see that all the hosts come up.
-
-#. 
-
-   After all hosts are up, run the following on one host in the cluster:
+#. After all hosts are up, run the following on one host in the cluster:
 
    .. sourcecode:: bash
 
-       # /opt/xensource/bin/cloud-clean-vlan.sh
+      # /opt/xensource/bin/cloud-clean-vlan.sh

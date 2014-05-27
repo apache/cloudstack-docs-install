@@ -13,6 +13,7 @@
    specific language governing permissions and limitations
    under the License.
 
+
 LXC Installation and Configuration
 ----------------------------------
 
@@ -23,70 +24,45 @@ LXC requires the Linux kernel cgroups functionality which is available
 starting 2.6.24. Although you are not required to run these
 distributions, the following are recommended:
 
--  
+-  CentOS / RHEL: 6.3
 
-   CentOS / RHEL: 6.3
-
--  
-
-   Ubuntu: 12.04(.1)
+-  Ubuntu: 12.04(.1)
 
 The main requirement for LXC hypervisors is the libvirt and Qemu
 version. No matter what Linux distribution you are using, make sure the
 following requirements are met:
 
--  
+-  libvirt: 1.0.0 or higher
 
-   libvirt: 1.0.0 or higher
-
--  
-
-   Qemu/KVM: 1.0 or higher
+-  Qemu/KVM: 1.0 or higher
 
 The default bridge in CloudStack is the Linux native bridge
 implementation (bridge module). CloudStack includes an option to work
 with OpenVswitch, the requirements are listed below
 
--  
+-  libvirt: 1.0.0 or higher
 
-   libvirt: 1.0.0 or higher
-
--  
-
-   openvswitch: 1.7.1 or higher
+-  openvswitch: 1.7.1 or higher
 
 In addition, the following hardware requirements apply:
 
--  
-
-   Within a single cluster, the hosts must be of the same distribution
+-  Within a single cluster, the hosts must be of the same distribution
    version.
 
--  
-
-   All hosts within a cluster must be homogenous. The CPUs must be of
+-  All hosts within a cluster must be homogenous. The CPUs must be of
    the same type, count, and feature flags.
 
--  
+-  Must support HVM (Intel-VT or AMD-V enabled)
 
-   Must support HVM (Intel-VT or AMD-V enabled)
+-  64-bit x86 CPU (more cores results in better performance)
 
--  
+-  4 GB of memory
 
-   64-bit x86 CPU (more cores results in better performance)
+-  At least 1 NIC
 
--  
-
-   4 GB of memory
-
--  
-
-   At least 1 NIC
-
--  
-
-   When you deploy CloudStack, the hypervisor host must not have any VMs
+-  When you deploy CloudStack, the hypervisor host must not have any VMs
    already running
+
 
 LXC Installation Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,27 +74,24 @@ to the KVM installation. The material in this section doesn't duplicate
 KVM installation docs. It provides the CloudStack-specific steps that
 are needed to prepare a KVM host to work with CloudStack.
 
-.. warning:: Before continuing, make sure that you have applied the latest updates to your host.
+.. warning:: 
+   Before continuing, make sure that you have applied the latest updates to 
+   your host.
 
-.. warning:: It is NOT recommended to run services on this host not controlled by CloudStack.
+.. warning::
+   It is NOT recommended to run services on this host not controlled by 
+   CloudStack.
 
 The procedure for installing an LXC Host is:
 
-#. 
+#. Prepare the Operating System
 
-   Prepare the Operating System
+#. Install and configure libvirt
 
-#. 
+#. Configure Security Policies (AppArmor and SELinux)
 
-   Install and configure libvirt
+#. Install and configure the Agent
 
-#. 
-
-   Configure Security Policies (AppArmor and SELinux)
-
-#. 
-
-   Install and configure the Agent
 
 Prepare the Operating System
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,53 +99,42 @@ Prepare the Operating System
 The OS of the Host must be prepared to host the CloudStack Agent and run
 KVM instances.
 
-#. 
+#. Log in to your OS as root.
 
-   Log in to your OS as root.
-
-#. 
-
-   Check for a fully qualified hostname.
+#. Check for a fully qualified hostname.
 
    .. sourcecode:: bash
 
-       $ hostname --fqdn
+      $ hostname --fqdn
 
    This should return a fully qualified hostname such as
    "kvm1.lab.example.org". If it does not, edit /etc/hosts so that it
    does.
 
-#. 
-
-   Make sure that the machine can reach the Internet.
+#. Make sure that the machine can reach the Internet.
 
    .. sourcecode:: bash
 
-       $ ping www.cloudstack.org
+      $ ping www.cloudstack.org
 
-#. 
-
-   Turn on NTP for time synchronization.
+#. Turn on NTP for time synchronization.
 
    .. note:: 
       NTP is required to synchronize the clocks of the servers in your
       cloud. Unsynchronized clocks can cause unexpected problems.
 
-   #. 
-
-      Install NTP
+   #. Install NTP
 
       .. sourcecode:: bash
 
-          $ yum install ntp
+         $ yum install ntp
 
       .. sourcecode:: bash
 
-          $ apt-get install openntpd
+         $ apt-get install openntpd
 
-#. 
+#. Repeat all of these steps on every hypervisor host.
 
-   Repeat all of these steps on every hypervisor host.
 
 Install and configure the Agent
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,46 +149,43 @@ In RHEL or CentOS:
 
 .. sourcecode:: bash
 
-    $ yum install cloudstack-agent
+   $ yum install cloudstack-agent
 
 In Ubuntu:
 
 .. sourcecode:: bash
 
-    $ apt-get install cloudstack-agent
+   $ apt-get install cloudstack-agent
 
 Next step is to update the Agent configuration setttings. The settings
 are in ``/etc/cloudstack/agent/agent.properties``
 
-#. 
-
-   Set the Agent to run in LXC mode:
+#. Set the Agent to run in LXC mode:
 
    .. sourcecode:: bash
 
-       hypervisor.type=lxc
+      hypervisor.type=lxc
 
-#. 
-
-   Optional: If you would like to use direct networking (instead of the
+#. Optional: If you would like to use direct networking (instead of the
    default bridge networking), configure these lines:
 
    .. sourcecode:: bash
 
-       libvirt.vif.driver=com.cloud.hypervisor.kvm.resource.DirectVifDriver
+      libvirt.vif.driver=com.cloud.hypervisor.kvm.resource.DirectVifDriver
 
    .. sourcecode:: bash
 
-       network.direct.source.mode=private
+      network.direct.source.mode=private
 
    .. sourcecode:: bash
 
-       network.direct.device=eth0
+      network.direct.device=eth0
 
 The host is now ready to be added to a cluster. This is covered in a
 later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
+
 
 Install and Configure libvirt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -235,9 +194,7 @@ CloudStack uses libvirt for managing virtual machines. Therefore it is
 vital that libvirt is configured correctly. Libvirt is a dependency of
 cloudstack-agent and should already be installed.
 
-#. 
-
-   In order to have live migration working libvirt has to listen for
+#. In order to have live migration working libvirt has to listen for
    unsecured TCP connections. We also need to turn off libvirts attempt
    to use Multicast DNS advertising. Both of these settings are in
    ``/etc/libvirt/libvirtd.conf``
@@ -246,27 +203,25 @@ cloudstack-agent and should already be installed.
 
    .. sourcecode:: bash
 
-       listen_tls = 0
+      listen_tls = 0
 
    .. sourcecode:: bash
 
-       listen_tcp = 1
+      listen_tcp = 1
 
    .. sourcecode:: bash
 
-       tcp_port = "16509"
+      tcp_port = "16509"
 
    .. sourcecode:: bash
 
-       auth_tcp = "none"
+      auth_tcp = "none"
 
    .. sourcecode:: bash
 
-       mdns_adv = 0
+      mdns_adv = 0
 
-#. 
-
-   Turning on "listen\_tcp" in libvirtd.conf is not enough, we have to
+#. Turning on "listen\_tcp" in libvirtd.conf is not enough, we have to
    change the parameters as well:
 
    On RHEL or CentOS modify ``/etc/sysconfig/libvirtd``:
@@ -275,7 +230,7 @@ cloudstack-agent and should already be installed.
 
    .. sourcecode:: bash
 
-       #LIBVIRTD_ARGS="--listen"
+      #LIBVIRTD_ARGS="--listen"
 
    On Ubuntu: modify ``/etc/default/libvirt-bin``
 
@@ -283,40 +238,37 @@ cloudstack-agent and should already be installed.
 
    .. sourcecode:: bash
 
-       libvirtd_opts="-d"
+      libvirtd_opts="-d"
 
    so it looks like:
 
    .. sourcecode:: bash
 
-       libvirtd_opts="-d -l"
+      libvirtd_opts="-d -l"
 
-#. 
-
-   In order to have the VNC Console work we have to make sure it will
+#. In order to have the VNC Console work we have to make sure it will
    bind on 0.0.0.0. We do this by editing ``/etc/libvirt/qemu.conf``
 
    Make sure this parameter is set:
 
    .. sourcecode:: bash
 
-       vnc_listen = "0.0.0.0"
+      vnc_listen = "0.0.0.0"
 
-#. 
-
-   Restart libvirt
+#. Restart libvirt
 
    In RHEL or CentOS:
 
    .. sourcecode:: bash
 
-       $ service libvirtd restart
+      $ service libvirtd restart
 
    In Ubuntu:
 
    .. sourcecode:: bash
 
-       $ service libvirt-bin restart
+      $ service libvirt-bin restart
+
 
 Configure the Security Policies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -325,13 +277,9 @@ CloudStack does various things which can be blocked by security
 mechanisms like AppArmor and SELinux. These have to be disabled to
 ensure the Agent has all the required permissions.
 
-#. 
+#. Configure SELinux (RHEL and CentOS)
 
-   Configure SELinux (RHEL and CentOS)
-
-   #. 
-
-      Check to see whether SELinux is installed on your machine. If not,
+   #. Check to see whether SELinux is installed on your machine. If not,
       you can skip this section.
 
       In RHEL or CentOS, SELinux is installed and enabled by default.
@@ -339,11 +287,9 @@ ensure the Agent has all the required permissions.
 
       .. sourcecode:: bash
 
-          $ rpm -qa | grep selinux
+         $ rpm -qa | grep selinux
 
-   #. 
-
-      Set the SELINUX variable in ``/etc/selinux/config`` to
+   #. Set the SELINUX variable in ``/etc/selinux/config`` to
       "permissive". This ensures that the permissive setting will be
       maintained after a system reboot.
 
@@ -351,36 +297,30 @@ ensure the Agent has all the required permissions.
 
       .. sourcecode:: bash
 
-          vi /etc/selinux/config
+         $ vi /etc/selinux/config
 
       Change the following line
 
       .. sourcecode:: bash
 
-          SELINUX=enforcing
+         SELINUX=enforcing
 
       to this
 
       .. sourcecode:: bash
 
-          SELINUX=permissive
+         SELINUX=permissive
 
-   #. 
-
-      Then set SELinux to permissive starting immediately, without
+   #. Then set SELinux to permissive starting immediately, without
       requiring a system reboot.
 
       .. sourcecode:: bash
 
-          $ setenforce permissive
+         $ setenforce permissive
 
-#. 
+#. Configure Apparmor (Ubuntu)
 
-   Configure Apparmor (Ubuntu)
-
-   #. 
-
-      Check to see whether AppArmor is installed on your machine. If
+   #. Check to see whether AppArmor is installed on your machine. If
       not, you can skip this section.
 
       In Ubuntu AppArmor is installed and enabled by default. You can
@@ -388,35 +328,37 @@ ensure the Agent has all the required permissions.
 
       .. sourcecode:: bash
 
-          $ dpkg --list 'apparmor'
+         $ dpkg --list 'apparmor'
 
-   #. 
-
-      Disable the AppArmor profiles for libvirt
+   #. Disable the AppArmor profiles for libvirt
 
       .. sourcecode:: bash
 
-          $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
+         $ ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/
 
       .. sourcecode:: bash
 
-          $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
+         $ ln -s /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper /etc/apparmor.d/disable/
 
       .. sourcecode:: bash
 
-          $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
+         $ apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd
 
       .. sourcecode:: bash
 
-          $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
+         $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
+
 
 Configure the network bridges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: This is a very important section, please make sure you read this thoroughly.
+.. warning:: 
+   This is a very important section, please make sure you read this thoroughly.
 
 .. note:: 
-    This section details how to configure bridges using the native implementation in Linux. Please refer to the next section if you intend to use OpenVswitch
+   This section details how to configure bridges using the native 
+   implementation in Linux. Please refer to the next section if you intend to 
+   use OpenVswitch
 
 In order to forward traffic to your instances you will need at least two
 bridges: *public* and *private*.
@@ -426,6 +368,7 @@ do have to make sure they are available on each hypervisor.
 
 The most important factor is that you keep the configuration consistent
 on all your hypervisors.
+
 
 Network example
 ^^^^^^^^^^^^^^^
@@ -437,22 +380,17 @@ for the public network.
 We assume that the hypervisor has one NIC (eth0) with three tagged
 VLAN's:
 
-#. 
+#. VLAN 100 for management of the hypervisor
 
-   VLAN 100 for management of the hypervisor
+#. VLAN 200 for public network of the instances (cloudbr0)
 
-#. 
-
-   VLAN 200 for public network of the instances (cloudbr0)
-
-#. 
-
-   VLAN 300 for private network of the instances (cloudbr1)
+#. VLAN 300 for private network of the instances (cloudbr1)
 
 On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
-.. note:: The Hypervisor and Management server don't have to be in the same subnet!
+.. note::
+   The Hypervisor and Management server don't have to be in the same subnet!
 
 Configuring the network bridges
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -460,7 +398,11 @@ Configuring the network bridges
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
 
-.. note:: The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this section. This should be used as a guideline only. The exact configuration will depend on your network layout.
+.. note:: 
+   The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this 
+   section. This should be used as a guideline only. The exact configuration 
+   will depend on your network layout.
+
 
 Configure in RHEL or CentOS
 '''''''''''''''''''''''''''
@@ -472,109 +414,112 @@ First we configure eth0
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-eth0
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
 Make sure it looks similar to:
 
 .. sourcecode:: bash
 
-    DEVICE=eth0
-    HWADDR=00:04:xx:xx:xx:xx
-    ONBOOT=yes
-    HOTPLUG=no
-    BOOTPROTO=none
-    TYPE=Ethernet
+   DEVICE=eth0
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
 
 We now have to configure the three VLAN interfaces:
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
 
 .. sourcecode:: bash
 
-    DEVICE=eth0.100
-    HWADDR=00:04:xx:xx:xx:xx
-    ONBOOT=yes
-    HOTPLUG=no
-    BOOTPROTO=none
-    TYPE=Ethernet
-    VLAN=yes
-    IPADDR=192.168.42.11
-    GATEWAY=192.168.42.1
-    NETMASK=255.255.255.0
+   DEVICE=eth0.100
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
+   VLAN=yes
+   IPADDR=192.168.42.11
+   GATEWAY=192.168.42.1
+   NETMASK=255.255.255.0
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0.200
 
 .. sourcecode:: bash
 
-    DEVICE=eth0.200
-    HWADDR=00:04:xx:xx:xx:xx
-    ONBOOT=yes
-    HOTPLUG=no
-    BOOTPROTO=none
-    TYPE=Ethernet
-    VLAN=yes
-    BRIDGE=cloudbr0
+   DEVICE=eth0.200
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
+   VLAN=yes
+   BRIDGE=cloudbr0
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
 
 .. sourcecode:: bash
 
-    DEVICE=eth0.300
-    HWADDR=00:04:xx:xx:xx:xx
-    ONBOOT=yes
-    HOTPLUG=no
-    BOOTPROTO=none
-    TYPE=Ethernet
-    VLAN=yes
-    BRIDGE=cloudbr1
+   DEVICE=eth0.300
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
+   VLAN=yes
+   BRIDGE=cloudbr1
 
 Now we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
+   $ vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
 Now we just configure it is a plain bridge without an IP-Address
 
 .. sourcecode:: bash
 
-    DEVICE=cloudbr0
-    TYPE=Bridge
-    ONBOOT=yes
-    BOOTPROTO=none
-    IPV6INIT=no
-    IPV6_AUTOCONF=no
-    DELAY=5
-    STP=yes
+   DEVICE=cloudbr0
+   TYPE=Bridge
+   ONBOOT=yes
+   BOOTPROTO=none
+   IPV6INIT=no
+   IPV6_AUTOCONF=no
+   DELAY=5
+   STP=yes
 
 We do the same for cloudbr1
 
 .. sourcecode:: bash
 
-    vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
+   $ vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
 
 .. sourcecode:: bash
 
-    DEVICE=cloudbr1
-    TYPE=Bridge
-    ONBOOT=yes
-    BOOTPROTO=none
-    IPV6INIT=no
-    IPV6_AUTOCONF=no
-    DELAY=5
-    STP=yes
+   DEVICE=cloudbr1
+   TYPE=Bridge
+   ONBOOT=yes
+   BOOTPROTO=none
+   IPV6INIT=no
+   IPV6_AUTOCONF=no
+   DELAY=5
+   STP=yes
 
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the machine in case you made a configuration error and the network stops functioning!
+.. warning:: 
+   Make sure you have an alternative way like IPMI or ILO to reach the machine 
+   in case you made a configuration error and the network stops functioning!
+
 
 Configure in Ubuntu
 '''''''''''''''''''
@@ -584,44 +529,47 @@ we only have to configure the network.
 
 .. sourcecode:: bash
 
-    vi /etc/network/interfaces
+   $ vi /etc/network/interfaces
 
 Modify the interfaces file to look like this:
 
 .. sourcecode:: bash
 
-    auto lo
-    iface lo inet loopback
+   auto lo
+   iface lo inet loopback
 
-    # The primary network interface
-    auto eth0.100
-    iface eth0.100 inet static
-        address 192.168.42.11
-        netmask 255.255.255.240
-        gateway 192.168.42.1
-        dns-nameservers 8.8.8.8 8.8.4.4
-        dns-domain lab.example.org
+   # The primary network interface
+   auto eth0.100
+   iface eth0.100 inet static
+       address 192.168.42.11
+       netmask 255.255.255.240
+       gateway 192.168.42.1
+       dns-nameservers 8.8.8.8 8.8.4.4
+       dns-domain lab.example.org
 
-    # Public network
-    auto cloudbr0
-    iface cloudbr0 inet manual
-        bridge_ports eth0.200
-        bridge_fd 5
-        bridge_stp off
-        bridge_maxwait 1
+   # Public network
+   auto cloudbr0
+   iface cloudbr0 inet manual
+       bridge_ports eth0.200
+       bridge_fd 5
+       bridge_stp off
+       bridge_maxwait 1
 
-    # Private network
-    auto cloudbr1
-    iface cloudbr1 inet manual
-        bridge_ports eth0.300
-        bridge_fd 5
-        bridge_stp off
-        bridge_maxwait 1
+   # Private network
+   auto cloudbr1
+   iface cloudbr1 inet manual
+       bridge_ports eth0.300
+       bridge_fd 5
+       bridge_stp off
+       bridge_maxwait 1
 
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-.. warning:: Make sure you have an alternative way like IPMI or ILO to reach the machine in case you made a configuration error and the network stops functioning!
+.. warning:: 
+   Make sure you have an alternative way like IPMI or ILO to reach the machine 
+   in case you made a configuration error and the network stops functioning!
+
 
 Configuring the firewall
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -632,28 +580,19 @@ and the management server needs to be able to reach the hypervisor.
 In order to do so we have to open the following TCP ports (if you are
 using a firewall):
 
-#. 
+#. 22 (SSH)
 
-   22 (SSH)
+#. 1798
 
-#. 
+#. 16509 (libvirt)
 
-   1798
+#. 5900 - 6100 (VNC consoles)
 
-#. 
-
-   16509 (libvirt)
-
-#. 
-
-   5900 - 6100 (VNC consoles)
-
-#. 
-
-   49152 - 49216 (libvirt live migration)
+#. 49152 - 49216 (libvirt live migration)
 
 It depends on the firewall you are using how to open these ports. Below
 you'll find examples how to open these ports in RHEL/CentOS and Ubuntu.
+
 
 Open ports in RHEL/CentOS
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -663,30 +602,31 @@ extra ports by executing the following iptable commands:
 
 .. sourcecode:: bash
 
-    $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+   $ iptables -I INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
 .. sourcecode:: bash
 
-    $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
+   $ iptables -I INPUT -p tcp -m tcp --dport 1798 -j ACCEPT
 
 .. sourcecode:: bash
 
-    $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
+   $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
 
 .. sourcecode:: bash
 
-    $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
+   $ iptables -I INPUT -p tcp -m tcp --dport 5900:6100 -j ACCEPT
 
 .. sourcecode:: bash
 
-    $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
+   $ iptables -I INPUT -p tcp -m tcp --dport 49152:49216 -j ACCEPT
 
 These iptable settings are not persistent accross reboots, we have to
 save them first.
 
 .. sourcecode:: bash
 
-    $ iptables-save > /etc/sysconfig/iptables
+   $ iptables-save > /etc/sysconfig/iptables
+
 
 Open ports in Ubuntu
 ^^^^^^^^^^^^^^^^^^^^
@@ -698,26 +638,28 @@ To open the required ports, execute the following commands:
 
 .. sourcecode:: bash
 
-    $ ufw allow proto tcp from any to any port 22
+   $ ufw allow proto tcp from any to any port 22
 
 .. sourcecode:: bash
 
-    $ ufw allow proto tcp from any to any port 1798
+   $ ufw allow proto tcp from any to any port 1798
 
 .. sourcecode:: bash
 
-    $ ufw allow proto tcp from any to any port 16509
+   $ ufw allow proto tcp from any to any port 16509
 
 .. sourcecode:: bash
 
-    $ ufw allow proto tcp from any to any port 5900:6100
+   $ ufw allow proto tcp from any to any port 5900:6100
 
 .. sourcecode:: bash
 
-    $ ufw allow proto tcp from any to any port 49152:49216
+   $ ufw allow proto tcp from any to any port 49152:49216
 
 .. note:: 
-    By default UFW is not enabled on Ubuntu. Executing these commands with the firewall disabled does not enable the firewall.
+   By default UFW is not enabled on Ubuntu. Executing these commands with the 
+   firewall disabled does not enable the firewall.
+
 
 Add the host to CloudStack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
