@@ -339,6 +339,15 @@ Install on Ubuntu
 
    apt-get install cloudstack-management
 
+.. warning::
+
+   There is a known bug in the 4.3.0 release. You need to install an additional package by hand:
+
+   .. sourcecode:: bash
+
+      apt-get install libmysql-java
+
+   This bug has been fixed in master and upcoming 4.4 release and will also be fixed in bug fix releases 4.3.x
 
 Downloading vhd-util
 ^^^^^^^^^^^^^^^^^^^^
