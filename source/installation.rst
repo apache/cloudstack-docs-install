@@ -384,7 +384,7 @@ Management Server on one host or many, is to install the software on a
 single node.
 
 .. note::
-   If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will       come later.
+   If you are planning to install the Management Server on multiple nodes for high availability, do not proceed to the additional nodes yet. That step will come later.
 
 The CloudStack Management server can be installed using either RPM or
 DEB packages. These packages will depend on everything you need to run
@@ -405,6 +405,16 @@ Install on Ubuntu
 .. sourcecode:: bash
 
     apt-get install cloudstack-management
+
+.. warning::
+
+   There is a known bug in the 4.3.0 release. You need to install an additional package by hand:
+
+   .. sourcecode:: bash
+
+      apt-get install libmysql-java
+
+   This bug has been fixed in master and upcoming 4.4 release and will also be fixed in bug fix releases 4.3.x
 
 Downloading vhd-util
 ^^^^^^^^^^^^^^^^^^^^
