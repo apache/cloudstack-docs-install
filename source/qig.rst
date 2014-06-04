@@ -54,7 +54,7 @@ To complete this runbook you'll need the following items:
 #. At least one computer which supports hardware virtualization.
 
 #. The `CentOS 6.4 x86_64 minimal install CD 
-   <http://mirrors.kernel.org/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso>`_
+   <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
    this network and none of the computers running CloudStack will have a 
