@@ -300,7 +300,7 @@ Linux.
 
 .. sourcecode:: bash
 
-   # yum install java-1.6.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
+   # yum install java-1.7.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
 
 Next, you'll need to install build-time dependencies for CloudStack with
 Maven. We're using Maven 3, so you'll want to `grab a Maven 3
@@ -320,7 +320,7 @@ environment variable to be set:
 
 .. sourcecode:: bash
 
-   $ export JAVA_HOME=/usr/lib/jvm/jre-1.6.0-openjdk.x86_64/
+   $ export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.55.x86_64
 
 Verify that Maven is installed correctly:
 
