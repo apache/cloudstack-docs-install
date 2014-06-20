@@ -252,7 +252,7 @@ examples, but change the directory to whatever works for you.
    sudo mkdir -p /var/www/cloudstack/repo/binary
    sudo cp *.deb /var/www/cloudstack/repo/binary
    sudo cd /var/www/cloudstack/repo/binary
-   sudo dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz
+   sudo sh -c 'dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz'
 
 .. note:: 
    You can safely ignore the warning about a missing override file.
