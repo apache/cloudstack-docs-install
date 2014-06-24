@@ -388,7 +388,7 @@ following command:
 
 .. sourcecode:: bash
 
-   # yum -y install cloud-client
+   # yum -y install cloudstack-management
 
 With the application itself installed we can now setup the database, we'll do 
 that with the following command and options:
@@ -467,7 +467,7 @@ afterwards we'll need to configure a few things.
 
 .. sourcecode:: bash
 
-   # yum -y install cloud-agent
+   # yum -y install cloudstack-agent
 
 
 KVM Configuration
