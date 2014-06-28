@@ -273,7 +273,7 @@ line:
 
 .. sourcecode:: bash
 
-   deb http://server.url/cloudstack/repo binary ./
+   deb http://server.url/cloudstack/repo/binary ./
 
 Now that you have the repository info in place, you'll want to run
 another update so that APT knows where to find the CloudStack packages.
