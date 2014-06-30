@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Installation Documentation 4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"POT-Creation-Date: 2014-06-30 11:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,73 +16,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../index.rst:24
-# 3444a9bac8c1480fb6aeeddde33317aa
-msgid "Quicklinks to CloudStack documentations:"
-msgstr ""
-
-#: ../../index.rst:26
-# de15a84dcd6c4d7f95e3cd6812e961e5
-msgid "`Documentation home <http://docs.cloudstack.apache.org>`_"
-msgstr ""
-
-#: ../../index.rst:27
-# 8cfba20e17424f6eb7c1c27701a7623b
-msgid "`Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_"
-msgstr ""
-
-#: ../../index.rst:28
-# ceab02648e894c459ace09840dbe7dec
-msgid "`Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_"
-msgstr ""
-
-#: ../../index.rst:33
-# 4d03b7ecaf134a00a2c8b3dc4f2d9287
+#: ../../index.rst:23
+# 982ed5120e594d65bcff280a0398f5af
 msgid "Welcome to CloudStack Installation Documentation"
 msgstr ""
 
-#: ../../index.rst:39
-# ab60384766f143609f9d6ce0c7715ad8
-msgid "Choosing a Deployment Architecture"
+#: ../../index.rst:29
+# 1f1f369df4b645e0bbda82cf077bdbd6
+msgid "We are in the process of changing documentation format as well as hosting mechanism. Please be patient with us as we migrate our entire documentation to this new setup."
 msgstr ""
 
-#: ../../index.rst:46
-# 2498e69aef534512a9469d39529cdd57
-msgid "Quick Installation Guide"
+#: ../../index.rst:33
+# b3e6055f64164ee0b851226b5573bfb3
+msgid "This is the Apache CloudStack installation guide, for the Documentation home, the administrator guide or the Release-Notes please see:"
 msgstr ""
 
-#: ../../index.rst:53
-# 75622cd0baf949e3b27a45c2700219d7
-msgid "General Installation"
+#: ../../index.rst:36
+# b643ff53ad664a829c30729664d2ad00
+msgid "`Documentation home <http://docs.cloudstack.apache.org>`_"
+msgstr ""
+
+#: ../../index.rst:38
+# 2cf98f8dcdff4610b15031a039d4c5c6
+msgid "`Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_"
+msgstr ""
+
+#: ../../index.rst:41
+# a98ac35a7f2b4cf9b3090ff68dc12650
+msgid "`Release Notes <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_"
+msgstr ""
+
+#: ../../index.rst:45
+# 86316507b4b44a5a96cfdb3721f97bd4
+msgid "In this guide we first go through some design and architectural choices_ to build your cloud. Then we dive into a single node quick start guide_ to give you a feel for the installation process. The source installation steps_ are given in the follow-on section for people who want to build their own packages. Otherwise you can use the general installation_ which makes use of community maintained package repositories. The rest of the guide goes through the configuration_ of the data-center and the setup of the network_, storage_ and hypervisors_."
 msgstr ""
 
 #: ../../index.rst:60
-# 7edc5f456b0644da8742337ed23c3e8f
+# df08cf7ea88245c086043ad57af8e8ac
+msgid "Choosing a Deployment Architecture"
+msgstr ""
+
+#: ../../index.rst:70
+# dbccc2fe994c4999b821643c7bde3eb3
+msgid "Quick Installation Guide"
+msgstr ""
+
+#: ../../index.rst:80
+# a05a3c5a35ca46418756c797e93cdc38
 msgid "Source Installation"
 msgstr ""
 
-#: ../../index.rst:67
-# c87f9d4590b9444bbfb91a1865d694c8
+#: ../../index.rst:90
+# 42b62bda8da0413d80b6718dab581b66
+msgid "General Installation"
+msgstr ""
+
+#: ../../index.rst:100
+# e9c99f765efc4b4396d3d68516bd9f05
 msgid "Configuration"
 msgstr ""
 
-#: ../../index.rst:74
-# 6841529c30524f33b73ff72b37ba92f1
-msgid "Hypervisor Installation"
+#: ../../index.rst:110
+# e126703be1d04fb1a536bbecd12daafa
+msgid "Hypervisor Setup"
 msgstr ""
 
-#: ../../index.rst:81
-# 6898869cb0974aa5abd32cdbea12ae53
+#: ../../index.rst:121
+# 64d7386116784ddfbfaee06209c06377
 msgid "Network Setup"
 msgstr ""
 
-#: ../../index.rst:88
-# 6ef45fb9e25c422d946bc4f2c85bc631
+#: ../../index.rst:131
+# ca4526f59f884297b45db3c6d92cd6a6
 msgid "Storage Setup"
 msgstr ""
 
-#: ../../index.rst:95
-# 91d8d3664ff2474788edd798968a650d
+#: ../../index.rst:139
+# a7129d9d6924487eb5056763f614e703
 msgid "Optional Installation"
 msgstr ""
 

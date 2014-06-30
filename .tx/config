@@ -57,3 +57,28 @@ file_filter = source/locale/<lang>/LC_MESSAGES/storage_setup.po
 source_file = source/locale/pot/storage_setup.pot
 source_lang = en
 
+[apache-cloudstack-installation-rtd.hypervisor--hyperv]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/hyperv.po
+source_file = source/locale/pot/hypervisor/hyperv.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.hypervisor--kvm]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/kvm.po
+source_file = source/locale/pot/hypervisor/kvm.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.hypervisor--lxc]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/lxc.po
+source_file = source/locale/pot/hypervisor/lxc.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.hypervisor--vsphere]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/vsphere.po
+source_file = source/locale/pot/hypervisor/vsphere.pot
+source_lang = en
+
+[apache-cloudstack-installation-rtd.hypervisor--xenserver]
+file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/xenserver.po
+source_file = source/locale/pot/hypervisor/xenserver.pot
+source_lang = en
+

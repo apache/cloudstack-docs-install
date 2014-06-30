@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apache CloudStack Installation Documentation 4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 14:02-0400\n"
+"POT-Creation-Date: 2014-06-30 11:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,1698 +16,1688 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../network_setup.rst:17
-# 03bdaa3878ef48059529f90ef9afb586
+#: ../../network_setup.rst:18
+# 204e7166d7584bc8800c10730331b91a
 msgid "Network Setup"
 msgstr ""
 
-#: ../../network_setup.rst:19
-# f4ec374e4e894abe8d702f2342d0bf4a
+#: ../../network_setup.rst:20
+# 28fd3f07600a446f8025a77d2f76f083
 msgid "Achieving the correct networking setup is crucial to a successful CloudStack installation. This section contains information to help you make decisions and follow the right procedures to get your network set up correctly."
 msgstr ""
 
-#: ../../network_setup.rst:25
-# 015eb0cd841a4918a67710452e3fee84
+#: ../../network_setup.rst:27
+# 0f171b003d40415f9683899a68f68949
 msgid "Basic and Advanced Networking"
 msgstr ""
 
-#: ../../network_setup.rst:27
-# 6f2f6d18096647618908c57de6343037
+#: ../../network_setup.rst:29
+# 188908473c3948279ecec71280711a3b
 msgid "CloudStack provides two styles of networking:."
 msgstr ""
 
-#: ../../network_setup.rst:30
-# 35f7f2c07a8343079a1e81ff1c6ea6cf
-msgid "**Basic**"
+#: ../../network_setup.rst:31
+# d972c75e48ba46ce8b2fd29ba7a548fc
+msgid "**Basic** For AWS-style networking. Provides a single network where guest isolation can be provided through layer-3 means such as security groups (IP address source filtering)."
 msgstr ""
 
-#: ../../network_setup.rst:30
-# a29436ad2c1f47b686ead42ae7d648ab
-msgid "For AWS-style networking. Provides a single network where guest isolation can be provided through layer-3 means such as security groups (IP address source filtering)."
+#: ../../network_setup.rst:36
+# 286b58108d5240ab81545392b60577c5
+msgid "**Advanced** For more sophisticated network topologies. This network model provides the most flexibility in defining guest networks, but requires more configuration steps than basic networking."
 msgstr ""
 
-#: ../../network_setup.rst:33
-# 1848d2187f1d4bdfa5667bb76fb79db9
-msgid "**Advanced**"
-msgstr ""
-
-#: ../../network_setup.rst:33
-# 21c108e78bde4a0eb0c8a56ece172adc
-msgid "For more sophisticated network topologies. This network model provides the most flexibility in defining guest networks, but requires more configuration steps than basic networking."
-msgstr ""
-
-#: ../../network_setup.rst:35
-# 5aebd31d3fd64c0aa3b97cd99e3db483
+#: ../../network_setup.rst:41
+# ef43036726e14dd092edbbe912848db5
 msgid "Each zone has either basic or advanced networking. Once the choice of networking model for a zone has been made and configured in CloudStack, it can not be changed. A zone is either basic or advanced for its entire lifetime."
 msgstr ""
 
-#: ../../network_setup.rst:40
-# 3ef30fb83d1442d3b8e3acdb90503b3d
+#: ../../network_setup.rst:46
+# edec4755035e4f65bc0313e508fef22c
 msgid "The following table compares the networking features in the two networking models."
 msgstr ""
 
-#: ../../network_setup.rst:43
-# 82dd7efdfe484d37a2b0a7fd8264c82e
+#: ../../network_setup.rst:49
+# 1931f079dbf54009a09b730d78cea8ae
 msgid "Networking Feature"
 msgstr ""
 
-#: ../../network_setup.rst:43
-# e18218ba6b47423097b7f4c8f8096332
+#: ../../network_setup.rst:49
+# ddb5e29a533944e79cfacd651a55de04
 msgid "Basic Network"
 msgstr ""
 
-#: ../../network_setup.rst:43
-# 084adb2cdafd42f49daf25997f52a71d
+#: ../../network_setup.rst:49
+# 5e5d2126f2b342099f984864fe91699a
 msgid "Advanced Network"
 msgstr ""
 
-#: ../../network_setup.rst:45
-# cf6ebe6c183a41f0bdfe57e76b15955c
+#: ../../network_setup.rst:51
+# 2e392d44156a42619a81a1004ebe92a6
 msgid "Number of networks"
 msgstr ""
 
-#: ../../network_setup.rst:45
-# 5be9fdf69dc4401487accea91b520ab8
+#: ../../network_setup.rst:51
+# 2c57c568f79e4abf9d0b9731eb3ea05b
 msgid "Single network"
 msgstr ""
 
-#: ../../network_setup.rst:45
-# 8c7ecfe558e441a5af8459f218a9a451
+#: ../../network_setup.rst:51
+# a0c94e5edb364dc590ac47ed8a4a9104
 msgid "Multiple networks"
 msgstr ""
 
-#: ../../network_setup.rst:46
-# 370dc85892f443b592de2836c8ae875b
+#: ../../network_setup.rst:52
+# 15454f7e603b41a4bc4e11f248e4988f
 msgid "Firewall type"
 msgstr ""
 
-#: ../../network_setup.rst:46
-#: ../../network_setup.rst:47
-#: ../../network_setup.rst:50
-#: ../../network_setup.rst:51
-# 91d834f45e5840faa8fa4ceb0105fe1b
-# a62f2cbfe24244abbed9697adbc0f7a1
-# b0eee01adf51415b94c325da3205c369
-# f2f4450fc0364615951cd4989bf2d1a1
+#: ../../network_setup.rst:52
+#: ../../network_setup.rst:53
+#: ../../network_setup.rst:56
+#: ../../network_setup.rst:57
+# 0f306c3ed8cc40a7b2a90c79c2bc1b21
+# 08a635b95c484902a4c8d6739599e242
+# a9d431ac26934dc0b50f9d2fb90e1057
+# 48d78bd1b5fc4a06b4f3d035a5c93188
 msgid "Physical"
 msgstr ""
 
-#: ../../network_setup.rst:46
-#: ../../network_setup.rst:47
-#: ../../network_setup.rst:50
-#: ../../network_setup.rst:51
 #: ../../network_setup.rst:52
-# 92939ada64cb46cea5e667a7483f3a88
-# 9f6310c04ac842c3975c06fa53bf0102
-# 9fe7692b62a24b6b8907c0218b9d12d0
-# 79fcdf99583c41f28f8288cc103f77d4
-# 9d5d473d8fa24ad1b7ff625e14a9ae84
+#: ../../network_setup.rst:53
+#: ../../network_setup.rst:56
+#: ../../network_setup.rst:57
+#: ../../network_setup.rst:58
+# 54c51460b59b4787a77fe987aff804e0
+# bf584ce2c901485f917ebdf80d512db2
+# fda7d50fe9df495aa57dc3a69b89ce53
+# 4bcf67ddb65b49cc92e25d48cbeeb7aa
+# 0739b5b91ac0446d977a4641dfcc846e
 msgid "Physical and Virtual"
 msgstr ""
 
-#: ../../network_setup.rst:47
-# 5c7e1573e3aa41a98c8d858da115f01c
+#: ../../network_setup.rst:53
+# 483cde5d650e412799b4b3d95c1a34ff
 msgid "Load balancer"
 msgstr ""
 
-#: ../../network_setup.rst:48
-# 8ed09eee40544757a067440d0af1f5de
+#: ../../network_setup.rst:54
+# 824040016a8e47958d1e7900b0c5bc8f
 msgid "Isolation type"
 msgstr ""
 
-#: ../../network_setup.rst:48
-# a9ae797c6090433c9dfc9dbfbd29136d
+#: ../../network_setup.rst:54
+# eb2562a54a6f41439d2c95bcbe8e93f7
 msgid "Layer 3"
 msgstr ""
 
-#: ../../network_setup.rst:48
-# 753feaff369c45eca38c679a8fe85d9e
+#: ../../network_setup.rst:54
+# 8c4ff876b9af4e23a60a18477d9ad2ac
 msgid "Layer 2 and Layer 3"
 msgstr ""
 
-#: ../../network_setup.rst:49
-# 6b87885206514a9e83815a27632766ce
+#: ../../network_setup.rst:55
+# 272f31b097a6419b9657d410bc613b29
 msgid "VPN support"
 msgstr ""
 
-#: ../../network_setup.rst:49
-#: ../../network_setup.rst:52
-#: ../../network_setup.rst:1127
-# d6a4a24cb596422abacfaf405ec4b307
-# 4e3440aeb3f44f8eae7ef35922a832d2
-# 9185a3db64f64736be27796c8abf94bb
+#: ../../network_setup.rst:55
+#: ../../network_setup.rst:58
+#: ../../network_setup.rst:855
+# be705df006104fc981cd11ab21dbee41
+# 77c761df6e424c5eaa8fd876956f2fd4
+# 89111394bc904a6688140d3a45239729
 msgid "No"
 msgstr ""
 
-#: ../../network_setup.rst:49
-#: ../../network_setup.rst:53
-#: ../../network_setup.rst:53
 #: ../../network_setup.rst:55
-#: ../../network_setup.rst:55
-#: ../../network_setup.rst:1125
-#: ../../network_setup.rst:1126
-# 45279d7662df4901bad27b21a555b5b4
-# fa869b0c06a44936ae38664ae5b964c6
-# 94424e3b45de45d79f6b66c6f6531299
-# d5286f0917b64bfc9d2685effec949d6
-# 2dc0494184c4403486609b2d85a2c2ad
-# 80eed865b0ed418cbbe7a399e424f1d9
-# 798288df500b4f51b0be8d43a93d1b9e
+#: ../../network_setup.rst:59
+#: ../../network_setup.rst:59
+#: ../../network_setup.rst:61
+#: ../../network_setup.rst:61
+#: ../../network_setup.rst:853
+#: ../../network_setup.rst:854
+# 87c00040e2b94a5fb1354724a796ad4e
+# c1bcbed263544b8ba2804541e77b986c
+# 2f87b4b5d55248b68a742abdfcac7411
+# f0fa47c28e75441f8ef8397b8c693fb5
+# 6987985d2d78451b9146580fa5ec7197
+# c235fbc31a63448c9b960c7ccc3745d4
+# f454f4d643734a6283ed71f976c4e65e
 msgid "Yes"
 msgstr ""
 
-#: ../../network_setup.rst:50
-# 503ff9c4faad47fd977040f624d3b3cc
+#: ../../network_setup.rst:56
+# cde208e3641549ac9fe8b53a042abd65
 msgid "Port forwarding"
 msgstr ""
 
-#: ../../network_setup.rst:51
-# a56a3231d1e848f695c709ce5baf45d7
+#: ../../network_setup.rst:57
+# 33d5935021cd4f3ab6e723b0921e6945
 msgid "1:1 NAT"
 msgstr ""
 
-#: ../../network_setup.rst:52
-# f475f6ce633a4476bec28f8a840daa54
+#: ../../network_setup.rst:58
+# 435097d06513454a921a6170741111bb
 msgid "Source NAT"
 msgstr ""
 
-#: ../../network_setup.rst:53
-# 026973fe60f04800bc46d099c14bdcf0
+#: ../../network_setup.rst:59
+# 4546413386114726ad887ab1acfc1cba
 msgid "Userdata"
 msgstr ""
 
-#: ../../network_setup.rst:54
-# 30fb573590f141bbae7ba33d4bf8bb97
+#: ../../network_setup.rst:60
+# e6a6cb39df554d4d8490722bb831ef65
 msgid "Network usage monitoring"
 msgstr ""
 
-#: ../../network_setup.rst:54
-# 6630eb888e5143d0be0a70e13e21f168
+#: ../../network_setup.rst:60
+# cb68ceaa47fb447d915faa6dc794d39f
 msgid "sFlow / netFlow at physical router"
 msgstr ""
 
-#: ../../network_setup.rst:54
-# 7559d1ff62bc42f481a7cc8cb6adc938
+#: ../../network_setup.rst:60
+# 966d9d494a53445b9daf7f7190e39159
 msgid "Hypervisor and Virtual Router"
 msgstr ""
 
-#: ../../network_setup.rst:55
-# 9385d68ce2d34875ab06b26c0319aa1a
+#: ../../network_setup.rst:61
+# 118c5bc124044577ba2fbfe145951209
 msgid "DNS and DHCP"
 msgstr ""
 
-#: ../../network_setup.rst:58
-# a6aba497281a48e9bff8afbd6c9a6272
+#: ../../network_setup.rst:64
+# 08f4517f5738454f8ee78adefac8efb1
 msgid "The two types of networking may be in use in the same cloud. However, a given zone must use either Basic Networking or Advanced Networking."
 msgstr ""
 
-#: ../../network_setup.rst:61
-# a27239c3e05f4f60b8ba16abded352fb
+#: ../../network_setup.rst:67
+# 8caea62e111d4d1b8833f7670c72d8df
 msgid "Different types of network traffic can be segmented on the same physical network. Guest traffic can also be segmented by account. To isolate traffic, you can use separate VLANs. If you are using separate VLANs on a single physical network, make sure the VLAN tags are in separate numerical ranges."
 msgstr ""
 
-#: ../../network_setup.rst:68
-# 777d758fb09445768a2891b8e273603e
+#: ../../network_setup.rst:75
+# f4f61d2e2b224b75a03e28cda9e376a8
 msgid "VLAN Allocation Example"
 msgstr ""
 
-#: ../../network_setup.rst:70
-# 5fbe4896bc00421bbcb359e3d9bd72a2
+#: ../../network_setup.rst:77
+# dad8ccdf2ed74b0e9f0173a0aa08c615
 msgid "VLANs are required for public and guest traffic. The following is an example of a VLAN allocation scheme:"
 msgstr ""
 
-#: ../../network_setup.rst:74
-# b75e116966e5475c95d5e6db53fee3c0
+#: ../../network_setup.rst:81
+# d9ac134036354b0ab2421582a57e79c6
 msgid "VLAN IDs"
 msgstr ""
 
-#: ../../network_setup.rst:74
-# eea4d9795b974a429773c0748d7442fe
+#: ../../network_setup.rst:81
+# e22dc22a2b9449bbb3e9b5fcceafc29b
 msgid "Traffic type"
 msgstr ""
 
-#: ../../network_setup.rst:74
-# 0b3853d3d14f4975ab7eed7af588cb09
+#: ../../network_setup.rst:81
+# 2abc2124719642c6bf6ab370646803bc
 msgid "Scope"
 msgstr ""
 
-#: ../../network_setup.rst:76
-# 7ba30eb0289343dc929b0d6b71762ee0
+#: ../../network_setup.rst:83
+# f3318541895b4a509bfdcfe8f540fcd2
 msgid "less than 500"
 msgstr ""
 
-#: ../../network_setup.rst:76
-# 46b3630dea2846779971de386d0061ef
+#: ../../network_setup.rst:83
+# 7f123557b3644b699605f66ed71aaa88
 msgid "Management traffic. Reserved for administrative purposes."
 msgstr ""
 
-#: ../../network_setup.rst:76
-# f380aab2e1604e67ba9a286e7ad72d00
+#: ../../network_setup.rst:83
+# 8d3f29be0c2341d181217f083f364b66
 msgid "CloudStack software can access this, hypervisors, system VMs."
 msgstr ""
 
-#: ../../network_setup.rst:77
-# add0f7eea0be422eb0d0e8583df4bd39
+#: ../../network_setup.rst:84
+# ebbb276566564730b2573b1fd1b161a9
 msgid "500-599"
 msgstr ""
 
-#: ../../network_setup.rst:77
-# ee3c46bad38a4397abb1cb41cd5f1b39
+#: ../../network_setup.rst:84
+# 125bfc83d5554aaab7fdd32838cce9c9
 msgid "VLAN carrying public traffic."
 msgstr ""
 
-#: ../../network_setup.rst:77
-# 14652e15f43c4300922ff51854bd32d8
+#: ../../network_setup.rst:84
+# d37af8f70e29457a9557e53215e2e96c
 msgid "CloudStack accounts."
 msgstr ""
 
-#: ../../network_setup.rst:78
-# 287abb8446da47df89505536698a5120
+#: ../../network_setup.rst:85
+# 73133e4e2c86492c8f9817f4981789f8
 msgid "600-799"
 msgstr ""
 
-#: ../../network_setup.rst:78
-#: ../../network_setup.rst:79
-# d0c66df38d50463096073291feaaf25c
-# fb9b57f83c934957a34139318ecf37f4
+#: ../../network_setup.rst:85
+#: ../../network_setup.rst:86
+# 20844dcf31fd46558c2f60d7ce91478d
+# 7a38326cb87b46d890e1e444ee7ce9e6
 msgid "VLANs carrying guest traffic."
 msgstr ""
 
-#: ../../network_setup.rst:78
-# f72135d431d7457d8373598683d96518
+#: ../../network_setup.rst:85
+# b9283c2609ad426ea049d4b4de64a229
 msgid "CloudStack accounts. Account-specific VLAN is chosen from this pool."
 msgstr ""
 
-#: ../../network_setup.rst:79
-# 6b41efe52d3c419c895885d6fa1ba83e
+#: ../../network_setup.rst:86
+# 2434c3ee95244a3e87c4be5df884d38e
 msgid "800-899"
 msgstr ""
 
-#: ../../network_setup.rst:79
-# beb773be4f6648b797670b16b4ed9606
+#: ../../network_setup.rst:86
+# 55d07caba3264be299f2f188911b20f8
 msgid "CloudStack accounts. Account-specific VLAN chosen by CloudStack admin to assign to that account."
 msgstr ""
 
-#: ../../network_setup.rst:80
-# d12d342f2b0549bfa7961cd5ab17ea96
+#: ../../network_setup.rst:87
+# 916471020e7c48f8a5b214bd1e8b3764
 msgid "900-999"
 msgstr ""
 
-#: ../../network_setup.rst:80
-# 7b233d48fc4049078ffd74b260cfff7b
+#: ../../network_setup.rst:87
+# 6eb9b2a9c7d541d49840d4b7da813678
 msgid "VLAN carrying guest traffic"
 msgstr ""
 
-#: ../../network_setup.rst:80
-# df20993116bf4e4bb14571d7e0d53ad8
+#: ../../network_setup.rst:87
+# cbe91fb5fb35471aaf913bf77c8545b3
 msgid "CloudStack accounts. Can be scoped by project, domain, or all accounts."
 msgstr ""
 
-#: ../../network_setup.rst:81
-# 56b7a0d9885340ab91774f0502e03f66
+#: ../../network_setup.rst:88
+# 7cd25e560d8e482489ee707255e6a113
 msgid "greater than 1000"
 msgstr ""
 
-#: ../../network_setup.rst:81
-# 2bc3f620008541f6ad9dd7516851d998
+#: ../../network_setup.rst:88
+# a732a81098944d88b516c81d48fe1dd6
 msgid "Reserved for future use"
 msgstr ""
 
-#: ../../network_setup.rst:85
-# 20400094cee746b498658eab12a3d120
+#: ../../network_setup.rst:93
+# 9e6124ed88b34569b749356c28e994c5
 msgid "Example Hardware Configuration"
 msgstr ""
 
-#: ../../network_setup.rst:87
-# c9d1fc5eac444e8cbc5aff1173d67b34
+#: ../../network_setup.rst:95
+# 2e0e4d4766c94461bf47dbf4b297511c
 msgid "This section contains an example configuration of specific switch models for zone-level layer-3 switching. It assumes VLAN management protocols, such as VTP or GVRP, have been disabled. The example scripts must be changed appropriately if you choose to use VTP or GVRP."
 msgstr ""
 
-#: ../../network_setup.rst:93
-#: ../../network_setup.rst:199
-# 0b6e3cfcbfd640119616c5cce9fb62ab
-# 7a678f85c8504344a03afa484cd26fb2
+#: ../../network_setup.rst:102
+#: ../../network_setup.rst:190
+# e49d362a79214babab229f63b561504f
+# ec1918afa90c431ebc41c83d6622bf67
 msgid "Dell 62xx"
 msgstr ""
 
-#: ../../network_setup.rst:95
-# 82eed4d95bd04ff9bc2d3a25a1de9935
+#: ../../network_setup.rst:104
+# 7cac328e3f4d41d2912b3d1374983217
 msgid "The following steps show how a Dell 62xx is configured for zone-level layer-3 switching. These steps assume VLAN 201 is used to route untagged private IPs for pod 1, and pod 1’s layer-2 switch is connected to Ethernet port 1/g1."
 msgstr ""
 
-#: ../../network_setup.rst:100
-# b3cae48b13c046ba84d46aad2cfbabf0
+#: ../../network_setup.rst:109
+# f85fd6334b4d42368bd77fd43eab6554
 msgid "The Dell 62xx Series switch supports up to 1024 VLANs."
 msgstr ""
 
-#: ../../network_setup.rst:104
-#: ../../network_setup.rst:206
-# 8fb1a4ee9be946e292eb97ff3efa29d5
-# 0a2e26f115fe46ecb016c54f1be9a3dd
+#: ../../network_setup.rst:111
+#: ../../network_setup.rst:195
+# 3a9eadcf6462491b83915415a657e356
+# 4d6fd3d41ba3470c8ffe4bec5ad1626a
 msgid "Configure all the VLANs in the database."
 msgstr ""
 
-#: ../../network_setup.rst:114
-# c3cb04692c8842d5b5ad3d4340d44e8c
+#: ../../network_setup.rst:119
+# 3b8ffcd8739f4ebeb2ed2be4eef1ad64
 msgid "Configure Ethernet port 1/g1."
 msgstr ""
 
-#: ../../network_setup.rst:125
-# 9abb8673cd194d77975f070e0d3303b2
+#: ../../network_setup.rst:130
+# 3f429d4bc0024cd8bd9e41e305d508d9
 msgid "The statements configure Ethernet port 1/g1 as follows:"
 msgstr ""
 
-#: ../../network_setup.rst:129
-# 2d4ac0c0a70d49bebec9399363054a0b
+#: ../../network_setup.rst:132
+# d34108f02c0b45b093b68a1f5b8766a3
 msgid "VLAN 201 is the native untagged VLAN for port 1/g1."
 msgstr ""
 
-#: ../../network_setup.rst:133
-# 241024fc15ac4185896d6f60765c6aeb
+#: ../../network_setup.rst:134
+# cb2aa517977a4582afcedbfaf7b457cc
 msgid "All VLANs (300-999) are passed to all the pod-level layer-2 switches."
 msgstr ""
 
-#: ../../network_setup.rst:136
-#: ../../network_setup.rst:238
-# 6427ae55796f4cfd8e8a1854f33466d5
-# f9fa0d3dda7543f29c9246eb93ffec01
+#: ../../network_setup.rst:138
+#: ../../network_setup.rst:222
+# 5889063b34fa4e5a946573bb352b45c7
+# c48e437e84a44e1281b7228a01cc0c4f
 msgid "Cisco 3750"
 msgstr ""
 
-#: ../../network_setup.rst:138
-# a6ecac33d6c14952b66e8017ad4a8323
+#: ../../network_setup.rst:140
+# b029ac75d9be4c4d8f41fa45f587b2a7
 msgid "The following steps show how a Cisco 3750 is configured for zone-level layer-3 switching. These steps assume VLAN 201 is used to route untagged private IPs for pod 1, and pod 1’s layer-2 switch is connected to GigabitEthernet1/0/1."
 msgstr ""
 
 #: ../../network_setup.rst:145
-#: ../../network_setup.rst:245
-# 830457a045fc47c7b8ed9c5740e464c1
-# 176933aea5a346508236287640ea54a2
+#: ../../network_setup.rst:227
+# 21087caee9cc42529713be381a17944e
+# 77f3004ef9e84e23985c7a992fe12b51
 msgid "Setting VTP mode to transparent allows us to utilize VLAN IDs above 1000. Since we only use VLANs up to 999, vtp transparent mode is not strictly required."
 msgstr ""
 
-#: ../../network_setup.rst:157
-# 8ea20a3779954323949736d659d4f422
+#: ../../network_setup.rst:155
+# bc414aaf1d5d49789ab07767a1efc42e
 msgid "Configure GigabitEthernet1/0/1."
 msgstr ""
 
-#: ../../network_setup.rst:167
-# f1aef677767145a4bb66257ed779b828
+#: ../../network_setup.rst:165
+# 13695f0fdc2c4258a81d99fb9126b65c
 msgid "The statements configure GigabitEthernet1/0/1 as follows:"
 msgstr ""
 
-#: ../../network_setup.rst:171
-# d3f6c0584e724399a82d3a1b9d5b4fea
+#: ../../network_setup.rst:167
+# db9281cf2d474ccb8b73772d174b5061
 msgid "VLAN 201 is the native untagged VLAN for port GigabitEthernet1/0/1."
 msgstr ""
 
-#: ../../network_setup.rst:175
-# d1736402c78e4079828531c40e3f9b95
+#: ../../network_setup.rst:169
+# 2de38e6352e648758eb5e9d33f7f50b9
 msgid "Cisco passes all VLANs by default. As a result, all VLANs (300-999) are passed to all the pod-level layer-2 switches."
 msgstr ""
 
-#: ../../network_setup.rst:179
-# 6ff660c4050c4f06b06f5181a688d274
+#: ../../network_setup.rst:174
+# ecca16ca947244c69af3cda7d8ef906a
 msgid "Layer-2 Switch"
 msgstr ""
 
-#: ../../network_setup.rst:181
-# c5578ac90f9a4ae1a8d9436be6005438
+#: ../../network_setup.rst:176
+# bd6f1f286da647f0861e42f5c4d5cbd6
 msgid "The layer-2 switch is the access switching layer inside the pod."
 msgstr ""
 
-#: ../../network_setup.rst:185
-# 650d24b9adf54d9b8477c3ab4aef08fe
+#: ../../network_setup.rst:178
+# f5aedd9919f44d4d9eea58da5118c865
 msgid "It should trunk all VLANs into every computing host."
 msgstr ""
 
-#: ../../network_setup.rst:189
-# f50e67a3c6d94595bd2f3bd73b9a9366
+#: ../../network_setup.rst:180
+# 47960e02b071465188e24cb273c65328
 msgid "It should switch traffic for the management network containing computing and storage hosts. The layer-3 switch will serve as the gateway for the management network."
 msgstr ""
 
-#: ../../network_setup.rst:193
-# a4f9ace615c141c79c483fa9bfd39792
+#: ../../network_setup.rst:184
+# b6bfd5be3b83467192f7d4dba3613304
 msgid "The following sections contain example configurations for specific switch models for pod-level layer-2 switching. It assumes VLAN management protocols such as VTP or GVRP have been disabled. The scripts must be changed appropriately if you choose to use VTP or GVRP."
 msgstr ""
 
-#: ../../network_setup.rst:201
-# a3cf81c4e1fe43cca9903696d4591c81
+#: ../../network_setup.rst:192
+# a9c5170aa3324e03adee54023346ad80
 msgid "The following steps show how a Dell 62xx is configured for pod-level layer-2 switching."
 msgstr ""
 
-#: ../../network_setup.rst:216
-# d179aa8e95874b16b13d60695bc96388
+#: ../../network_setup.rst:203
+# 476b0c81a6c44098804cc2f6b9c8dfd5
 msgid "VLAN 201 is used to route untagged private IP addresses for pod 1, and pod 1 is connected to this layer-2 switch."
 msgstr ""
 
-#: ../../network_setup.rst:226
-# f63ff83a01964f68acc76185a5b05b75
+#: ../../network_setup.rst:213
+# 22aebc930b7b471394516ed87778ba3c
 msgid "The statements configure all Ethernet ports to function as follows:"
 msgstr ""
 
-#: ../../network_setup.rst:230
-# 106d02a562d7477f8586172778d1707a
+#: ../../network_setup.rst:215
+# 01bdebb29d964df18edcf52ee732caa0
 msgid "All ports are configured the same way."
 msgstr ""
 
-#: ../../network_setup.rst:234
-# bafa7d17558c45c8bf7203a59521eca6
+#: ../../network_setup.rst:217
+# 42d47d6cc7f148de826545de21dee4c0
 msgid "All VLANs (300-999) are passed through all the ports of the layer-2 switch."
 msgstr ""
 
-#: ../../network_setup.rst:240
-# 2b72d3ec80aa4c09b6ef046bbd9d257b
+#: ../../network_setup.rst:224
+# 5057c158f06e4e439eebde80d1e49d38
 msgid "The following steps show how a Cisco 3750 is configured for pod-level layer-2 switching."
 msgstr ""
 
-#: ../../network_setup.rst:257
-# 15b3cb139c7742d0b17abfefb99f6bdf
+#: ../../network_setup.rst:237
+# 97f41001dc4f44e5bf4def9e08be580c
 msgid "Configure all ports to dot1q and set 201 as the native VLAN."
 msgstr ""
 
-#: ../../network_setup.rst:267
-# 7336e080ecdd47a88123305127be89dc
+#: ../../network_setup.rst:247
+# 5ea9eb52eaea40329b40b32897d7c2f1
 msgid "By default, Cisco passes all VLANs. Cisco switches complain of the native VLAN IDs are different when 2 ports are connected together. That’s why you must specify VLAN 201 as the native VLAN on the layer-2 switch."
 msgstr ""
 
-#: ../../network_setup.rst:273
-# 644dff1fd3644bed880bc56ed29bf62d
+#: ../../network_setup.rst:254
+# 8b410ff7a036484a89d183ed79f66761
 msgid "Hardware Firewall"
 msgstr ""
 
-#: ../../network_setup.rst:275
-# 0f75cc6211f64303b63d1cac56ef4958
+#: ../../network_setup.rst:256
+# 149a7357d1b2421c8e62f11be11e4a89
 msgid "All deployments should have a firewall protecting the management server; see Generic Firewall Provisions. Optionally, some deployments may also have a Juniper SRX firewall that will be the default gateway for the guest networks; see `“External Guest Firewall Integration for Juniper SRX (Optional)” <#external-guest-firewall-integration-for-juniper-srx-optional>`_."
 msgstr ""
 
-#: ../../network_setup.rst:281
-# dc2fee2bdd664bfdb56d7ee5206cc652
+#: ../../network_setup.rst:263
+# e2f547c68a5549bebcc7c440d52727e8
 msgid "Generic Firewall Provisions"
 msgstr ""
 
-#: ../../network_setup.rst:283
-# 614a9bc12b2c4cebad4ce3d0f21252bb
+#: ../../network_setup.rst:265
+# 8f3c0247e1254e6c8731076a59b80543
 msgid "The hardware firewall is required to serve two purposes:"
 msgstr ""
 
-#: ../../network_setup.rst:287
-# ebb0dcc176da45889b7d28aad2fccf39
+#: ../../network_setup.rst:267
+# 4e3d6f474c664d1ea8727ca773c6c317
 msgid "Protect the Management Servers. NAT and port forwarding should be configured to direct traffic from the public Internet to the Management Servers."
 msgstr ""
 
-#: ../../network_setup.rst:293
-# 09ae162b447841558abf654626b1c3dc
+#: ../../network_setup.rst:271
+# deafcee33c084aea9b10dc89e3c056db
 msgid "Route management network traffic between multiple zones. Site-to-site VPN should be configured between multiple zones."
 msgstr ""
 
-#: ../../network_setup.rst:296
-# 0163b29a2a3449008b867ce0ac0565ee
+#: ../../network_setup.rst:274
+# 3bf3e1c1628b4e3cbd78d690b7f6da5d
 msgid "To achieve the above purposes you must set up fixed configurations for the firewall. Firewall rules and policies need not change as users are provisioned into the cloud. Any brand of hardware firewall that supports NAT and site-to-site VPN can be used."
 msgstr ""
 
-#: ../../network_setup.rst:302
-# 34e975339bad453b927ada8e1902b434
+#: ../../network_setup.rst:281
+# 6bd99eddfc3a460a8e104b8fb62cb5c1
 msgid "External Guest Firewall Integration for Juniper SRX (Optional)"
 msgstr ""
 
-#: ../../network_setup.rst:306
-# 7ef39ebd341e403e991420097b284ba6
+#: ../../network_setup.rst:284
+# 91fc9325ee69495fa969c72724802e81
 msgid "Available only for guests using advanced networking."
 msgstr ""
 
-#: ../../network_setup.rst:308
-# 26f515df63cf4892b65cc70dcdae99de
+#: ../../network_setup.rst:286
+# 0dd27c6946794a9cafa7a524eccfffa9
 msgid "CloudStack provides for direct management of the Juniper SRX series of firewalls. This enables CloudStack to establish static NAT mappings from public IPs to guest VMs, and to use the Juniper device in place of the virtual router for firewall services. You can have one or more Juniper SRX per zone. This feature is optional. If Juniper integration is not provisioned, CloudStack will use the virtual router for these services."
 msgstr ""
 
-#: ../../network_setup.rst:315
-# 9f37f746be004ad9869e93465078a2f6
+#: ../../network_setup.rst:293
+# 59a83ba854224a05b873335238575ed2
 msgid "The Juniper SRX can optionally be used in conjunction with an external load balancer. External Network elements can be deployed in a side-by-side or inline configuration."
 msgstr ""
 
-#: ../../network_setup.rst:319
-# 61a621ee3682474f8b6d9d96900381b3
+#: ../../network_setup.rst:297
+# 9583a2f6c4bd4bf4a0ef016582e4950e
 msgid "|parallel-mode.png: adding a firewall and load balancer in parallel mode.|"
 msgstr ""
 
-#: ../../network_setup.rst:322
-# d222305ce6bf40cd85c856ce92765746
+#: ../../network_setup.rst:300
+# 33e495e75ccc4175ac42b392be1f9a25
 msgid "CloudStack requires the Juniper SRX firewall to be configured as follows:"
 msgstr ""
 
-#: ../../network_setup.rst:326
-# 33279c748bd24fb286cf8bb230113f5d
+#: ../../network_setup.rst:303
+# 1d1d4d7ab6de4a8985bde992b3d4b3e8
 msgid "Supported SRX software version is 10.3 or higher."
 msgstr ""
 
-#: ../../network_setup.rst:330
-# 4234dbbbbd71413fa29b5563600d1f53
+#: ../../network_setup.rst:305
+# 6dcbb647db2644fa9a7c43eeb20f382f
 msgid "Install your SRX appliance according to the vendor's instructions."
 msgstr ""
 
-#: ../../network_setup.rst:334
-# 8fa0cb4c8d564cea896a72550e873ef2
+#: ../../network_setup.rst:307
+# 50c53fc1bbaa48ee9e70e7868e5ac785
 msgid "Connect one interface to the management network and one interface to the public network. Alternatively, you can connect the same interface to both networks and a use a VLAN for the public network."
 msgstr ""
 
-#: ../../network_setup.rst:340
-# 7e836a807d75421c8c4e20333ce9eb73
+#: ../../network_setup.rst:311
+# 0acd20956a3b4ed79e57dd49dd90aa83
 msgid "Make sure \"vlan-tagging\" is enabled on the private interface."
 msgstr ""
 
-#: ../../network_setup.rst:344
-# 89a9bb9d45c8455cba1570bbaade5535
+#: ../../network_setup.rst:313
+# 043b2c85f7df4eaa8f35f85717d6411e
 msgid "Record the public and private interface names. If you used a VLAN for the public interface, add a \".[VLAN TAG]\" after the interface name. For example, if you are using ge-0/0/3 for your public interface and VLAN tag 301, your public interface name would be \"ge-0/0/3.301\". Your private interface name should always be untagged because the CloudStack software automatically creates tagged logical interfaces."
 msgstr ""
 
-#: ../../network_setup.rst:353
-# a55ff6dc6ebe4c809256c3c7a6faf574
+#: ../../network_setup.rst:320
+# d2e6321e2786420589602b57da869135
 msgid "Create a public security zone and a private security zone. By default, these will already exist and will be called \"untrust\" and \"trust\". Add the public interface to the public zone and the private interface to the private zone. Note down the security zone names."
 msgstr ""
 
-#: ../../network_setup.rst:360
-# fc41753b86ec4b4b82b14557a97c597e
+#: ../../network_setup.rst:325
+# 9d5330a8656f412aa6986f2bd6a1d05d
 msgid "Make sure there is a security policy from the private zone to the public zone that allows all traffic."
 msgstr ""
 
-#: ../../network_setup.rst:365
-# dd707a9eacd9454b92552d4f806a59ac
+#: ../../network_setup.rst:328
+# ed6f7d110d0143b6b94e01737a88c911
 msgid "Note the username and password of the account you want the CloudStack software to log in to when it is programming rules."
 msgstr ""
 
-#: ../../network_setup.rst:370
-# 566dd89d56bf4f958c4b06abfda1742a
+#: ../../network_setup.rst:331
+# 15d496095b294760b7582dd939c7e2a8
 msgid "Make sure the \"ssh\" and \"xnm-clear-text\" system services are enabled."
 msgstr ""
 
-#: ../../network_setup.rst:374
-# ed31dae2e80f4fa39cebbd2ddfbd4a92
+#: ../../network_setup.rst:333
+# 8e2b9fe66ce24116ae4ebbeea154806a
 msgid "If traffic metering is desired:"
 msgstr ""
 
-#: ../../network_setup.rst:378
-# c90044d70dd24e70b8a0889ab219b89a
+#: ../../network_setup.rst:335
+# b63ccbb8b8fd42aba3d987bed558037b
 msgid "Create an incoming firewall filter and an outgoing firewall filter. These filters should be the same names as your public security zone name and private security zone name respectively. The filters should be set to be \"interface-specific\". For example, here is the configuration where the public zone is \"untrust\" and the private zone is \"trust\":"
 msgstr ""
 
-#: ../../network_setup.rst:397
-# 745b75f8f93f42fd9853468be609c5e3
+#: ../../network_setup.rst:352
+# b8d90177058440b08f11b6fbd6224400
 msgid "Add the firewall filters to your public interface. For example, a sample configuration output (for public interface ge-0/0/3.0, public security zone untrust, and private security zone trust) is:"
 msgstr ""
 
-#: ../../network_setup.rst:417
-# 146f939647114caf9debb6878ed519f6
+#: ../../network_setup.rst:370
+# d0201cdd17164ce8bb8ed40e21ce56ed
 msgid "Make sure all VLANs are brought to the private interface of the SRX."
 msgstr ""
 
-#: ../../network_setup.rst:421
-# 4e3605c672e940e99ad5760c380280b5
+#: ../../network_setup.rst:372
+# 0be4d835f5ec47dfb1cb475ce8185cbd
 msgid "After the CloudStack Management Server is installed, log in to the CloudStack UI as administrator."
 msgstr ""
 
-#: ../../network_setup.rst:426
-#: ../../network_setup.rst:743
-#: ../../network_setup.rst:802
-#: ../../network_setup.rst:1033
-# ae1fffbd466b4cd5b4f8fbf8b9645b3c
-# ae23db054dc24e528260b2d9d35c7f87
-# e5a816ad48464365b4c9357fb4d93f53
-# 5cb19f8bf7254468a6cfa31fee6d9f17
+#: ../../network_setup.rst:375
+#: ../../network_setup.rst:597
+#: ../../network_setup.rst:631
+#: ../../network_setup.rst:790
+# 83eedf55f3c84dd59b6d0031f7e0c5ee
+# 119ea5f9aac34939b712e6bf35fd6b2b
+# 9de5aa399b044a5a86ccc6bd1abe0800
+# e5a613843e514b77a3d7467cdc372e5f
 msgid "In the left navigation bar, click Infrastructure."
 msgstr ""
 
-#: ../../network_setup.rst:430
-#: ../../network_setup.rst:747
-#: ../../network_setup.rst:806
-#: ../../network_setup.rst:1037
-# 9f5dca40f3fd4b5aa33446dc8e1a78ea
-# 4cf51aaa2b6b4aa0901119d558215d7f
-# 138bc3ac35cb42f591d76eb703059200
-# e751b286f3b24d72b180b9a74be5c90b
+#: ../../network_setup.rst:377
+#: ../../network_setup.rst:599
+#: ../../network_setup.rst:633
+#: ../../network_setup.rst:792
+# c7b8e2f9cbd84c43a23b87769989190b
+# fee6b2759a0a4c8d85973b38457107b9
+# 29aa1bf7a6cc4e779ad52ab4f8d65691
+# 1a6287e3416f438e8e20715084bec873
 msgid "In Zones, click View More."
 msgstr ""
 
-#: ../../network_setup.rst:434
-#: ../../network_setup.rst:751
-#: ../../network_setup.rst:810
-#: ../../network_setup.rst:1041
-# de65044b14744fd1a655636ebba9d04c
-# 4426371bc34446e0a844ef2c40b6c3a4
-# 264aaeb7409c411ca7fe74f156f5e404
-# b7ba17751ec947d7a2027508413bd618
+#: ../../network_setup.rst:379
+#: ../../network_setup.rst:601
+#: ../../network_setup.rst:635
+#: ../../network_setup.rst:794
+# 564cfc916b7b4250b8211ac6b03d6830
+# 99ba370aee7e4b14ba26cb13b10849ad
+# 0e2e624457db4fba8b6a9bea3ecc8cd2
+# d36af8233dbf427dbda0f1f6a3b3279d
 msgid "Choose the zone you want to work with."
 msgstr ""
 
-#: ../../network_setup.rst:438
-#: ../../network_setup.rst:1045
-# c84223d0d6eb4889a79cd1134c6ee633
-# 9de0fa487b324a3b89252069d65fdde2
+#: ../../network_setup.rst:381
+#: ../../network_setup.rst:796
+# fd783e15448d42eca4b34f6d6c297a80
+# 8b0b666f0e2c4a61b088f7aea345a2c1
 msgid "Click the Network tab."
 msgstr ""
 
-#: ../../network_setup.rst:442
-#: ../../network_setup.rst:1049
-# 6a84775802d645af9607c2e647825d40
-# 8afb473c71264f8db58d3313895dc9de
+#: ../../network_setup.rst:383
+#: ../../network_setup.rst:798
+# 27d53105db6e439c9ee111db84d2e624
+# cc0180b6815b400c9453c2c6a2b25cef
 msgid "In the Network Service Providers node of the diagram, click Configure. (You might have to scroll down to see this.)"
 msgstr ""
 
-#: ../../network_setup.rst:447
-# f9985e8b79a74855a02bc63dd83adba2
+#: ../../network_setup.rst:386
+# c57c2457da7b4b2fab54de32397fb5bb
 msgid "Click SRX."
 msgstr ""
 
-#: ../../network_setup.rst:451
-# c69fcde003714f2ab79347099374920e
+#: ../../network_setup.rst:388
+# c63b5c19989247ce8932e1d0cb37d240
 msgid "Click the Add New SRX button (+) and provide the following:"
 msgstr ""
 
-#: ../../network_setup.rst:455
-#: ../../network_setup.rst:1064
-# d2f18f76f7be4e4e8914ec1242146eaa
-# 2388d27c72ba412b9d6f1023b1a7010e
+#: ../../network_setup.rst:390
+#: ../../network_setup.rst:807
+# 8d667d9b05284e6fb6629c3d184f4b12
+# b559300d6e0f48daa0730c40d2cbcf6e
 msgid "IP Address: The IP address of the SRX."
 msgstr ""
 
-#: ../../network_setup.rst:459
-# 8b42fcb9dd124154b97cfa14b72ea1da
+#: ../../network_setup.rst:392
+# 5f9a972abd4e41d98ebc2925a9bbffb7
 msgid "Username: The user name of the account on the SRX that CloudStack should use."
 msgstr ""
 
-#: ../../network_setup.rst:464
-#: ../../network_setup.rst:787
-# 24c3b92795034ba49f5f240cf9515374
-# 9a706efead294f20ba443bae76ad953a
+#: ../../network_setup.rst:395
+#: ../../network_setup.rst:621
+# 9805383a254e4a42b7870c8c3c9fc1fb
+# 9d98c3fcf55b4763826c737462e97833
 msgid "Password: The password of the account."
 msgstr ""
 
-#: ../../network_setup.rst:468
-# e0712b834c9a49239a2e71d4fe93051b
+#: ../../network_setup.rst:397
+# 589a2bf5564f4f3dabfc87038ad99528
 msgid "Public Interface. The name of the public interface on the SRX. For example, ge-0/0/2. A \".x\" at the end of the interface indicates the VLAN that is in use."
 msgstr ""
 
-#: ../../network_setup.rst:474
-# 3a32a36db9c14830bf7fa21a781c66b0
+#: ../../network_setup.rst:401
+# a99e76740bd74ea2b9d864e0f2f22d36
 msgid "Private Interface: The name of the private interface on the SRX. For example, ge-0/0/1."
 msgstr ""
 
-#: ../../network_setup.rst:479
-# a57513d127974a12b36fec2f5e83c2d7
+#: ../../network_setup.rst:404
+# b141f05518cd45c0bfb4563cae4c1f39
 msgid "Usage Interface: (Optional) Typically, the public interface is used to meter traffic. If you want to use a different interface, specify its name here"
 msgstr ""
 
-#: ../../network_setup.rst:485
-# 406cb60bc9764b3b9a99908cf6a6df06
+#: ../../network_setup.rst:408
+# 06f5547344474c78b06dfceef142803e
 msgid "Number of Retries: The number of times to attempt a command on the SRX before failing. The default value is 2."
 msgstr ""
 
-#: ../../network_setup.rst:490
-# 97e6060d32bb46cda2cb9d0abf73f33f
+#: ../../network_setup.rst:411
+# 0e672b9a244d49b981670d6082dcec0e
 msgid "Timeout (seconds): The time to wait for a command on the SRX before considering it failed. Default is 300 seconds."
 msgstr ""
 
-#: ../../network_setup.rst:495
-# 81d96516beb54b17a2902f3ce21fb857
+#: ../../network_setup.rst:414
+# fc059aade6b144a4b95d0c8826c39030
 msgid "Public Network: The name of the public network on the SRX. For example, trust."
 msgstr ""
 
-#: ../../network_setup.rst:500
-# e294fb3485eb4089b6d61ccd0f4fb8e2
+#: ../../network_setup.rst:417
+# a174bebde38f47648a5348b5a7f31b8a
 msgid "Private Network: The name of the private network on the SRX. For example, untrust."
 msgstr ""
 
-#: ../../network_setup.rst:505
-# b797dba069484a79adc9589918ec7c71
+#: ../../network_setup.rst:420
+# e8f9887a325f4080a1f065d01ce94eef
 msgid "Capacity: The number of networks the device can handle"
 msgstr ""
 
-#: ../../network_setup.rst:509
-# 725e061a6426459caf75e1797c5e3d2f
+#: ../../network_setup.rst:422
+# feca5c1941624366a9ee33104afa1869
 msgid "Dedicated: When marked as dedicated, this device will be dedicated to a single account. When Dedicated is checked, the value in the Capacity field has no significance implicitly, its value is 1"
 msgstr ""
 
-#: ../../network_setup.rst:515
-#: ../../network_setup.rst:791
-#: ../../network_setup.rst:854
-#: ../../network_setup.rst:1105
-# 2ffb4f8956c1455493d8ba2615ccef21
-# 8bdc57b75b084c49abd55cfa3aa4c461
-# 73c7a7c1e73a4a7e9efa7ac80a43a2d6
-# 2845611bf8ed49d59c438ca261a2b542
+#: ../../network_setup.rst:426
+#: ../../network_setup.rst:623
+#: ../../network_setup.rst:661
+#: ../../network_setup.rst:832
+# d87bed8dbd1d4647a4a74b4fde1e2b4e
+# 6e6650d74a0343ef91d48ae3c11dc1e2
+# e3313ae53b0e404c8a5b589979a311b2
+# 6c0d5b7a35c94391936c43610833c8b1
 msgid "Click OK."
 msgstr ""
 
-#: ../../network_setup.rst:519
-# 3d95a0ac1f5047f98762b2e375ecd105
+#: ../../network_setup.rst:428
+# 72e1ae81e175465e801b9a35330c91c7
 msgid "Click Global Settings. Set the parameter external.network.stats.interval to indicate how often you want CloudStack to fetch network usage statistics from the Juniper SRX. If you are not using the SRX to gather network usage statistics, set to 0."
 msgstr ""
 
-#: ../../network_setup.rst:526
-# c231178a955f4207913ececa53bee4f9
+#: ../../network_setup.rst:435
+# 5311a929dda944ea92ba1a05fe795f65
 msgid "External Guest Firewall Integration for Cisco VNMC (Optional)"
 msgstr ""
 
-#: ../../network_setup.rst:528
-# 7ddb13c16c594e2cb97bb4ba91cb9f5b
+#: ../../network_setup.rst:437
+# 40bbe2d15710459ea8a53a4a3e8be997
 msgid "Cisco Virtual Network Management Center (VNMC) provides centralized multi-device and policy management for Cisco Network Virtual Services. You can integrate Cisco VNMC with CloudStack to leverage the firewall and NAT service offered by ASA 1000v Cloud Firewall. Use it in a Cisco Nexus 1000v dvSwitch-enabled cluster in CloudStack. In such a deployment, you will be able to:"
 msgstr ""
 
-#: ../../network_setup.rst:537
-# e7a5392625c243e680f304852391be28
+#: ../../network_setup.rst:444
+# 53b820cc9dff42c7b255ab4d8568a19e
 msgid "Configure Cisco ASA 1000v firewalls. You can configure one per guest network."
 msgstr ""
 
-#: ../../network_setup.rst:542
-# 7a564af5923e4a968086c540c738578a
+#: ../../network_setup.rst:447
+# 7d55cb00df5b4a49bfb45bc29b87a677
 msgid "Use Cisco ASA 1000v firewalls to create and apply security profiles that contain ACL policy sets for both ingress and egress traffic."
 msgstr ""
 
-#: ../../network_setup.rst:547
-# 8371cdb35f4640deaf2f5c236cddc61e
+#: ../../network_setup.rst:450
+# bbd8e2f953704bfda60d592b7a1c4429
 msgid "Use Cisco ASA 1000v firewalls to create and apply Source NAT, Port Forwarding, and Static NAT policy sets."
 msgstr ""
 
-#: ../../network_setup.rst:550
-# d5e7738eaf324d22a9ace729dec0c88a
+#: ../../network_setup.rst:453
+# 474d1c74488841138f21f9871e3e7637
 msgid "CloudStack supports Cisco VNMC on Cisco Nexus 1000v dvSwich-enabled VMware hypervisors."
 msgstr ""
 
-#: ../../network_setup.rst:554
-# f14bc561643f4f66a0e2abb3bdb98d3e
+#: ../../network_setup.rst:458
+# 42c0de41f2c44491a91b52cf81ed3674
 msgid "Using Cisco ASA 1000v Firewall, Cisco Nexus 1000v dvSwitch, and Cisco VNMC in a Deployment"
 msgstr ""
 
-#: ../../network_setup.rst:557
-# b368057bd8f24ab99f82b52430b1ecc7
+#: ../../network_setup.rst:461
+# d18809d95a674b9cbe2ffa627eff2786
 msgid "Guidelines"
 msgstr ""
 
-#: ../../network_setup.rst:561
-# 4f3bafb81fc448f091dbcb3d582fc81e
+#: ../../network_setup.rst:463
+# f97e1aa6ae6b4d49b5c4c66f95db6400
 msgid "Cisco ASA 1000v firewall is supported only in Isolated Guest Networks."
 msgstr ""
 
-#: ../../network_setup.rst:566
-# 0d4c08f71c1c40819a64bdf88478b275
+#: ../../network_setup.rst:466
+# 8df62ec4f02c4a4dbb579d02dd3f150a
 msgid "Cisco ASA 1000v firewall is not supported on VPC."
 msgstr ""
 
-#: ../../network_setup.rst:570
-# a9e4fbac68c64f799b93d744713c6121
+#: ../../network_setup.rst:468
+# 7b56777b52384a36ae1bb6733fedafcb
 msgid "Cisco ASA 1000v firewall is not supported for load balancing."
 msgstr ""
 
-#: ../../network_setup.rst:574
-# f9f2fd0e77764cb0af893106ac5a2a7e
+#: ../../network_setup.rst:470
+# 237ca442d633476b97185dca9083c955
 msgid "When a guest network is created with Cisco VNMC firewall provider, an additional public IP is acquired along with the Source NAT IP. The Source NAT IP is used for the rules, whereas the additional IP is used to for the ASA outside interface. Ensure that this additional public IP is not released. You can identify this IP as soon as the network is in implemented state and before acquiring any further public IPs. The additional IP is the one that is not marked as Source NAT. You can find the IP used for the ASA outside interface by looking at the Cisco VNMC used in your guest network."
 msgstr ""
 
-#: ../../network_setup.rst:586
-# a2096b8adf6c4d49af83da25561f3875
+#: ../../network_setup.rst:480
+# 71e7c6de8183436aa6c9219b5fe32097
 msgid "Use the public IP address range from a single subnet. You cannot add IP addresses from different subnets."
 msgstr ""
 
-#: ../../network_setup.rst:591
-# 0771f4bd2f9a43959b94758a937cca5e
+#: ../../network_setup.rst:483
+# 347a68ec09e74810a44472e35d092f64
 msgid "Only one ASA instance per VLAN is allowed because multiple VLANS cannot be trunked to ASA ports. Therefore, you can use only one ASA instance in a guest network."
 msgstr ""
 
-#: ../../network_setup.rst:597
-# 8d9f9ee56667428ba6117d2114daf7b4
+#: ../../network_setup.rst:487
+# 569e13e1167c4a76a6f5134ef65d99e8
 msgid "Only one Cisco VNMC per zone is allowed."
 msgstr ""
 
-#: ../../network_setup.rst:601
-# e0fd9954d8f0439ca8ca206c92f4e4c3
+#: ../../network_setup.rst:489
+# bb939448a41a44189ebb9d02a40c6b17
 msgid "Supported only in Inline mode deployment with load balancer."
 msgstr ""
 
-#: ../../network_setup.rst:605
-# 6ce782eac5b84921842db76a08044e4a
+#: ../../network_setup.rst:491
+# 877c7cf7a46f4eb1a593397a10187a6a
 msgid "The ASA firewall rule is applicable to all the public IPs in the guest network. Unlike the firewall rules created on virtual router, a rule created on the ASA device is not tied to a specific public IP."
 msgstr ""
 
-#: ../../network_setup.rst:611
-# 878d4699ef8343828117e00f9af62701
+#: ../../network_setup.rst:495
+# cf88d5219d574e44bfc0c436912c5391
 msgid "Use a version of Cisco Nexus 1000v dvSwitch that support the vservice command. For example: nexus-1000v.4.2.1.SV1.5.2b.bin"
 msgstr ""
 
-#: ../../network_setup.rst:614
-# cb00c11a6016419b9a93fba46c80a39f
+#: ../../network_setup.rst:498
+# 6de75b299213451ea9108722f5431abf
 msgid "Cisco VNMC requires the vservice command to be available on the Nexus switch to create a guest network in CloudStack."
 msgstr ""
 
-#: ../../network_setup.rst:618
-# 6730f26a26bd4708b8823298a0356b1c
+#: ../../network_setup.rst:503
+# 39bbc9648cf346ba995bd567cba5a91c
 msgid "Prerequisites"
 msgstr ""
 
-#: ../../network_setup.rst:622
-# 833f606f702a44a78fcd8e7d8950fb78
+#: ../../network_setup.rst:505
+# c4d87ffce9ee418bb5277196957041d2
 msgid "Configure Cisco Nexus 1000v dvSwitch in a vCenter environment."
 msgstr ""
 
-#: ../../network_setup.rst:624
-# b9b3441290284f6e924c0ef75077dc10
+#: ../../network_setup.rst:507
+# 273055b3e10447eb9f6ee66aa7c56122
 msgid "Create Port profiles for both internal and external network interfaces on Cisco Nexus 1000v dvSwitch. Note down the inside port profile, which needs to be provided while adding the ASA appliance to CloudStack."
 msgstr ""
 
-#: ../../network_setup.rst:629
-# 725c5f44ccd74323a75660b46f0bfdd5
+#: ../../network_setup.rst:512
+# e38227e22a094d63bc1b850e584bf3b9
 msgid "For information on configuration, see `“Configuring a vSphere Cluster with Nexus 1000v Virtual Switch” <hypervisor_installation.html#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_."
 msgstr ""
 
-#: ../../network_setup.rst:634
-# ac60d4b57fc140558392ccffc754f4d4
+#: ../../network_setup.rst:516
+# 55fe45ec845548cbb8a78e36f3c06ec0
 msgid "Deploy and configure Cisco VNMC."
 msgstr ""
 
-#: ../../network_setup.rst:636
-# 2c5d754fbd644d6196d8dc6fcb572a9e
+#: ../../network_setup.rst:518
+# f746770abf4f45ef945ff3f0a26b584a
 msgid "For more information, see `Installing Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_2_1_1/install_upgrade/guide/b_Cisco_VSG_for_VMware_vSphere_Rel_4_2_1_VSG_2_1_1_and_Cisco_VNMC_Rel_2_1_Installation_and_Upgrade_Guide_chapter_011.html>`_ and `Configuring Cisco Virtual Network Management Center <http://www.cisco.com/en/US/docs/unified_computing/vnmc/sw/1.2/VNMC_GUI_Configuration/b_VNMC_GUI_Configuration_Guide_1_2_chapter_010.html>`_."
 msgstr ""
 
-#: ../../network_setup.rst:641
-# 33cee7c6bf9545908374ee9fd56e563d
+#: ../../network_setup.rst:524
+# 890a0309246f4e1cb3c358dcb4e98983
 msgid "Register Cisco Nexus 1000v dvSwitch with Cisco VNMC."
 msgstr ""
 
-#: ../../network_setup.rst:643
-# 49e2f38096524c12941a8b94b64e3cbc
+#: ../../network_setup.rst:526
+# 5d7310375c57493aa147f26420784b38
 msgid "For more information, see `Registering a Cisco Nexus 1000V with Cisco VNMC <http://www.cisco.com/en/US/docs/switches/datacenter/vsg/sw/4_2_1_VSG_1_2/vnmc_and_vsg_qi/guide/vnmc_vsg_install_5register.html#wp1064301>`_."
 msgstr ""
 
-#: ../../network_setup.rst:648
-# eb70a80e7e4a4a4199e014d7dde29e30
+#: ../../network_setup.rst:529
+# 500816abfa7f432d9ed94665ff42315a
 msgid "Create Inside and Outside port profiles in Cisco Nexus 1000v dvSwitch."
 msgstr ""
 
-#: ../../network_setup.rst:651
-# 6816f3becfb5443a93c615aafae556dd
+#: ../../network_setup.rst:531
+# 76cabd3f3582426c8c8810e144eb23f3
 msgid "For more information, see `“Configuring a vSphere Cluster with Nexus 1000v Virtual Switch” <hypervisor_installation.html#configuring-a-vsphere-cluster-with-nexus-1000v-virtual-switch>`_."
 msgstr ""
 
-#: ../../network_setup.rst:655
-# d452726321994e95b894e93a4ed80284
+#: ../../network_setup.rst:535
+# ff2dcbffa1b14e5ab64b8c834942483e
 msgid "Deploy and Cisco ASA 1000v appliance."
 msgstr ""
 
-#: ../../network_setup.rst:657
-# 60d9d946998e4fcdba7d84b3a2a74806
+#: ../../network_setup.rst:537
+# 39146f72a8c84d28bc65e5fa9dd4cdb9
 msgid "For more information, see `Setting Up the ASA 1000V Using VNMC <http://www.cisco.com/en/US/docs/security/asa/quick_start/asa1000V/setup_vnmc.html>`_."
 msgstr ""
 
-#: ../../network_setup.rst:659
-# 9f879b1974bf463b99d07f251ac8c9f1
+#: ../../network_setup.rst:540
+# 2165e5de14094930bed61e6b01f0b77a
 msgid "Typically, you create a pool of ASA 1000v appliances and register them with CloudStack."
 msgstr ""
 
-#: ../../network_setup.rst:662
-# 89a83288031a4ed681c786256d804b98
+#: ../../network_setup.rst:543
+# 71608798f1724b909bf18251bbcdce75
 msgid "Specify the following while setting up a Cisco ASA 1000v instance:"
 msgstr ""
 
-#: ../../network_setup.rst:666
-# 5866bc6ab1bb44d6930086d8df496e20
+#: ../../network_setup.rst:545
+# e7347e3b34f14bfdb63251d3628abbdd
 msgid "VNMC host IP."
 msgstr ""
 
-#: ../../network_setup.rst:670
-# 8849d70ea945435c87ed8566e212f2f7
+#: ../../network_setup.rst:547
+# 6b0bb824d6ba4c308a4713de3f38b8bb
 msgid "Ensure that you add ASA appliance in VNMC mode."
 msgstr ""
 
-#: ../../network_setup.rst:674
-# dfbd56bf8dc14245855c7b0a81f8adfd
+#: ../../network_setup.rst:549
+# 70e3ab12a94645d9b8db4379ed6c40e6
 msgid "Port profiles for the Management and HA network interfaces. This need to be pre-created on Cisco Nexus 1000v dvSwitch."
 msgstr ""
 
-#: ../../network_setup.rst:679
-# 5602a5bfbd9f4393962a9aef3bf2d87d
+#: ../../network_setup.rst:552
+# c53ff0d84fc941c28feda24f9e7e4eef
 msgid "Internal and external port profiles."
 msgstr ""
 
-#: ../../network_setup.rst:683
-# 86f08e2f599148f68fda8a1c8526e125
+#: ../../network_setup.rst:554
+# 45b55744d6e247269c14c32af61e6b04
 msgid "The Management IP for Cisco ASA 1000v appliance. Specify the gateway such that the VNMC IP is reachable."
 msgstr ""
 
-#: ../../network_setup.rst:688
-# 9959e4f977e74e32919025fbcd616e30
+#: ../../network_setup.rst:557
+# 199952960bde4c1d8f20c181417792e5
 msgid "Administrator credentials"
 msgstr ""
 
-#: ../../network_setup.rst:692
-# 744878dbc4fc41c296198d54a65ba481
+#: ../../network_setup.rst:559
+# 93c5f22490074bdc99e81cd94c41d53a
 msgid "VNMC credentials"
 msgstr ""
 
-#: ../../network_setup.rst:696
-# f3bdb9d21f4c4ef78859b5469ebccd25
+#: ../../network_setup.rst:561
+# 10dbc0618ab842719aa3772b2e8784fa
 msgid "Register Cisco ASA 1000v with VNMC."
 msgstr ""
 
-#: ../../network_setup.rst:698
-# 879024b1fdd44637af8f1f3447152daf
+#: ../../network_setup.rst:563
+# 5966ea52cf464c80b807747bebbc8460
 msgid "After Cisco ASA 1000v instance is powered on, register VNMC from the ASA console."
 msgstr ""
 
-#: ../../network_setup.rst:702
-# fb08e857c313421ba7f0f0fc2a961739
+#: ../../network_setup.rst:568
+# 3a33bfedd41d4a64b21fb24beccb4b22
 msgid "Using Cisco ASA 1000v Services"
 msgstr ""
 
-#: ../../network_setup.rst:706
-# 0b9f634819c5486d956f8a10a96bcbae
+#: ../../network_setup.rst:570
+# 92702d5dd3bb4e1489e83c77093f1a05
 msgid "Ensure that all the prerequisites are met."
 msgstr ""
 
-#: ../../network_setup.rst:708
-# 0ba06b8d21324aed90acdb495d56cb93
+#: ../../network_setup.rst:572
+# 1c86dda56f9b4f1d95dd04a56a545eb6
 msgid "See `“Prerequisites” <#prerequisites>`_."
 msgstr ""
 
-#: ../../network_setup.rst:712
-# 6331688e133b41ec907beeaee4be7c47
+#: ../../network_setup.rst:574
+# 2a96e0eac83d460fb53cfd7a57b336a1
 msgid "Add a VNMC instance."
 msgstr ""
 
-#: ../../network_setup.rst:714
-# 128113d285044dc992ad8d74376d7c97
+#: ../../network_setup.rst:576
+# 7f2786b9a09648eca50126e66e9a1ce9
 msgid "See `“Adding a VNMC Instance” <#adding-a-vnmc-instance>`_."
 msgstr ""
 
-#: ../../network_setup.rst:718
-# 261faa004f6845d7b99abe9f6e978f70
+#: ../../network_setup.rst:578
+# 4c83a0155c3a4b9a8c3e224f13a38643
 msgid "Add a ASA 1000v instance."
 msgstr ""
 
-#: ../../network_setup.rst:720
-# 313e1e8e99a04fa49de774f12841c9d4
+#: ../../network_setup.rst:580
+# df320d40f5224132a3f107b3d70f5a1f
 msgid "See `“Adding an ASA 1000v Instance” <#adding-an-asa-1000v-instance>`_."
 msgstr ""
 
-#: ../../network_setup.rst:724
-# 2daa62e2624d48448cab1e759a7ff734
+#: ../../network_setup.rst:582
+# 69e5eb4309584257937bdb75fd4756ab
 msgid "Create a Network Offering and use Cisco VNMC as the service provider for desired services."
 msgstr ""
 
-#: ../../network_setup.rst:727
-# 095b04ca794b4d45ae3579b6c2e30b70
+#: ../../network_setup.rst:585
+# f8bc670f1d1e410d87eb7bebed9dd50b
 msgid "See `“Creating a Network Offering Using Cisco ASA 1000v” <#creating-a-network-offering-using-cisco-asa-1000v>`_."
 msgstr ""
 
-#: ../../network_setup.rst:731
-# bb596e7d870844859604fb2636fdb45b
+#: ../../network_setup.rst:588
+# b9f4e08c2e4c47038a2651d6e8c45f9a
 msgid "Create an Isolated Guest Network by using the network offering you just created."
 msgstr ""
 
-#: ../../network_setup.rst:735
-# f909afe140884951824cc8af81a646f3
+#: ../../network_setup.rst:593
+# dd9740c27dcd49caa18b1e07599c945d
 msgid "Adding a VNMC Instance"
 msgstr ""
 
-#: ../../network_setup.rst:739
-#: ../../network_setup.rst:798
-#: ../../network_setup.rst:1291
-# 2a23cbce41f345e0aec7d6db622c0c46
-# a0a583e2b36e478d8eabce5113e5b7bd
-# 7ea11e195a2a4f19aa32d7c9a7e85d62
+#: ../../network_setup.rst:595
+#: ../../network_setup.rst:629
+#: ../../network_setup.rst:1012
+# c1cfcf6b2714482981a36cdf521b5676
+# b1a384e4258345fcaf5a2c57a062033e
+# fd3b312d35ff4d32b0aeba868015673e
 msgid "Log in to the CloudStack UI as administrator."
 msgstr ""
 
-#: ../../network_setup.rst:755
-#: ../../network_setup.rst:814
-# 590c34870a534e5a945ef859f88447ca
-# 1c39a3cef5144be296a63acf4fa409ec
+#: ../../network_setup.rst:603
+#: ../../network_setup.rst:637
+# eb09321188c441c584e06b8b6ae6a816
+# fe02f530f0044688a207897b58ff2421
 msgid "Click the Physical Network tab."
 msgstr ""
 
-#: ../../network_setup.rst:759
-#: ../../network_setup.rst:818
-# c060248b043942599325a7e9e2cc3a32
-# 432b64e9f1254ee0a8d28c29e4cd59f9
+#: ../../network_setup.rst:605
+#: ../../network_setup.rst:639
+# 758d3cd3abe240e3b4b45b46e4fd7293
+# 3eba5d220d984b70b68217882aa7a82b
 msgid "In the Network Service Providers node of the diagram, click Configure."
 msgstr ""
 
-#: ../../network_setup.rst:762
-#: ../../network_setup.rst:821
-# 567df3c29fd34320820c2ff93d255f9c
-# 3563fe4e08f3418aac963792df62408c
+#: ../../network_setup.rst:608
+#: ../../network_setup.rst:642
+# b2023dfd763a46f2b35bb495d2c6caae
+# 1059ea2b826b4b21b8c818daf678ca46
 msgid "You might have to scroll down to see this."
 msgstr ""
 
-#: ../../network_setup.rst:766
-#: ../../network_setup.rst:825
-# fe0ad75aa2324345909fe5123d894e7e
-# 39d89907aff94555abd93cf614542e2e
+#: ../../network_setup.rst:610
+#: ../../network_setup.rst:644
+# c87503e43e8a4a25a77c4166e02fdef5
+# fdfcc18249374b7c94616ea1de46f8a3
 msgid "Click Cisco VNMC."
 msgstr ""
 
-#: ../../network_setup.rst:770
-# f4d2612c13954f509738352b195ec590
+#: ../../network_setup.rst:612
+# 4f9b7772a8f346af94c367b56c696bff
 msgid "Click View VNMC Devices."
 msgstr ""
 
-#: ../../network_setup.rst:774
-# 280a671674694f8b9ddb6f78d2738bb4
+#: ../../network_setup.rst:614
+# 473f0d6944a641d293e217e69b575982
 msgid "Click the Add VNMC Device and provide the following:"
 msgstr ""
 
-#: ../../network_setup.rst:778
-# b6960cf1621343a6bb5bc6c018b688b9
+#: ../../network_setup.rst:616
+# 9d8b2cf61ebf4f0b9d20bde66eb2ada4
 msgid "Host: The IP address of the VNMC instance."
 msgstr ""
 
-#: ../../network_setup.rst:782
-# b561e3a09023491bbbaf24ae333eda26
+#: ../../network_setup.rst:618
+# 3056ecd7f30744acb87118d6b31faf4d
 msgid "Username: The user name of the account on the VNMC instance that CloudStack should use."
 msgstr ""
 
-#: ../../network_setup.rst:794
-# a5549d2809bb4c85a07596b4519e145b
+#: ../../network_setup.rst:627
+# d98ce3e9beba49e3b8be96b27970e903
 msgid "Adding an ASA 1000v Instance"
 msgstr ""
 
-#: ../../network_setup.rst:829
-# 652419f55d024d92ae3d5b4429f47502
+#: ../../network_setup.rst:646
+# d58faf4c65d447f7b1ed654fa6d773ef
 msgid "Click View ASA 1000v."
 msgstr ""
 
-#: ../../network_setup.rst:833
-# 520764a117b54a54895f7418b5dd6bd9
+#: ../../network_setup.rst:648
+# 48a7684e388a4a1199086e67b9e06fbf
 msgid "Click the Add CiscoASA1000v Resource and provide the following:"
 msgstr ""
 
-#: ../../network_setup.rst:837
-# 041d3eea38ef4a91be6165d2e1b80540
+#: ../../network_setup.rst:650
+# 928909e6ab0a423cbdb8e647f25772b2
 msgid "**Host**: The management IP address of the ASA 1000v instance. The IP address is used to connect to ASA 1000V."
 msgstr ""
 
-#: ../../network_setup.rst:842
-# 0b4fca9e3a554236b68fb63674fd2d2b
+#: ../../network_setup.rst:653
+# 70321795345648bd9c1da27a348d9622
 msgid "**Inside Port Profile**: The Inside Port Profile configured on Cisco Nexus1000v dvSwitch."
 msgstr ""
 
-#: ../../network_setup.rst:847
-# 9c45084e5ed1456d90d117c7c8e7d325
+#: ../../network_setup.rst:656
+# 32b609836a04453fb6a045d870d7326f
 msgid "**Cluster**: The VMware cluster to which you are adding the ASA 1000v instance."
 msgstr ""
 
-#: ../../network_setup.rst:850
-# d12959be285b4c84a0664a08dc2b0e3a
+#: ../../network_setup.rst:659
+# cd7f376d7aa849a4a7247501f60ba869
 msgid "Ensure that the cluster is Cisco Nexus 1000v dvSwitch enabled."
 msgstr ""
 
-#: ../../network_setup.rst:857
-# 7e7a81b8c6e54bb8999755a49231aa40
+#: ../../network_setup.rst:665
+# a3980b1ab6084e3db8cd7521a2eedaea
 msgid "Creating a Network Offering Using Cisco ASA 1000v"
 msgstr ""
 
-#: ../../network_setup.rst:859
-# a728035550724e399b8d655332a2af43
+#: ../../network_setup.rst:667
+# 950a38dbcb1e421a9f535a092c783907
 msgid "To have Cisco ASA 1000v support for a guest network, create a network offering as follows:"
 msgstr ""
 
-#: ../../network_setup.rst:864
-# 235592f79aeb4e7383f891670812bd62
+#: ../../network_setup.rst:670
+# e92f8d283bd34673bd9c78e81833668e
 msgid "Log in to the CloudStack UI as a user or admin."
 msgstr ""
 
-#: ../../network_setup.rst:868
-# 98ec5c8085be4e22a62453cec3e727c6
+#: ../../network_setup.rst:672
+# 26660317d6fb41258f3d2b9a406f298d
 msgid "From the Select Offering drop-down, choose Network Offering."
 msgstr ""
 
-#: ../../network_setup.rst:872
-# 76ed883fe42148418fd05640db3307c7
+#: ../../network_setup.rst:674
+# ddecb14ca4124b1998831a3da0e5db4f
 msgid "Click Add Network Offering."
 msgstr ""
 
-#: ../../network_setup.rst:876
-# 4078b28dde3b4492a875088625396f69
+#: ../../network_setup.rst:676
+# dc73890ea66e4303ac2aa89bff57c086
 msgid "In the dialog, make the following choices:"
 msgstr ""
 
-#: ../../network_setup.rst:880
-# 7a66dd4ce7ac4236a39b3f9bbb2f0e70
+#: ../../network_setup.rst:678
+# 8cc2e100f0cb4ebfbfaf9c9deadcbaba
 msgid "**Name**: Any desired name for the network offering."
 msgstr ""
 
-#: ../../network_setup.rst:884
-# b21556cf7ba24206984a62e49d577298
+#: ../../network_setup.rst:680
+# dd1d1924540f4e5dbedd6e9a2218be68
 msgid "**Description**: A short description of the offering that can be displayed to users."
 msgstr ""
 
-#: ../../network_setup.rst:889
-# fc650ab9838541d1acccaa8f1bb17428
+#: ../../network_setup.rst:683
+# 26e660fc8ea74ce28ac609f6c584cbd2
 msgid "**Network Rate**: Allowed data transfer rate in MB per second."
 msgstr ""
 
-#: ../../network_setup.rst:893
-# f4657f2c370e443dba748ed97ef09101
+#: ../../network_setup.rst:685
+# dd894b5b99ef46fa91b4e2548ecbc571
 msgid "**Traffic Type**: The type of network traffic that will be carried on the network."
 msgstr ""
 
-#: ../../network_setup.rst:898
-# 309bc092f3c9493fa9cd9cc008e9abc9
+#: ../../network_setup.rst:688
+# eae0966c87144700836fc5e823127d8b
 msgid "**Guest Type**: Choose whether the guest network is isolated or shared."
 msgstr ""
 
-#: ../../network_setup.rst:903
-# 2092b89e8fd347d3a5975560c6fd8a0f
+#: ../../network_setup.rst:691
+# e54268df1bbe4a2099f3e8c010a00d9f
 msgid "**Persistent**: Indicate whether the guest network is persistent or not. The network that you can provision without having to deploy a VM on it is termed persistent network."
 msgstr ""
 
-#: ../../network_setup.rst:909
-# 225d614ca62f4655b3c22dfda3bcaee7
+#: ../../network_setup.rst:695
+# 4fc96223cb514c21a8ec82d8d753d7c9
 msgid "**VPC**: This option indicate whether the guest network is Virtual Private Cloud-enabled. A Virtual Private Cloud (VPC) is a private, isolated part of CloudStack. A VPC can have its own virtual network topology that resembles a traditional physical network. For more information on VPCs, see `“About Virtual Private Clouds” <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/networking2.html#about-virtual-private-clouds>`_."
 msgstr ""
 
-#: ../../network_setup.rst:917
-# c4d68e7e8c4a485f83a21c1dd68ed9a4
+#: ../../network_setup.rst:702
+# f00fa325f09746919b9d1009245f5015
 msgid "**Specify VLAN**: (Isolated guest networks only) Indicate whether a VLAN should be specified when this offering is used."
 msgstr ""
 
-#: ../../network_setup.rst:922
-# 5fcda08e554749d19c354928ac2dc001
+#: ../../network_setup.rst:705
+# 3d3c6a5287e4473f8185c047e07a1974
 msgid "**Supported Services**: Use Cisco VNMC as the service provider for Firewall, Source NAT, Port Forwarding, and Static NAT to create an Isolated guest network offering."
 msgstr ""
 
-#: ../../network_setup.rst:928
-# 49f6135884b942aca975f5701dcadd9a
+#: ../../network_setup.rst:709
+# bc538b1440fd4510b0825b413a042fee
 msgid "**System Offering**: Choose the system service offering that you want virtual routers to use in this network."
 msgstr ""
 
-#: ../../network_setup.rst:933
-# 5f37d9b817f84e2d8198ba57a204cace
+#: ../../network_setup.rst:712
+# 26faeb25fa524771be1e615d700372ba
 msgid "**Conserve mode**: Indicate whether to use conserve mode. In this mode, network resources are allocated only when the first virtual machine starts in the network."
 msgstr ""
 
-#: ../../network_setup.rst:939
-# e87bb070ce554c3d960e91c209213466
+#: ../../network_setup.rst:716
+# 4ef16133df3a464390c7fee43388e910
 msgid "Click OK"
 msgstr ""
 
-#: ../../network_setup.rst:941
-# 084e3bb8d5a6446f83249cfda489a99a
+#: ../../network_setup.rst:718
+# a7992266e0284c60a8f1095f8f4c12e3
 msgid "The network offering is created."
 msgstr ""
 
-#: ../../network_setup.rst:944
-# e4503c403ad04eb297f958acd216ce6f
+#: ../../network_setup.rst:722
+# a742daa985a44045b5e372c411ffc6c2
 msgid "Reusing ASA 1000v Appliance in new Guest Networks"
 msgstr ""
 
-#: ../../network_setup.rst:946
-# 92977871fbe94256a46223390b9acb5b
+#: ../../network_setup.rst:724
+# 4a0aa5f289c5495e98a8b4baaaf6a814
 msgid "You can reuse an ASA 1000v appliance in a new guest network after the necessary cleanup. Typically, ASA 1000v is cleaned up when the logical edge firewall is cleaned up in VNMC. If this cleanup does not happen, you need to reset the appliance to its factory settings for use in new guest networks. As part of this, enable SSH on the appliance and store the SSH credentials by registering on VNMC."
 msgstr ""
 
-#: ../../network_setup.rst:955
-# bc3df2195a414e91856ec648bac7c773
+#: ../../network_setup.rst:731
+# 20ad628b69124229b5574084ade4cb93
 msgid "Open a command line on the ASA appliance:"
 msgstr ""
 
-#: ../../network_setup.rst:959
-# 218ea4c549694ff7a29509f5cac2e0bc
+#: ../../network_setup.rst:733
+# 105a7e29f0ad4898a7c75a9729dede0a
 msgid "Run the following:"
 msgstr ""
 
-#: ../../network_setup.rst:965
-# 5fd5c2e1e3904eb88b09772395d5b3f0
+#: ../../network_setup.rst:739
+# 6ab19d6d2e0042538cbbeb508cd0749c
 msgid "You are prompted with the following message:"
 msgstr ""
 
-#: ../../network_setup.rst:973
-# 6c28078f7e6747bea7924b1c0881e9d9
+#: ../../network_setup.rst:745
+# f0bc8a73d1ca4c1dbb83304efbb74e39
 msgid "Enter N."
 msgstr ""
 
-#: ../../network_setup.rst:975
-# 9692793acd9f47cda86a9f9a97d7292f
+#: ../../network_setup.rst:747
+# 8b41e1b3b97942c2834f1d7ac78e9bb1
 msgid "You will get the following confirmation message:"
 msgstr ""
 
-#: ../../network_setup.rst:983
-# 280c0bb28bc4480f8fd348cd126043e7
+#: ../../network_setup.rst:753
+# dfb5d4fffbb5409db3ce8728237aa0bc
 msgid "Restart the appliance."
 msgstr ""
 
-#: ../../network_setup.rst:987
-# 2a1aec5da1b8471991fe9aafe3416bda
+#: ../../network_setup.rst:755
+# 23cee1ad7b844c61a8902f657c8beb73
 msgid "Register the ASA 1000v appliance with the VNMC:"
 msgstr ""
 
-#: ../../network_setup.rst:996
-# 5c9054e0fc1e4d4ab5c8358e24833971
+#: ../../network_setup.rst:765
+# dc2f284a64c245a29344154ada915e58
 msgid "External Guest Load Balancer Integration (Optional)"
 msgstr ""
 
-#: ../../network_setup.rst:998
-# fd1ea0e7750e431db79221a8c2311a7d
+#: ../../network_setup.rst:767
+# 9d948a00894c4f2fa6895235bd45cd3e
 msgid "CloudStack can optionally use a Citrix NetScaler or BigIP F5 load balancer to provide load balancing services to guests. If this is not enabled, CloudStack will use the software load balancer in the virtual router."
 msgstr ""
 
-#: ../../network_setup.rst:1003
-# 500154d717eb49c2bf29ab754aac709e
+#: ../../network_setup.rst:772
+# dabdfbfa1edc4c61a06597ddc02e6d92
 msgid "To install and enable an external load balancer for CloudStack management:"
 msgstr ""
 
-#: ../../network_setup.rst:1008
-# f106290730db48ab949e8470dc2d856e
+#: ../../network_setup.rst:775
+# f0578c75b13b4167a35650d6618c3b63
 msgid "Set up the appliance according to the vendor's directions."
 msgstr ""
 
-#: ../../network_setup.rst:1012
-# f94e5fdf650149139445886199c2d172
+#: ../../network_setup.rst:777
+# acd66698614d49f18d286135e6689c3d
 msgid "Connect it to the networks carrying public traffic and management traffic (these could be the same network)."
 msgstr ""
 
-#: ../../network_setup.rst:1017
-# b8ac2d65fdcc4f3db0ea4a915ff5b0eb
+#: ../../network_setup.rst:780
+# 91c057c2c551461e8a07b2887f28b3fa
 msgid "Record the IP address, username, password, public interface name, and private interface name. The interface names will be something like \"1.1\" or \"1.2\"."
 msgstr ""
 
-#: ../../network_setup.rst:1023
-# 0b3869ded9b7422aa5f56c61b2413e59
+#: ../../network_setup.rst:784
+# af8d438df7ea4817814040c1ddc43feb
 msgid "Make sure that the VLANs are trunked to the management network interface."
 msgstr ""
 
-#: ../../network_setup.rst:1028
-# f5346391b7bf4ccb928f72947d5e37a7
+#: ../../network_setup.rst:787
+# 13351032ab9f44cbadb116a21a1d44f3
 msgid "After the CloudStack Management Server is installed, log in as administrator to the CloudStack UI."
 msgstr ""
 
-#: ../../network_setup.rst:1054
-# 084625b55cef4b809b077485d04d3391
+#: ../../network_setup.rst:801
+# aded9ee3be254e338c7d4e6b7edf7f97
 msgid "Click NetScaler or F5."
 msgstr ""
 
-#: ../../network_setup.rst:1058
-# 9a5b17fecfa444e29fc91af0fe5e33ba
+#: ../../network_setup.rst:803
+# 1ce1bb2fbaf14b22a9dd5c8a16924159
 msgid "Click the Add button (+) and provide the following:"
 msgstr ""
 
-#: ../../network_setup.rst:1060
-# ef4b3be155c546a79fcbcd4cbfbd1593
+#: ../../network_setup.rst:805
+# a2d8bdc55c3c40028eb64d6e1ae7c16f
 msgid "For NetScaler:"
 msgstr ""
 
-#: ../../network_setup.rst:1068
-# 093492ed293a4dffb1f9348f05034957
+#: ../../network_setup.rst:809
+# 1f6de479819a4db684f63f0307d1dc32
 msgid "Username/Password: The authentication credentials to access the device. CloudStack uses these credentials to access the device."
 msgstr ""
 
-#: ../../network_setup.rst:1073
-# 35e04124f1c84f9a9014277a8436ea1b
+#: ../../network_setup.rst:812
+# 5208277aaa9c4a5a867a0d1fd2ec2854
 msgid "Type: The type of device that is being added. It could be F5 Big Ip Load Balancer, NetScaler VPX, NetScaler MPX, or NetScaler SDX. For a comparison of the NetScaler types, see the CloudStack Administration Guide."
 msgstr ""
 
-#: ../../network_setup.rst:1080
-# 125bf77b1db34aeb9e24de050a111841
+#: ../../network_setup.rst:817
+# a81a8b45b0364dc28f2b425a8d636be6
 msgid "Public interface: Interface of device that is configured to be part of the public network."
 msgstr ""
 
-#: ../../network_setup.rst:1085
-# 7492cd89866b40738540cef8209f9050
+#: ../../network_setup.rst:820
+# 88814119e09a4dd0921efaa7b868b7d7
 msgid "Private interface: Interface of device that is configured to be part of the private network."
 msgstr ""
 
-#: ../../network_setup.rst:1090
-# 1c3be655ebce444ebb35d687bd3ff069
+#: ../../network_setup.rst:823
+# a3d9da03a32f413994871acf89781192
 msgid "Number of retries. Number of times to attempt a command on the device before considering the operation failed. Default is 2."
 msgstr ""
 
-#: ../../network_setup.rst:1095
-# 307e5a4cc2834d19952438496c0da6f7
+#: ../../network_setup.rst:826
+# 9fdbb29c229243e3ae2770682cec2268
 msgid "Capacity: The number of networks the device can handle."
 msgstr ""
 
-#: ../../network_setup.rst:1099
-# c8c3a218340c449fbd05e1d3b426c43a
+#: ../../network_setup.rst:828
+# 746f18e5c26844098f69c70f3531eac4
 msgid "Dedicated: When marked as dedicated, this device will be dedicated to a single account. When Dedicated is checked, the value in the Capacity field has no significance implicitly, its value is 1."
 msgstr ""
 
-#: ../../network_setup.rst:1107
-# 1c2067e8634f49f486df0443089a7510
+#: ../../network_setup.rst:834
+# 8d71ee3b3ba24ef2b09f051382c84f02
 msgid "The installation and provisioning of the external load balancer is finished. You can proceed to add VMs and NAT or load balancing rules."
 msgstr ""
 
-#: ../../network_setup.rst:1111
-# f74795a8b76c478d9ea49f4c060b6e36
+#: ../../network_setup.rst:839
+# 168e73c12edc4ddfb7ceadf3950a1441
 msgid "Management Server Load Balancing"
 msgstr ""
 
-#: ../../network_setup.rst:1113
-# 567c8073631a4c8bb2dce7c8fe752e4a
+#: ../../network_setup.rst:841
+# d1c9832bb0ec4c889904900754150662
 msgid "CloudStack can use a load balancer to provide a virtual IP for multiple Management Servers. The administrator is responsible for creating the load balancer rules for the Management Servers. The application requires persistence or stickiness across multiple sessions. The following chart lists the ports that should be load balanced and whether or not persistence is required."
 msgstr ""
 
-#: ../../network_setup.rst:1120
-# bdb7cdf9792847f984a0461c157fe9f0
+#: ../../network_setup.rst:848
+# 8d59260980c2412d96a8664b0731bd47
 msgid "Even if persistence is not required, enabling it is permitted."
 msgstr ""
 
-#: ../../network_setup.rst:1123
-# fd11840af0204f4293065802c1bcccf9
+#: ../../network_setup.rst:851
+# f4777f724d85477090b55c4396cc6f35
 msgid "Source Port"
 msgstr ""
 
-#: ../../network_setup.rst:1123
-# b95414a68a464ac3b2b8998460985411
+#: ../../network_setup.rst:851
+# 7d326aaf15ab44afa0cd31c1e3fe5590
 msgid "Destination Port"
 msgstr ""
 
-#: ../../network_setup.rst:1123
-# f27e6cea2a374e5b8bee0385f48b133c
+#: ../../network_setup.rst:851
+# c1da26dd22ac4a4baafe30bd8b745382
 msgid "Protocol"
 msgstr ""
 
-#: ../../network_setup.rst:1123
-# 74c3d26966da4578890e32fc1938ae45
+#: ../../network_setup.rst:851
+# b2352632cff44c4db47d589dc77aac90
 msgid "Persistence Required?"
 msgstr ""
 
-#: ../../network_setup.rst:1125
-# 5df8fb1b300a4a30bb5af7c3c022186c
+#: ../../network_setup.rst:853
+# 4a62a34b37034a728bdbe3708bec46b4
 msgid "80 or 443"
 msgstr ""
 
-#: ../../network_setup.rst:1125
-# cfc3fe326a0b45849284ca3774c5bcc3
+#: ../../network_setup.rst:853
+# e53c8ab237804881bcb3014d9b434e24
 msgid "8080 (or 20400 with AJP)"
 msgstr ""
 
-#: ../../network_setup.rst:1125
-# e6aad1fb7769468c89576963db456c40
+#: ../../network_setup.rst:853
+# 8e55087fd18c478189ed323b50a78e15
 msgid "HTTP (or AJP)"
 msgstr ""
 
-#: ../../network_setup.rst:1126
-#: ../../network_setup.rst:1126
-# 3a50879507514c51b3b69b1239f9720e
-# cd98da983e9b4cbbbef65bf4f3c1f453
+#: ../../network_setup.rst:854
+#: ../../network_setup.rst:854
+# 910dae6e62db4b6c87bcd33fba33a41b
+# 625d27f875424cbca2735e4e71329264
 msgid "8250"
 msgstr ""
 
-#: ../../network_setup.rst:1126
-# f31a7253ecbf4f8b8f0b467c90d93195
+#: ../../network_setup.rst:854
+# 58601595abf7493fadec45a9912276d6
 msgid "TCP"
 msgstr ""
 
-#: ../../network_setup.rst:1127
-#: ../../network_setup.rst:1127
-# ad1ef2da5345401e903c332d03a11bce
-# 2226f8a516af49218d52bbafa3dc3aac
+#: ../../network_setup.rst:855
+#: ../../network_setup.rst:855
+# 52192943fcd04698aaf9f3033585bc65
+# a4a53f84a8ed45d2bc84a2fef1df06d4
 msgid "8096"
 msgstr ""
 
-#: ../../network_setup.rst:1127
-# 2b4aac1cece94d9f83afac06a8691511
+#: ../../network_setup.rst:855
+# 2f45fefee5c04295b3ef2346baaefbf5
 msgid "HTTP"
 msgstr ""
 
-#: ../../network_setup.rst:1130
-# 8491425f0b824c7e981c775d2cf7d808
+#: ../../network_setup.rst:858
+# 56b9fa972912451e936f67a7001a6771
 msgid "In addition to above settings, the administrator is responsible for setting the 'host' global config value from the management server IP to load balancer virtual IP address. If the 'host' value is not set to the VIP for Port 8250 and one of your management servers crashes, the UI is still available but the system VMs will not be able to contact the management server."
 msgstr ""
 
-#: ../../network_setup.rst:1138
-# 8059024b96f142b6979773cf9a881160
+#: ../../network_setup.rst:867
+# ad76871b34a845f5b9d235414f2306e5
 msgid "Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1141
-# 1444ad07190f4460a7fdff1373746484
+#: ../../network_setup.rst:870
+# 636bca2e871e41729f5af58bc925cfbd
 msgid "Security Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1143
-# 3541b17430cb43478301bc2645bf3ef0
+#: ../../network_setup.rst:872
+# b84e3ab736f74a93915035c25c5732ee
 msgid "The public Internet must not be able to access port 8096 or port 8250 on the Management Server."
 msgstr ""
 
-#: ../../network_setup.rst:1147
-# 26e78d2085514147ace9f9b5739c1ad2
+#: ../../network_setup.rst:877
+# a6a9845e5dae4c1c864c36674244fecc
 msgid "Runtime Internal Communications Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1151
-# 9d906e5688de466c958551a87dfd7022
+#: ../../network_setup.rst:879
+# 268c7a6bce4541139e2a22fe23738d00
 msgid "The Management Servers communicate with each other to coordinate tasks. This communication uses TCP on ports 8250 and 9090."
 msgstr ""
 
-#: ../../network_setup.rst:1156
-# c0d02534268a4b8e8b82947625533220
+#: ../../network_setup.rst:882
+# ce28693898e94e9d86c98a6e41acb59e
 msgid "The console proxy VMs connect to all hosts in the zone over the management traffic network. Therefore the management traffic network of any given pod in the zone must have connectivity to the management traffic network of all other pods in the zone."
 msgstr ""
 
-#: ../../network_setup.rst:1163
-# 87c002406b9244db973ff2af601d4d3f
+#: ../../network_setup.rst:887
+# 2cc6b18efa544724b94a396ea3f29997
 msgid "The secondary storage VMs and console proxy VMs connect to the Management Server on port 8250. If you are using multiple Management Servers, the load balanced IP address of the Management Servers on port 8250 must be reachable."
 msgstr ""
 
-#: ../../network_setup.rst:1169
-# fc264ff1cd454696acb03d2a67cf1204
+#: ../../network_setup.rst:894
+# aa5c7cf265704eac9214b589ca5ec409
 msgid "Storage Network Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1171
-# 7caa6a59f43e4f0aa83e30390b6947f2
+#: ../../network_setup.rst:896
+# e41b0df94da8462e80b7ef8072966db0
 msgid "The secondary storage NFS export is mounted by the secondary storage VM. Secondary storage traffic goes over the management traffic network, even if there is a separate storage network. Primary storage traffic goes over the storage network, if available. If you choose to place secondary storage NFS servers on the storage network, you must make sure there is a route from the management traffic network to the storage network."
 msgstr ""
 
-#: ../../network_setup.rst:1179
-# e72bba93eaa14fdf947c0501e8bb7590
+#: ../../network_setup.rst:905
+# 319f0bc16b9c43b285b5381f9c1e1641
 msgid "External Firewall Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1181
-# b0ccd394990143109db9ea289077b2e6
+#: ../../network_setup.rst:907
+# ef03ddf7f4c1473aaffbab8f2ea10b90
 msgid "When external firewall integration is in place, the public IP VLAN must still be trunked to the Hosts. This is required to support the Secondary Storage VM and Console Proxy VM."
 msgstr ""
 
-#: ../../network_setup.rst:1186
-# 489888eb893c4b1ea88c545c6dade949
+#: ../../network_setup.rst:913
+# 8f340bd0be4a45cb9a554d08e4940824
 msgid "Advanced Zone Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1188
-# df77e9811db846f19b0ec3a162674d73
+#: ../../network_setup.rst:915
+# 59155e8fb1be458d919a18044910e40e
 msgid "With Advanced Networking, separate subnets must be used for private and public networks."
 msgstr ""
 
-#: ../../network_setup.rst:1192
-# 74d3a2eeb37f4d9b9ba84edadf66308a
+#: ../../network_setup.rst:920
+# 703fcda90934401caaa25a5f12b77075
 msgid "XenServer Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1194
-# 7797b308cc694dbbb00aee3b0d39a14b
+#: ../../network_setup.rst:922
+# 66fa97319fba4438b1ab49713ba74d45
 msgid "The Management Servers communicate with XenServer hosts on ports 22 (ssh), 80 (HTTP), and 443 (HTTPs)."
 msgstr ""
 
-#: ../../network_setup.rst:1198
-# 379eac757de546b79a41a33e570544c9
+#: ../../network_setup.rst:927
+# 2a5693ecef9344fc85b357817cb3136c
 msgid "VMware Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1202
-# 1eade57499624926ac28b320d66fdaf3
+#: ../../network_setup.rst:929
+# 825745d3504c4edd9d998f356c622430
 msgid "The Management Server and secondary storage VMs must be able to access vCenter and all ESXi hosts in the zone. To allow the necessary access through the firewall, keep port 443 open."
 msgstr ""
 
-#: ../../network_setup.rst:1208
-# d447b402ae754cfdbd9234aefca1387a
+#: ../../network_setup.rst:933
+# e5239c897a2846df832e554fc87473b0
 msgid "The Management Servers communicate with VMware vCenter servers on port 443 (HTTPs)."
 msgstr ""
 
-#: ../../network_setup.rst:1213
-# c3f02a4d30f6482cb8ce88a07befb5ce
+#: ../../network_setup.rst:936
+# fb344a5b995d40428766c436e513381b
 msgid "The Management Servers communicate with the System VMs on port 3922 (ssh) on the management traffic network."
 msgstr ""
 
-#: ../../network_setup.rst:1217
-# 02a932a851ff4b0a83c3c2cd5ab14cfd
+#: ../../network_setup.rst:941
+# 45f7ce4ca7ee48d080ee6ad2646b28da
 msgid "Hyper-V Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1219
-# 3fd21dfedf3f4f63834b79c2148cf126
+#: ../../network_setup.rst:943
+# 468d7be21f9d4bd3847b12047def08d4
 msgid "CloudStack Management Server communicates with Hyper-V Agent by using HTTPS. For secure communication between the Management Server and the Hyper-V host, open port 8250."
 msgstr ""
 
-#: ../../network_setup.rst:1224
-# 75e24f91bbe745ac9623aa07acd5647c
+#: ../../network_setup.rst:949
+# 1a3519c089b44acd951ab261264deb13
 msgid "KVM Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1226
-# 93272304ea934d4fa5f48f7e4abda8be
+#: ../../network_setup.rst:951
+# b11a692480274211affee6c78a638bf8
 msgid "The Management Servers communicate with KVM hosts on port 22 (ssh)."
 msgstr ""
 
-#: ../../network_setup.rst:1229
-# 6d0b050ccfd846c2afb6c9c27210badc
+#: ../../network_setup.rst:955
+# 7586273883f448f7b24cc0138e7970b7
 msgid "LXC Topology Requirements"
 msgstr ""
 
-#: ../../network_setup.rst:1231
-# 0e6f6a206fd14d2d852be83058b0ba7b
+#: ../../network_setup.rst:957
+# 259d6b031a2c4d2f99a0d64809c8b0a1
 msgid "The Management Servers communicate with LXC hosts on port 22 (ssh)."
 msgstr ""
 
-#: ../../network_setup.rst:1234
-# 1a03b92103ea4a0495946df31bd6964b
+#: ../../network_setup.rst:961
+# 888d66b82f3446f1af4ee373439875ad
 msgid "Guest Network Usage Integration for Traffic Sentinel"
 msgstr ""
 
-#: ../../network_setup.rst:1236
-# a1033461e720442987768d66a5c30817
+#: ../../network_setup.rst:963
+# 29cc34c6bee74b8d9727b38945612791
 msgid "To collect usage data for a guest network, CloudStack needs to pull the data from an external network statistics collector installed on the network. Metering statistics for guest networks are available through CloudStack’s integration with inMon Traffic Sentinel."
 msgstr ""
 
-#: ../../network_setup.rst:1241
-# 7d3d373bf4a5491b896acc71b472ac64
+#: ../../network_setup.rst:968
+# d397ec50b01f43649a71d382811b5c4e
 msgid "Traffic Sentinel is a network traffic usage data collection package. CloudStack can feed statistics from Traffic Sentinel into its own usage records, providing a basis for billing users of cloud infrastructure. Traffic Sentinel uses the traffic monitoring protocol sFlow. Routers and switches generate sFlow records and provide them for collection by Traffic Sentinel, then CloudStack queries the Traffic Sentinel database to obtain this information"
 msgstr ""
 
-#: ../../network_setup.rst:1249
-# 2062c2486edc48e6b7375866343cd941
+#: ../../network_setup.rst:976
+# 0421d85f71a9457aa65c99fe3edf321e
 msgid "To construct the query, CloudStack determines what guest IPs were in use during the current query interval. This includes both newly assigned IPs and IPs that were assigned in a previous time period and continued to be in use. CloudStack queries Traffic Sentinel for network statistics that apply to these IPs during the time period they remained allocated in CloudStack. The returned data is correlated with the customer account that owned each IP and the timestamps when IPs were assigned and released in order to create billable metering records in CloudStack. When the Usage Server runs, it collects this data."
 msgstr ""
 
-#: ../../network_setup.rst:1259
-# 844664604d9646ceb5255581c912b416
+#: ../../network_setup.rst:986
+# 711ce8174a9244d4af0b4fb81578f64b
 msgid "To set up the integration between CloudStack and Traffic Sentinel:"
 msgstr ""
 
-#: ../../network_setup.rst:1263
-# 62333109e1844fe29982d2853727fe33
+#: ../../network_setup.rst:988
+# 1c2e09dc5c8447d1ba4f95812f28af41
 msgid "On your network infrastructure, install Traffic Sentinel and configure it to gather traffic data. For installation and configuration steps, see inMon documentation at `Traffic Sentinel Documentation <http://inmon.com.>`_."
 msgstr ""
 
-#: ../../network_setup.rst:1270
-# fda8f8f36797492b8992aae7fdbd39c7
+#: ../../network_setup.rst:993
+# 412e3e6834394480af6f9e65fd4aba2d
 msgid "In the Traffic Sentinel UI, configure Traffic Sentinel to accept script querying from guest users. CloudStack will be the guest user performing the remote queries to gather network usage for one or more IP addresses."
 msgstr ""
 
-#: ../../network_setup.rst:1275
-# e69dc34cb21b46e19bce066edb7c5eb7
+#: ../../network_setup.rst:998
+# 12a1bbfb3cec4016a739bec145bd8a9c
 msgid "Click File > Users > Access Control > Reports Query, then select Guest from the drop-down list."
 msgstr ""
 
-#: ../../network_setup.rst:1280
-# a3cd19f6eb1b4de78cec9743ec4788ca
+#: ../../network_setup.rst:1001
+# 99d0d664da654239ad897c4d6eb6b08e
 msgid "On CloudStack, add the Traffic Sentinel host by calling the CloudStack API command addTrafficMonitor. Pass in the URL of the Traffic Sentinel as protocol + host + port (optional); for example, http://10.147.28.100:8080. For the addTrafficMonitor command syntax, see the API Reference at `API Documentation <http://cloudstack.apache.org/docs/api/index.html>`_."
 msgstr ""
 
-#: ../../network_setup.rst:1286
-# ee8e36880d0541bf92a0f4e7c4a09864
+#: ../../network_setup.rst:1008
+# 382c1696b18d4f25a2e2b5b7cb142225
 msgid "For information about how to call the CloudStack API, see the Developer’s Guide at `CloudStack API Developer's Guide <http://docs.cloudstack.apache.org/en/latest/index.html#developers>`_."
 msgstr ""
 
-#: ../../network_setup.rst:1295
-# a4a1b0a100374afd8c1629d22699b25f
+#: ../../network_setup.rst:1014
+# 47106f1a9e0142eb9832c2c332d903bf
 msgid "Select Configuration from the Global Settings page, and set the following:"
 msgstr ""
 
-#: ../../network_setup.rst:1298
-# f10ccb68df254c15a5e49fc4b5c9c8ef
+#: ../../network_setup.rst:1017
+# fc6fdba63ec445fcb4c66fb37e5faef4
 msgid "direct.network.stats.interval: How often you want CloudStack to query Traffic Sentinel."
 msgstr ""
 
-#: ../../network_setup.rst:1302
-# 4ba4da2ed13943aa8cb1c9404c4ef33a
+#: ../../network_setup.rst:1022
+# 41cfa755d06741f186da5ae7aacb6cee
 msgid "Setting Zone VLAN and Running VM Maximums"
 msgstr ""
 
-#: ../../network_setup.rst:1304
-# 43dcbcdcec5b46e9b0a4230c8d01229e
+#: ../../network_setup.rst:1024
+# a60e16faaf9041a9b9276598f5ee90f9
 msgid "In the external networking case, every VM in a zone must have a unique guest IP address. There are two variables that you need to consider in determining how to configure CloudStack to support this: how many Zone VLANs do you expect to have and how many VMs do you expect to have running in the Zone at any one time."
 msgstr ""
 
-#: ../../network_setup.rst:1310
-# 3c06fde7caf545578df853935f441b69
+#: ../../network_setup.rst:1030
+# d9028276c0544666b5e9721eeb5c8816
 msgid "Use the following table to determine how to configure CloudStack for your deployment."
 msgstr ""
 
-#: ../../network_setup.rst:1314
-# a848b5f139a04c41bd50a86a1d89bd12
+#: ../../network_setup.rst:1034
+# 072f26662ea44459b4fa1cf60692e712
 msgid "guest.vlan.bits"
 msgstr ""
 
-#: ../../network_setup.rst:1314
-# 2f4ceb0e1a304f3e9c1dd7c41932834d
+#: ../../network_setup.rst:1034
+# a6cb87fc1b2545d1b1ac09e37fd1be97
 msgid "Maximum Running VMs per Zone"
 msgstr ""
 
-#: ../../network_setup.rst:1314
-# 056a8c2f7f664fee9548096053ff46ee
+#: ../../network_setup.rst:1034
+# 95b101b8c5db46528c0540ff8c64a5cb
 msgid "Maximum Zone VLANs"
 msgstr ""
 
-#: ../../network_setup.rst:1316
-# 4d8f8eea18e548fa928ab017f5d52429
+#: ../../network_setup.rst:1036
+# 67bdc701ec3c4dcf9cd3f5bd5e147554
 msgid "12"
 msgstr ""
 
-#: ../../network_setup.rst:1316
-# 51f954229ce747908d7352586f8edb4f
+#: ../../network_setup.rst:1036
+# c8d94e62ee844b4e92d52b5c6827e058
 msgid "4096"
 msgstr ""
 
-#: ../../network_setup.rst:1316
-# 33c91a1d50b74c808d6fce365c83a91e
+#: ../../network_setup.rst:1036
+# ac4e2d28b54845f1a55c70377f48d5c3
 msgid "4094"
 msgstr ""
 
-#: ../../network_setup.rst:1317
-# 8027bdd3648d4d638c40c06c1f54c1b7
+#: ../../network_setup.rst:1037
+# 7bbc65e86d0147368c5a3431c20f5ed3
 msgid "11"
 msgstr ""
 
-#: ../../network_setup.rst:1317
-# 7676db941b41440ba71b48a1088952a8
+#: ../../network_setup.rst:1037
+# 01351e134fd445688b9b975e860ff8ac
 msgid "8192"
 msgstr ""
 
-#: ../../network_setup.rst:1317
-# c5866aed4ad3438f84ee69f0f63c109a
+#: ../../network_setup.rst:1037
+# 1487356597e74d80ab906cdf7734c3e1
 msgid "2048"
 msgstr ""
 
-#: ../../network_setup.rst:1318
-#: ../../network_setup.rst:1319
-# 102e6d7a19264bf297b438181b42e482
-# ea6c3074726849a5a3361c4cac194c44
+#: ../../network_setup.rst:1038
+#: ../../network_setup.rst:1039
+# 210a77ae5568419ab769fe82ba44a994
+# 066cf48d71dd4eea8015322cc0295f26
 msgid "10"
 msgstr ""
 
-#: ../../network_setup.rst:1318
-# 29bbad87ea61413ba224231c60a59aad
+#: ../../network_setup.rst:1038
+# ecffb57711494443b7bd29967fc90284
 msgid "16384"
 msgstr ""
 
-#: ../../network_setup.rst:1318
-# 155ced14eac945d39bafceb596c3c6a7
+#: ../../network_setup.rst:1038
+# 77f877c5ae0c4cef92f9e8579cb50a8a
 msgid "1024"
 msgstr ""
 
-#: ../../network_setup.rst:1319
-# b94ad2bcf67149a9894d28f4c4751cae
+#: ../../network_setup.rst:1039
+# 7aec5b5262a84030b29ee9b48f82c955
 msgid "32768"
 msgstr ""
 
-#: ../../network_setup.rst:1319
-# 7236907a01e040a9bc8cd8d249d4581d
+#: ../../network_setup.rst:1039
+# bd2fc687ddab4d70beebf9747ba3aa15
 msgid "512"
 msgstr ""
 
-#: ../../network_setup.rst:1322
-# f1b8ef6932d04910981997f99bbc94c5
+#: ../../network_setup.rst:1042
+# 1735a2a4d8bd40f2a1b021cf8879de91
 msgid "Based on your deployment's needs, choose the appropriate value of guest.vlan.bits. Set it as described in Edit the Global Configuration Settings (Optional) section and restart the Management Server."
 msgstr ""
 
