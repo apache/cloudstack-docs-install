@@ -2,82 +2,77 @@
 host = https://www.transifex.com
 type = PO
 
-[apache-cloudstack-installation-rtd.building_from_source]
+[apache-cloudstack-installation-rtd.44xbuilding_from_source]
 file_filter = source/locale/<lang>/LC_MESSAGES/building_from_source.po
 source_file = source/locale/pot/building_from_source.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.choosing_deployment_architecture]
+[apache-cloudstack-installation-rtd.44xchoosing_deployment_architecture]
 file_filter = source/locale/<lang>/LC_MESSAGES/choosing_deployment_architecture.po
 source_file = source/locale/pot/choosing_deployment_architecture.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.configuration]
+[apache-cloudstack-installation-rtd.44xconfiguration]
 file_filter = source/locale/<lang>/LC_MESSAGES/configuration.po
 source_file = source/locale/pot/configuration.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor_installation]
-file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor_installation.po
-source_file = source/locale/pot/hypervisor_installation.pot
-source_lang = en
-
-[apache-cloudstack-installation-rtd.index]
+[apache-cloudstack-installation-rtd.44xindex]
 file_filter = source/locale/<lang>/LC_MESSAGES/index.po
 source_file = source/locale/pot/index.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.installation]
+[apache-cloudstack-installation-rtd.44xinstallation]
 file_filter = source/locale/<lang>/LC_MESSAGES/installation.po
 source_file = source/locale/pot/installation.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.managing_networks]
+[apache-cloudstack-installation-rtd.44xmanaging_networks]
 file_filter = source/locale/<lang>/LC_MESSAGES/managing_networks.po
 source_file = source/locale/pot/managing_networks.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.network_setup]
+[apache-cloudstack-installation-rtd.44xnetwork_setup]
 file_filter = source/locale/<lang>/LC_MESSAGES/network_setup.po
 source_file = source/locale/pot/network_setup.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.optional_installation]
+[apache-cloudstack-installation-rtd.44xoptional_installation]
 file_filter = source/locale/<lang>/LC_MESSAGES/optional_installation.po
 source_file = source/locale/pot/optional_installation.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.qig]
+[apache-cloudstack-installation-rtd.44xqig]
 file_filter = source/locale/<lang>/LC_MESSAGES/qig.po
 source_file = source/locale/pot/qig.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.storage_setup]
+[apache-cloudstack-installation-rtd.44xstorage_setup]
 file_filter = source/locale/<lang>/LC_MESSAGES/storage_setup.po
 source_file = source/locale/pot/storage_setup.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor--hyperv]
+[apache-cloudstack-installation-rtd.44xhyperv]
 file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/hyperv.po
 source_file = source/locale/pot/hypervisor/hyperv.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor--kvm]
+[apache-cloudstack-installation-rtd.44xkvm]
 file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/kvm.po
 source_file = source/locale/pot/hypervisor/kvm.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor--lxc]
+[apache-cloudstack-installation-rtd.44xlxc]
 file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/lxc.po
 source_file = source/locale/pot/hypervisor/lxc.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor--vsphere]
+[apache-cloudstack-installation-rtd.44xvsphere]
 file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/vsphere.po
 source_file = source/locale/pot/hypervisor/vsphere.pot
 source_lang = en
 
-[apache-cloudstack-installation-rtd.hypervisor--xenserver]
+[apache-cloudstack-installation-rtd.44xxenserver]
 file_filter = source/locale/<lang>/LC_MESSAGES/hypervisor/xenserver.po
 source_file = source/locale/pot/hypervisor/xenserver.pot
 source_lang = en
