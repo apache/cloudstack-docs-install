@@ -47,20 +47,22 @@ Requirements for Installing the Usage Server
 Steps to Install the Usage Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Run ./install.sh (NOT VALID, NEED CORRECTION)
+#. Package repository should already being configured. Refer to 
+   `Configure Package Repository <http://cloudstack-installation.readthedocs.org/en/latest/installation.html#configure-package-repository>`_
 
+#. Install package cloudstack-usage
+
+   On RHEL/CentOS systems, use:
+   
    .. sourcecode:: bash
 
-      # ./install.sh
+      # yum install cloudstack-usage
 
-   You should see a few messages as the installer prepares, followed by
-   a list of choices.
-
-#. Choose "S" to install the Usage Server.
+   On Debian/Ubuntu systems, use:
 
    .. sourcecode:: bash
-
-      > S
+      
+      # apt-get install cloudstack-usage
 
 #. Once installed, start the Usage Server with the following command.
 
@@ -68,7 +70,21 @@ Steps to Install the Usage Server
 
       # service cloudstack-usage start
 
-The Administration Guide discusses further configuration of the Usage
+#. Enable the service at boot
+
+   On RHEL/CentOS systems, use:
+   
+   .. sourcecode:: bash
+   
+      # chkconfig cloudstack-usage on
+      
+   On Debian/Ubuntu systems, use:
+
+   .. sourcecode:: bash
+
+      # update-rc.d cloudstack-usage defaults
+
+The `Administration Guide <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/usage.html>`_ discusses further configuration of the Usage
 Server.
 
 
