@@ -1150,31 +1150,31 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2013-12-23-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-hyperv.vhd.bz2  -h hyperv -s <optional-management-server-secret-key> -F
 
    -  For XenServer:
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-xen.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-xen.vhd.bz2-h xenserver -s <optional-management-server-secret-key> -F
 
    -  For vSphere:
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-vmware.ova -h vmware -s <optional-management-server-secret-key>  -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-vmware.ova -h vmware -s <optional-management-server-secret-key>  -F
 
    -  For KVM:
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-kvm.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
 
    -  For LXC:
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-kvm.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
 
    On Ubuntu, use the following path instead:
 
