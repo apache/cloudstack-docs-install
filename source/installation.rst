@@ -1150,13 +1150,13 @@ CloudStack system VMs.
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-hyperv.vhd.bz2  -h hyperv -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
 
    -  For XenServer:
 
    .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-xen.vhd.bz2-h xenserver -s <optional-management-server-secret-key> -F
+      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-xen.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
 
    -  For vSphere:
 
