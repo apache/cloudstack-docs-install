@@ -24,6 +24,7 @@ Welcome to CloudStack Installation Documentation
 
 .. figure:: /_static/images/acslogo.png
    :align: center
+   :target: http://cloudstack.apache.org/
 
 .. warning:: 
    We are in the process of changing documentation format as well as hosting 
@@ -33,13 +34,11 @@ Welcome to CloudStack Installation Documentation
 This is the Apache CloudStack installation guide, for the Documentation home, 
 the administrator guide or the Release-Notes please see:
 
--  `Documentation home <http://docs.cloudstack.apache.org>`_
+-  `Documentation home`_
 
--  `Administration Guide 
-   <http://docs.cloudstack.apache.org/projects/cloudstack-administration>`_
+-  `Administration Guide`_
 
--  `Release Notes
-   <http://docs.cloudstack.apache.org/projects/cloudstack-release-notes>`_
+-  `Release Notes`_
 
 .. note::
    In this guide we first go through some design and architectural choices_ to 
@@ -141,3 +140,5 @@ Optional Installation
    :maxdepth: 2
 
    optional_installation
+
+.. include:: _global.rst

@@ -53,7 +53,7 @@ To complete this runbook you'll need the following items:
 
 #. At least one computer which supports hardware virtualization.
 
-#. The `CentOS 6.4 x86_64 minimal install CD 
+#. The `CentOS 6.5 x86_64 minimal install CD 
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
@@ -71,7 +71,7 @@ CloudStack. We will go over the steps to prepare now.
 Operating System
 ~~~~~~~~~~~~~~~~
 
-Using the CentOS 6.4 x86_64 minimal install ISO, you'll need to install CentOS 
+Using the CentOS 6.5 x86_64 minimal install ISO, you'll need to install CentOS 
 on your hardware. The defaults will generally be acceptable for this 
 installation.
 
@@ -256,7 +256,7 @@ insert the following information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/rhel/4.3/
+   baseurl=http://cloudstack.apt-get.eu/rhel/4.4/
    enabled=1
    gpgcheck=0
 
@@ -278,8 +278,8 @@ the following content:
 
 .. sourcecode:: bash
 
-   /secondary *(rw,async,no_root_squash)
-   /primary *(rw,async,no_root_squash)
+   /secondary *(rw,async,no_root_squash,no_subtree_check)
+   /primary *(rw,async,no_root_squash,no_subtree_check)
 
 You will note that we specified two directories that don't exist (yet) on the 
 system. We'll go ahead and create those directories and set permissions 
@@ -422,7 +422,11 @@ the system VMs images.
 
 .. sourcecode:: bash
   
-  # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-kvm.qcow2.bz2 -h kvm -F
+   /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+   -m /secondary \
+   -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-kvm.qcow2.bz2 \
+   -h kvm -F
+
 
 That concludes our setup of the management server. We still need to configure 
 CloudStack, but we will do that after we get our hypervisor set up.
@@ -652,3 +656,4 @@ Now, click Launch and your cloud should begin setup - it may take several
 minutes depending on your internet connection speed for setup to finalize.
 
 That's it, you are done with installation of your Apache CloudStack cloud.
+

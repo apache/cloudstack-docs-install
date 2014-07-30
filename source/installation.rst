@@ -177,7 +177,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   $ deb http://cloudstack.apt-get.eu/ubuntu precise 4.3
+   $ deb http://cloudstack.apt-get.eu/ubuntu precise 4.4
 
 We now have to add the public key to the trusted keys.
 
@@ -215,7 +215,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/rhel/4.3/
+   baseurl=http://cloudstack.apt-get.eu/rhel/4.4/
    enabled=1
    gpgcheck=0
 
@@ -347,7 +347,8 @@ Install on Ubuntu
 
       apt-get install libmysql-java
 
-   This bug has been fixed in master and upcoming 4.4 release and will also be fixed in bug fix releases 4.3.x
+   This bug has been fixed in 4.4 release and will also be fixed in bug fix releases 4.3.1
+
 
 Downloading vhd-util
 ^^^^^^^^^^^^^^^^^^^^
@@ -1146,41 +1147,60 @@ CloudStack system VMs.
    This process will require approximately 5 GB of free space on the
    local file system and up to 30 minutes each time it runs.
 
-   -  For Hyper-V
+   *  For Hyper-V
 
-   .. sourcecode:: bash
+      .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-hyperv.vhd.bz2 -h hyperv -s <optional-management-server-secret-key> -F
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-hyperv.vhd \
+         -h hyperv \
+         -s <optional-management-server-secret-key> \
+         -F
 
-   -  For XenServer:
+   *  For XenServer:
 
-   .. sourcecode:: bash
+      .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-xen.vhd.bz2 -h xenserver -s <optional-management-server-secret-key> -F
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-xen.vhd.bz2 \
+         -h xenserver \
+         -s <optional-management-server-secret-key> \
+         -F
 
-   -  For vSphere:
+   *  For vSphere:
 
-   .. sourcecode:: bash
+      .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-vmware.ova -h vmware -s <optional-management-server-secret-key>  -F
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-vmware.ova \
+         -h vmware \
+         -s <optional-management-server-secret-key> \
+         -F
 
-   -  For KVM:
+   *  For KVM:
 
-   .. sourcecode:: bash
+      .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-kvm.qcow2.bz2 -h kvm -s <optional-management-server-secret-key> -F
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-kvm.qcow2.bz2 \
+         -h kvm \
+         -s <optional-management-server-secret-key> \
+         -F
 
-   -  For LXC:
+   *  For LXC:
 
-   .. sourcecode:: bash
+      .. sourcecode:: bash
 
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m /mnt/secondary -u http://download.cloud.com/templates/4.3/systemvm64template-2014-06-23-master-kvm.qcow2.bz2 -h lxc -s <optional-management-server-secret-key> -F
-
-   On Ubuntu, use the following path instead:
-
-   .. sourcecode:: bash
-
-      # /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-kvm.qcow2.bz2 \
+         -h lxc \
+         -s <optional-management-server-secret-key> \
+         -F
 
 #. If you are using a separate NFS server, perform this step. If you are
    using the Management Server as the NFS server, you MUST NOT perform
