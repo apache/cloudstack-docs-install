@@ -29,8 +29,8 @@ method as well as building RPMs or Debian packages for deploying
 CloudStack.
 
 The instructions here are likely version-specific. That is, the method
-for building from source for the 4.0.x series is different from the
-4.1.x series.
+for building from source for the 4.4.x series is different from the
+4.2.x series.
 
 If you are working with a unreleased version of CloudStack, see the
 INSTALL.md file in the top-level directory of the release.
@@ -91,7 +91,7 @@ To check the signature, run the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --verify apache-cloudstack-4.4.0-src.tar.bz2.asc
+   $ gpg --verify apache-cloudstack-4.4.1-src.tar.bz2.asc
 
 If the signature is valid you will see a line of output that contains
 'Good signature'.
@@ -106,7 +106,7 @@ You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md MD5 apache-cloudstack-4.4.0-src.tar.bz2 | diff - apache-cloudstack-4.4.0-src.tar.bz2.md5
+   $ gpg --print-md MD5 apache-cloudstack-4.4.1-src.tar.bz2 | diff - apache-cloudstack-4.4.1-src.tar.bz2.md5
 
 If this successfully completes you should see no output. If there is any
 output from them, then there is a difference between the hash you
@@ -122,7 +122,7 @@ release. You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md SHA512 apache-cloudstack-4.4.0-src.tar.bz2 | diff - apache-cloudstack-4.4.0-src.tar.bz2.sha
+   $ gpg --print-md SHA512 apache-cloudstack-4.4.1-src.tar.bz2 | diff - apache-cloudstack-4.4.1-src.tar.bz2.sha
 
 If this command successfully completes you should see no output. If
 there is any output from them, then there is a difference between the
@@ -141,7 +141,7 @@ You will need, at a minimum, the following to compile CloudStack:
 
 #. Maven (version 3)
 
-#. Java (OpenJDK 1.6 or Java 7/OpenJDK 1.7)
+#. Java (Java 7/OpenJDK 1.7)
 
 #. Apache Web Services Common Utilities (ws-commons-util)
 
@@ -164,13 +164,13 @@ with a single command as follows:
 
 .. sourcecode:: bash
 
-   $ tar -jxvf apache-cloudstack-4.4.0-src.tar.bz2
+   $ tar -jxvf apache-cloudstack-4.4.1-src.tar.bz2
 
 You can now move into the directory:
 
 .. sourcecode:: bash
 
-   $ cd ./apache-cloudstack-4.4.0-src
+   $ cd ./apache-cloudstack-4.4.1-src
 
 
 Building DEB packages
@@ -189,7 +189,7 @@ will be added.
    $ sudo apt-get install python-software-properties
    $ sudo add-apt-repository ppa:natecarlson/maven3
    $ sudo apt-get update
-   $ sudo apt-get install ant debhelper openjdk-6-jdk tomcat6 libws-commons-util-java genisoimage python-mysqldb libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven3
+   $ sudo apt-get install ant debhelper openjdk-7-jdk tomcat6 libws-commons-util-java genisoimage python-mysqldb libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven3
 
 While we have defined, and you have presumably already installed the
 bootstrap prerequisites, there are a number of build time prerequisites
@@ -214,13 +214,13 @@ all of the following:
 
 .. sourcecode:: bash
 
-   cloudstack-common-4.4.0.amd64.deb
-   cloudstack-management-4.4.0.amd64.deb
-   cloudstack-agent-4.4.0.amd64.deb
-   cloudstack-usage-4.4.0.amd64.deb
-   cloudstack-awsapi-4.4.0.amd64.deb
-   cloudstack-cli-4.4.0.amd64.deb
-   cloudstack-docs-4.4.0.amd64.deb
+   cloudstack-common-4.4.1.amd64.deb
+   cloudstack-management-4.4.1.amd64.deb
+   cloudstack-agent-4.4.1.amd64.deb
+   cloudstack-usage-4.4.1.amd64.deb
+   cloudstack-awsapi-4.4.1.amd64.deb
+   cloudstack-cli-4.4.1.amd64.deb
+   cloudstack-docs-4.4.1.amd64.deb
 
 
 Setting up an APT repo
@@ -367,13 +367,13 @@ You should see the following RPMs in that directory:
 
 .. sourcecode:: bash
 
-   cloudstack-agent-4.4.0.el6.x86_64.rpm
-   cloudstack-awsapi-4.4.0.el6.x86_64.rpm
-   cloudstack-cli-4.4.0.el6.x86_64.rpm
-   cloudstack-common-4.4.0.el6.x86_64.rpm
-   cloudstack-docs-4.4.0.el6.x86_64.rpm
-   cloudstack-management-4.4.0.el6.x86_64.rpm
-   cloudstack-usage-4.4.0.el6.x86_64.rpm
+   cloudstack-agent-4.4.1.el6.x86_64.rpm
+   cloudstack-awsapi-4.4.1.el6.x86_64.rpm
+   cloudstack-cli-4.4.1.el6.x86_64.rpm
+   cloudstack-common-4.4.1.el6.x86_64.rpm
+   cloudstack-docs-4.4.1.el6.x86_64.rpm
+   cloudstack-management-4.4.1.el6.x86_64.rpm
+   cloudstack-usage-4.4.1.el6.x86_64.rpm
 
 
 Creating a yum repo

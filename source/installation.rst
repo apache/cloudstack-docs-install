@@ -1153,7 +1153,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-hyperv.vhd \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-hyperv.vhd \
          -h hyperv \
          -s <optional-management-server-secret-key> \
          -F
@@ -1164,7 +1164,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-xen.vhd.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-xen.vhd.bz2 \
          -h xenserver \
          -s <optional-management-server-secret-key> \
          -F
@@ -1175,7 +1175,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-vmware.ova \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-vmware.ova \
          -h vmware \
          -s <optional-management-server-secret-key> \
          -F
@@ -1186,7 +1186,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-kvm.qcow2.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-kvm.qcow2.bz2 \
          -h kvm \
          -s <optional-management-server-secret-key> \
          -F
@@ -1197,7 +1197,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.0-6-kvm.qcow2.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-kvm.qcow2.bz2 \
          -h lxc \
          -s <optional-management-server-secret-key> \
          -F
