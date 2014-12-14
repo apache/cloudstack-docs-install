@@ -34,7 +34,7 @@ High level overview of the process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This runbook will focus on building a CloudStack cloud using KVM with CentOS 
-6.4 with NFS storage on a flat layer-2 network utilizing layer-3 network 
+6.5 with NFS storage on a flat layer-2 network utilizing layer-3 network 
 isolation (aka Security Groups), and doing it all on a single piece of 
 hardware.
 
@@ -51,7 +51,7 @@ Prerequisites
 
 To complete this runbook you'll need the following items:
 
-#. At least one computer which supports hardware virtualization.
+#. At least one computer which supports and has enabled hardware virtualization.
 
 #. The `CentOS 6.5 x86_64 minimal install CD 
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
@@ -270,7 +270,7 @@ start out by installing nfs-utils.
 
 .. sourcecode:: bash
 
-   # yum install nfs-utils
+   # yum -y install nfs-utils
 
 We now need to configure NFS to serve up two different shares. This is handled 
 comparatively easily in the /etc/exports file. You should ensure that it has 
@@ -531,6 +531,13 @@ and should already be installed.
 
 KVM configuration complete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the sake of completeness you should check if KVM is running OK on your machine:
+   .. sourcecode:: bash
+   
+      # lsmod | grep kvm
+      kvm_intel              55496  0
+      kvm                   337772  1 kvm_intel
+
 That concludes our installation and configuration of KVM, and we'll now move 
 to using the CloudStack UI for the actual configuration of our cloud.
 
