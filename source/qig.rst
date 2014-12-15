@@ -53,7 +53,7 @@ To complete this runbook you'll need the following items:
 
 #. At least one computer which supports and has enabled hardware virtualization.
 
-#. The `CentOS 6.4 x86_64 minimal install CD 
+#. The `CentOS 6.5 x86_64 minimal install CD
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
@@ -71,7 +71,7 @@ CloudStack. We will go over the steps to prepare now.
 Operating System
 ~~~~~~~~~~~~~~~~
 
-Using the CentOS 6.4 x86_64 minimal install ISO, you'll need to install CentOS 
+Using the CentOS 6.5 x86_64 minimal install ISO, you'll need to install CentOS
 on your hardware. The defaults will generally be acceptable for this 
 installation.
 
