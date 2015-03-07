@@ -80,7 +80,8 @@ You next need to import those keys, which you can do by running:
 
 .. sourcecode:: bash
 
-   # gpg --import KEYS
+   $ wget http://www.apache.org/dist/cloudstack/KEYS
+   $ gpg --import KEYS
 
 
 GPG
@@ -177,19 +178,14 @@ Building DEB packages
 ---------------------
 
 In addition to the bootstrap dependencies, you'll also need to install
-several other dependencies. Note that we recommend using Maven 3, which
-is not currently available in 12.04.1 LTS. So, you'll also need to add a
-PPA repository that includes Maven 3. After running the command
-``add-apt-repository``, you will be prompted to continue and a GPG key
-will be added.
+several other dependencies. Note that we recommend using Maven 3.
 
 .. sourcecode:: bash
 
    $ sudo apt-get update
    $ sudo apt-get install python-software-properties
-   $ sudo add-apt-repository ppa:natecarlson/maven3
    $ sudo apt-get update
-   $ sudo apt-get install ant debhelper openjdk-7-jdk tomcat6 libws-commons-util-java genisoimage python-mysqldb libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven3
+   $ sudo apt-get install ant debhelper openjdk-7-jdk tomcat6 libws-commons-util-java genisoimage python-mysqldb libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven
 
 While we have defined, and you have presumably already installed the
 bootstrap prerequisites, there are a number of build time prerequisites
@@ -199,7 +195,7 @@ running:
 
 .. sourcecode:: bash
 
-   $ mvn3 -P deps
+   $ mvn -P deps
 
 Now that we have resolved the dependencies we can move on to building
 CloudStack and packaging them into DEBs by issuing the following
@@ -249,10 +245,10 @@ examples, but change the directory to whatever works for you.
 
 .. sourcecode:: bash
 
-   sudo mkdir -p /var/www/cloudstack/repo/binary
-   sudo cp *.deb /var/www/cloudstack/repo/binary
-   sudo cd /var/www/cloudstack/repo/binary
-   sudo sh -c 'dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz'
+   $ sudo mkdir -p /var/www/cloudstack/repo/binary
+   $ sudo cp *.deb /var/www/cloudstack/repo/binary
+   $ cd /var/www/cloudstack/repo/binary
+   $ sudo sh -c 'dpkg-scanpackages . /dev/null | tee Packages | gzip -9 > Packages.gz'
 
 .. note:: 
    You can safely ignore the warning about a missing override file.
@@ -303,24 +299,24 @@ Linux.
    # yum install java-1.7.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
 
 Next, you'll need to install build-time dependencies for CloudStack with
-Maven. We're using Maven 3, so you'll want to `grab a Maven 3
-tarball <http://maven.apache.org/download.cgi>`_ and uncompress it in
+Maven. We're using Maven 3, so you'll want to grab `Maven 3.0.5 (Binary tar.gz)
+<http://maven.apache.org/download.cgi>`_ and uncompress it in
 your home directory (or whatever location you prefer):
 
 .. sourcecode:: bash
 
-   $ tar zxvf apache-maven-3.0.4-bin.tar.gz
+   $ tar zxvf apache-maven-3.0.5-bin.tar.gz
 
 .. sourcecode:: bash
 
-   $ export PATH=/usr/local/apache-maven-3.0.4/bin:$PATH
+   $ export PATH=/usr/local/apache-maven-3.0.5/bin:$PATH
 
 Maven also needs to know where Java is, and expects the JAVA\_HOME
 environment variable to be set:
 
 .. sourcecode:: bash
 
-   $ export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.55.x86_64
+   $ export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk.x86_64
 
 Verify that Maven is installed correctly:
 
@@ -389,6 +385,7 @@ with the finished packages:
 
 .. sourcecode:: bash
 
+   $ cd ../..
    $ cp dist/rpmbuild/RPMS/x86_64/*rpm ~/tmp/repo/
 
 .. sourcecode:: bash
