@@ -1,0 +1,52 @@
+Introduction
+------------
+
+Who Should Read This
+^^^^^^^^^^^^^^^^^^^^
+
+For those who have already gone through a design phase and planned a
+more sophisticated deployment, or those who are ready to start scaling
+up a trial installation. With the following procedures, you can start
+using the more powerful features of CloudStack, such as advanced VLAN
+networking, high availability, additional network elements such as load
+balancers and firewalls, and support for multiple hypervisors including
+Citrix XenServer, KVM, and VMware vSphere.
+
+
+Installation Steps
+^^^^^^^^^^^^^^^^^^
+
+For anything more than a simple trial installation, you will need
+guidance for a variety of configuration choices. It is strongly
+recommended that you read the following:
+
+-  Choosing a Deployment Architecture
+-  Choosing a Hypervisor: Supported Features
+-  Network Setup
+-  Storage Setup
+-  Best Practices
+
+
+#. Make sure you have the required hardware ready. 
+   See :ref:`minimum-system-requirements`
+
+#. Install the Management Server (choose single-node or multi-node).
+   See :ref:`install-mgt`
+
+#. Configure your cloud. See :ref:`Configuring_your_CloudStack_Installation`
+
+   #. Using CloudStack UI. See `*User Interface* <http://docs.cloudstack.apache.org/projects/cloudstack-administration/en/latest/ui.html#log-in-to-the-ui>`_
+
+   #. Add a zone. Includes the first pod, cluster, and host. See :ref:`adding-a-zone`
+
+   #. Add more pods (optional). See :ref:`adding-a-pod`
+
+   #. Add more clusters (optional). See :ref:`adding-a-cluster`
+
+   #. Add more hosts (optional). See :ref:`adding-a-host`
+
+   #. Add more primary storage (optional). See :ref:`add-primary-storage`
+
+   #. Add more secondary storage (optional). See :ref:`add-secondary-storage`
+
+#. Try using the cloud. See :ref:`initialize-and-test`
