@@ -14,8 +14,8 @@
    under the License.
 
 
-Quick Installation Guide for CentOS
-===================================
+Quick Installation Guide for CentOS 6
+=====================================
 
 Overview
 --------
@@ -53,7 +53,7 @@ To complete this runbook you'll need the following items:
 
 #. At least one computer which supports and has enabled hardware virtualization.
 
-#. The `CentOS 6.5 x86_64 minimal install CD 
+#. The `CentOS 6.x x86_64 minimal install CD 
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
@@ -256,7 +256,7 @@ insert the following information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/rhel/4.4/
+   baseurl=http://cloudstack.apt-get.eu/rhel/4.5/
    enabled=1
    gpgcheck=0
 
@@ -424,7 +424,7 @@ the system VMs images.
   
    /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
    -m /secondary \
-   -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-kvm.qcow2.bz2 \
+   -u http://cloudstack.apt-get.eu/systemvm/4.5/systemvm64template-4.5-kvm.qcow2.bz2 \
    -h kvm -F
 
 
