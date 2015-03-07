@@ -14,8 +14,8 @@
    under the License.
 
 
-LXC Installation and Configuration
-----------------------------------
+Host LXC Installation
+---------------------
 
 System Requirements for LXC Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

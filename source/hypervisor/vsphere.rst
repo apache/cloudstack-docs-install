@@ -14,8 +14,8 @@
    under the License.
 
 
-VMware vSphere Installation and Configuration
----------------------------------------------
+Host VMware vSphere Installation
+--------------------------------
 
 If you want to use the VMware vSphere hypervisor to run guest virtual
 machines, install vSphere on the host(s) in your cloud.

@@ -14,8 +14,8 @@
    under the License.
 
 
-Hyper-V Installation and Configuration
---------------------------------------
+Host Hyper-V Installation
+-------------------------
 
 If you want to use Hyper-V hypervisor to run guest virtual machines,
 install Hyper-V on the hosts in your cloud. The instructions in this

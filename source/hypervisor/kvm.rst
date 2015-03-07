@@ -14,8 +14,8 @@
    under the License.
 
 
-KVM Hypervisor Host Installation
---------------------------------
+Host KVM Installation
+---------------------
 
 System Requirements for KVM Hypervisor Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -881,52 +881,3 @@ The host is now ready to be added to a cluster. This is covered in a
 later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
-
-
-Hypervisor Support for Primary Storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following table shows storage options and parameters for different
-hypervisors.
-
-==================================================  =============  ====================  ==========================  =======
-Primary Storage Type                                vSphere        XenServer             KVM                         Hyper-V
-==================================================  =============  ====================  ==========================  =======
-****Format for Disks, Templates, and Snapshots****  VMDK           VHD                   QCOW2                       VHD
-**iSCSI support**                                   VMFS           CLVM                  Yes, via Shared Mountpoint  No
-**Fiber Channel support**                           VMFS           Yes, via Existing SR  Yes, via Shared Mountpoint  No
-**NFS support**                                     Yes            Yes                   Yes                         No
-**Local storage support**                           Yes            Yes                   Yes                         Yes
-**Storage over-provisioning**                       NFS and iSCSI  NFS                   NFS                         No
-**SMB/CIFS**                                        No             No                    No                          Yes
-==================================================  =============  ====================  ==========================  =======
-
-XenServer uses a clustered LVM system to store VM images on iSCSI and
-Fiber Channel volumes and does not support over-provisioning in the
-hypervisor. The storage server itself, however, can support
-thin-provisioning. As a result the CloudStack can still support storage
-over-provisioning by running on thin-provisioned storage volumes.
-
-KVM supports "Shared Mountpoint" storage. A shared mountpoint is a file
-system path local to each server in a given cluster. The path must be
-the same across all Hosts in the cluster, for example /mnt/primary1.
-This shared mountpoint is assumed to be a clustered filesystem such as
-OCFS2. In this case the CloudStack does not attempt to mount or unmount
-the storage as is done with NFS. The CloudStack requires that the
-administrator insure that the storage is available
-
-With NFS storage, CloudStack manages the overprovisioning. In this case
-the global configuration parameter storage.overprovisioning.factor
-controls the degree of overprovisioning. This is independent of
-hypervisor type.
-
-Local storage is an option for primary storage for vSphere, XenServer,
-and KVM. When the local disk option is enabled, a local disk storage
-pool is automatically created on each host. To use local storage for the
-System Virtual Machines (such as the Virtual Router), set
-system.vm.use.local.storage to true in global configuration.
-
-CloudStack supports multiple primary storage pools in a Cluster. For
-example, you could provision 2 NFS servers in primary storage. Or you
-could provision 1 iSCSI LUN initially and then add a second iSCSI LUN
-when the first approaches capacity.

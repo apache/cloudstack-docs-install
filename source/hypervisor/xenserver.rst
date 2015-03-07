@@ -14,8 +14,8 @@
    under the License.
 
 
-Citrix XenServer Installation for CloudStack
---------------------------------------------
+Host Citrix XenServer Installation
+----------------------------------
 
 If you want to use the Citrix XenServer hypervisor to run guest virtual
 machines, install XenServer 6.0 or XenServer 6.0.2 on the host(s) in
