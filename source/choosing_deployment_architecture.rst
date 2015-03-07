@@ -165,21 +165,94 @@ advantages of each hypervisor is outside the scope of our documentation.
 However, it will help you to know which features of each hypervisor are
 supported by CloudStack. The following table provides this information.
 
-======================================================================================================  ===============  ===============  ==============  ===========
-Feature                                                                                                 XenServer 6.0.2  vSphere 4.1/5.0  KVM - RHEL 6.2  Bare Metal
-======================================================================================================  ===============  ===============  ==============  ===========
-Network Throttling                                                                                      Yes              Yes              No              N/A
-Security groups in zones that use basic networking                                                      Yes              No               Yes             No
-iSCSI                                                                                                   Yes              Yes              Yes             N/A
-FibreChannel                                                                                            Yes              Yes              Yes             N/A
-Local Disk                                                                                              Yes              Yes              Yes             Yes
-HA                                                                                                      Yes              Yes (Native)     Yes             N/A
-Snapshots of local disk                                                                                 Yes              Yes              Yes             N/A
-Local disk as data disk                                                                                 No               No               No              N/A
-Work load balancing                                                                                     No               DRS              No              N/A
-Manual live migration of VMs from host to host                                                          Yes              Yes              Yes             N/A
-Conserve management traffic IP address by using link local network to communicate with virtual router   Yes              No               Yes             N/A
-======================================================================================================  ===============  ===============  ==============  ===========
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Feature                          | XenServer | vSphere      | KVM - RHEL | LXC | HyperV | Bare Metal |
++==================================+===========+==============+============+=====+========+============+
+| Network Throttling               | Yes       | Yes          | No         | No  | ?      | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Security groups in zones that use| Yes       | No           | Yes        | Yes | ?      | No         |
+| basic networking                 |           |              |            |     |        |            |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| iSCSI                            | Yes       | Yes          | Yes        | Yes | Yes    | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| FibreChannel                     | Yes       | Yes          | Yes        | Yes | Yes    | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Local Disk                       | Yes       | Yes          | Yes        | Yes | Yes    | Yes        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| HA                               | Yes       | Yes (Native) | Yes        | ?   | Yes    | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Snapshots of local disk          | Yes       | Yes          | Yes        | ?   | ?      | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Local disk as data disk          | Yes       | No           | Yes        | Yes | Yes    | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Work load balancing              | No        | DRS          | No         | No  | ?      | N/A        |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Manual live migration of VMs from| Yes       | Yes          | Yes        | ?   | Yes    | N/A        |
+| host to host                     |           |              |            |     |        |            |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+| Conserve management traffic IP   | Yes       | No           | Yes        | Yes | ?      | N/A        |
+| address by using link local      |           |              |            |     |        |            |
+| network to communicate with      |           |              |            |     |        |            |
+| virtual router                   |           |              |            |     |        |            |
++----------------------------------+-----------+--------------+------------+-----+--------+------------+
+
+
+Hypervisor Support for Primary Storage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following table shows storage options and parameters for different
+hypervisors.
+
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| Primary Storage Type             | XenServer   | vSphere       | KVM - RHEL     | LXC            | HyperV |
++==================================+=============+===============+================+================+========+
+| Format for Disks, Templates,     | VHD         | VMDK          | QCOW2          |                | VHD    |
+| and Snapshots                    |             |               |                |                |        |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| iSCSI support                    | CLVM        | VMFS          | Yes via Shared | Yes via Shared | No     |
+|                                  |             |               | Mountpoint     | Mountpoint     |        |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| Fiber Channel support            | Yes, Via    | VMFS          | Yes via Shared | Yes via Shared | No     |
+|                                  | existing SR |               | Mountpoint     | Mountpoint     |        |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| NFS support                      | Yes         | Yes           | Yes            | Yes            | No     |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| Local storage support            | Yes         | Yes           | Yes            | Yes            | Yes    |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| Storage over-provisioning        | NFS         | NFS and iSCSI | NFS            |                | No     |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+| SMB/CIFS                         | No          | No            | No             | No             | Yes    |
++----------------------------------+-------------+---------------+----------------+----------------+--------+
+
+XenServer uses a clustered LVM system to store VM images on iSCSI and
+Fiber Channel volumes and does not support over-provisioning in the
+hypervisor. The storage server itself, however, can support
+thin-provisioning. As a result the CloudStack can still support storage
+over-provisioning by running on thin-provisioned storage volumes.
+
+KVM supports "Shared Mountpoint" storage. A shared mountpoint is a file
+system path local to each server in a given cluster. The path must be
+the same across all Hosts in the cluster, for example /mnt/primary1.
+This shared mountpoint is assumed to be a clustered filesystem such as
+OCFS2. In this case the CloudStack does not attempt to mount or unmount
+the storage as is done with NFS. The CloudStack requires that the
+administrator insure that the storage is available
+
+With NFS storage, CloudStack manages the overprovisioning. In this case
+the global configuration parameter storage.overprovisioning.factor
+controls the degree of overprovisioning. This is independent of
+hypervisor type.
+
+Local storage is an option for primary storage for vSphere, XenServer,
+and KVM. When the local disk option is enabled, a local disk storage
+pool is automatically created on each host. To use local storage for the
+System Virtual Machines (such as the Virtual Router), set
+system.vm.use.local.storage to true in global configuration.
+
+CloudStack supports multiple primary storage pools in a Cluster. For
+example, you could provision 2 NFS servers in primary storage. Or you
+could provision 1 iSCSI LUN initially and then add a second iSCSI LUN
+when the first approaches capacity.
 
 
 Best Practices
