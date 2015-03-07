@@ -305,11 +305,12 @@ your home directory (or whatever location you prefer):
 
 .. sourcecode:: bash
 
+   $ cd ~
    $ tar zxvf apache-maven-3.0.5-bin.tar.gz
 
 .. sourcecode:: bash
 
-   $ export PATH=/usr/local/apache-maven-3.0.5/bin:$PATH
+   $ export PATH=~/apache-maven-3.0.5/bin:$PATH
 
 Maven also needs to know where Java is, and expects the JAVA\_HOME
 environment variable to be set:
