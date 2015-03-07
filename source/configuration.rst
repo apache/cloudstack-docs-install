@@ -1348,8 +1348,7 @@ add more servers to an existing zone.
 
 #. To prepare for the zone-based Secondary Staging Store, you should
    have created and mounted an NFS share during Management Server
-   installation. See `“Prepare NFS Shares” 
-   <installation.html#prepare-nfs-shares>`_.
+   installation. See :ref:`prepare-nfs-shares`.
 
    If you are using an Hyper-V host, ensure that you have created a SMB
    share.

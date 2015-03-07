@@ -1,3 +1,5 @@
+.. _prepare-nfs-shares:
+
 Prepare NFS Shares
 ------------------
 
