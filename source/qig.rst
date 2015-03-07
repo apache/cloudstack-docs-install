@@ -71,7 +71,7 @@ CloudStack. We will go over the steps to prepare now.
 Operating System
 ~~~~~~~~~~~~~~~~
 
-Using the CentOS 6.5 x86_64 minimal install ISO, you'll need to install CentOS 
+Using the CentOS 6.5 x86_64 minimal install ISO, you'll need to install CentOS 6 
 on your hardware. The defaults will generally be acceptable for this 
 installation.
 
