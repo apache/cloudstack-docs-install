@@ -121,10 +121,6 @@ requirements:
 
 -  At least 1 NIC
 
-.. note::
-   If DHCP is used for hosts, ensure that no conflict occurs between DHCP 
-   server used for these hosts and the DHCP router created by CloudStack.
-
 -  Latest hotfixes applied to hypervisor software
 
 -  When you deploy CloudStack, the hypervisor host must not have any VMs
