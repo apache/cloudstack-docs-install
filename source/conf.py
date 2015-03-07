@@ -37,6 +37,9 @@ extensions = []
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+def setup(app):
+   app.add_stylesheet("theme_overrides.css")
+
 # Localization
 locale_dirs = ['./locale/']
 gettext_compact = False
