@@ -33,7 +33,7 @@ get you up and running with CloudStack with a minimum amount of trouble.
 High level overview of the process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This runbook will focus on building a CloudStack cloud using KVM with CentOS 
+This runbook will focus on building a CloudStack cloud using KVM on CentOS 
 6.5 with NFS storage on a flat layer-2 network utilizing layer-3 network 
 isolation (aka Security Groups), and doing it all on a single piece of 
 hardware.
@@ -53,7 +53,7 @@ To complete this runbook you'll need the following items:
 
 #. At least one computer which supports and has enabled hardware virtualization.
 
-#. The `CentOS 6.x x86_64 minimal install CD 
+#. The `CentOS 6.5 x86_64 minimal install CD 
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
