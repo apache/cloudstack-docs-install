@@ -72,8 +72,8 @@ Quick Installation Guide
 
    qig
 
-.. _steps:
 
+.. _steps:
 
 Source Installation
 -------------------
@@ -82,18 +82,19 @@ Source Installation
 
    building_from_source
 
-.. _installation:
 
+.. _installation:
 
 General Installation
 --------------------
 .. toctree::
    :maxdepth: 2
 
-   installation
+   overview/index
+   management-server/index
+
 
 .. _configuration:
-
 
 Configuration
 -------------
@@ -102,8 +103,8 @@ Configuration
 
    configuration
 
-.. _hypervisors:
 
+.. _hypervisors:
 
 Hypervisor Setup
 ----------------
@@ -140,5 +141,6 @@ Optional Installation
    :maxdepth: 2
 
    optional_installation
+   encryption
 
 .. include:: _global.rst
