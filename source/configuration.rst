@@ -13,6 +13,7 @@
    specific language governing permissions and limitations
    under the License.
 
+.. _Configuring_your_CloudStack_Installation:
 
 Configuring your CloudStack Installation
 ========================================
