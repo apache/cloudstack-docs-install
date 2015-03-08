@@ -48,17 +48,12 @@ MySQL. See :ref:`install-database-on-separate-node`.
 #. Open the MySQL configuration file. The configuration file is
    ``/etc/my.cnf`` or ``/etc/mysql/my.cnf``, depending on your OS.
 
-#. Insert the following lines in the [mysqld] section.
+   Insert the following lines in the ``[mysqld]`` section.
 
    You can put these lines below the datadir line. The max\_connections
    parameter should be set to 350 multiplied by the number of Management
    Servers you are deploying. This example assumes one Management
    Server.
-
-   .. note:: 
-      On Ubuntu, you can also create a file `/etc/mysql/conf.d/cloudstack.cnf` 
-      and add these directives there. Don't forget to add [mysqld] on the 
-      first line of the file.
 
    .. sourcecode:: bash
 
@@ -67,6 +62,13 @@ MySQL. See :ref:`install-database-on-separate-node`.
       max_connections=350
       log-bin=mysql-bin
       binlog-format = 'ROW'
+
+   .. note:: 
+      You can also create a file ``/etc/mysql/conf.d/cloudstack.cnf`` 
+      and add these directives there. Don't forget to add ``[mysqld]`` on the 
+      first line of the file.
+
+
 
 #. Start or restart MySQL to put the new configuration into effect.
 
@@ -145,6 +147,15 @@ MySQL. See :ref:`install-database-on-separate-node`.
 #. Set up the database. The following command creates the "cloud" user
    on the database.
 
+   .. sourcecode:: bash
+
+      cloudstack-setup-databases cloud:<dbpassword>@localhost \
+      --deploy-as=root:<password> \
+      -e <encryption_type> \
+      -m <management_server_key> \
+      -k <database_key> \
+      -i <management_server_ip>
+
    -  In dbpassword, specify the password to be assigned to the "cloud"
       user. You can choose to provide no password although that is not
       recommended.
@@ -174,14 +185,6 @@ MySQL. See :ref:`install-database-on-separate-node`.
       cluster management server node IP. If not specified, the local IP
       address will be used.
 
-   .. sourcecode:: bash
-
-      cloudstack-setup-databases cloud:<dbpassword>@localhost \
-      --deploy-as=root:<password> \
-      -e <encryption_type> \
-      -m <management_server_key> \
-      -k <database_key> \
-      -i <management_server_ip>
 
    When this script is finished, you should see a message like
    “Successfully initialized the database.”
