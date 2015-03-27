@@ -28,7 +28,7 @@ System Requirements for vSphere Hosts
 Software requirements:
 ^^^^^^^^^^^^^^^^^^^^^^
 
--  vSphere and vCenter, both version 4.1 or 5.0.
+-  vSphere and vCenter, versions 4.1, 5.0, 5.1 or 5.5.
 
    vSphere Standard is recommended. Note however that customers need to
    consider the CPU constraints in place with vSphere licensing. See
@@ -105,7 +105,7 @@ Requirements" <http://pubs.vmware.com/vsp40/wwhelp/wwhimpl/js/html/wwhelp.htm#hr
 Other requirements:
 ^^^^^^^^^^^^^^^^^^^
 
--  VMware vCenter Standard Edition 4.1 or 5.0 must be installed and
+-  VMware vCenter Standard Edition 4.1, 5.0, 5.1 or 5.5 must be installed and
    available to manage the vSphere hosts.
 
 -  vCenter must be configured to use the standard port 443 so that it
@@ -114,7 +114,7 @@ Other requirements:
 -  You must re-install VMware ESXi if you are going to re-use a host
    from a previous install.
 
--  CloudStack requires VMware vSphere 4.1 or 5.0. VMware vSphere 4.0 is
+-  CloudStack requires VMware vSphere 4.1, 5.0, 5.1 or 5.5. VMware vSphere 4.0 is
    not supported.
 
 -  All hosts must be 64-bit and must support HVM (Intel-VT or AMD-V
@@ -126,26 +126,26 @@ Other requirements:
    same as the vCenter management network, and will inherit its
    configuration. See :ref:`configure-vcenter-management-network`.
 
--  CloudStack requires ESXi. ESX is not supported.
+-  CloudStack requires ESXi and vCenter. ESX is not supported.
 
--  All resources used for CloudStack must be used for CloudStack only.
-   CloudStack cannot share instance of ESXi or storage with other
+-  Ideally all resources used for CloudStack must be used for CloudStack only.
+   CloudStack should not share instance of ESXi or storage with other
    management consoles. Do not share the same storage volumes that will
    be used by CloudStack with a different set of ESXi servers that are
    not managed by CloudStack.
 
--  Put all target ESXi hypervisors in a cluster in a separate Datacenter
+-  Put all target ESXi hypervisors in dedicated clusters in a separate Datacenter
    in vCenter.
 
--  The cluster that will be managed by CloudStack should not contain any
-   VMs. Do not run the management server, vCenter or any other VMs on
+-  Ideally clusters that will be managed by CloudStack should not contain 
+   any other VMs. Do not run the management server or vCenter on
    the cluster that is designated for CloudStack use. Create a separate
    cluster for use of CloudStack and make sure that they are no VMs in
    this cluster.
 
--  All the required VLANS must be trunked into all network switches that
+-  All of the required VLANs must be trunked into all network switches that
    are connected to the ESXi hypervisor hosts. These would include the
-   VLANS for Management, Storage, vMotion, and guest VLANs. The guest
+   VLANs for Management, Storage, vMotion, and guest VLANs. The guest
    VLAN (used in Advanced Networking; see Network Setup) is a contiguous
    range of VLANs that will be managed by CloudStack.
 
@@ -183,7 +183,7 @@ vCenter Cluster Name      Name of the cluster.
 Networking Checklist for VMware
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You will need the following information about VLAN.
+You will need the following information about your VLANs.
 
 ============================  ==========================================================================================
 VLAN Information              Notes
@@ -228,8 +228,8 @@ vSphere Installation Steps
 ESXi Host setup
 ~~~~~~~~~~~~~~~
 
-All ESXi hosts should enable CPU hardware virtualization support in
-BIOS. Please note hardware virtualization support is not enabled by
+All ESXi hosts should have CPU hardware virtualization support enabled in
+the BIOS. Please note hardware virtualization support is not enabled by
 default on most servers.
 
 
@@ -252,8 +252,10 @@ bring up the networking configuration page as above.
 Configure Virtual Switch
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-A default virtual switch vSwitch0 is created. CloudStack requires all
-ESXi hosts in the cloud to use the same set of virtual switch names. If
+During the initial installation of an ESXi host a default virtual switch 
+vSwitch0 is created. You may need to create additional vSwiches depending
+on your required architecture. CloudStack requires all ESXi hosts in the cloud 
+to use consistently named virtual switches. If
 you change the default virtual switch name, you will need to configure
 one or more CloudStack configuration variables as well.
 
@@ -261,13 +263,13 @@ one or more CloudStack configuration variables as well.
 Separating Traffic
 ''''''''''''''''''
 
-CloudStack allows you to use vCenter to configure three separate
-networks per ESXi host. These networks are identified by the name of the
-vSwitch they are connected to. The allowed networks for configuration
-are public (for traffic to/from the public internet), guest (for
-guest-guest traffic), and private (for management and usually storage
-traffic). You can use the default virtual switch for all three, or
-create one or two other vSwitches for those traffic types.
+CloudStack allows you to configure three separate networks per ESXi host. 
+CloudStack identifies these networks by the name of the vSwitch 
+they are connected to. The networks for configuration are public (for 
+traffic to/from the public internet), guest (for guest-guest traffic),
+and private (for management and usually storage traffic). You can use 
+the default virtual switch for all three, or create one or two other 
+vSwitches for those traffic types.
 
 If you want to separate traffic in this way you should first create and
 configure vSwitches in vCenter according to the vCenter instructions.
