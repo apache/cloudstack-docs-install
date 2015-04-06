@@ -13,8 +13,8 @@
    specific language governing permissions and limitations
    under the License.
 
-Management Server Installation Overview
----------------------------------------
+Overview
+--------
 
 This section describes installing the Management Server. There are two
 slightly different installation flows, depending on how many Management

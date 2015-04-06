@@ -35,58 +35,58 @@ the `downloads <http://cloudstack.apache.org/downloads.html>`_ page.
 RPM package repository
 ~~~~~~~~~~~~~~~~~~~~~~
 
-   There is a RPM package repository for CloudStack so you can easily
-   install on RHEL based platforms.
+There is a RPM package repository for CloudStack so you can easily
+install on RHEL based platforms.
 
-   If you're using an RPM-based system, you'll want to add the Yum
-   repository so that you can install CloudStack with Yum.
+If you're using an RPM-based system, you'll want to add the Yum
+repository so that you can install CloudStack with Yum.
 
-   Yum repository information is found under ``/etc/yum.repos.d``. You'll
-   see several ``.repo`` files in this directory, each one denoting a
-   specific repository.
+Yum repository information is found under ``/etc/yum.repos.d``. You'll
+see several ``.repo`` files in this directory, each one denoting a
+specific repository.
 
-   To add the CloudStack repository, create
-   ``/etc/yum.repos.d/cloudstack.repo`` and insert the following
-   information.
+To add the CloudStack repository, create
+``/etc/yum.repos.d/cloudstack.repo`` and insert the following
+information.
 
-   .. sourcecode:: bash
+.. sourcecode:: bash
 
-      [cloudstack]
-      name=cloudstack
-      baseurl=http://cloudstack.apt-get.eu/rhel/4.5/
-      enabled=1
-      gpgcheck=0
+   [cloudstack]
+   name=cloudstack
+   baseurl=http://cloudstack.apt-get.eu/rhel/4.5/
+   enabled=1
+   gpgcheck=0
 
-   Now you should be able to install CloudStack using Yum.
+Now you should be able to install CloudStack using Yum.
 
 
 DEB package repository
 ~~~~~~~~~~~~~~~~~~~~~~
 
-   You can add a DEB package repository to your apt sources with the
-   following commands. Please note that only packages for Ubuntu 12.04 LTS
-   (precise) are being built at this time.
+You can add a DEB package repository to your apt sources with the
+following commands. Please note that only packages for Ubuntu 12.04 LTS
+(precise) are being built at this time.
 
-   Use your preferred editor and open (or create)
-   ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
-   repository to the file:
+Use your preferred editor and open (or create)
+``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
+repository to the file:
 
-   .. sourcecode:: bash
+.. sourcecode:: bash
 
-      deb http://cloudstack.apt-get.eu/ubuntu precise 4.5
+   deb http://cloudstack.apt-get.eu/ubuntu precise 4.5
 
-   We now have to add the public key to the trusted keys.
+We now have to add the public key to the trusted keys.
 
-   .. sourcecode:: bash
+.. sourcecode:: bash
 
-      sudo wget -O - http://cloudstack.apt-get.eu/release.asc|apt-key add -
+   sudo wget -O - http://cloudstack.apt-get.eu/release.asc|apt-key add -
 
-   Now update your local apt cache.
+Now update your local apt cache.
 
-   .. sourcecode:: bash
+.. sourcecode:: bash
 
-      sudo apt-get update
+   sudo apt-get update
 
-   Your DEB package repository should now be configured and ready for use.
+Your DEB package repository should now be configured and ready for use.
 
 
