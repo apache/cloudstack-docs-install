@@ -36,6 +36,7 @@ System Requirements for XenServer Hosts
     -  XenServer 6.0.2
     -  XenServer 6.1.0
     -  XenServer 6.2.0
+    -  XenServer 6.5.0
 
 -  You must re-install Citrix XenServer if you are going to re-use a
    host from a previous install.
