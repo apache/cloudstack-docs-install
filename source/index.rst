@@ -19,8 +19,8 @@
    contain the root `toctree` directive.
 
 
-Welcome to CloudStack Installation Documentation
-================================================
+CloudStack Installation Documentation
+=====================================
 
 .. figure:: /_static/images/acslogo.png
    :align: center

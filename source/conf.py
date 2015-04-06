@@ -111,7 +111,7 @@ pygments_style = 'sphinx'
 html_theme = 'bootstrap'
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "Installation",
+    'navbar_title': "Installation Guide",
 
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Sections",
