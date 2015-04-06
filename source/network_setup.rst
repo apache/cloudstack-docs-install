@@ -45,6 +45,8 @@ lifetime.
 
 The following table compares the networking features in the two networking models.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 =========================  ===================================  ===============================
 Networking Feature         Basic Network                        Advanced Network
 =========================  ===================================  ===============================
@@ -76,6 +78,8 @@ VLAN Allocation Example
 
 VLANs are required for public and guest traffic. The following is an
 example of a VLAN allocation scheme:
+
+.. cssclass:: table-striped table-bordered table-hover
 
 ==================  =========================================================  =======================================================================
 VLAN IDs            Traffic type                                               Scope
@@ -847,6 +851,8 @@ persistence is required.
 
 Even if persistence is not required, enabling it is permitted.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 ===========  ========================   =============   =====================
 Source Port  Destination Port           Protocol        Persistence Required?
 ===========  ========================   =============   =====================
@@ -1029,6 +1035,8 @@ running in the Zone at any one time.
 
 Use the following table to determine how to configure CloudStack for
 your deployment.
+
+.. cssclass:: table-striped table-bordered table-hover
 
 ===============   ============================   ==================
 guest.vlan.bits   Maximum Running VMs per Zone   Maximum Zone VLANs

@@ -22,6 +22,8 @@ enterprise-grade storage. Local disk may be used as well, if supported
 by the selected hypervisor. Storage type support for guest virtual disks
 differs based on hypervisor selection.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 =============  ==============================  ==================  ===================================
 Storage Type   XenServer                       vSphere             KVM
 =============  ==============================  ==================  ===================================

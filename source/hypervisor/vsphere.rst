@@ -168,6 +168,8 @@ vCenter Checklist
 
 You will need the following information about vCenter.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 ========================  =====================================
 vCenter Requirement       Notes
 ========================  =====================================
@@ -184,6 +186,8 @@ Networking Checklist for VMware
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You will need the following information about your VLANs.
+
+.. cssclass:: table-striped table-bordered table-hover
 
 ============================  ==========================================================================================
 VLAN Information              Notes
@@ -214,6 +218,8 @@ vSphere Installation Steps
 
 #. Following installation, perform the following configuration, which
    are described in the next few sections:
+
+   .. cssclass:: table-striped table-bordered table-hover
 
    ====================================================================================================== ===================
    Required                                                                                                Optional
@@ -457,6 +463,8 @@ vCenter Credentials Checklist
 
 You will need the following information about vCenter:
 
+.. cssclass:: table-striped table-bordered table-hover
+
 =============================  =========  =============================================================================
 Nexus vSwitch Requirements     Value      Notes
 =============================  =========  =============================================================================
@@ -650,6 +658,8 @@ Cluster option. For information on creating a cluster, see
 
 In both these cases, you must specify the following parameters to
 configure Nexus virtual switch:
+
+.. cssclass:: table-striped table-bordered table-hover
 
 =========================  =======================================================================================================================
 Parameters                 Description
@@ -862,6 +872,8 @@ In both these cases, you must specify the following parameters to
 configure VDS:
 
 |dvSwitchConfig.png: Configuring dvSwitch|
+
+.. cssclass:: table-striped table-bordered table-hover
 
 =================================   ===================================================================================================================
 Parameters Description

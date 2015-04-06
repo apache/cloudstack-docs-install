@@ -496,6 +496,8 @@ given, for those who have built tools using those calls.
 
 Table 1. Elastic IP API mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +---------------------------+-----------------------+-------------------------+
 | EC2 command               | SOAP call             | CloudStack API call     |
 +===========================+=======================+=========================+
@@ -514,6 +516,8 @@ Table 1. Elastic IP API mapping
 
 Table 2. Availability Zone API mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +-----------------------------------+-----------------------------+-----------------------+
 | EC2 command                       | SOAP call                   | CloudStack API call   |
 +===================================+=============================+=======================+
@@ -523,6 +527,8 @@ Table 2. Availability Zone API mapping
 |
 
 Table 3. Images API mapping
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +-----------------------+-------------------+-----------------------+
 | EC2 command           | SOAP call         | CloudStack API call   |
@@ -540,6 +546,8 @@ Table 3. Images API mapping
 
 Table 4. Image Attributes API mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +--------------------------------+--------------------------+-----------------------------+
 | EC2 command                    | SOAP call                | CloudStack API call         |
 +================================+==========================+=============================+
@@ -553,6 +561,8 @@ Table 4. Image Attributes API mapping
 |
 
 Table 5. Instances API mapping
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +---------------------------+----------------------+-------------------------+
 | EC2 command               | SOAP call            | CloudStack API call     |
@@ -574,6 +584,8 @@ Table 5. Instances API mapping
 
 Table 6. Instance Attributes Mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +-----------------------------------+-----------------------------+-----------------------+
 | EC2 command                       | SOAP call                   | CloudStack API call   |
 +===================================+=============================+=======================+
@@ -583,6 +595,8 @@ Table 6. Instance Attributes Mapping
 |
 
 Table 7. Keys Pairs Mapping
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +-------------------------+--------------------+-----------------------+
 | EC2 command             | SOAP call          | CloudStack API call   |
@@ -600,6 +614,8 @@ Table 7. Keys Pairs Mapping
 
 Table 8. Passwords API Mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +--------------------+-------------------+-----------------------+
 | EC2 command        | SOAP call         | CloudStack API call   |
 +====================+===================+=======================+
@@ -609,6 +625,8 @@ Table 8. Passwords API Mapping
 |
 
 Table 9. Security Groups API Mapping
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +----------------------+---------------------------------+---------------------------------+
 | EC2 command          | SOAP call                       | CloudStack API call             |
@@ -628,6 +646,8 @@ Table 9. Security Groups API Mapping
 
 Table 10. Snapshots API Mapping
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +--------------------------+---------------------+-----------------------+
 | EC2 command              | SOAP call           | CloudStack API call   |
 +==========================+=====================+=======================+
@@ -641,6 +661,8 @@ Table 10. Snapshots API Mapping
 |
 
 Table 11. Volumes API Mapping
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +-----------------------+------------------+-----------------------+
 | EC2 command           | SOAP call        | CloudStack API call   |

@@ -316,6 +316,8 @@ Basic Zone Configuration
    -  **Network Offering.** Your choice here determines what network
       services will be available on the network for guest VMs.
 
+      .. cssclass:: table-striped table-bordered table-hover
+
       ===============================================  ===================================================================================================================
       Network Offering                                 Description 
       ===============================================  ===================================================================================================================
@@ -690,6 +692,8 @@ Advanced Zone Configuration
       For vSphere choose either VMFS (iSCSI or FiberChannel) or NFS. The
       remaining fields in the screen vary depending on what you choose
       here.
+
+      .. cssclass:: table-striped table-bordered table-hover
 
       ===================  ===========================================================================
       NFS                  -  **Server.** The IP address or DNS name of the storage device.
@@ -1515,6 +1519,8 @@ The documentation for each CloudStack feature should direct you to the
 names of the applicable parameters. The following table shows a few of
 the more useful parameters.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 =================================  ================================================================================
 Field                              Value
 =================================  ================================================================================
@@ -1588,6 +1594,8 @@ Granular Global Configuration Parameters
 The following global configuration parameters have been made more
 granular. The parameters are listed under three different scopes:
 account, cluster, and zone.
+
+.. cssclass:: table-striped table-bordered table-hover
 
 ========  =========================================================  ======================================================================================================================================
 Field     Field                                                       Value

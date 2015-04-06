@@ -751,6 +751,8 @@ To upgrade XenServer:
       management server to this host, in the directory locations shown
       below:
 
+      .. cssclass:: table-striped table-bordered table-hover
+      
       =================================================================================   =======================================
       Copy this Management Server file                                                    To this location on the XenServer host
       =================================================================================   =======================================

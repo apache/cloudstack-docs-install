@@ -165,6 +165,8 @@ advantages of each hypervisor is outside the scope of our documentation.
 However, it will help you to know which features of each hypervisor are
 supported by CloudStack. The following table provides this information.
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +----------------------------------+-----------+--------------+------------+-----+--------+------------+
 | Feature                          | XenServer | vSphere      | KVM - RHEL | LXC | HyperV | Bare Metal |
 +==================================+===========+==============+============+=====+========+============+
@@ -202,6 +204,8 @@ Hypervisor Support for Primary Storage
 
 The following table shows storage options and parameters for different
 hypervisors.
+
+.. cssclass:: table-striped table-bordered table-hover
 
 +----------------------------------+-------------+---------------+----------------+----------------+--------+
 | Primary Storage Type             | XenServer   | vSphere       | KVM - RHEL     | LXC            | HyperV |

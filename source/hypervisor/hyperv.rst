@@ -64,6 +64,8 @@ Preparation Checklist for Hyper-V
 For a smoother installation, gather the following information before you
 start:
 
+.. cssclass:: table-striped table-bordered table-hover
+
 +------------+----------+------------------------------------------------------+
 | Hyper-V    | Value    | Description                                          |
 | Requiremen |          |                                                      |
