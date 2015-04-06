@@ -2875,6 +2875,7 @@ table th[class*="span"],
 .dropup,
 .dropdown {
   position: relative;
+  margin-left: 25px;
 }
 
 .dropdown-toggle {

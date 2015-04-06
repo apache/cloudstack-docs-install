@@ -117,6 +117,20 @@
   <div class="container">
     <p class="pull-right">
       <a href="#">Back to top</a>
+      {%- if prev %}
+          | <a href="{{ prev.link|e }}" title="{{ _('Previous Chapter: ') + prev.title|striptags }}">
+            {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-left visible-tablet"></span>{%- endif -%}
+            {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-left visible-sm"></span>{%- endif -%}
+            <span class="hidden-sm hidden-tablet">{{ "&laquo;"|safe }} {{ prev.title|striptags|truncate(length=50, killwords=False) }}</span>
+          </a>
+      {%- endif %}
+      {%- if next %}
+          | <a href="{{ next.link|e }}" title="{{ _('Next Chapter: ') + next.title|striptags }}">
+            {%- if theme_bootstrap_version == "2" -%}<span class="icon-chevron-right visible-tablet"></span>{%- endif -%}
+            {%- if theme_bootstrap_version == "3" -%}<span class="glyphicon glyphicon-chevron-right visible-sm"></span>{%- endif -%}
+            <span class="hidden-sm hidden-tablet">{{ next.title|striptags|truncate(length=50, killwords=False) }} {{ "&raquo;"|safe }}</span>
+          </a>
+      {%- endif %}
       {% if theme_source_link_position == "footer" %}
         <br/>
         {% include "sourcelink.html" %}

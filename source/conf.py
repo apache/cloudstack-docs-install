@@ -118,7 +118,7 @@ html_theme_options = {
 
     # Tab name for the current pages TOC. (Default: "Page")
     #'navbar_pagenav_name': "Page",
-
+    'navbar_pagenav': "false",
     # A list of tuples containing pages or urls to link to.
     # Valid tuples should be in the following forms:
     #    (name, page)                 # a link to a page
@@ -263,7 +263,7 @@ html_sidebars = {
 #html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #html_show_copyright = True
