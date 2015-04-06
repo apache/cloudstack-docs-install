@@ -24,7 +24,9 @@
               {%- endfor %}
             {% endif %}
             {% block navbartoc %}
-              {% include "globaltoc.html" %}
+              <li class="dropdown globaltoc-container">
+                {% include "globaltoc.html" %}
+              </li>
               {% if theme_navbar_pagenav %}
                 
               {% endif %}
