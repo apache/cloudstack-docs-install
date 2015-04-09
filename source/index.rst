@@ -26,10 +26,6 @@ CloudStack Installation Documentation
    :align: center
    :target: http://cloudstack.apache.org/
 
-.. warning:: 
-   We are in the process of changing documentation format as well as hosting 
-   mechanism. Please be patient with us as we migrate our entire documentation 
-   to this new setup.
 
 This is the Apache CloudStack installation guide, for the Documentation home, 
 the administrator guide or the Release-Notes please see:
