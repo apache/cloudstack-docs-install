@@ -100,14 +100,14 @@ number of disks in shelves.
 Ideally a cloud architecture would have one of these physical arrays per CloudStack pod to limit the
 'blast-radius' of a failure to a single pod.  This is often not economically viable, however one should
 look to try to reduce the scale of any incident relative to any zone with any single array where
-possible.  
+possible.
 The use of shared storage enables workloads to be immediately restarted on an alternate host should a
 host fail. These shared storage arrays often have the ability to create 'tiers' of storage utilising
 say large SATA disks, 15k SAS disks and SSDs. These differently performing tiers can then be presented as
 different offerings to users.
 The sizing of an array should take into account the IOPS required by the workload as well as the volume
 of data to be stored.  One should also consider the number of VMs which a storage array will be expected
-to support, and the maximum network bandwidth possible through the controllers.   
+to support, and the maximum network bandwidth possible through the controllers.
 
 
 Clustered Shared Storage
@@ -151,7 +151,7 @@ Separating Primary Storage traffic
 For those from a pure virtualisation background, the concept of creating a specific interface for storage
 traffic will not be new; it has long been best practice for iSCSI traffic to have a dedicated switch
 fabric to avoid any latency or contention issues.
-Sometimes in the cloud(Stack) world we forget that we are simply orchestrating processes that the 
+Sometimes in the cloud(Stack) world we forget that we are simply orchestrating processes that the
 hypervisors already carry out and that many ‘normal’ hypervisor configurations still apply.
 The logical reasoning which explains how this splitting of traffic works is as follows:
 
@@ -213,7 +213,7 @@ operating system version.
 
 -  **Limiting NFS export.** It is highly recommended that you limit the NFS export to a particular subnet by specifying a subnet mask (e.g.,”192.168.1.0/24”). By allowing access from only within the expected cluster, you avoid having non-pool member mount the storage. The limit you place must include the management network(s) and the storage network(s). If the two are the same network then one CIDR is sufficient. If you have a separate storage network you must provide separate CIDR’s for both or one CIDR that is broad enough to span both.
 
-  
+
  The following is an example with separate CIDRs:
 
  .. sourcecode:: bash
