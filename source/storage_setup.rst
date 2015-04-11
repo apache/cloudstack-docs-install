@@ -144,8 +144,8 @@ this management interface must be on the CloudStack ‘management’ or ‘priva
 other interfaces configured on your host carrying guest and public traffic to/from VMs within the hosts
 but the hypervisor itself doesn’t/can’t communicate over these interfaces.
 
-|hypervisorcomms.png: hypervisor storage communication|
-Figure 1: Hypervisor communications
+|hypervisorcomms.png|
+*Figure 1*: Hypervisor communications
 
 Separating Primary Storage traffic
 For those from a pure virtualisation background, the concept of creating a specific interface for storage
@@ -161,11 +161,11 @@ The logical reasoning which explains how this splitting of traffic works is as f
 #. In order for the ‘primary storage’ management interface to communicate with the primary storage, the interfaces on the primary storage arrays must be in the same CIDR as the ‘primary storage’ management interface.
 #. Therefore the primary storage must be in a different subnet to the management network
 
-|subnetting storage.png: subnetted storage interfaces|
-Figure 2: Subnetting of Storage Traffic
+|subnetting storage.png|
+*Figure 2*: Subnetting of Storage Traffic
 
-|hypervisorcomms-secstorage.png: separated hypervisor communications with secondary storage|
-Figure 3: Hypervisor Communications with Separated Storage Traffic
+|hypervisorcomms-secstorage.png|
+*Figure 3*: Hypervisor Communications with Separated Storage Traffic
 
 Other Primary Storage Types
 If you are using PreSetup or SharedMountPoints to connect to IP based storage then the same principles
@@ -349,6 +349,9 @@ Now you can set up /export as an NFS share.
    deployment.
 
 
-.. |hypervisorcomms.png: hypervisor storage communication| image:: ../_static/images/hypervisorcomms.png
-.. |subnetting storage.png: subnetted storage interfaces| image:: ../_static/images/subnetting storage.png
-.. |hypervisorcomms-secstorage.png: hypervisor communications to secondary storage| image:: ../_static/images/hypervisorcomms-secstorage.png
+.. |hypervisorcomms.png| image:: ./_static/images/hypervisorcomms.png
+   :alt: hypervisor storage communication
+.. |subnetting storage.png| image:: ./_static/images/subnetting_storage.png
+   :alt: subnetted storage interfaces
+.. |hypervisorcomms-secstorage.png| image:: ./_static/images/hypervisorcomms-secstorage.png
+   :alt: hypervisor communications to secondary storage
