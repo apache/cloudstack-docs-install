@@ -73,7 +73,7 @@ System Requirements for XenServer Hosts
    already running
 
 .. warning:: 
-   The lack of up-do-date hotfixes can lead to data corruption and lost VMs.
+   The lack of up-to-date hotfixes can lead to data corruption and lost VMs.
 
 
 XenServer Installation Steps
