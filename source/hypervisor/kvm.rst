@@ -180,12 +180,13 @@ CPU model:
 For the most part it will be sufficient for the host administrator to
 specify the guest CPU config in the per-host configuration file
 (/etc/cloudstack/agent/agent.properties). This will be achieved by
-introducing two new configuration parameters:
+introducing following configuration parameters:
 
 .. sourcecode:: bash
 
    guest.cpu.mode=custom|host-model|host-passthrough
    guest.cpu.model=from /usr/share/libvirt/cpu_map.xml(only valid when guest.cpu.mode=custom)
+   guest.cpu.features=vmx ept aes smx mmx ht (space separated list of cpu flags to apply)
 
 There are three choices to fulfill the cpu model changes:
 
@@ -227,11 +228,13 @@ Here are some examples:
    .. sourcecode:: bash
 
       guest.cpu.mode=host-passthrough
+      guest.cpu.features=vmx
 
 .. note:: 
    host-passthrough may lead to migration failure,if you have this problem, 
-   you should use host-model or custom
-
+   you should use host-model or custom. guest.cpu.features will force cpu features
+   as a required policy so make sure to put only those features that are provided
+   by the host CPU.
 
 Install and Configure libvirt
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
