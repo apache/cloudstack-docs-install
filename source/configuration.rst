@@ -1061,6 +1061,11 @@ KVM Host Additional Requirements
    on the KVM host and set the parameter network.bridge.type to
    openvswitch before adding the host to CloudStack
 
+-  If you're using a non-root user to add a KVM host, please add the user to
+   sudoers file:
+   .. sourcecode:: bash
+      cloudstack ALL=NOPASSWD: /usr/bin/cloudstack-setup-agent
+      defaults:cloudstack !requiretty
 
 Adding a XenServer or KVM Host
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
