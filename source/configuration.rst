@@ -1063,7 +1063,6 @@ KVM Host Additional Requirements
 
 -  If you're using a non-root user to add a KVM host, please add the user to
    sudoers file:
-   .. sourcecode:: bash
       cloudstack ALL=NOPASSWD: /usr/bin/cloudstack-setup-agent
       defaults:cloudstack !requiretty
 

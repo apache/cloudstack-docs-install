@@ -161,6 +161,14 @@ later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
 
+If you're using a non-root user to add the KVM host, please add the user to
+sudoers file:
+
+.. sourcecode:: bash
+
+   cloudstack ALL=NOPASSWD: /usr/bin/cloudstack-setup-agent
+   defaults:cloudstack !requiretty
+
 
 Configure CPU model for KVM guest (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
