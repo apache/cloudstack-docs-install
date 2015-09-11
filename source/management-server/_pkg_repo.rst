@@ -53,7 +53,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/rhel/4.5/
+   baseurl=http://cloudstack.apt-get.eu/centos/6/4.5/
    enabled=1
    gpgcheck=0
 
@@ -65,7 +65,7 @@ DEB package repository
 
 You can add a DEB package repository to your apt sources with the
 following commands. Please note that only packages for Ubuntu 12.04 LTS
-(precise) are being built at this time.
+(precise) and Ubuntu 14.04 (trusty) are being built at this time.
 
 Use your preferred editor and open (or create)
 ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
