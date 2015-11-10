@@ -213,6 +213,7 @@ MySQL. See :ref:`install-database-on-separate-node`.
 
    You should get the output message “CloudStack Management Server setup is
    done.”
+   If the servlet container is Tomcat7 the argument --tomcat7 must be used.
 
 
 .. _install-database-on-separate-node:
