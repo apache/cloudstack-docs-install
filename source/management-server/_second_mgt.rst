@@ -63,6 +63,7 @@ OS for the Management Server.
       cloudstack-setup-management
 
    The Management Server on this node should now be running.
+   If the servlet container is Tomcat7 the argument --tomcat7 must be used.
 
 #. Repeat these steps on each additional Management Server.
 
