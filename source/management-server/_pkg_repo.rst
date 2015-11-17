@@ -53,7 +53,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/6/4.5/
+   baseurl=http://cloudstack.apt-get.eu/centos/6/4.6/
    enabled=1
    gpgcheck=0
 
@@ -73,7 +73,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   deb http://cloudstack.apt-get.eu/ubuntu precise 4.5
+   deb http://cloudstack.apt-get.eu/ubuntu precise 4.6
 
 We now have to add the public key to the trusted keys.
 

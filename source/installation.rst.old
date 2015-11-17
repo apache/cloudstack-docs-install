@@ -86,7 +86,7 @@ Management Server may be placed on a virtual machine.
 
 -  Operating system:
 
-   -  Preferred: CentOS/RHEL 6.3+ or Ubuntu 12.04(.1)
+   -  Preferred: CentOS/RHEL 6.3+ or Ubuntu 14.04(.2)
 
 -  64-bit x86 CPU (more cores results in better performance)
 
@@ -173,7 +173,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   $ deb http://cloudstack.apt-get.eu/ubuntu precise 4.4
+   $ deb http://cloudstack.apt-get.eu/ubuntu precise 4.6
 
 We now have to add the public key to the trusted keys.
 
@@ -211,7 +211,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/rhel/4.4/
+   baseurl=http://cloudstack.apt-get.eu/rhel/4.6/
    enabled=1
    gpgcheck=0
 
@@ -343,7 +343,7 @@ Install on Ubuntu
 
       apt-get install libmysql-java
 
-   This bug has been fixed in 4.4 release and will also be fixed in bug fix releases 4.3.1
+   This bug has been fixed in 4.4 release.
 
 
 Downloading vhd-util
@@ -1149,7 +1149,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-hyperv.vhd \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-hyperv.vhd.zip \
          -h hyperv \
          -s <optional-management-server-secret-key> \
          -F
@@ -1160,7 +1160,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-xen.vhd.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-xen.vhd.bz2 \
          -h xenserver \
          -s <optional-management-server-secret-key> \
          -F
@@ -1171,7 +1171,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-vmware.ova \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-vmware.ova \
          -h vmware \
          -s <optional-management-server-secret-key> \
          -F
@@ -1182,7 +1182,7 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-kvm.qcow2.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-kvm.qcow2.bz2 \
          -h kvm \
          -s <optional-management-server-secret-key> \
          -F
@@ -1193,8 +1193,19 @@ CloudStack system VMs.
 
          /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
          -m /mnt/secondary \
-         -u http://cloudstack.apt-get.eu/systemvm/4.4/systemvm64template-4.4.1-7-kvm.qcow2.bz2 \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-kvm.qcow2.bz2 \
          -h lxc \
+         -s <optional-management-server-secret-key> \
+         -F
+
+   *  For OVM3:
+
+      .. sourcecode:: bash
+
+         /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
+         -m /mnt/secondary \
+         -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-ovm.raw.bz2 \
+         -h ovm3 \
          -s <optional-management-server-secret-key> \
          -F
 

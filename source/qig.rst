@@ -256,7 +256,7 @@ insert the following information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/6/4.5/
+   baseurl=http://cloudstack.apt-get.eu/centos/6/4.6/
    enabled=1
    gpgcheck=0
 
@@ -426,7 +426,7 @@ the system VMs images.
   
    /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
    -m /secondary \
-   -u http://cloudstack.apt-get.eu/systemvm/4.5/systemvm64template-4.5-kvm.qcow2.bz2 \
+   -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-kvm.qcow2.bz2 \
    -h kvm -F
 
 
