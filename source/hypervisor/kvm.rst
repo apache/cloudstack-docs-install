@@ -24,23 +24,23 @@ KVM is included with a variety of Linux-based operating systems.
 Although you are not required to run these distributions, the following
 are recommended:
 
--  CentOS / RHEL: 6.3
+-  CentOS / RHEL: 7.X
 
--  Ubuntu: 12.04(.1)
+-  Ubuntu: 14.04
 
 The main requirement for KVM hypervisors is the libvirt and Qemu
 version. No matter what Linux distribution you are using, make sure the
 following requirements are met:
 
--  libvirt: 0.9.4 or higher
+-  libvirt: 1.2.0 or higher
 
--  Qemu/KVM: 1.0 or higher
+-  Qemu/KVM: 2.0 or higher
 
 The default bridge in CloudStack is the Linux native bridge
 implementation (bridge module). CloudStack includes an option to work
 with OpenVswitch, the requirements are listed below
 
--  libvirt: 0.9.11 or higher
+-  libvirt: 1.2.0 or higher
 
 -  openvswitch: 1.7.1 or higher
 
@@ -61,7 +61,7 @@ In addition, the following hardware requirements apply:
 -  At least 1 NIC
 
 -  When you deploy CloudStack, the hypervisor host must not have any VMs
-   already running
+   already running. These will be destroy by CloudStack.
 
 
 KVM Installation Overview
@@ -74,11 +74,11 @@ provides the CloudStack-specific steps that are needed to prepare a KVM
 host to work with CloudStack.
 
 .. warning::
-   Before continuing, make sure that you have applied the latest updates to 
+   Before continuing, make sure that you have applied the latest updates to
    your host.
 
 .. warning::
-   It is NOT recommended to run services on this host not controlled by 
+   It is NOT recommended to run services on this host not controlled by
    CloudStack.
 
 The procedure for installing a KVM Hypervisor Host is:
@@ -238,8 +238,8 @@ Here are some examples:
       guest.cpu.mode=host-passthrough
       guest.cpu.features=vmx
 
-.. note:: 
-   host-passthrough may lead to migration failure,if you have this problem, 
+.. note::
+   host-passthrough may lead to migration failure,if you have this problem,
    you should use host-model or custom. guest.cpu.features will force cpu features
    as a required policy so make sure to put only those features that are provided
    by the host CPU.
@@ -400,12 +400,12 @@ ensure the Agent has all the required permissions.
 Configure the network bridges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: 
+.. warning::
    This is a very important section, please make sure you read this thoroughly.
 
-.. note:: 
-   This section details how to configure bridges using the native 
-   implementation in Linux. Please refer to the next section if you intend to 
+.. note::
+   This section details how to configure bridges using the native
+   implementation in Linux. Please refer to the next section if you intend to
    use OpenVswitch
 
 In order to forward traffic to your instances you will need at least two
@@ -437,7 +437,7 @@ VLAN's:
 On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
-.. note:: 
+.. note::
    The Hypervisor and Management server don't have to be in the same subnet!
 
 
@@ -447,9 +447,9 @@ Configuring the network bridges
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
 
-.. note:: 
-   The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this 
-   section. This should be used as a guideline only. The exact configuration 
+.. note::
+   The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this
+   section. This should be used as a guideline only. The exact configuration
    will depend on your network layout.
 
 
@@ -565,8 +565,8 @@ We do the same for cloudbr1
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-.. warning:: 
-   Make sure you have an alternative way like IPMI or ILO to reach the machine 
+.. warning::
+   Make sure you have an alternative way like IPMI or ILO to reach the machine
    in case you made a configuration error and the network stops functioning!
 
 
@@ -615,8 +615,8 @@ Modify the interfaces file to look like this:
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-.. warning:: 
-   Make sure you have an alternative way like IPMI or ILO to reach the machine 
+.. warning::
+   Make sure you have an alternative way like IPMI or ILO to reach the machine
    in case you made a configuration error and the network stops functioning!
 
 
@@ -679,9 +679,9 @@ Configuring the network bridges
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS.
 
-.. note:: 
-   The goal is to have three bridges called 'mgmt0', 'cloudbr0' and 'cloudbr1' 
-   after this section. This should be used as a guideline only. The exact 
+.. note::
+   The goal is to have three bridges called 'mgmt0', 'cloudbr0' and 'cloudbr1'
+   after this section. This should be used as a guideline only. The exact
    configuration will depend on your network layout.
 
 
@@ -698,7 +698,7 @@ create three fake bridges, each connected to a specific vlan tag.
 .. sourcecode:: bash
 
    # ovs-vsctl add-br cloudbr
-   # ovs-vsctl add-port cloudbr eth0 
+   # ovs-vsctl add-port cloudbr eth0
    # ovs-vsctl set port cloudbr trunks=100,200,300
    # ovs-vsctl add-br mgmt0 cloudbr 100
    # ovs-vsctl add-br cloudbr0 cloudbr 200
@@ -790,8 +790,8 @@ We now have to configure the three VLAN bridges:
 With this configuration you should be able to restart the network,
 although a reboot is recommended to see if everything works properly.
 
-.. warning:: 
-   Make sure you have an alternative way like IPMI or ILO to reach the machine 
+.. warning::
+   Make sure you have an alternative way like IPMI or ILO to reach the machine
    in case you made a configuration error and the network stops functioning!
 
 
@@ -880,8 +880,8 @@ To open the required ports, execute the following commands:
 
    $ ufw allow proto tcp from any to any port 49152:49216
 
-.. note:: 
-   By default UFW is not enabled on Ubuntu. Executing these commands with the 
+.. note::
+   By default UFW is not enabled on Ubuntu. Executing these commands with the
    firewall disabled does not enable the firewall.
 
 
