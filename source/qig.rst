@@ -256,7 +256,7 @@ insert the following information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/6/4.7/
+   baseurl=http://cloudstack.apt-get.eu/centos/6/4.8/
    enabled=1
    gpgcheck=0
 
