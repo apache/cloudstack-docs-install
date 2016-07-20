@@ -242,9 +242,9 @@ operating system version.
 
       .. sourcecode:: bash
 
-         mkdir /primary
+         mkdir /mnt/primary
          mount -t nfs <management-server-name>:/export/primary
          umount /primary
          mkdir /secondary
          mount -t nfs <management-server-name>:/export/secondary
-         umount /secondary
+         umount /mnt/secondary
