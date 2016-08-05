@@ -365,10 +365,8 @@ You should see the following RPMs in that directory:
 .. sourcecode:: bash
 
    cloudstack-agent-4.7.0.el6.x86_64.rpm
-   cloudstack-awsapi-4.7.0.el6.x86_64.rpm
    cloudstack-cli-4.7.0.el6.x86_64.rpm
    cloudstack-common-4.7.0.el6.x86_64.rpm
-   cloudstack-docs-4.7.0.el6.x86_64.rpm
    cloudstack-management-4.7.0.el6.x86_64.rpm
    cloudstack-usage-4.7.0.el6.x86_64.rpm
 
