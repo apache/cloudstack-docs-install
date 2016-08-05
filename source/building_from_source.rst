@@ -355,7 +355,9 @@ Generating RPMs is done using the ``package.sh`` script:
 
 .. sourcecode:: bash
 
-   $ ./package.sh -d centos6
+   $ ./package.sh -d centos63
+   
+For other supported options(like centos7), run ``./package.sh --help``
 
 That will run for a bit and then place the finished packages in
 ``dist/rpmbuild/RPMS/x86_64/``.
