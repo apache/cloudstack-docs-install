@@ -72,7 +72,7 @@ node.
 
    .. sourcecode:: bash
 
-      ping www.cloudstack.org
+      ping cloudstack.apache.org
 
 #. Turn on NTP for time synchronization.
 

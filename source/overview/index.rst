@@ -35,8 +35,8 @@ build from source.
 
 If you didn't follow the steps to build your own packages from source in
 the sections for `“Building RPMs from Source” 
-<building_from_source.html#building-rpms-from-source>`_ or 
-`“Building DEB packages” <building_from_source.html#building-deb-packages>`_ 
+<../building_from_source.html#building-rpms-from-source>`_ or 
+`“Building DEB packages” <../building_from_source.html#building-deb-packages>`_ 
 you may find pre-built DEB and RPM packages for your convenience linked from 
 the `downloads <http://cloudstack.apache.org/downloads.html>`_ page.
 

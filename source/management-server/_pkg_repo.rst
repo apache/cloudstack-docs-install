@@ -23,8 +23,8 @@ build from source.
 
 If you didn't follow the steps to build your own packages from source in
 the sections for `“Building RPMs from Source” 
-<building_from_source.html#building-rpms-from-source>`_ or 
-`“Building DEB packages” <building_from_source.html#building-deb-packages>`_ 
+<../building_from_source.html#building-rpms-from-source>`_ or 
+`“Building DEB packages” <../building_from_source.html#building-deb-packages>`_ 
 you may find pre-built DEB and RPM packages for your convenience linked from 
 the `downloads <http://cloudstack.apache.org/downloads.html>`_ page.
 
@@ -53,7 +53,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/6/4.8/
+   baseurl=http://cloudstack.apt-get.eu/centos/$releasever/4.9/
    enabled=1
    gpgcheck=0
 
@@ -73,7 +73,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   deb http://cloudstack.apt-get.eu/ubuntu precise 4.8
+   deb http://cloudstack.apt-get.eu/ubuntu precise 4.9
 
 We now have to add the public key to the trusted keys.
 

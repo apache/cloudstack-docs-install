@@ -101,7 +101,7 @@ operating system version.
 
    .. sourcecode:: bash
 
-      mount -t nfs nfsservername:/nfs/share/secondary /mnt/secondary
+      mount -t nfs nfsservername:/export/secondary /mnt/secondary
 
 
 .. _using-the-management-server-as-the-nfs-server:

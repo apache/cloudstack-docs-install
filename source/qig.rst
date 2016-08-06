@@ -34,7 +34,7 @@ High level overview of the process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This runbook will focus on building a CloudStack cloud using KVM on CentOS 
-6.5 with NFS storage on a flat layer-2 network utilizing layer-3 network 
+6.8 with NFS storage on a flat layer-2 network utilizing layer-3 network 
 isolation (aka Security Groups), and doing it all on a single piece of 
 hardware.
 
@@ -53,7 +53,7 @@ To complete this runbook you'll need the following items:
 
 #. At least one computer which supports and has enabled hardware virtualization.
 
-#. The `CentOS 6.5 x86_64 minimal install CD 
+#. The `CentOS 6.8 x86_64 minimal install CD 
    <http://mirrors.kernel.org/centos/6/isos/x86_64/>`_
 
 #. A /24 network with the gateway being at xxx.xxx.xxx.1, no DHCP should be on 
@@ -71,7 +71,7 @@ CloudStack. We will go over the steps to prepare now.
 Operating System
 ~~~~~~~~~~~~~~~~
 
-Using the CentOS 6.5 x86_64 minimal install ISO, you'll need to install CentOS 6 
+Using the CentOS 6.8 x86_64 minimal install ISO, you'll need to install CentOS 6 
 on your hardware. The defaults will generally be acceptable for this 
 installation.
 
@@ -256,7 +256,7 @@ insert the following information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/6/4.8/
+   baseurl=http://cloudstack.apt-get.eu/centos/6/4.9/
    enabled=1
    gpgcheck=0
 
@@ -278,8 +278,8 @@ the following content:
 
 .. sourcecode:: bash
 
-   /secondary *(rw,async,no_root_squash,no_subtree_check)
-   /primary *(rw,async,no_root_squash,no_subtree_check)
+   /export/secondary *(rw,async,no_root_squash,no_subtree_check)
+   /export/primary *(rw,async,no_root_squash,no_subtree_check)
 
 You will note that we specified two directories that don't exist (yet) on the 
 system. We'll go ahead and create those directories and set permissions 
@@ -287,8 +287,8 @@ appropriately on them with the following commands:
 
 .. sourcecode:: bash
 
-   # mkdir /primary
-   # mkdir /secondary
+   # mkdir -p /export/primary
+   # mkdir /export/secondary
 
 CentOS 6.x releases use NFSv4 by default. NFSv4 requires that domain setting 
 matches on all clients. In our case, the domain is cloud.priv, so ensure that 
@@ -380,6 +380,33 @@ start on boot as follows:
    # chkconfig mysqld on
 
 
+MySQL connector Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Install Python MySQL connector using the official MySQL packages repository.
+Create the file ``/etc/yum.repos.d/mysql.repo`` with the following content:
+
+.. sourcecode:: bash
+
+   [mysql-connectors-community]
+   name=MySQL Community connectors
+   baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/$releasever/$basearch/
+   enabled=1
+   gpgcheck=1
+
+Import GPG public key from MySQL:
+
+.. sourcecode:: bash
+
+   rpm --import http://repo.mysql.com/RPM-GPG-KEY-mysql
+
+Install mysql-connector
+
+.. sourcecode:: bash
+
+   yum install mysql-connector-python
+
+
 Installation
 ~~~~~~~~~~~~
 
@@ -425,7 +452,7 @@ the system VMs images.
 .. sourcecode:: bash
   
    /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt \
-   -m /secondary \
+   -m /export/secondary \
    -u http://cloudstack.apt-get.eu/systemvm/4.6/systemvm64template-4.6.0-kvm.qcow2.bz2 \
    -h kvm -F
 
@@ -489,9 +516,9 @@ KVM configuration is relatively simple at only a single item. We need to edit
 the QEMU VNC configuration. This is done by editing /etc/libvirt/qemu.conf and 
 ensuring the following line is present and uncommented.
 
-..
+::
 
-  vnc_listen=0.0.0.0
+   vnc_listen=0.0.0.0
 
 
 Libvirt Configuration
@@ -575,13 +602,13 @@ for us there are 5 pieces of information that we need.
 
 #. Name - we will set this to the ever-descriptive 'Zone1' for our cloud.
 
-#. Public DNS 1 - we will set this to '8.8.8.8' for our cloud.
+#. Public DNS 1 - we will set this to ``8.8.8.8`` for our cloud.
 
-#. Public DNS 2 - we will set this to '8.8.4.4' for our cloud.
+#. Public DNS 2 - we will set this to ``8.8.4.4`` for our cloud.
 
-#. Internal DNS1 - we will also set this to '8.8.8.8' for our cloud.
+#. Internal DNS1 - we will also set this to ``8.8.8.8`` for our cloud.
 
-#. Internal DNS2 - we will also set this to '8.8.4.4' for our cloud. 
+#. Internal DNS2 - we will also set this to ``8.8.4.4`` for our cloud. 
 
 .. note:: 
    CloudStack distinguishes between internal and public DNS. Internal DNS is 
@@ -601,19 +628,19 @@ Pod Configuration
 Now that we've added a Zone, the next step that comes up is a prompt for 
 information regading a pod. Which is looking for several items.
 
-#. Name - We'll use Pod1 for our cloud.
+#. Name - We'll use ``Pod1`` for our cloud.
 
-#. Gateway - We'll use 172.16.10.1 as our gateway
+#. Gateway - We'll use ``172.16.10.1`` as our gateway
 
-#. Netmask - We'll use 255.255.255.0
+#. Netmask - We'll use ``255.255.255.0``
 
-#. Start/end reserved system IPs - we will use 172.16.10.10-172.16.10.20
+#. Start/end reserved system IPs - we will use ``172.16.10.10-172.16.10.20``
 
-#. Guest gateway - We'll use 172.16.10.1
+#. Guest gateway - We'll use ``172.16.10.1``
 
-#. Guest netmask - We'll use 255.255.255.0
+#. Guest netmask - We'll use ``255.255.255.0``
 
-#. Guest start/end IP - We'll use 172.16.10.30-172.16.10.200
+#. Guest start/end IP - We'll use ``172.16.10.30-172.16.10.200``
 
 
 Cluster
@@ -622,17 +649,17 @@ Cluster
 Now that we've added a Zone, we need only add a few more items for configuring 
 the cluster.
 
-#. Name - We'll use Cluster1
+#. Name - We'll use ``Cluster1``
 
-#. Hypervisor - Choose KVM
+#. Hypervisor - Choose ``KVM``
 
 You should be prompted to add the first host to your cluster at this point. 
 Only a few bits of information are needed.
 
-#. Hostname - we'll use the IP address 172.16.10.2 since we didn't set up a 
+#. Hostname - we'll use the IP address ``172.16.10.2`` since we didn't set up a 
    DNS server.
 
-#. Username - we'll use 'root'
+#. Username - we'll use ``root``
 
 #. Password - enter the operating system password for the root user
 
@@ -644,11 +671,11 @@ With your cluster now setup - you should be prompted for primary storage
 information. Choose NFS as the storage type and then enter the following 
 values in the fields:
 
-#. Name - We'll use 'Primary1'
+#. Name - We'll use ``Primary1``
 
-#. Server - We'll be using the IP address 172.16.10.2
+#. Server - We'll be using the IP address ``172.16.10.2``
 
-#. Path - Well define /primary as the path we are using
+#. Path - Well define ``/export/primary`` as the path we are using
 
 
 Secondary Storage
@@ -657,9 +684,9 @@ Secondary Storage
 If this is a new zone, you'll be prompted for secondary storage information - 
 populate it as follows:
 
-#. NFS server - We'll use the IP address 172.16.10.2
+#. NFS server - We'll use the IP address ``172.16.10.2``
 
-#. Path - We'll use /secondary
+#. Path - We'll use ``/export/secondary``
 
 Now, click Launch and your cloud should begin setup - it may take several 
 minutes depending on your internet connection speed for setup to finalize.
