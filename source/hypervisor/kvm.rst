@@ -439,8 +439,8 @@ Configuring the Networking
    implementation in Linux. Please refer to the next section if you intend to
    use OpenVswitch
 
-CloudStack uses the network bridges with KVM to connect the guest instances to each
-other and the outside work.  They also are used to connect the System VMs to your 
+CloudStack uses the network bridges in conjunction with KVM to connect the guest instances to 
+each other and the outside world.  They also are used to connect the System VMs to your 
 infrastructure.
 
 By default these bridges are called *cloudbr0* and *cloudbr1* etc, but this can be 
@@ -524,7 +524,7 @@ We now have to configure the VLAN interfaces:
    VLAN=yes
    BRIDGE=cloudbr1
 
-Now we have the VLAN interfaces configured we can add the bridges on top
+Now that we have the VLAN interfaces configured we can add the bridges on top
 of them.
 
 .. sourcecode:: bash
@@ -1076,7 +1076,7 @@ Secondary Storage Bypass
 New in 4.11 is the ability to bypass storing a template on secondary storage, and
 instead directly downloading a 'template' from an alternate remote location.
 In order to facilitate this the **Aria2** (https://aria2.github.io/) package must be
-installed on the KVM host.
+installed on all of your KVM hosts.
 
 As this package often is not available in standard distribution repos, you will need
 to install the package from your preferred source. 
