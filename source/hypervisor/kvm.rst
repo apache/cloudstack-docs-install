@@ -289,7 +289,7 @@ cloudstack-agent and should already be installed.
 
       #LIBVIRTD_ARGS="--listen"
 
-   On Ubuntu: modify ``/etc/default/libvirt-bin``
+   On Ubuntu 14.04: modify ``/etc/default/libvirt-bin``
 
    Add "-l" to the following line
 
@@ -302,6 +302,37 @@ cloudstack-agent and should already be installed.
    .. sourcecode:: bash
 
       libvirtd_opts="-d -l"
+
+   And modify ``/etc/init/libvirt-bin.conf``
+
+   Add "-l" to the following line
+
+   .. sourcecode:: bash
+
+      env libvirtd_opts="-d"
+
+   so it looks like:
+
+   .. sourcecode:: bash
+
+      env libvirtd_opts="-d -l"
+
+   On Ubuntu 16.04: just modify ``/etc/init/libvirt-bin.conf``
+
+   Add "-l" to the following line
+
+   .. sourcecode:: bash
+
+      env libvirtd_opts="-d"
+
+   so it looks like:
+
+   .. sourcecode:: bash
+
+      env libvirtd_opts="-d -l"
+
+
+
 
 #. Restart libvirt
 
@@ -397,8 +428,8 @@ ensure the Agent has all the required permissions.
          $ apparmor_parser -R /etc/apparmor.d/usr.lib.libvirt.virt-aa-helper
 
 
-Configure the network bridges
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuring the Networking
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. warning::
    This is a very important section, please make sure you read this thoroughly.
@@ -408,41 +439,41 @@ Configure the network bridges
    implementation in Linux. Please refer to the next section if you intend to
    use OpenVswitch
 
-In order to forward traffic to your instances you will need at least two
-bridges: *public* and *private*.
+CloudStack uses the network bridges with KVM to connect the guest instances to each
+other and the outside work.  They also are used to connect the System VMs to your 
+infrastructure.
 
-By default these bridges are called *cloudbr0* and *cloudbr1*, but you
-do have to make sure they are available on each hypervisor.
+By default these bridges are called *cloudbr0* and *cloudbr1* etc, but this can be 
+changed to be more description. 
 
-The most important factor is that you keep the configuration consistent
-on all your hypervisors.
+.. warning::
+   It is essential that you keep the configuration consistent across all of your hypervisors.
+
+There are many ways to configure your networking. Even within the scope of a given 
+network mode.  Below are a few simple examples.
 
 
-Network example
-^^^^^^^^^^^^^^^
+Network example for Basic Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are many ways to configure your network. In the Basic networking
-mode you should have two (V)LAN's, one for your private network and one
-for the public network.
+In the Basic networking, all of the guests in a given pod will be on the same VLAN/subnet.
+It is common to use the native (untagged) VLAN for the private/management network, so in
+this example we will have two VLANs, one (native) for your private/management network and one
+for the guest network.
 
-We assume that the hypervisor has one NIC (eth0) with three tagged
-VLAN's:
+We assume that the hypervisor has one NIC (eth0) with one tagged VLAN trunked from the switch:
 
-#. VLAN 100 for management of the hypervisor
+#. Native VLAN for management network (cloudbr0)
+#. VLAN 200 for guest network of the instances (cloudbr1)
 
-#. VLAN 200 for public network of the instances (cloudbr0)
-
-#. VLAN 300 for private network of the instances (cloudbr1)
-
-On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
-the gateway 192.168.42.1
+In this the following example we give the Hypervisor the IP-Address 192.168.42.11/24
+with the gateway 192.168.42.1
 
 .. note::
-   The Hypervisor and Management server don't have to be in the same subnet!
+   The Hypervisor and Management server don't have to be in the same subnet
 
-
-Configuring the network bridges
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring the Network Bridges for Basic Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
@@ -452,9 +483,8 @@ below you'll find examples for RHEL/CentOS and Ubuntu.
    section. This should be used as a guideline only. The exact configuration
    will depend on your network layout.
 
-
-Configure in RHEL or CentOS
-'''''''''''''''''''''''''''
+Configure RHEL or CentOS for Basic Networks
+'''''''''''''''''''''''''''''''''''''''''''
 
 The required packages were installed when libvirt was installed, we can
 proceed to configuring the network.
@@ -475,25 +505,9 @@ Make sure it looks similar to:
    HOTPLUG=no
    BOOTPROTO=none
    TYPE=Ethernet
+   BRIDGE=cloudbr0
 
-We now have to configure the three VLAN interfaces:
-
-.. sourcecode:: bash
-
-   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0.100
-
-.. sourcecode:: bash
-
-   DEVICE=eth0.100
-   HWADDR=00:04:xx:xx:xx:xx
-   ONBOOT=yes
-   HOTPLUG=no
-   BOOTPROTO=none
-   TYPE=Ethernet
-   VLAN=yes
-   IPADDR=192.168.42.11
-   GATEWAY=192.168.42.1
-   NETMASK=255.255.255.0
+We now have to configure the VLAN interfaces:
 
 .. sourcecode:: bash
 
@@ -502,21 +516,6 @@ We now have to configure the three VLAN interfaces:
 .. sourcecode:: bash
 
    DEVICE=eth0.200
-   HWADDR=00:04:xx:xx:xx:xx
-   ONBOOT=yes
-   HOTPLUG=no
-   BOOTPROTO=none
-   TYPE=Ethernet
-   VLAN=yes
-   BRIDGE=cloudbr0
-
-.. sourcecode:: bash
-
-   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0.300
-
-.. sourcecode:: bash
-
-   DEVICE=eth0.300
    HWADDR=00:04:xx:xx:xx:xx
    ONBOOT=yes
    HOTPLUG=no
@@ -532,7 +531,10 @@ of them.
 
    $ vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
 
-Now we just configure it is a plain bridge without an IP-Address
+Now we configure cloudbr0 and include the Management IP of the hypervisor.
+.. note::
+   The management IP of the hypervisor doesn't have to be in same subnet/VLAN as the
+   management network, but its quite common.
 
 .. sourcecode:: bash
 
@@ -543,9 +545,12 @@ Now we just configure it is a plain bridge without an IP-Address
    IPV6INIT=no
    IPV6_AUTOCONF=no
    DELAY=5
+   IPADDR=192.168.42.11
+   GATEWAY=192.168.42.1
+   NETMASK=255.255.255.0
    STP=yes
 
-We do the same for cloudbr1
+We configure cloudbr1 as a plain bridge without an IP address
 
 .. sourcecode:: bash
 
@@ -570,8 +575,8 @@ although a reboot is recommended to see if everything works properly.
    in case you made a configuration error and the network stops functioning!
 
 
-Configure in Ubuntu
-'''''''''''''''''''
+Configure Ubuntu for Basic Networks
+'''''''''''''''''''''''''''''''''''
 
 All the required packages were installed when you installed libvirt, so
 we only have to configure the network.
@@ -588,26 +593,203 @@ Modify the interfaces file to look like this:
    iface lo inet loopback
 
    # The primary network interface
-   auto eth0.100
-   iface eth0.100 inet static
+   auto eth0
+   iface eth0 inet manual
+
+   auto eth0.200
+   iface eth0 inet manual
+
+   # management network
+   auto cloudbr0
+   iface cloudbr0 inet static
+       bridge_ports eth0
+       bridge_fd 5
+       bridge_stp off
+       bridge_maxwait 1
        address 192.168.42.11
        netmask 255.255.255.240
        gateway 192.168.42.1
        dns-nameservers 8.8.8.8 8.8.4.4
        dns-domain lab.example.org
 
-   # Public network
-   auto cloudbr0
-   iface cloudbr0 inet manual
+   # guest network
+   auto cloudbr1
+   iface cloudbr1 inet manual
        bridge_ports eth0.200
        bridge_fd 5
        bridge_stp off
        bridge_maxwait 1
 
-   # Private network
+With this configuration you should be able to restart the network,
+although a reboot is recommended to see if everything works properly.
+
+.. warning::
+   Make sure you have an alternative way like IPMI or ILO to reach the machine
+   in case you made a configuration error and the network stops functioning!
+
+
+
+Network Example for Advanced Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the Advanced networking mode is most common to have (at least) two physical interfaces.
+In this example we will again have the hypervisor management interface on cloudbr0 on the 
+untagged (native) VLAN. But now we will have a bridge on top of our additional interface (eth1)
+for public and guest traffic with no VLANs applied by us - CloudStack will add the VLANs
+as required.
+
+We again give the Hypervisor the IP-Address 192.168.42.11/24 with
+the gateway 192.168.42.1
+
+.. note::
+   The Hypervisor and Management server don't have to be in the same subnet
+
+
+Configuring the Network Bridges for Advanced Networks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It depends on the distribution you are using how to configure these,
+below you'll find examples for RHEL/CentOS and Ubuntu.
+
+.. note::
+   The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this
+   section. This should be used as a guideline only. The exact configuration
+   will depend on your network layout.
+
+
+Configure RHEL/CentOS for Advanced Networks
+'''''''''''''''''''''''''''''''''''''''''''
+
+The required packages were installed when libvirt was installed, we can
+proceed to configuring the network.
+
+First we configure eth0
+
+.. sourcecode:: bash
+
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth0
+
+Make sure it looks similar to:
+
+.. sourcecode:: bash
+
+   DEVICE=eth0
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
+   BRIDGE=cloudbr0
+
+We now have to configure the VLAN interfaces:
+
+.. sourcecode:: bash
+
+   $ vi /etc/sysconfig/network-scripts/ifcfg-eth1
+
+.. sourcecode:: bash
+
+   DEVICE=eth1
+   HWADDR=00:04:xx:xx:xx:xx
+   ONBOOT=yes
+   HOTPLUG=no
+   BOOTPROTO=none
+   TYPE=Ethernet
+   BRIDGE=cloudbr1
+
+Now we have the VLAN interfaces configured we can add the bridges on top
+of them.
+
+.. sourcecode:: bash
+
+   $ vi /etc/sysconfig/network-scripts/ifcfg-cloudbr0
+
+Now we configure cloudbr0 and include the Management IP of the hypervisor.
+.. note::
+   The management IP of the hypervisor doesn't have to be in same subnet/VLAN as the
+   management network, but its quite common.
+
+.. sourcecode:: bash
+
+   DEVICE=cloudbr0
+   TYPE=Bridge
+   ONBOOT=yes
+   BOOTPROTO=none
+   IPV6INIT=no
+   IPV6_AUTOCONF=no
+   DELAY=5
+   IPADDR=192.168.42.11
+   GATEWAY=192.168.42.1
+   NETMASK=255.255.255.0
+   STP=yes
+
+We configure cloudbr1 as a plain bridge without an IP address
+
+.. sourcecode:: bash
+
+   $ vi /etc/sysconfig/network-scripts/ifcfg-cloudbr1
+
+.. sourcecode:: bash
+
+   DEVICE=cloudbr1
+   TYPE=Bridge
+   ONBOOT=yes
+   BOOTPROTO=none
+   IPV6INIT=no
+   IPV6_AUTOCONF=no
+   DELAY=5
+   STP=yes
+
+With this configuration you should be able to restart the network,
+although a reboot is recommended to see if everything works properly.
+
+.. warning::
+   Make sure you have an alternative way like IPMI or ILO to reach the machine
+   in case you made a configuration error and the network stops functioning!
+
+
+Configure Ubuntu for Advanced Networks
+''''''''''''''''''''''''''''''''''''''
+
+All the required packages were installed when you installed libvirt, so
+we only have to configure the network.
+
+.. sourcecode:: bash
+
+   $ vi /etc/network/interfaces
+
+Modify the interfaces file to look like this:
+
+.. sourcecode:: bash
+
+   auto lo
+   iface lo inet loopback
+
+   # The primary network interface
+   auto eth0
+   iface eth0 inet manual
+
+   # The second network interface
+   auto eth1
+   iface eth1 inet manual
+
+   # management network
+   auto cloudbr0
+   iface cloudbr0 inet static
+       bridge_ports eth0
+       bridge_fd 5
+       bridge_stp off
+       bridge_maxwait 1
+       address 192.168.42.11
+       netmask 255.255.255.240
+       gateway 192.168.42.1
+       dns-nameservers 8.8.8.8 8.8.4.4
+       dns-domain lab.example.org
+
+   # guest network
    auto cloudbr1
    iface cloudbr1 inet manual
-       bridge_ports eth0.300
+       bridge_ports eth1
        bridge_fd 5
        bridge_stp off
        bridge_maxwait 1
@@ -650,15 +832,15 @@ scripts which are part of the openvswitch installation. They should be
 installed in /etc/sysconfig/network-scripts/
 
 
-Network example
-^^^^^^^^^^^^^^^
+OpenVswitch Network example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are many ways to configure your network. In the Basic networking
-mode you should have two (V)LAN's, one for your private network and one
+mode you should have two VLANs, one for your private network and one
 for the public network.
 
 We assume that the hypervisor has one NIC (eth0) with three tagged
-VLAN's:
+VLANs:
 
 #. VLAN 100 for management of the hypervisor
 
@@ -670,11 +852,11 @@ On VLAN 100 we give the Hypervisor the IP-Address 192.168.42.11/24 with
 the gateway 192.168.42.1
 
 .. note::
-   The Hypervisor and Management server don't have to be in the same subnet!
+   The Hypervisor and Management server don't have to be in the same subnet
 
 
-Configuring the network bridges
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuring the network bridges for OpenVswitch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS.
@@ -705,8 +887,8 @@ create three fake bridges, each connected to a specific vlan tag.
    # ovs-vsctl add-br cloudbr1 cloudbr 300
 
 
-Configure in RHEL or CentOS
-'''''''''''''''''''''''''''
+Configure OpenVswitch in RHEL or CentOS
+'''''''''''''''''''''''''''''''''''''''
 
 The required packages were installed when openvswitch and libvirt were
 installed, we can proceed to configuring the network.
@@ -793,6 +975,7 @@ although a reboot is recommended to see if everything works properly.
 .. warning::
    Make sure you have an alternative way like IPMI or ILO to reach the machine
    in case you made a configuration error and the network stops functioning!
+
 
 
 Configuring the firewall
@@ -885,6 +1068,30 @@ To open the required ports, execute the following commands:
    firewall disabled does not enable the firewall.
 
 
+Additional Packages Required for Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Secondary Storage Bypass
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+New in 4.11 is the ability to bypass storing a template on secondary storage, and
+instead directly downloading a 'template' from an alternate remote location.
+In order to facilitate this the **Aria2** (https://aria2.github.io/) package must be
+installed on the KVM host.
+
+As this package often is not available in standard distribution repos, you will need
+to install the package from your preferred source. 
+
+Live Migration
+^^^^^^^^^^^^^^
+CloudStack uses the qemu-img to perform live migrations.  In CentOS > 6.3, the qemu-img
+supplied by RedHat/CentOS ceased to include a '-s' switch which performs snapshots. The
+'-s' switch has been restored in latest CentOS/RHEL 7.x versions.
+
+In order to be able to perform live migrations on CentOS 6.x (greater than 6.3) you must
+replace your version of qemu-img with one which has been patched to include the '-s'
+switch.
+
+
 Add the host to CloudStack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -892,3 +1099,4 @@ The host is now ready to be added to a cluster. This is covered in a
 later section, see :ref:`adding-a-host`. It is
 recommended that you continue to read the documentation before adding
 the host!
+
