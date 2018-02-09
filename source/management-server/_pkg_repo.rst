@@ -53,7 +53,7 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/$releasever/4.9/
+   baseurl=http://cloudstack.apt-get.eu/centos/$releasever/4.11/
    enabled=1
    gpgcheck=0
 
@@ -73,7 +73,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   deb http://cloudstack.apt-get.eu/ubuntu trusty 4.9
+   deb http://cloudstack.apt-get.eu/ubuntu trusty 4.11
 
 We now have to add the public key to the trusted keys.
 

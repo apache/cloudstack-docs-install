@@ -92,7 +92,7 @@ To check the signature, run the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --verify apache-cloudstack-4.9.0-src.tar.bz2.asc
+   $ gpg --verify apache-cloudstack-4.11.0.0-src.tar.bz2.asc
 
 If the signature is valid you will see a line of output that contains
 'Good signature'.
@@ -107,7 +107,7 @@ You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md MD5 apache-cloudstack-4.9.0-src.tar.bz2 | diff - apache-cloudstack-4.9.0-src.tar.bz2.md5
+   $ gpg --print-md MD5 apache-cloudstack-4.11.0.0-src.tar.bz2 | diff - apache-cloudstack-4.11.0.0-src.tar.bz2.md5
 
 If this successfully completes you should see no output. If there is any
 output from them, then there is a difference between the hash you
@@ -123,7 +123,7 @@ release. You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md SHA512 apache-cloudstack-4.9.0-src.tar.bz2 | diff - apache-cloudstack-4.9.0-src.tar.bz2.sha
+   $ gpg --print-md SHA512 apache-cloudstack-4.11.0.0-src.tar.bz2 | diff - apache-cloudstack-4.11.0.0-src.tar.bz2.sha
 
 If this command successfully completes you should see no output. If
 there is any output from them, then there is a difference between the
@@ -142,15 +142,13 @@ You will need, at a minimum, the following to compile CloudStack:
 
 #. Maven (version 3)
 
-#. Java (Java 7/OpenJDK 1.7)
+#. Java (Java 8/OpenJDK 1.8)
 
 #. Apache Web Services Common Utilities (ws-commons-util)
 
 #. MySQL
 
 #. MySQLdb (provides Python database API)
-
-#. Tomcat 6 (not 6.0.35) or Tomcat 7
 
 #. genisoimage
 
@@ -165,13 +163,13 @@ with a single command as follows:
 
 .. sourcecode:: bash
 
-   $ tar -jxvf apache-cloudstack-4.9.0-src.tar.bz2
+   $ tar -jxvf apache-cloudstack-4.11.0.0-src.tar.bz2
 
 You can now move into the directory:
 
 .. sourcecode:: bash
 
-   $ cd ./apache-cloudstack-4.9.0-src
+   $ cd ./apache-cloudstack-4.11.0.0-src
 
 Install new MySQL connector
 ---------------------------
@@ -234,7 +232,7 @@ several other dependencies. Note that we recommend using Maven 3.
    $ sudo apt-get update
    $ sudo apt-get install python-software-properties
    $ sudo apt-get update
-   $ sudo apt-get install ant debhelper openjdk-7-jdk tomcat6 libws-commons-util-java genisoimage libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven
+   $ sudo apt-get install debhelper openjdk-8-jdk libws-commons-util-java genisoimage libcommons-codec-java libcommons-httpclient-java liblog4j1.2-java maven
 
 While we have defined, and you have presumably already installed the
 bootstrap prerequisites, there are a number of build time prerequisites
@@ -259,11 +257,11 @@ all of the following:
 
 .. sourcecode:: bash
 
-   cloudstack-common-4.9.0.amd64.deb
-   cloudstack-management-4.9.0.amd64.deb
-   cloudstack-agent-4.9.0.amd64.deb
-   cloudstack-usage-4.9.0.amd64.deb
-   cloudstack-cli-4.9.0.amd64.deb
+   cloudstack-common-4.11.0.0.amd64.deb
+   cloudstack-management-4.11.0.0.amd64.deb
+   cloudstack-agent-4.11.0.0.amd64.deb
+   cloudstack-usage-4.11.0.0.amd64.deb
+   cloudstack-cli-4.11.0.0.amd64.deb
 
 
 Setting up an APT repo
@@ -343,7 +341,7 @@ Linux.
 
 .. sourcecode:: bash
 
-   # yum install java-1.7.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python tomcat6 createrepo
+   # yum install java-1.8.0-openjdk-devel.x86_64 genisoimage mysql mysql-server ws-commons-util MySQL-python createrepo
 
 Next, you'll need to install build-time dependencies for CloudStack with
 Maven. We're using Maven 3, so you'll want to grab `Maven 3.0.5 (Binary tar.gz)
@@ -364,7 +362,7 @@ environment variable to be set:
 
 .. sourcecode:: bash
 
-   $ export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk.x86_64
+   $ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk.x86_64
 
 Verify that Maven is installed correctly:
 
@@ -413,11 +411,11 @@ You should see the following RPMs in that directory:
 
 .. sourcecode:: bash
 
-   cloudstack-agent-4.9.0.el6.x86_64.rpm
-   cloudstack-cli-4.9.0.el6.x86_64.rpm
-   cloudstack-common-4.9.0.el6.x86_64.rpm
-   cloudstack-management-4.9.0.el6.x86_64.rpm
-   cloudstack-usage-4.9.0.el6.x86_64.rpm
+   cloudstack-agent-4.11.0.0.el6.x86_64.rpm
+   cloudstack-cli-4.11.0.0.el6.x86_64.rpm
+   cloudstack-common-4.11.0.0.el6.x86_64.rpm
+   cloudstack-management-4.11.0.0.el6.x86_64.rpm
+   cloudstack-usage-4.11.0.0.el6.x86_64.rpm
 
 
 Creating a yum repo
