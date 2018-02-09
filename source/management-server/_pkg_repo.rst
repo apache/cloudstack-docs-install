@@ -64,8 +64,8 @@ DEB package repository
 ~~~~~~~~~~~~~~~~~~~~~~
 
 You can add a DEB package repository to your apt sources with the
-following commands. Please note that only packages for Ubuntu 12.04 LTS
-(precise) and Ubuntu 14.04 (trusty) are being built at this time.
+following commands. Please note that only packages for Ubuntu 14.04 LTS
+(Trusty) and Ubuntu 16.04 (Xenial) are being built at this time. DISCLAIMER: Ubuntu 12.04 (Precise) is no longer supported.
 
 Use your preferred editor and open (or create)
 ``/etc/apt/sources.list.d/cloudstack.list``. Add the community provided
@@ -73,7 +73,7 @@ repository to the file:
 
 .. sourcecode:: bash
 
-   deb http://cloudstack.apt-get.eu/ubuntu precise 4.9
+   deb http://cloudstack.apt-get.eu/ubuntu trusty 4.9
 
 We now have to add the public key to the trusted keys.
 

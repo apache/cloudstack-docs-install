@@ -138,7 +138,7 @@ msgstr ""
 
 #: ../../installation.rst:89
 # 29b8ae9600b245fe9c60f040f52adfa5
-msgid "Preferred: CentOS/RHEL 6.3+ or Ubuntu 12.04(.1)"
+msgid "Preferred: CentOS/RHEL 6.3+ or Ubuntu 14.04(.1)"
 msgstr ""
 
 #: ../../installation.rst:91
@@ -259,7 +259,7 @@ msgstr ""
 
 #: ../../installation.rst:170
 # d5c18e89ae43496093da2abe5de613ad
-msgid "You can add a DEB package repository to your apt sources with the following commands. Please note that only packages for Ubuntu 12.04 LTS (precise) are being built at this time."
+msgid "You can add a DEB package repository to your apt sources with the following commands. Please note that only packages for Ubuntu 14.04 LTS (trusty) and Ubuntu 16.04 (Xenial)are being built at this time. DISCLAIMER: Ubuntu 12.04 (Precise) is no longer supported."
 msgstr ""
 
 #: ../../installation.rst:174
