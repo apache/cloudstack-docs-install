@@ -25,10 +25,10 @@ Installation overview
 .. include:: _requirements.rst
 
 
-package repository
+Package Repository
 ------------------
 
-CloudStack is only distributed from source from the official mirrors.
+CloudStack is only distributed from source from the official Apache mirrors.
 However, members of the CloudStack community may build convenience
 binaries so that users can install Apache CloudStack without needing to
 build from source.
