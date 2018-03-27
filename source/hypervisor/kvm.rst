@@ -991,7 +991,7 @@ using a firewall):
 
 #. 1798
 
-#. 16509 (libvirt)
+#. 16509, 16514 (libvirt)
 
 #. 5900 - 6100 (VNC consoles)
 
@@ -1018,6 +1018,9 @@ extra ports by executing the following iptable commands:
 .. sourcecode:: bash
 
    $ iptables -I INPUT -p tcp -m tcp --dport 16509 -j ACCEPT
+
+.. sourcecode:: bash
+   $ iptables -I INPUT -p tcp -m tcp --dport 16514 -j ACCEPT
 
 .. sourcecode:: bash
 
@@ -1054,6 +1057,10 @@ To open the required ports, execute the following commands:
 .. sourcecode:: bash
 
    $ ufw allow proto tcp from any to any port 16509
+
+.. sourcecode:: bash
+
+   $ ufw allow proto tcp from any to any port 16514
 
 .. sourcecode:: bash
 
