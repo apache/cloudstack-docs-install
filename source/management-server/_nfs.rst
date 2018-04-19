@@ -124,6 +124,12 @@ operating system version.
 
       yum install nfs-utils
 
+   On Debian/Ubuntu systems, use:
+
+   .. sourcecode:: bash
+      
+      # apt-get install nfs-kernel-server
+
 #. On the Management Server host, create two directories that you will
    use for primary and secondary storage. For example:
 
@@ -242,9 +248,9 @@ operating system version.
 
       .. sourcecode:: bash
 
-         mkdir /primary
-         mount -t nfs <management-server-name>:/export/primary
+         mkdir /mnt/primary
+         mount -t nfs <management-server-name>:/export/primary /mnt/primary
          umount /primary
          mkdir /secondary
-         mount -t nfs <management-server-name>:/export/secondary
-         umount /secondary
+         mount -t nfs <management-server-name>:/export/secondary /mnt/secondary
+         umount /mnt/secondary
