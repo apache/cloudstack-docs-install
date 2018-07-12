@@ -802,3 +802,74 @@ Example 2. An S3 Boto Example
 
 .. |Use the GUI to set the configuration variable to true| image:: ./_static/images/ec2-s3-configuration.png
 .. |Use the GUI to set the name of a compute service offering to an EC2 instance type API name.| image:: ./_static/images/compute-service-offerings.png
+
+
+Adding new Guest Physical Network to existing Zone
+--------------------------------------
+
+In some cases it might be necessary to add additional Guest Physical Network to already existing Advanced Zone. One example might be that we have been running Zone with Guest Physical Network that uses VXLAN as isolation method (i.e. KVM traffic label set to "bond.150), and we also need to start using Private Gateway functionality, which would not work with current Guest Physical Network Traffic Label (for explanation why this would not work, please see ":ref:`adding-priv-gw-vpc`".
+
+So in example below, we would like to create new Guest Physical Network (Traffic Label set to "bond0" in this example) and later use this Guest Physical Network for other purposes (to provision Private Gateways on top of it)
+
+Depending on the CloudStack version, we can probably accomplish this only by API commands (i.e. CloudMonkey) and direct database changes.
+
+First obtain Zone ID, and then create Physical Network command:
+
+.. code:: bash
+
+   cloudmonkey> list zones filter=id | grep id | head -n1  
+   cloudmonkey> create physicalnetwork name="bond0 Private Gateways" broadcastdomainrange=zone zoneid=xxxxxx isolationmethod=VLAN
+
+where "xxxxxxx" is the proper zone ID (output from the first command above).
+
+Here we created new Physical Network (not yet of any type...) inside given zone.
+
+Please note that new Physical Network can not be added, while Zone is in Enabled state!
+
+It is safe to disable Zone (for few seconds) which will just prevent users from provisioning new resources in this Zone, then create Physical Network per instructions from above, and then enable the Zone (this can be done via GUI or CloudMonkey).
+
+Since Physical Network is in Disabled state by default, we need to enable it by:
+
+.. code:: bash
+
+   cloudmonkey> list physicalnetworks name="bond0 Private Gateways" | grep id | head -n1
+   cloudmonkey> update physicalnetwork state=Enabled id=xxxxx
+   
+where xxxxx is the correct ID of Physical Network (output from the first command above).
+
+After Physical Network is created, although we selected VLAN as isolation method, it may happen (depending on CloudStack version) that there will be no DB record created (which defines VLAN as isolation method for this new network), so we need to check this and fix it:
+
+.. code:: bash
+
+   cloudmonkey> list physicalnetworks name="bond0 Private Gateways" | grep isolationmethods
+
+If above commands gives no output, that means that VLAN was not set as Isolation Method inside DB, in cloud.physical_network_isolation_methods table, so we need to set it:
+
+
+.. code:: bash
+
+   mysql> select id from cloud.physical_network where name="bond0 Private Gateways" 
+   mysql> select max(id) from cloud.physical_network_isolation_methods;
+
+Write down the id and max(id) values (i.e. 204, 10)
+
+.. |Add-physical-network-1.png| image:: ./_static/images/Add-physical-network-1.png
+   
+.. code:: bash
+
+   mysql> INSERT INTO cloud.physical_network_isolation_methods (id, physical_network_id, isolation_method) VALUES ('11', '204', 'VLAN'); 
+
+where 11 is actually the next number after the max(id) value, and 204 is the ID of the Physical Network (check the image below)
+
+.. |Add-physical-network-2.png| image:: ./_static/images/Add-physical-network-2.png
+
+Now, that we have set correct Isolation Method for the new Physical Network, and enabled it, we also need to do most critical part, to define that this Physical Network caries Guest traffic. This action is also done via database change.
+
+We want to effectively clone the existing Guest network row from cloud.physical_network_traffic_types table, and then change needed values: ID, UUID, PHYSICAL_NETWORK_ID and KVM_NETWORK_LABEL (in our case, we are using KVM, but same goes for other HyperVisor types)
+
+.. |Add-physical-network-3.png| image:: ./_static/images/Add-physical-network-3.png
+
+   
+After this last step, we are ready to tag these 2 Guest Physical Networks and Network Offerings (regular ones for VPC Guest networks, and the special one used for Private Gateways) and then use these two Guest Networks as originally planned.
+
+For more details on Network tagging, please see  ":ref:`adding-priv-gw-vpc`".
