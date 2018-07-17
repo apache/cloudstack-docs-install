@@ -92,7 +92,7 @@ To check the signature, run the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --verify apache-cloudstack-4.11.0.0-src.tar.bz2.asc
+   $ gpg --verify apache-cloudstack-4.11.1.0-src.tar.bz2.asc
 
 If the signature is valid you will see a line of output that contains
 'Good signature'.
@@ -107,7 +107,7 @@ You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md MD5 apache-cloudstack-4.11.0.0-src.tar.bz2 | diff - apache-cloudstack-4.11.0.0-src.tar.bz2.md5
+   $ gpg --print-md MD5 apache-cloudstack-4.11.1.0-src.tar.bz2 | diff - apache-cloudstack-4.11.1.0-src.tar.bz2.md5
 
 If this successfully completes you should see no output. If there is any
 output from them, then there is a difference between the hash you
@@ -123,7 +123,7 @@ release. You can verify this hash by executing the following command:
 
 .. sourcecode:: bash
 
-   $ gpg --print-md SHA512 apache-cloudstack-4.11.0.0-src.tar.bz2 | diff - apache-cloudstack-4.11.0.0-src.tar.bz2.sha
+   $ gpg --print-md SHA512 apache-cloudstack-4.11.1.0-src.tar.bz2 | diff - apache-cloudstack-4.11.1.0-src.tar.bz2.sha
 
 If this command successfully completes you should see no output. If
 there is any output from them, then there is a difference between the
@@ -163,13 +163,13 @@ with a single command as follows:
 
 .. sourcecode:: bash
 
-   $ tar -jxvf apache-cloudstack-4.11.0.0-src.tar.bz2
+   $ tar -jxvf apache-cloudstack-4.11.1.0-src.tar.bz2
 
 You can now move into the directory:
 
 .. sourcecode:: bash
 
-   $ cd ./apache-cloudstack-4.11.0.0-src
+   $ cd ./apache-cloudstack-4.11.1.0-src
 
 Install new MySQL connector
 ---------------------------
