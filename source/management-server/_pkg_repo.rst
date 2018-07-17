@@ -53,11 +53,12 @@ information.
 
    [cloudstack]
    name=cloudstack
-   baseurl=http://cloudstack.apt-get.eu/centos/$releasever/4.11/
+   baseurl=http://download.cloudstack.org/centos/$releasever/4.11/
    enabled=1
    gpgcheck=0
 
-Now you should be able to install CloudStack using Yum.
+
+Now you should now be able to install CloudStack using Yum.
 
 
 DEB package repository
