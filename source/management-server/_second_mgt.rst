@@ -30,7 +30,7 @@ OS for the Management Server.
    installed on the hypervisor hosts.
 
    Download vhd-util from
-   `vhd-util <http://download.cloud.com.s3.amazonaws.com/tools/vhd-util>`_
+   `vhd-util <http://download.cloudstack.org/tools/vhd-util>`_
 
    Copy vhd-util to
    ``/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver``.
