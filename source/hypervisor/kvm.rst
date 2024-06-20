@@ -144,11 +144,11 @@ on the host.
 
 First we start by installing the agent:
 
-In RHEL or CentOS:
+In RHEL or CentOS (net-tools for script compatibility):
 
 .. sourcecode:: bash
 
-   $ yum install cloudstack-agent
+   $ yum install cloudstack-agent net-tools
 
 In Ubuntu:
 
@@ -479,15 +479,21 @@ It depends on the distribution you are using how to configure these,
 below you'll find examples for RHEL/CentOS and Ubuntu.
 
 .. note::
+   cloud bridges are based on the physical nics you have configured in CS.
+   This means if you have one physical nic choosen wiht public, management and guest network.
+   then you have just to configure one bridge named "cloudbr0".
+   If you have to nics one with public and management network and one for guest networks then you have to configure two bridges. one "cloudbr0" and another "cloudbr1".
    The goal is to have two bridges called 'cloudbr0' and 'cloudbr1' after this
    section. This should be used as a guideline only. The exact configuration
    will depend on your network layout.
+   
+   
 
 Configure RHEL or CentOS for Basic Networks
 '''''''''''''''''''''''''''''''''''''''''''
 
 The required packages were installed when libvirt was installed, we can
-proceed to configuring the network.
+proceed to configuring the network. 
 
 First we configure eth0
 
